@@ -1,0 +1,275 @@
+[0.000000] (-) TimerEvent: {}
+[0.000169] (-) JobUnselected: {'identifier': 'media'}
+[0.000264] (-) JobUnselected: {'identifier': 'model'}
+[0.000276] (-) JobUnselected: {'identifier': 'orbslam'}
+[0.000287] (interface) JobQueued: {'identifier': 'interface', 'dependencies': OrderedDict()}
+[0.000453] (interface) JobStarted: {'identifier': 'interface'}
+[0.009527] (interface) JobProgress: {'identifier': 'interface', 'progress': 'cmake'}
+[0.009721] (interface) Command: {'cmd': ['/usr/bin/cmake', '/home/weiwei/Desktop/project/ObsAvoidance/src/interface', '-DCMAKE_INSTALL_PREFIX=/home/weiwei/Desktop/project/ObsAvoidance/install/interface'], 'cwd': '/home/weiwei/Desktop/project/ObsAvoidance/build/interface', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en_US:en'), ('USER', 'weiwei'), ('LC_TIME', 'zh_CN.UTF-8'), ('SSH_AGENT_PID', '1573'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('QT4_IM_MODULE', 'fcitx'), ('HOME', '/home/weiwei'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.82.2'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1366'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=c436cb06cad5a637723dc04d651105f2'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install'), ('ROS_DISTRO', 'foxy'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'weiwei'), ('JOURNAL_STREAM', '8:48296'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'weiwei'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/weiwei/Desktop/thirdParty/anaconda3/condabin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/hello-world:@/tmp/.ICE-unix/1619,unix/hello-world:/tmp/.ICE-unix/1619'), ('INVOCATION_ID', '3710ca698a304b91b2c5955d7774ae72'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/eb05bf18_2f67_4dd9_8214_a6b60c50841d'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-6ed19027ef.sock'), ('GNOME_TERMINAL_SERVICE', ':1.140'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', '--ms-enable-electron-run-as-node'), ('QT_IM_MODULE', 'fcitx'), ('PWD', '/home/weiwei/Desktop/project/ObsAvoidance/build/interface'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'fcitx'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=c436cb06cad5a637723dc04d651105f2'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy')]), 'shell': False}
+[0.080042] (interface) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.099833] (-) TimerEvent: {}
+[0.116644] (interface) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.119747] (interface) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.162794] (interface) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.163673] (interface) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.199988] (-) TimerEvent: {}
+[0.206474] (interface) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.213608] (interface) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.213926] (interface) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.215639] (interface) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[0.264621] (interface) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[0.265244] (interface) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.300098] (-) TimerEvent: {}
+[0.315712] (interface) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.323061] (interface) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.323441] (interface) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.326040] (interface) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.341253] (interface) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.341338] (interface) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.400174] (-) TimerEvent: {}
+[0.461690] (interface) StdoutLine: {'line': b'-- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[0.493228] (interface) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.498190] (interface) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.500242] (-) TimerEvent: {}
+[0.560658] (interface) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[0.584788] (interface) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[0.600364] (-) TimerEvent: {}
+[0.651517] (interface) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.695788] (interface) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[0.696835] (interface) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.697690] (interface) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[0.700422] (-) TimerEvent: {}
+[0.748187] (interface) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[0.748377] (interface) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[0.800529] (-) TimerEvent: {}
+[0.803568] (interface) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[0.803739] (interface) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[0.849916] (interface) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[0.850109] (interface) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[0.893103] (interface) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[0.893882] (interface) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[0.900595] (-) TimerEvent: {}
+[0.994094] (interface) StdoutLine: {'line': b'-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)\n'}
+[1.000768] (-) TimerEvent: {}
+[1.072282] (interface) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)\n'}
+[1.082357] (interface) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[1.100927] (-) TimerEvent: {}
+[1.145114] (interface) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") \n'}
+[1.201074] (-) TimerEvent: {}
+[1.234088] (interface) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)\n'}
+[1.301176] (-) TimerEvent: {}
+[1.401395] (-) TimerEvent: {}
+[1.455819] (interface) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.501491] (-) TimerEvent: {}
+[1.562481] (interface) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.580137] (interface) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[1.581656] (interface) StdoutLine: {'line': b'-- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)\n'}
+[1.600740] (interface) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[1.600873] (interface) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[1.600912] (interface) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8\n'}
+[1.600948] (interface) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.8.so\n'}
+[1.601561] (-) TimerEvent: {}
+[1.614707] (interface) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[1.679191] (interface) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[1.679921] (interface) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.680326] (interface) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[1.685986] (interface) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.701634] (-) TimerEvent: {}
+[1.726322] (interface) StdoutLine: {'line': b'-- Generating done\n'}
+[1.728109] (interface) StdoutLine: {'line': b'-- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/interface\n'}
+[1.735243] (interface) CommandEnded: {'returncode': 0}
+[1.737551] (interface) JobProgress: {'identifier': 'interface', 'progress': 'build'}
+[1.737621] (interface) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/weiwei/Desktop/project/ObsAvoidance/build/interface', '--', '-j16', '-l16'], 'cwd': '/home/weiwei/Desktop/project/ObsAvoidance/build/interface', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en_US:en'), ('USER', 'weiwei'), ('LC_TIME', 'zh_CN.UTF-8'), ('SSH_AGENT_PID', '1573'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('QT4_IM_MODULE', 'fcitx'), ('HOME', '/home/weiwei'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.82.2'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1366'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=c436cb06cad5a637723dc04d651105f2'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install'), ('ROS_DISTRO', 'foxy'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'weiwei'), ('JOURNAL_STREAM', '8:48296'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'weiwei'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/weiwei/Desktop/thirdParty/anaconda3/condabin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/hello-world:@/tmp/.ICE-unix/1619,unix/hello-world:/tmp/.ICE-unix/1619'), ('INVOCATION_ID', '3710ca698a304b91b2c5955d7774ae72'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/eb05bf18_2f67_4dd9_8214_a6b60c50841d'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-6ed19027ef.sock'), ('GNOME_TERMINAL_SERVICE', ':1.140'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', '--ms-enable-electron-run-as-node'), ('QT_IM_MODULE', 'fcitx'), ('PWD', '/home/weiwei/Desktop/project/ObsAvoidance/build/interface'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'fcitx'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=c436cb06cad5a637723dc04d651105f2'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy')]), 'shell': False}
+[1.764051] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__cpp\x1b[0m\n'}
+[1.764238] (interface) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[1.771469] (interface) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[1.801734] (-) TimerEvent: {}
+[1.902116] (-) TimerEvent: {}
+[1.915616] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_generator_c\x1b[0m\n'}
+[1.915778] (interface) StdoutLine: {'line': b'[  6%] Built target interface__cpp\n'}
+[1.923354] (interface) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[1.923546] (interface) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[1.923596] (interface) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[1.927209] (interface) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding C object CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.o\x1b[0m\n'}
+[1.962299] (interface) StdoutLine: {'line': b'[ 22%] \x1b[32m\x1b[1mLinking C shared library libinterface__rosidl_generator_c.so\x1b[0m\n'}
+[1.992880] (interface) StdoutLine: {'line': b'[ 22%] Built target interface__rosidl_generator_c\n'}
+[2.001168] (interface) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[2.001343] (interface) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[2.002176] (-) TimerEvent: {}
+[2.058828] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_typesupport_cpp\x1b[0m\n'}
+[2.065681] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_typesupport_introspection_cpp\x1b[0m\n'}
+[2.069682] (interface) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interface/msg/slam__type_support.cpp.o\x1b[0m\n'}
+[2.075839] (interface) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp.o\x1b[0m\n'}
+[2.076037] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_typesupport_fastrtps_cpp\x1b[0m\n'}
+[2.090206] (interface) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.o\x1b[0m\n'}
+[2.102283] (-) TimerEvent: {}
+[2.139182] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_typesupport_c\x1b[0m\n'}
+[2.151177] (interface) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.o\x1b[0m\n'}
+[2.157338] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_typesupport_introspection_c\x1b[0m\n'}
+[2.171761] (interface) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding C object CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.o\x1b[0m\n'}
+[2.175970] (interface) StdoutLine: {'line': b'[ 48%] \x1b[32m\x1b[1mLinking CXX shared library libinterface__rosidl_typesupport_c.so\x1b[0m\n'}
+[2.199331] (interface) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking C shared library libinterface__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[2.202370] (-) TimerEvent: {}
+[2.207368] (interface) StdoutLine: {'line': b'[ 51%] Built target interface__rosidl_typesupport_c\n'}
+[2.226152] (interface) StdoutLine: {'line': b'[ 51%] Built target interface__rosidl_typesupport_introspection_c\n'}
+[2.268734] (interface) StdoutLine: {'line': b'[ 54%] \x1b[32m\x1b[1mLinking CXX shared library libinterface__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[2.299160] (interface) StdoutLine: {'line': b'[ 54%] Built target interface__rosidl_typesupport_cpp\n'}
+[2.302467] (-) TimerEvent: {}
+[2.307313] (interface) StdoutLine: {'line': b'[ 58%] \x1b[32m\x1b[1mLinking CXX shared library libinterface__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[2.354160] (interface) StdoutLine: {'line': b'[ 58%] Built target interface__rosidl_typesupport_introspection_cpp\n'}
+[2.387865] (interface) StdoutLine: {'line': b'[ 61%] \x1b[32m\x1b[1mLinking CXX shared library libinterface__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[2.402579] (-) TimerEvent: {}
+[2.454812] (interface) StdoutLine: {'line': b'[ 61%] Built target interface__rosidl_typesupport_fastrtps_cpp\n'}
+[2.462936] (interface) StdoutLine: {'line': b'[ 64%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[2.502669] (-) TimerEvent: {}
+[2.602916] (-) TimerEvent: {}
+[2.613538] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_typesupport_fastrtps_c\x1b[0m\n'}
+[2.626742] (interface) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interface/msg/detail/slam__type_support_c.cpp.o\x1b[0m\n'}
+[2.703006] (-) TimerEvent: {}
+[2.803258] (-) TimerEvent: {}
+[2.860834] (interface) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libinterface__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[2.903384] (-) TimerEvent: {}
+[2.924613] (interface) StdoutLine: {'line': b'[ 70%] Built target interface__rosidl_typesupport_fastrtps_c\n'}
+[2.931776] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface\x1b[0m\n'}
+[2.938945] (interface) StdoutLine: {'line': b'[ 70%] Built target interface\n'}
+[2.945546] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__py\x1b[0m\n'}
+[2.953685] (interface) StdoutLine: {'line': b'[ 74%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[3.003458] (-) TimerEvent: {}
+[3.103694] (-) TimerEvent: {}
+[3.203975] (-) TimerEvent: {}
+[3.261605] (interface) StdoutLine: {'line': b'[ 74%] Built target interface__py\n'}
+[3.267418] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__python\x1b[0m\n'}
+[3.287826] (interface) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding C object CMakeFiles/interface__python.dir/rosidl_generator_py/interface/msg/_slam_s.c.o\x1b[0m\n'}
+[3.304116] (-) TimerEvent: {}
+[3.343191] (interface) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interface/libinterface__python.so\x1b[0m\n'}
+[3.372175] (interface) StdoutLine: {'line': b'[ 80%] Built target interface__python\n'}
+[3.378408] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_typesupport_c__pyext\x1b[0m\n'}
+[3.378540] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_typesupport_introspection_c__pyext\x1b[0m\n'}
+[3.378582] (interface) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target interface__rosidl_typesupport_fastrtps_c__pyext\x1b[0m\n'}
+[3.390198] (interface) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/interface__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[3.390417] (interface) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/interface__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[3.390478] (interface) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/interface__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[3.404228] (-) TimerEvent: {}
+[3.444167] (interface) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interface/interface_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so\x1b[0m\n'}
+[3.444340] (interface) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interface/interface_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so\x1b[0m\n'}
+[3.444393] (interface) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared library rosidl_generator_py/interface/interface_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so\x1b[0m\n'}
+[3.470639] (interface) StdoutLine: {'line': b'[100%] Built target interface__rosidl_typesupport_c__pyext\n'}
+[3.470836] (interface) StdoutLine: {'line': b'[100%] Built target interface__rosidl_typesupport_introspection_c__pyext\n'}
+[3.490305] (interface) StdoutLine: {'line': b'[100%] Built target interface__rosidl_typesupport_fastrtps_c__pyext\n'}
+[3.497355] (interface) CommandEnded: {'returncode': 0}
+[3.504328] (-) TimerEvent: {}
+[3.528374] (interface) JobProgress: {'identifier': 'interface', 'progress': 'install'}
+[3.535676] (interface) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/weiwei/Desktop/project/ObsAvoidance/build/interface'], 'cwd': '/home/weiwei/Desktop/project/ObsAvoidance/build/interface', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en_US:en'), ('USER', 'weiwei'), ('LC_TIME', 'zh_CN.UTF-8'), ('SSH_AGENT_PID', '1573'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('QT4_IM_MODULE', 'fcitx'), ('HOME', '/home/weiwei'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.82.2'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1366'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=c436cb06cad5a637723dc04d651105f2'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install'), ('ROS_DISTRO', 'foxy'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'weiwei'), ('JOURNAL_STREAM', '8:48296'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'weiwei'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/weiwei/Desktop/thirdParty/anaconda3/condabin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/hello-world:@/tmp/.ICE-unix/1619,unix/hello-world:/tmp/.ICE-unix/1619'), ('INVOCATION_ID', '3710ca698a304b91b2c5955d7774ae72'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/eb05bf18_2f67_4dd9_8214_a6b60c50841d'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-6ed19027ef.sock'), ('GNOME_TERMINAL_SERVICE', ':1.140'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', '--ms-enable-electron-run-as-node'), ('QT_IM_MODULE', 'fcitx'), ('PWD', '/home/weiwei/Desktop/project/ObsAvoidance/build/interface'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'fcitx'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=c436cb06cad5a637723dc04d651105f2'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy')]), 'shell': False}
+[3.542444] (interface) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.542563] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/ament_index/resource_index/rosidl_interfaces/interface\n'}
+[3.542627] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface\n'}
+[3.542685] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg\n'}
+[3.542750] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail\n'}
+[3.542792] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__struct.h\n'}
+[3.542833] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.h\n'}
+[3.542887] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__functions.c\n'}
+[3.542947] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__functions.h\n'}
+[3.542989] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/slam.h\n'}
+[3.543027] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_generator_c__visibility_control.h\n'}
+[3.543085] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/library_path.sh\n'}
+[3.543126] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/library_path.dsv\n'}
+[3.543180] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_generator_c.so\n'}
+[3.543427] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_generator_c.so" to ""\n'}
+[3.543493] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface\n'}
+[3.543555] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg\n'}
+[3.543596] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail\n'}
+[3.543649] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__rosidl_typesupport_fastrtps_c.h\n'}
+[3.543703] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[3.543758] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_fastrtps_c.so\n'}
+[3.544014] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[3.544076] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface\n'}
+[3.544136] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg\n'}
+[3.544177] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail\n'}
+[3.544230] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[3.544300] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/dds_fastrtps\n'}
+[3.544338] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[3.544411] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_fastrtps_cpp.so\n'}
+[3.544692] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[3.544745] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface\n'}
+[3.544806] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg\n'}
+[3.544858] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail\n'}
+[3.544898] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.c\n'}
+[3.544954] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h\n'}
+[3.544992] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[3.545100] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_introspection_c.so\n'}
+[3.545369] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_introspection_c.so" to ""\n'}
+[3.545459] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_c.so\n'}
+[3.545783] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_c.so" to ""\n'}
+[3.545844] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface\n'}
+[3.545906] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg\n'}
+[3.545950] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail\n'}
+[3.546004] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__traits.hpp\n'}
+[3.546041] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.hpp\n'}
+[3.546094] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__builder.hpp\n'}
+[3.546161] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__struct.hpp\n'}
+[3.546221] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/slam.hpp\n'}
+[3.546274] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[3.546369] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface\n'}
+[3.546421] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg\n'}
+[3.546484] (interface) StdoutLine: {'line': b'-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail\n'}
+[3.546528] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.cpp\n'}
+[3.546565] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp\n'}
+[3.546663] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_introspection_cpp.so\n'}
+[3.547005] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[3.547054] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_cpp.so\n'}
+[3.547292] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_cpp.so" to ""\n'}
+[3.547369] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/pythonpath.sh\n'}
+[3.547446] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/pythonpath.dsv\n'}
+[3.547596] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/__init__.py\n'}
+[3.566391] (interface) StdoutLine: {'line': b"Compiling '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/__init__.py'...\n"}
+[3.568674] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/msg\n'}
+[3.568716] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/msg/_slam.py\n'}
+[3.568766] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/msg/_slam_s.c\n'}
+[3.568817] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/msg/__init__.py\n'}
+[3.568873] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so\n'}
+[3.569134] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so" to ""\n'}
+[3.569271] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so\n'}
+[3.569561] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so" to ""\n'}
+[3.569696] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so\n'}
+[3.569918] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so" to ""\n'}
+[3.569998] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__python.so\n'}
+[3.570271] (interface) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__python.so" to ""\n'}
+[3.570427] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/msg/Slam.idl\n'}
+[3.570528] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/msg/Slam.msg\n'}
+[3.570579] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/ament_index/resource_index/package_run_dependencies/interface\n'}
+[3.570658] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/ament_index/resource_index/parent_prefix_path/interface\n'}
+[3.570720] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/ament_prefix_path.sh\n'}
+[3.570777] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/ament_prefix_path.dsv\n'}
+[3.570835] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/path.sh\n'}
+[3.570892] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/path.dsv\n'}
+[3.570949] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/local_setup.bash\n'}
+[3.571004] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/local_setup.sh\n'}
+[3.571063] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/local_setup.zsh\n'}
+[3.571118] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/local_setup.dsv\n'}
+[3.571170] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.dsv\n'}
+[3.571246] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/ament_index/resource_index/packages/interface\n'}
+[3.571342] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_generator_cExport.cmake\n'}
+[3.571408] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_generator_cExport-noconfig.cmake\n'}
+[3.571500] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_introspection_cExport.cmake\n'}
+[3.571562] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[3.571644] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_cExport.cmake\n'}
+[3.571705] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[3.571787] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_generator_cppExport.cmake\n'}
+[3.571874] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[3.571936] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[3.572016] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_cppExport.cmake\n'}
+[3.572076] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[3.572134] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/rosidl_cmake-extras.cmake\n'}
+[3.572214] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[3.572260] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[3.572314] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[3.572373] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[3.572429] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[3.572487] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[3.572545] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interfaceConfig.cmake\n'}
+[3.572589] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interfaceConfig-version.cmake\n'}
+[3.572639] (interface) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.xml\n'}
+[3.574818] (interface) CommandEnded: {'returncode': 0}
+[3.604435] (-) TimerEvent: {}
+[3.627334] (interface) JobEnded: {'identifier': 'interface', 'rc': 0}
+[3.627880] (-) EventReactorShutdown: {}

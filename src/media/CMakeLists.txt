@@ -22,7 +22,7 @@ find_package(interface REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
-find_package(OpenCV REQUIRED)
+# find_package(OpenCV REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(message_filters REQUIRED)
 find_package(pcl_conversions REQUIRED)
@@ -48,7 +48,8 @@ add_executable(media src/main.cpp src/media.cpp)
 
 ament_target_dependencies(media rclcpp interface geometry_msgs sensor_msgs cv_bridge message_filters pcl_conversions rcutils)
 
-target_link_libraries(media ${OpenCV_LIBS} ${PCL_LIBRARIES})
+target_link_libraries(media ${PCL_LIBRARIES})
+# target_link_libraries(media ${OpenCV_LIBS} ${PCL_LIBRARIES})
 
 install(TARGETS
   media
