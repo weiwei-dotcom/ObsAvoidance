@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from interface/msg/Slam.msg
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Pose.idl"
+#include "sensor_msgs/msg/Image.idl"
+#include "sensor_msgs/msg/PointCloud2.idl"
+
+module interface {
+  module msg {
+    @verbatim (language="comment", text=
+      " std_msgs/Header header")
+    struct Slam {
+      sensor_msgs::msg::PointCloud2 point_cloud;
+
+      geometry_msgs::msg::Pose cam_pose;
+
+      geometry_msgs::msg::Pose world2cam;
+
+      sensor_msgs::msg::Image img;
+    };
+  };
+};
