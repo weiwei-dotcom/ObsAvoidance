@@ -1,0 +1,124 @@
+%YAML:1.0
+---
+
+Camera.order: 0
+Camera.fx: 425.7142390419255
+Camera.fy: 425.6839191852586
+Camera.cx: 351.2690888495462
+Camera.cy: 228.6889439881554
+
+Camera.k1: 0.1779923377898677
+Camera.k2: -0.2606148395041221
+Camera.p1: 0.0005920453623228711
+Camera.p2: 0.0003438450505359588
+Camera.k3: 0.146467637676061
+
+blueLower.1: 100
+blueLower.2: 43
+blueLower.3: 46
+blueUpper.1: 149
+blueUpper.2: 255
+blueUpper.3: 255
+greenLower.1: 50
+greenLower.2: 43
+greenLower.3: 46
+greenUpper.1: 90
+greenUpper.2: 255
+greenUpper.3: 255
+redLower.1: 150
+redLower.2: 43
+redLower.3: 46
+redUpper.1: 180
+redUpper.2: 255
+redUpper.3: 255
+redPlusUpper.1: 33
+redPlusUpper.2: 255
+redPlusUpper.3: 255 
+redPlusLower.1: 0
+redPlusLower.2: 255
+redPlusLower.3: 255
+whiteLower1: 0
+whiteLower2: 0
+whiteLower3: 221
+whiteUpper1: 180
+whiteUpper2: 30
+whiteUpper3: 255
+
+open_blue_kernel_size: 17
+close_blue_kernel_size: 15
+open_green_kernel_size: 5
+close_green_kernel_size: 9
+open_red_kernel_size: 5
+close_red_kernel_size: 7
+
+# 判断motionControl功能包程序是否编写完成的标志:
+# 0 未完成
+# 1 完成
+flag_motionControlProgramHaveDone: 0
+
+# 圆形检测参数值
+dp: 2
+minDist: 80
+cannyUpThresh: 80
+circleThresh: 190
+minRadius: 50
+maxRadius: 300
+
+# 两帧圆之间的半径差阈值、圆心距离阈值
+difference_radius_thresh: 20
+distance_center_thresh: 25
+
+# 正视判断的cos阈值
+cosValue_thresh: 0.99
+
+# 连续检测圆形的列表长度阈值
+circle_size_thresh: 8
+# 腐蚀膨胀核大小
+erodeStructure_size: 7
+dilateStructure_size: 15
+# 尺度因子列表长度阈值
+scaleFactList_size_thresh: 160
+# 尺度因子内点阈值
+inlier_thresh_scaleFact: 60
+# ransac尺度因子采样长度
+sample_length: 6
+# 好点概率
+inlier_probability: 0.4
+
+octoTree.resolution: 0.005
+
+minNumBlueKeyPoint: 70
+minNumGreenKeyPoint: 40
+minNumRedKeyPoint: 40
+
+minNumPlaneParam: 100
+
+numIteration: 10000
+
+numPlaneParamSubSet: 10
+
+timesIteration_BlueD: 40
+timesIteration_GreenD: 40
+timesIteration_RedD: 40
+
+timesRansacIterBlue: 1000
+timesRansacIterGreen: 500
+timesRansacIterRed: 800
+
+numSampleBlue: 50
+numSampleGreen: 40
+numSampleRed: 30
+numsubSampleBlue: 5
+numsubSampleGreen: 5
+numsubSampleRed: 5
+numRansacIterBlue: 1500
+numRansacIterGreen: 1000
+numRansacIterRed: 500
+
+cosValueTresh: 0.97
+
+maxLengthPointCloudList: 10
+
+threshToOptBlue: 50
+threshToOptGreen: 40
+threshToOptRed: 40
