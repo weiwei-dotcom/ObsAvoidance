@@ -1,0 +1,3 @@
+std_msgs/Header header
+sensor_msgs/PointCloud2 point_cloud
+geometry_msgs/PoseStamped transform_init2cur
