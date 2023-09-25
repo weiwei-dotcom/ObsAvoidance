@@ -51,6 +51,15 @@ close_green_kernel_size: 9
 open_red_kernel_size: 5
 close_red_kernel_size: 7
 
+<<<<<<< HEAD
+=======
+# 判断motionControl功能包程序是否编写完成的标志:
+# 0 未完成
+# 1 完成
+flag_motionControlProgramHaveDone: 0
+
+# 圆形检测参数值
+>>>>>>> 7e066dc5be201a7871543420332a10620816feb1
 dp: 2
 minDist: 80
 cannyUpThresh: 80
@@ -58,6 +67,30 @@ circleThresh: 190
 minRadius: 50
 maxRadius: 300
 
+<<<<<<< HEAD
+=======
+# 两帧圆之间的半径差阈值、圆心距离阈值
+difference_radius_thresh: 20
+distance_center_thresh: 25
+
+# 正视判断的cos阈值
+cosValue_thresh: 0.99
+
+# 连续检测圆形的列表长度阈值
+circle_size_thresh: 8
+# 腐蚀膨胀核大小
+erodeStructure_size: 7
+dilateStructure_size: 15
+# 尺度因子列表长度阈值
+scaleFactList_size_thresh: 160
+# 尺度因子内点阈值
+inlier_thresh_scaleFact: 60
+# ransac尺度因子采样长度
+sample_length: 6
+# 好点概率
+inlier_probability: 0.4
+
+>>>>>>> 7e066dc5be201a7871543420332a10620816feb1
 octoTree.resolution: 0.005
 
 minNumBlueKeyPoint: 70
