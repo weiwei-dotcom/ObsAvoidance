@@ -1,4 +1,0 @@
-
-sensor_msgs/PointCloud2 point_cloud
-geometry_msgs/Point32[] keypoints
-bool success
