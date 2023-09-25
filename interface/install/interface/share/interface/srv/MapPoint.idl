@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from interface/srv/MapPoint.srv
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Point32.idl"
+#include "sensor_msgs/msg/PointCloud2.idl"
+
+module interface {
+  module srv {
+    struct MapPoint_Request {
+      boolean flag;
+    };
+    struct MapPoint_Response {
+      sensor_msgs::msg::PointCloud2 point_cloud;
+
+      sequence<geometry_msgs::msg::Point32> keypoints;
+
+      boolean success;
+    };
+  };
+};

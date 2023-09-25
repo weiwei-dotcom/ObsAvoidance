@@ -1,0 +1,6 @@
+msg/Slam.idl
+msg/Slam.msg
+srv/MapPoint.idl
+srv/MapPoint.srv
+srv/MapPoint_Request.msg
+srv/MapPoint_Response.msg
