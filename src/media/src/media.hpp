@@ -24,6 +24,18 @@
 class mediaNode : public rclcpp :: Node
 {
 private:
+    enum ERROR_TYPE
+    {
+        Circle_detection_is_not_stable = 0,
+        Distance_of_circle_is_too_much = 1,
+        Not_found_the_countour = 2,
+        Point_cloud_is_little = 3,
+        Start = 4,
+        Image_recieve_error = 5,
+        The_camera_is_not_straight_on_the_plane = 6
+    };
+    // 错误状态
+    ERROR_TYPE error_type;
     // motionControl功能包根据别的功能包输出的位姿信息来通过逆运动学或者其他方法来计算绳索绳索拉伸量
 
     // 判断motionControl功能包程序是否编写完成的标志
@@ -93,6 +105,8 @@ public:
     void ransacScaleFact();
     // 根据好点概率计算ransac迭代次数函数
     int calRansacIterNum();
+    // 打印检测错误状态信息
+    void changeErrorType(ERROR_TYPE newError);
     // 析构函数
     ~mediaNode();
 };

@@ -4,6 +4,7 @@
 
 mediaNode::mediaNode():Node("media")
 {
+  error_type = Start;
   flag_getScaleFact = false;
   slam_sub.subscribe(this, "slam");
   image_sub.subscribe(this, "image_raw");
@@ -53,6 +54,24 @@ mediaNode::mediaNode():Node("media")
   // 在运动控制程序编写完成之前不执行该判断内部的代码
   if (flag_motionControlProgramHaveDone == 1) {
 
+  }
+}
+
+void mediaNode::changeErrorType(ERROR_TYPE newError)
+{
+  if (newError != error_type)
+  {
+    static std::string errorTypeString[7] = {
+      "Circle detection is not stable",
+      "Distance of circle is too much",
+      "Not found the countour",
+      "Point cloud is little",
+      "Start",
+      "Image recieve error",
+      "The camera is not straight on the plane"
+    };
+    error_type = newError;
+    RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type]);
   }
 }
 
@@ -115,7 +134,7 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
   cv_bridge::CvImagePtr img_ptr = cv_bridge::toCvCopy(imageMsg, "bgr8");
   cv::Mat img = img_ptr->image;
   if (img.empty()){
-    RCLCPP_INFO(this->get_logger(), "图像数据接收失败");
+    changeErrorType(Image_recieve_error);
     return;
   }
   cv::Mat img_gray;
@@ -124,11 +143,11 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
   std::vector<cv::Vec3f> temp_circles;
   cv::HoughCircles(img_gray, temp_circles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
   if (temp_circles.size()>1) {
-    RCLCPP_INFO(this->get_logger(), "检测圆形数量过多");
+    changeErrorType(Circle_detection_is_not_stable);
     return;    
   }
   if (temp_circles.size()==0) {
-    RCLCPP_INFO(this->get_logger(), "未检测到圆孔");
+    changeErrorType(Circle_detection_is_not_stable);
     return;    
   }
   float distance_center=0.0, difference_radius=0.0;
@@ -138,7 +157,7 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
     difference_radius=std::abs(temp_circles[0][2] - circles_.back()[2]);    
   }
   if (distance_center > distance_center_thresh || difference_radius > difference_radius_thresh) {
-    RCLCPP_INFO(this->get_logger(), "前后圆形差异过大，圆形检测不稳定");
+    changeErrorType(Distance_of_circle_is_too_much);
     distance_.clear();
     circles_.clear();
     return;
@@ -183,7 +202,7 @@ bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam:
   bool flag_getContour = getMaxAreaContour(img_erode, contour);
   if (!flag_getContour) 
   {
-    std::cout<<"没有找到轮廓" << std::endl;
+    changeErrorType(Not_found_the_countour);
     return false;
   }
   // 较大核膨胀
@@ -206,6 +225,7 @@ bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam:
     Eigen::Vector3f tempPixelPoint=m_projectMatrix*point.getVector3fMap();
     cv::Point2f pixelPoint(tempPixelPoint[0]/tempPixelPoint[2], tempPixelPoint[1]/tempPixelPoint[2]);
     double polyTestValue=cv::pointPolygonTest(contour, pixelPoint, false);
+    // 特征点轮廓判断    
     if (polyTestValue<0) 
       continue;
     // 特征点掩码判断    
@@ -219,7 +239,6 @@ bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam:
     // // 调试代码1
     // cv::drawMarker(img, cv::Point((int)pixelPoint.x, (int)pixelPoint.y), cv::Scalar(0,255,0), 2, 20, 3);
 
-    // 特征点轮廓判断
     finalPointCloud.points.push_back(point);
   }
 
@@ -229,8 +248,8 @@ bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam:
 
   // 用筛选后的点云拟合平面
   if (finalPointCloud.points.size()<80) {
+    changeErrorType(Point_cloud_is_little);
     std::cout<<"finalPointCloud.points.size() : " << finalPointCloud.points.size()<<std::endl;
-    RCLCPP_INFO(this->get_logger(), "拟合点云数量过少, 无法进行正视判断");
     return false;
   }
   Eigen::Vector4d param = calParam(finalPointCloud);
@@ -240,8 +259,8 @@ bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam:
   double cosValue = param.block(0,0,3,1).dot(zAxis);
   // 两向量余弦值判断
   if (cosValue < cosValue_thresh) {
+    changeErrorType(The_camera_is_not_straight_on_the_plane);
     std::cout << std::acos(cosValue)/M_PI * (double)180 << "°" << std::endl;
-    RCLCPP_INFO(this->get_logger(), "检测到相机偏离检测平面角度过大，请将相机正视于检测平面");
     return false;    
   }
   // // 调试代码2
@@ -316,7 +335,8 @@ void mediaNode::ransacScaleFact()
       scaleFact_slamToWorld = (float)result;
     }
   }
-  std::cout << "the final result of scale fact: " << scaleFact_slamToWorld <<std::endl;
+  std::cout << "******************************" << std::endl;
+  std::cout << "The final result of scale fact: " << scaleFact_slamToWorld <<std::endl;
 }
 
 int mediaNode::calRansacIterNum()
@@ -325,7 +345,8 @@ int mediaNode::calRansacIterNum()
   for (int i=0;i<sample_length;i++) 
     tempFloat*=(inlier_probability_ * (float)scaleFactList_size_thresh-(float)i)/(float)(scaleFactList_size_thresh-i);
   int iterNum = std::ceil((float)1.0/tempFloat);
-  std::cout<<"ransac 迭代次数为： " << iterNum <<std::endl;
+  std::cout << "***************************" << std::endl;
+  std::cout<<"Ransac iteration time is: " << iterNum <<std::endl;
   return iterNum;
 }
 
