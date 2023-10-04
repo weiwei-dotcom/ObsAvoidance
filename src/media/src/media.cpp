@@ -1,5 +1,3 @@
-
-// TODO: 修改配置文件让获取尺度因子的时间更长一点，精确度更高点;
 #include "media.hpp"
 
 mediaNode::mediaNode():Node("media")
@@ -11,7 +9,7 @@ mediaNode::mediaNode():Node("media")
       message_filters::sync_policies::ExactTime<interface::msg::Slam, sensor_msgs::msg::Image>(10), slam_sub, image_sub)
   );
   sync1->registerCallback(std::bind(&mediaNode::slam_callback, this, std::placeholders::_1, std::placeholders::_2));
-  transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_init2cur", 5);
+  transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
   cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
   minDist = fileRead["minDist"];

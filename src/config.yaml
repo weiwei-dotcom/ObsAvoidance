@@ -85,7 +85,7 @@ sample_length: 6
 # 好点概率
 inlier_probability: 0.4
 
-octoTree.resolution: 0.005
+octoTree.resolution: 5
 
 minNumBlueKeyPoint: 70
 minNumGreenKeyPoint: 40

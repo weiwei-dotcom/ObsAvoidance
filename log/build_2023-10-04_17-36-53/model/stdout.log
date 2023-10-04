@@ -1,0 +1,22 @@
+[35m[1mScanning dependencies of target model[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/model.dir/src/main.cpp.o[0m
+[100%] [32m[1mLinking CXX executable model[0m
+[100%] Built target model
+-- Install configuration: ""
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/model/model
+-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/model/model" to ""
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/ament_index/resource_index/package_run_dependencies/model
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/ament_index/resource_index/parent_prefix_path/model
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/ament_prefix_path.sh
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/ament_prefix_path.dsv
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/path.sh
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/path.dsv
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.bash
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.sh
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.zsh
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.dsv
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.dsv
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/ament_index/resource_index/packages/model
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/cmake/modelConfig.cmake
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/cmake/modelConfig-version.cmake
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.xml
