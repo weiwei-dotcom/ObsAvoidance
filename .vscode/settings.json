@@ -5,7 +5,7 @@
     "python.analysis.extraPaths": [
         "/opt/ros/foxy/lib/python3.8/site-packages"
     ],
-    "cmake.sourceDirectory": "/home/weiwei/Desktop/project/ObsAvoidance_2.0/build/interface/interface__py",
+    "cmake.sourceDirectory": "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/interface__py",
     "files.associations": {
         "cctype": "cpp",
         "clocale": "cpp",

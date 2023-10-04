@@ -1,0 +1,1135 @@
+[0.092s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/weiwei/Desktop/project/ObsAvoidance/src/orbslam -DCMAKE_INSTALL_PREFIX=/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam
+[0.133s] -- The C compiler identification is GNU 9.4.0
+[0.166s] -- The CXX compiler identification is GNU 9.4.0
+[0.169s] -- Check for working C compiler: /usr/bin/cc
+[0.210s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.211s] -- Detecting C compiler ABI info
+[0.251s] -- Detecting C compiler ABI info - done
+[0.259s] -- Detecting C compile features
+[0.259s] -- Detecting C compile features - done
+[0.261s] -- Check for working CXX compiler: /usr/bin/c++
+[0.318s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.319s] -- Detecting CXX compiler ABI info
+[0.376s] -- Detecting CXX compiler ABI info - done
+[0.384s] -- Detecting CXX compile features
+[0.384s] -- Detecting CXX compile features - done
+[0.386s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.402s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.403s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.531s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.562s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.570s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.623s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.643s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.696s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.733s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.734s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.735s] -- Looking for pthread.h
+[0.782s] -- Looking for pthread.h - found
+[0.782s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.831s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[0.831s] -- Looking for pthread_create in pthreads
+[0.869s] -- Looking for pthread_create in pthreads - not found
+[0.869s] -- Looking for pthread_create in pthread
+[0.916s] -- Looking for pthread_create in pthread - found
+[0.917s] -- Found Threads: TRUE  
+[1.019s] -- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[1.113s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[1.192s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[1.220s] -- Found ORB_SLAM3: /usr/lib/libORB_SLAM3.so  
+[1.226s] -- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)
+[1.343s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.432s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.432s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.433s] -- Configured cppcheck include dirs: 
+[1.433s] -- Configured cppcheck exclude dirs and/or files: 
+[1.433s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.433s] -- Configured cpplint exclude dirs and/or files: 
+[1.433s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.434s] -- Added test 'lint_cmake' to check CMake code style
+[1.434s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[1.434s] -- Added test 'uncrustify' to check C / C++ code style
+[1.435s] -- Configured uncrustify additional arguments: 
+[1.435s] -- Added test 'xmllint' to check XML markup files
+[1.437s] -- Configuring done
+[1.458s] -- Generating done
+[1.459s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam
+[1.466s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam' returned '0': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /home/weiwei/Desktop/project/ObsAvoidance/src/orbslam -DCMAKE_INSTALL_PREFIX=/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam
+[1.468s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam -- -j16 -l16
+[1.494s] [35m[1mScanning dependencies of target orbslam[0m
+[1.577s] [ 66%] [32mBuilding CXX object CMakeFiles/orbslam.dir/src/slam.cpp.o[0m
+[1.577s] [ 66%] [32mBuilding CXX object CMakeFiles/orbslam.dir/src/main.cpp.o[0m
+[5.898s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:30[m[K,
+[5.898s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[5.898s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[5.898s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[5.898s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[5.898s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[5.898s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[5.898s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[5.898s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[5.898s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/ImuTypes.h:[m[K In member function ‘[01m[Kvoid ORB_SLAM3::IMU::Preintegrated::printMeasurements() const[m[K’:
+[5.898s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/ImuTypes.h:204:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<ORB_SLAM3::IMU::Preintegrated::integrable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.899s]   204 |         for(int i=0; [01;35m[Ki<mvMeasurements.size()[m[K; i++){
+[5.899s]       |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.916s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:30[m[K,
+[5.916s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[5.916s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[5.916s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[5.916s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[5.916s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[5.916s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[5.916s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[5.916s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[5.916s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/ImuTypes.h:[m[K In member function ‘[01m[Kvoid ORB_SLAM3::IMU::Preintegrated::printMeasurements() const[m[K’:
+[5.917s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/ImuTypes.h:204:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<ORB_SLAM3::IMU::Preintegrated::integrable>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.917s]   204 |         for(int i=0; [01;35m[Ki<mvMeasurements.size()[m[K; i++){
+[5.917s]       |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.952s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:37[m[K,
+[5.952s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[5.952s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[5.952s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[5.952s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[5.952s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[5.953s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[5.953s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[5.953s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[5.953s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[5.953s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[5.953s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:[m[K At global scope:
+[5.953s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:62:74:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[5.953s]    62 |     typedef Eigen::Map<Matrix<double, D, D>, Matrix<double,D,D>::Flags & [01;35m[KAlignedBit[m[K ? Aligned : Unaligned >  HessianBlockType;
+[5.953s]       |                                                                          [01;35m[K^~~~~~~~~~[m[K
+[5.953s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[5.953s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[5.953s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[5.953s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[5.953s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[5.953s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[5.953s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[5.954s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[5.954s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[5.954s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[5.968s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[5.968s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[5.968s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[5.968s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[5.968s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[5.968s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[5.968s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[5.968s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[5.968s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[5.969s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[5.969s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[5.969s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:82:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[5.969s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::Flags & [01;35m[KAlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[5.969s]       |                                                                                  [01;35m[K^~~~~~~~~~[m[K
+[5.969s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[5.969s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[5.969s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[5.969s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[5.969s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[5.969s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[5.969s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[5.969s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[5.969s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[5.969s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[5.969s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[5.969s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[5.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[5.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[5.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[5.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[5.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[5.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[5.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[5.970s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[5.970s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[5.970s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:82:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[5.970s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::Flags & [01;35m[KAlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[5.970s]       |                                                                                  [01;35m[K^~~~~~~~~~[m[K
+[5.970s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[5.970s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[5.970s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[5.970s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[5.970s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[5.971s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[5.971s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[5.971s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[5.971s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[5.971s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[5.972s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:37[m[K,
+[5.972s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[5.972s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[5.972s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[5.972s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[5.972s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[5.972s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[5.973s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[5.973s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[5.973s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[5.973s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[5.973s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:[m[K At global scope:
+[5.973s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:62:74:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[5.973s]    62 |     typedef Eigen::Map<Matrix<double, D, D>, Matrix<double,D,D>::Flags & [01;35m[KAlignedBit[m[K ? Aligned : Unaligned >  HessianBlockType;
+[5.973s]       |                                                                          [01;35m[K^~~~~~~~~~[m[K
+[5.973s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[5.973s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[5.973s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[5.973s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[5.973s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[5.973s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[5.973s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[5.973s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[5.974s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[5.974s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[5.989s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[5.989s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[5.989s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[5.989s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[5.989s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[5.989s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[5.989s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[5.989s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[5.989s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[5.989s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[5.990s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[5.990s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:82:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[5.990s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::Flags & [01;35m[KAlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[5.990s]       |                                                                                  [01;35m[K^~~~~~~~~~[m[K
+[5.990s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[5.990s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[5.990s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[5.990s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[5.990s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[5.990s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[5.990s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[5.990s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[5.990s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[5.990s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[5.990s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[5.990s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[5.991s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[5.991s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[5.991s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[5.991s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[5.991s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[5.991s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[5.991s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[5.991s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[5.991s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[5.991s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:82:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[5.991s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::Flags & [01;35m[KAlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[5.991s]       |                                                                                  [01;35m[K^~~~~~~~~~[m[K
+[5.991s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[5.991s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[5.991s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[5.991s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[5.992s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[5.992s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[5.992s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[5.992s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[5.992s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:41[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[5.992s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[5.993s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[5.993s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/se3quat.h:43:38:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+[5.993s]    43 |       EIGEN_MAKE_ALIGNED_OPERATOR_NEW[01;35m[K;[m[K
+[5.993s]       |                                      [01;35m[K^[m[K
+[5.993s]       |                                      [31m[K-[m[K
+[6.013s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:41[m[K,
+[6.013s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.013s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.013s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.013s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.013s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.013s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.013s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.013s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.013s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.014s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.014s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/se3quat.h:43:38:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+[6.014s]    43 |       EIGEN_MAKE_ALIGNED_OPERATOR_NEW[01;35m[K;[m[K
+[6.014s]       |                                      [01;35m[K^[m[K
+[6.014s]       |                                      [31m[K-[m[K
+[6.182s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:37[m[K,
+[6.182s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.182s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.182s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.182s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.182s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.182s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.182s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.182s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.183s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.183s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.183s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h: In instantiation of ‘[01m[Kclass g2o::BaseVertex<3, Eigen::Matrix<double, 3, 1> >[m[K’:
+[6.183s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_sba.h:40:35:[m[K   required from here
+[6.183s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:62:72:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.183s]    62 |     typedef Eigen::Map<Matrix<double, D, D>, Matrix<double,D,D>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned >  HessianBlockType;
+[6.183s]       |                                                                  [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.183s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.183s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.183s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.183s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.183s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.183s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.183s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.183s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.183s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.183s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.201s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:37[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.201s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.201s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h: In instantiation of ‘[01m[Kclass g2o::BaseVertex<6, g2o::SE3Quat>[m[K’:
+[6.201s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:59:33:[m[K   required from here
+[6.202s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:62:72:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.202s]    62 |     typedef Eigen::Map<Matrix<double, D, D>, Matrix<double,D,D>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned >  HessianBlockType;
+[6.202s]       |                                                                  [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.202s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.202s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.202s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.202s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.202s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.202s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.202s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.202s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.202s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.202s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.206s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:37[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.206s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.206s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h: In instantiation of ‘[01m[Kclass g2o::BaseVertex<3, Eigen::Matrix<double, 3, 1> >[m[K’:
+[6.206s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_sba.h:40:35:[m[K   required from here
+[6.206s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:62:72:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.206s]    62 |     typedef Eigen::Map<Matrix<double, D, D>, Matrix<double,D,D>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned >  HessianBlockType;
+[6.206s]       |                                                                  [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.206s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.206s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.207s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.207s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.207s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.207s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.207s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.207s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.207s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.207s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.222s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.222s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<6, g2o::SE3Quat, g2o::VertexSE3Expmap, g2o::VertexSE3Expmap>[m[K’:
+[6.222s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:83:24:[m[K   required from here
+[6.222s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.222s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.222s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.222s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.222s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.222s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.222s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.222s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.222s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.222s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.223s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.223s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.223s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.223s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.223s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.223s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.223s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.223s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.223s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.223s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.223s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.223s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.223s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.223s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.223s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.227s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:37[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.227s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h: In instantiation of ‘[01m[Kclass g2o::BaseVertex<6, g2o::SE3Quat>[m[K’:
+[6.227s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:59:33:[m[K   required from here
+[6.227s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:62:72:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.227s]    62 |     typedef Eigen::Map<Matrix<double, D, D>, Matrix<double,D,D>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned >  HessianBlockType;
+[6.227s]       |                                                                  [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.227s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.227s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.227s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.227s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.227s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.227s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.227s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.227s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.227s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.246s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.246s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.246s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.246s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.246s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.247s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.247s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.247s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.247s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.247s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.247s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.247s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<6, g2o::SE3Quat, g2o::VertexSE3Expmap, g2o::VertexSE3Expmap>[m[K’:
+[6.247s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:83:24:[m[K   required from here
+[6.247s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.247s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.247s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.247s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.247s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.247s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.247s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.247s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.248s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.248s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.248s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.248s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.248s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.249s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.249s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.249s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.249s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.249s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.249s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.249s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.249s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.249s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.249s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.249s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.249s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.249s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.312s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.312s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.312s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.312s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.312s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.313s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.313s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.313s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.313s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.313s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.313s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.313s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<2, Eigen::Matrix<double, 2, 1>, g2o::VertexSBAPointXYZ, g2o::VertexSE3Expmap>[m[K’:
+[6.313s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:114:35:[m[K   required from here
+[6.313s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.313s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.313s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.313s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.313s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.313s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.313s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.313s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.313s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.313s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.313s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.313s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.314s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.322s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.322s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.322s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.322s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.322s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.322s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.323s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.323s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.323s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.323s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.323s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.323s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.323s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.323s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.323s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.323s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.323s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.323s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.323s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.323s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.323s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.323s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.324s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.324s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.340s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.340s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.341s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<2, Eigen::Matrix<double, 2, 1>, g2o::VertexSBAPointXYZ, g2o::VertexSE3Expmap>[m[K’:
+[6.341s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:114:35:[m[K   required from here
+[6.341s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.341s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.341s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.341s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.341s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.341s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.341s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.341s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.341s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.341s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.341s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.341s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.341s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.350s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.350s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.350s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.350s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.350s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.351s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.351s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.351s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.351s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.351s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.351s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.351s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.351s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.351s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.351s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.359s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.359s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.359s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<3, Eigen::Matrix<double, 3, 1>, g2o::VertexSBAPointXYZ, g2o::VertexSE3Expmap>[m[K’:
+[6.359s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:146:41:[m[K   required from here
+[6.360s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.360s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.360s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.360s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.360s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.360s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.360s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.360s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.360s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.360s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.360s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.360s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.360s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.360s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.360s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.360s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.360s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.361s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.361s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.361s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.361s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.361s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.361s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.361s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.361s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.361s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.361s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.361s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.361s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.361s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.361s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.361s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.361s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.361s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.362s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.362s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.362s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.388s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.389s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.389s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<3, Eigen::Matrix<double, 3, 1>, g2o::VertexSBAPointXYZ, g2o::VertexSE3Expmap>[m[K’:
+[6.389s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:146:41:[m[K   required from here
+[6.389s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.389s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.389s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.390s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.390s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.390s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.390s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.390s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.390s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.390s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.390s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.390s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.390s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.390s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.390s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.390s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.390s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.390s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.390s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.390s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.391s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.391s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.391s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.391s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.391s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.391s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.391s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.391s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.391s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.391s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.391s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.391s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.391s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.391s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.391s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.391s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.392s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.482s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:37[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.482s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h: In instantiation of ‘[01m[Kclass g2o::BaseVertex<7, g2o::Sim3>[m[K’:
+[6.482s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_seven_dof_expmap.h:48:35:[m[K   required from here
+[6.482s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:62:72:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.482s]    62 |     typedef Eigen::Map<Matrix<double, D, D>, Matrix<double,D,D>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned >  HessianBlockType;
+[6.482s]       |                                                                  [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.482s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.482s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.482s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.482s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.482s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.482s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.483s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.483s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.483s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.483s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.503s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.503s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.503s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<7, g2o::Sim3, g2o::VertexSim3Expmap, g2o::VertexSim3Expmap>[m[K’:
+[6.503s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_seven_dof_expmap.h:99:27:[m[K   required from here
+[6.503s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.503s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.503s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.504s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.504s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.504s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.504s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.504s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.504s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.504s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.504s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.504s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.504s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.504s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.504s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.504s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.504s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.504s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.504s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.504s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.505s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.505s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.505s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.505s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.505s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.505s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.514s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:37[m[K,
+[6.514s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.514s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.514s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.514s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.514s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.514s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.514s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.514s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.514s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.515s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.515s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h: In instantiation of ‘[01m[Kclass g2o::BaseVertex<7, g2o::Sim3>[m[K’:
+[6.515s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_seven_dof_expmap.h:48:35:[m[K   required from here
+[6.515s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_vertex.h:62:72:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.515s]    62 |     typedef Eigen::Map<Matrix<double, D, D>, Matrix<double,D,D>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned >  HessianBlockType;
+[6.515s]       |                                                                  [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.515s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.515s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.515s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.515s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.515s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.515s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.515s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.515s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.515s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.515s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.532s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.533s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<2, Eigen::Matrix<double, 2, 1>, g2o::VertexSBAPointXYZ, g2o::VertexSim3Expmap>[m[K’:
+[6.533s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_seven_dof_expmap.h:130:36:[m[K   required from here
+[6.533s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.533s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.533s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.533s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.533s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.533s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.533s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.533s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.533s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.533s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.533s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.533s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.535s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.535s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.535s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<7, g2o::Sim3, g2o::VertexSim3Expmap, g2o::VertexSim3Expmap>[m[K’:
+[6.535s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_seven_dof_expmap.h:99:27:[m[K   required from here
+[6.535s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.535s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.536s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.536s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.536s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.536s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.536s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.536s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.536s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.536s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.536s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.536s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.536s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.536s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.536s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.536s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.536s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.536s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.536s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.536s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.537s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.537s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.537s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.537s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.537s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.537s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.541s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.541s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.541s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.541s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.541s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.542s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.542s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.542s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.542s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.542s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.542s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.542s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.542s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.542s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.542s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.542s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.542s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.542s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.542s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.542s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.542s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.542s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.542s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.542s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.562s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.563s] /home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h: In instantiation of ‘[01m[Kclass g2o::BaseBinaryEdge<2, Eigen::Matrix<double, 2, 1>, g2o::VertexSBAPointXYZ, g2o::VertexSim3Expmap>[m[K’:
+[6.563s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_seven_dof_expmap.h:130:36:[m[K   required from here
+[6.563s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:59:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.563s]    59 |       typedef Eigen::Map<Matrix<double, Di, Dj>, Matrix<double, Di, Dj>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockType;
+[6.563s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.563s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.563s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.563s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.563s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.563s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.563s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.563s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.563s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.563s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.571s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h:38[m[K,
+[6.571s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Converter.h:26[m[K,
+[6.571s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:33[m[K,
+[6.571s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.572s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.572s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.572s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.572s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.572s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.572s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.572s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.572s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h:60:80:[m[K [01;35m[Kwarning: [m[K‘[01m[KEigen::AlignedBit[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[6.572s]    60 |       typedef Eigen::Map<Matrix<double, Dj, Di>, Matrix<double, Dj, Di>::[01;35m[KFlags & AlignedBit[m[K ? Aligned : Unaligned > HessianBlockTransposedType;
+[6.572s]       |                                                                          [01;35m[K~~~~~~^~~~~~~~~~~~[m[K
+[6.572s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:363[m[K,
+[6.572s]                  from [01m[K/usr/local/include/eigen3/Eigen/Dense:1[m[K,
+[6.572s]                  from [01m[K/usr/local/include/sophus/rotation_matrix.hpp:7[m[K,
+[6.572s]                  from [01m[K/usr/local/include/sophus/so3.hpp:7[m[K,
+[6.572s]                  from [01m[K/usr/local/include/sophus/se3.hpp:7[m[K,
+[6.572s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:7[m[K,
+[6.572s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.572s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/util/Constants.h:162:37:[m[K [01;36m[Knote: [m[Kdeclared here
+[6.572s]   162 | EIGEN_DEPRECATED const unsigned int [01;36m[KAlignedBit[m[K = 0x80;
+[6.572s]       |                                     [01;36m[K^~~~~~~~~~[m[K
+[6.592s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:34[m[K,
+[6.592s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.592s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.592s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.592s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.592s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.592s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.592s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.592s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.592s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Settings.h:232:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+[6.592s]   232 | }[01;35m[K;[m[K
+[6.593s]       |  [01;35m[K^[m[K
+[6.623s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Frame.h:34[m[K,
+[6.623s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/KeyFrame.h:28[m[K,
+[6.623s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/MapPoint.h:23[m[K,
+[6.623s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:24[m[K,
+[6.623s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.623s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.623s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.623s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.623s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.624s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Settings.h:232:2:[m[K [01;35m[Kwarning: [m[Kextra ‘[01m[K;[m[K’ [[01;35m[K-Wpedantic[m[K]
+[6.624s]   232 | }[01;35m[K;[m[K
+[6.624s]       |  [01;35m[K^[m[K
+[6.941s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Atlas.h:26[m[K,
+[6.941s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:25[m[K,
+[6.941s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.941s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.941s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.941s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.941s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.941s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:[m[K In member function ‘[01m[Kvirtual bool ORB_SLAM3::Pinhole::matchAndtriangulate(const cv::KeyPoint&, const cv::KeyPoint&, ORB_SLAM3::GeometricCamera*, Sophus::SE3f&, Sophus::SE3f&, float, float, Eigen::Vector3f&)[m[K’:
+[6.941s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:83:54:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kkp1[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.941s]    83 |         bool matchAndtriangulate([01;35m[Kconst cv::KeyPoint& kp1[m[K, const cv::KeyPoint& kp2, GeometricCamera* pOther,
+[6.941s]       |                                  [01;35m[K~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[6.941s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:83:79:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kkp2[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.941s]    83 |         bool matchAndtriangulate(const cv::KeyPoint& kp1, [01;35m[Kconst cv::KeyPoint& kp2[m[K, GeometricCamera* pOther,
+[6.941s]       |                                                           [01;35m[K~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[6.941s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:83:101:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KpOther[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.941s]    83 |         bool matchAndtriangulate(const cv::KeyPoint& kp1, const cv::KeyPoint& kp2, [01;35m[KGeometricCamera* pOther[m[K,
+[6.941s]       |                                                                                    [01;35m[K~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[6.941s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:84:48:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KTcw1[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.941s]    84 |                                  [01;35m[KSophus::SE3f& Tcw1[m[K, Sophus::SE3f& Tcw2,
+[6.942s]       |                                  [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[6.942s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:84:68:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KTcw2[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.942s]    84 |                                  Sophus::SE3f& Tcw1, [01;35m[KSophus::SE3f& Tcw2[m[K,
+[6.942s]       |                                                      [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[6.942s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:85:46:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KsigmaLevel1[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.942s]    85 |                                  [01;35m[Kconst float sigmaLevel1[m[K, const float sigmaLevel2,
+[6.942s]       |                                  [01;35m[K~~~~~~~~~~~~^~~~~~~~~~~[m[K
+[6.942s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:85:71:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KsigmaLevel2[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.942s]    85 |                                  const float sigmaLevel1, [01;35m[Kconst float sigmaLevel2[m[K,
+[6.942s]       |                                                           [01;35m[K~~~~~~~~~~~~^~~~~~~~~~~[m[K
+[6.942s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:86:51:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kx3Dtriangulated[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.942s]    86 |                                  [01;35m[KEigen::Vector3f& x3Dtriangulated[m[K) { return false;}
+[6.942s]       |                                  [01;35m[K~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~[m[K
+[6.942s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Atlas.h:27[m[K,
+[6.942s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:25[m[K,
+[6.942s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.942s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.942s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.942s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.942s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.942s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:[m[K In constructor ‘[01m[KORB_SLAM3::KannalaBrandt8::KannalaBrandt8(std::vector<float>)[m[K’:
+[6.942s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:102:21:[m[K [01;35m[Kwarning: [m[K‘[01m[KORB_SLAM3::KannalaBrandt8::precision[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[6.942s]   102 |         const float [01;35m[Kprecision[m[K;
+[6.942s]       |                     [01;35m[K^~~~~~~~~[m[K
+[6.942s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:88:26:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kstd::vector<int> ORB_SLAM3::KannalaBrandt8::mvLappingArea[m[K’ [[01;35m[K-Wreorder[m[K]
+[6.942s]    88 |         std::vector<int> [01;35m[KmvLappingArea[m[K;
+[6.943s]       |                          [01;35m[K^~~~~~~~~~~~~[m[K
+[6.943s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Atlas.h:27[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:25[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.943s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:47:9:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[6.943s]    47 |         [01;35m[KKannalaBrandt8[m[K(const std::vector<float> _vParameters) : GeometricCamera(_vParameters), precision(1e-6), mvLappingArea(2,0) ,tvr(nullptr) {
+[6.943s]       |         [01;35m[K^~~~~~~~~~~~~~[m[K
+[6.943s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Atlas.h:27[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:25[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.943s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp:1[m[K:
+[6.943s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:[m[K In constructor ‘[01m[KORB_SLAM3::KannalaBrandt8::KannalaBrandt8(std::vector<float>, float)[m[K’:
+[6.943s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:102:21:[m[K [01;35m[Kwarning: [m[K‘[01m[KORB_SLAM3::KannalaBrandt8::precision[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[6.943s]   102 |         const float [01;35m[Kprecision[m[K;
+[6.943s]       |                     [01;35m[K^~~~~~~~~[m[K
+[6.943s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:88:26:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kstd::vector<int> ORB_SLAM3::KannalaBrandt8::mvLappingArea[m[K’ [[01;35m[K-Wreorder[m[K]
+[6.943s]    88 |         std::vector<int> [01;35m[KmvLappingArea[m[K;
+[6.943s]       |                          [01;35m[K^~~~~~~~~~~~~[m[K
+[6.943s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:53:9:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[6.943s]    53 |         [01;35m[KKannalaBrandt8[m[K(const std::vector<float> _vParameters, const float _precision) : GeometricCamera(_vParameters),
+[6.943s]       |         [01;35m[K^~~~~~~~~~~~~~[m[K
+[6.943s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:[m[K In constructor ‘[01m[KORB_SLAM3::KannalaBrandt8::KannalaBrandt8(ORB_SLAM3::KannalaBrandt8*)[m[K’:
+[6.943s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:102:21:[m[K [01;35m[Kwarning: [m[K‘[01m[KORB_SLAM3::KannalaBrandt8::precision[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[6.944s]   102 |         const float [01;35m[Kprecision[m[K;
+[6.944s]       |                     [01;35m[K^~~~~~~~~[m[K
+[6.944s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:88:26:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kstd::vector<int> ORB_SLAM3::KannalaBrandt8::mvLappingArea[m[K’ [[01;35m[K-Wreorder[m[K]
+[6.944s]    88 |         std::vector<int> [01;35m[KmvLappingArea[m[K;
+[6.944s]       |                          [01;35m[K^~~~~~~~~~~~~[m[K
+[6.944s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:59:9:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[6.944s]    59 |         [01;35m[KKannalaBrandt8[m[K(KannalaBrandt8* pKannala) : GeometricCamera(pKannala->mvParameters), precision(pKannala->precision), mvLappingArea(2,0) ,tvr(nullptr) {
+[6.944s]       |         [01;35m[K^~~~~~~~~~~~~~[m[K
+[6.968s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Atlas.h:26[m[K,
+[6.969s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:25[m[K,
+[6.969s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.969s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.969s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.969s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.969s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.969s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:[m[K In member function ‘[01m[Kvirtual bool ORB_SLAM3::Pinhole::matchAndtriangulate(const cv::KeyPoint&, const cv::KeyPoint&, ORB_SLAM3::GeometricCamera*, Sophus::SE3f&, Sophus::SE3f&, float, float, Eigen::Vector3f&)[m[K’:
+[6.969s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:83:54:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kkp1[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.969s]    83 |         bool matchAndtriangulate([01;35m[Kconst cv::KeyPoint& kp1[m[K, const cv::KeyPoint& kp2, GeometricCamera* pOther,
+[6.969s]       |                                  [01;35m[K~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[6.969s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:83:79:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kkp2[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.969s]    83 |         bool matchAndtriangulate(const cv::KeyPoint& kp1, [01;35m[Kconst cv::KeyPoint& kp2[m[K, GeometricCamera* pOther,
+[6.969s]       |                                                           [01;35m[K~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[6.969s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:83:101:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KpOther[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.969s]    83 | ndtriangulate(const cv::KeyPoint& kp1, const cv::KeyPoint& kp2, [01;35m[KGeometricCamera* pOther[m[K,
+[6.969s]       |                                                                 [01;35m[K~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[6.969s] 
+[6.969s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:84:48:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KTcw1[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.969s]    84 |                                  [01;35m[KSophus::SE3f& Tcw1[m[K, Sophus::SE3f& Tcw2,
+[6.969s]       |                                  [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[6.969s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:84:68:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KTcw2[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.969s]    84 |                                  Sophus::SE3f& Tcw1, [01;35m[KSophus::SE3f& Tcw2[m[K,
+[6.969s]       |                                                      [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[6.969s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:85:46:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KsigmaLevel1[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.969s]    85 |                                  [01;35m[Kconst float sigmaLevel1[m[K, const float sigmaLevel2,
+[6.970s]       |                                  [01;35m[K~~~~~~~~~~~~^~~~~~~~~~~[m[K
+[6.970s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:85:71:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KsigmaLevel2[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.970s]    85 |                                  const float sigmaLevel1, [01;35m[Kconst float sigmaLevel2[m[K,
+[6.970s]       |                                                           [01;35m[K~~~~~~~~~~~~^~~~~~~~~~~[m[K
+[6.970s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/Pinhole.h:86:51:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kx3Dtriangulated[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[6.970s]    86 |                                  [01;35m[KEigen::Vector3f& x3Dtriangulated[m[K) { return false;}
+[6.970s]       |                                  [01;35m[K~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~[m[K
+[6.970s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Atlas.h:27[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:25[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.970s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:[m[K In constructor ‘[01m[KORB_SLAM3::KannalaBrandt8::KannalaBrandt8(std::vector<float>)[m[K’:
+[6.970s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:102:21:[m[K [01;35m[Kwarning: [m[K‘[01m[KORB_SLAM3::KannalaBrandt8::precision[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[6.970s]   102 |         const float [01;35m[Kprecision[m[K;
+[6.970s]       |                     [01;35m[K^~~~~~~~~[m[K
+[6.970s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:88:26:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kstd::vector<int> ORB_SLAM3::KannalaBrandt8::mvLappingArea[m[K’ [[01;35m[K-Wreorder[m[K]
+[6.970s]    88 |         std::vector<int> [01;35m[KmvLappingArea[m[K;
+[6.970s]       |                          [01;35m[K^~~~~~~~~~~~~[m[K
+[6.970s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Atlas.h:27[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:25[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.970s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.971s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.971s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.971s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:47:9:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[6.971s]    47 |         [01;35m[KKannalaBrandt8[m[K(const std::vector<float> _vParameters) : GeometricCamera(_vParameters), precision(1e-6), mvLappingArea(2,0) ,tvr(nullptr) {
+[6.971s]       |         [01;35m[K^~~~~~~~~~~~~~[m[K
+[6.971s] In file included from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Atlas.h:27[m[K,
+[6.971s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/FrameDrawer.h:25[m[K,
+[6.971s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Viewer.h:23[m[K,
+[6.971s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/Tracking.h:26[m[K,
+[6.971s]                  from [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/System.h:31[m[K,
+[6.971s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp:11[m[K,
+[6.971s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp:1[m[K:
+[6.971s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:[m[K In constructor ‘[01m[KORB_SLAM3::KannalaBrandt8::KannalaBrandt8(std::vector<float>, float)[m[K’:
+[6.971s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:102:21:[m[K [01;35m[Kwarning: [m[K‘[01m[KORB_SLAM3::KannalaBrandt8::precision[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[6.971s]   102 |         const float [01;35m[Kprecision[m[K;
+[6.971s]       |                     [01;35m[K^~~~~~~~~[m[K
+[6.971s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:88:26:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kstd::vector<int> ORB_SLAM3::KannalaBrandt8::mvLappingArea[m[K’ [[01;35m[K-Wreorder[m[K]
+[6.971s]    88 |         std::vector<int> [01;35m[KmvLappingArea[m[K;
+[6.971s]       |                          [01;35m[K^~~~~~~~~~~~~[m[K
+[6.971s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:53:9:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[6.971s]    53 |         [01;35m[KKannalaBrandt8[m[K(const std::vector<float> _vParameters, const float _precision) : GeometricCamera(_vParameters),
+[6.971s]       |         [01;35m[K^~~~~~~~~~~~~~[m[K
+[6.971s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:[m[K In constructor ‘[01m[KORB_SLAM3::KannalaBrandt8::KannalaBrandt8(ORB_SLAM3::KannalaBrandt8*)[m[K’:
+[6.971s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:102:21:[m[K [01;35m[Kwarning: [m[K‘[01m[KORB_SLAM3::KannalaBrandt8::precision[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[6.971s]   102 |         const float [01;35m[Kprecision[m[K;
+[6.971s]       |                     [01;35m[K^~~~~~~~~[m[K
+[6.971s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:88:26:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kstd::vector<int> ORB_SLAM3::KannalaBrandt8::mvLappingArea[m[K’ [[01;35m[K-Wreorder[m[K]
+[6.971s]    88 |         std::vector<int> [01;35m[KmvLappingArea[m[K;
+[6.971s]       |                          [01;35m[K^~~~~~~~~~~~~[m[K
+[6.971s] [01m[K/home/weiwei/Desktop/thirdParty/ORB_SLAM3/include/CameraModels/KannalaBrandt8.h:59:9:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[6.972s]    59 |         [01;35m[KKannalaBrandt8[m[K(KannalaBrandt8* pKannala) : GeometricCamera(pKannala->mvParameters), precision(pKannala->precision), mvLappingArea(2,0) ,tvr(nullptr) {
+[6.972s]       |         [01;35m[K^~~~~~~~~~~~~~[m[K
+[14.599s] [100%] [32m[1mLinking CXX executable orbslam[0m
+[15.195s] [100%] Built target orbslam
+[15.203s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam' returned '0': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam -- -j16 -l16
+[15.220s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam
+[15.228s] -- Install configuration: ""
+[15.228s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib/orbslam/orbslam
+[15.230s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib/orbslam/orbslam" to ""
+[15.230s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/launch
+[15.230s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/launch/slam.launch.py
+[15.230s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/ament_index/resource_index/package_run_dependencies/orbslam
+[15.230s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/ament_index/resource_index/parent_prefix_path/orbslam
+[15.230s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/ament_prefix_path.sh
+[15.230s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/ament_prefix_path.dsv
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/path.sh
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/path.dsv
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.bash
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.sh
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.zsh
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.dsv
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.dsv
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/ament_index/resource_index/packages/orbslam
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/cmake/orbslamConfig.cmake
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/cmake/orbslamConfig-version.cmake
+[15.231s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.xml
+[15.233s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam' returned '0': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam
