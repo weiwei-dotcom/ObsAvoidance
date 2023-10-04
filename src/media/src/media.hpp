@@ -30,7 +30,7 @@ private:
         Distance_of_circle_is_too_much = 1,
         Not_found_the_countour = 2,
         Point_cloud_is_little = 3,
-        Start = 4,
+        OK = 4,
         Image_recieve_error = 5,
         The_camera_is_not_straight_on_the_plane = 6
     };

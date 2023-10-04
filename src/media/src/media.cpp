@@ -4,7 +4,7 @@
 
 mediaNode::mediaNode():Node("media")
 {
-  error_type = Start;
+  error_type = OK;
   flag_getScaleFact = false;
   slam_sub.subscribe(this, "slam");
   image_sub.subscribe(this, "image_raw");
@@ -14,7 +14,7 @@ mediaNode::mediaNode():Node("media")
   sync1->registerCallback(std::bind(&mediaNode::slam_callback, this, std::placeholders::_1, std::placeholders::_2));
   transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_init2cur", 5);
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
-  cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance_2.0/src/config.yaml", cv::FileStorage::READ);
+  cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
   minDist = fileRead["minDist"];
   dp = fileRead["dp"];
   cannyUpThresh = fileRead["cannyUpThresh"];
@@ -66,34 +66,18 @@ void mediaNode::changeErrorType(ERROR_TYPE newError)
       "Distance of circle is too much",
       "Not found the countour",
       "Point cloud is little",
-      "Start",
+      "OK",
       "Image recieve error",
       "The camera is not straight on the plane"
     };
     error_type = newError;
-    RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type]);
+    RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type].c_str());
   }
 }
 
 void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_msg, 
                               const sensor_msgs::msg::Image::ConstSharedPtr &image_msg)
 {
-  std::cout << "----------------------------------" << std::endl;
-  // // 在运动控制程序编写完成之前不执行该判断的内部代码
-  // if (flag_motionControlProgramHaveDone == 1)
-  // {
-  //   if (!flag_slamInited) 
-  //   {
-  //     slamInitFromMotion()
-  //     return;
-  //   }
-  //   if (!flag_getScale)
-  //   {
-  //     getScaleFromMotion();
-  //     return;
-  //   }  
-  //   if (!flag_getCurToBase)    
-  // }
   // 初始化获得到真实世界的尺度因子
   if (!flag_getScaleFact) {
     getScaleSlamToWorld(image_msg, slam_msg);
@@ -113,7 +97,7 @@ void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_m
   sensor_msgs::msg::PointCloud2 point_cloud_pub_msg;
   pcl::toROSMsg(temp_pointCloud, point_cloud_pub_msg);
   point_cloud_pub_msg.header = slam_msg->point_cloud.header;
-  std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
+  // std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
   pointCloud_pub->publish(point_cloud_pub_msg);
   geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg;
   transform_init2cur_pub_msg = slam_msg->transform_init2cur;
@@ -124,7 +108,7 @@ void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_m
   // std::cout << "transform_init2cur_pub_msg.pose.position.x: " << transform_init2cur_pub_msg.pose.position.x << std::endl;
   // std::cout << "transform_init2cur_pub_msg.pose.position.y: " << transform_init2cur_pub_msg.pose.position.y << std::endl;
   // std::cout << "transform_init2cur_pub_msg.pose.position.z: " << transform_init2cur_pub_msg.pose.position.z << std::endl;
-  std::cout << "transform_init2cur_pub_msg.header.frame_id: " << transform_init2cur_pub_msg.header.frame_id << std::endl;
+  // std::cout << "transform_init2cur_pub_msg.header.frame_id: " << transform_init2cur_pub_msg.header.frame_id << std::endl;
   transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
   return;
 }
@@ -144,10 +128,12 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
   cv::HoughCircles(img_gray, temp_circles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
   if (temp_circles.size()>1) {
     changeErrorType(Circle_detection_is_not_stable);
+    // 调试代码5
     return;    
   }
   if (temp_circles.size()==0) {
     changeErrorType(Circle_detection_is_not_stable);
+    // 调试代码5
     return;    
   }
   float distance_center=0.0, difference_radius=0.0;
@@ -178,6 +164,7 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
   }
   circles_.clear();
   distance_.clear();
+  changeErrorType(OK);
   if (scaleFactList_.size()<scaleFactList_size_thresh)
     return;
   ransacScaleFact();
@@ -249,7 +236,6 @@ bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam:
   // 用筛选后的点云拟合平面
   if (finalPointCloud.points.size()<80) {
     changeErrorType(Point_cloud_is_little);
-    std::cout<<"finalPointCloud.points.size() : " << finalPointCloud.points.size()<<std::endl;
     return false;
   }
   Eigen::Vector4d param = calParam(finalPointCloud);
@@ -260,7 +246,6 @@ bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam:
   // 两向量余弦值判断
   if (cosValue < cosValue_thresh) {
     changeErrorType(The_camera_is_not_straight_on_the_plane);
-    std::cout << std::acos(cosValue)/M_PI * (double)180 << "°" << std::endl;
     return false;    
   }
   // // 调试代码2

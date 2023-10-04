@@ -1,0 +1,30 @@
+[0.097s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16
+[0.136s] [35m[1mScanning dependencies of target media[0m
+[0.182s] [ 33%] [32mBuilding CXX object CMakeFiles/media.dir/src/main.cpp.o[0m
+[0.182s] [ 66%] [32mBuilding CXX object CMakeFiles/media.dir/src/media.cpp.o[0m
+[4.269s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In constructor ‘[01m[KmediaNode::mediaNode()[m[K’:
+[4.269s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:7:16:[m[K [01;31m[Kerror: [m[K‘[01m[KStart[m[K’ was not declared in this scope
+[4.269s]     7 |   error_type = [01;31m[KStart[m[K;
+[4.269s]       |                [01;31m[K^~~~~[m[K
+[4.304s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::getScaleSlamToWorld(const ConstSharedPtr&, const ConstSharedPtr&)[m[K’:
+[4.304s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:159:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[4.304s]   159 |   if ([01;35m[Kcircles_.size() < circle_size_thresh[m[K)
+[4.304s]       |       [01;35m[K~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~[m[K
+[4.304s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:161:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[4.304s]   161 |   for (int i=0;[01;35m[Ki<circles_.size()[m[K;i++) {
+[4.305s]       |                [01;35m[K~^~~~~~~~~~~~~~~~[m[K
+[4.305s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:168:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[4.305s]   168 |   if ([01;35m[KscaleFactList_.size()<scaleFactList_size_thresh[m[K)
+[4.305s]       |       [01;35m[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.322s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kbool mediaNode::detectPoseCorrect(cv::Mat, interface::msg::Slam_<std::allocator<void> >::ConstSharedPtr, double&, cv::Vec3f)[m[K’:
+[4.322s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:219:67:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[4.322s]   219 |     if ([01;35m[Kimg_dilate.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255[m[K)
+[4.322s]       |         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[4.336s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::ransacScaleFact()[m[K’:
+[4.336s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:310:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[4.336s]   310 |     for (int j = 0;[01;35m[Kj<scaleFactList_.size()[m[K;j++)
+[4.336s]       |                    [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[9.213s] make[2]: *** [CMakeFiles/media.dir/build.make:76：CMakeFiles/media.dir/src/media.cpp.o] 错误 1
+[9.213s] make[1]: *** [CMakeFiles/Makefile2:78：CMakeFiles/media.dir/all] 错误 2
+[9.213s] make: *** [Makefile:141：all] 错误 2
+[9.214s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '2': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16
