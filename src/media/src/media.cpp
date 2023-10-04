@@ -14,7 +14,7 @@ mediaNode::mediaNode():Node("media")
   sync1->registerCallback(std::bind(&mediaNode::slam_callback, this, std::placeholders::_1, std::placeholders::_2));
   transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_init2cur", 5);
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
-  cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance_2.0/src/config.yaml", cv::FileStorage::READ);
+  cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
   minDist = fileRead["minDist"];
   dp = fileRead["dp"];
   cannyUpThresh = fileRead["cannyUpThresh"];
