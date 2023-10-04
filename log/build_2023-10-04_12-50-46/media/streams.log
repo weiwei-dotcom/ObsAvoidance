@@ -1,0 +1,234 @@
+[0.097s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake /home/weiwei/Desktop/project/ObsAvoidance/src/media -DCMAKE_INSTALL_PREFIX=/home/weiwei/Desktop/project/ObsAvoidance/install/media
+[0.131s] -- The C compiler identification is GNU 9.4.0
+[0.170s] -- The CXX compiler identification is GNU 9.4.0
+[0.173s] -- Check for working C compiler: /usr/bin/cc
+[0.223s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.223s] -- Detecting C compiler ABI info
+[0.285s] -- Detecting C compiler ABI info - done
+[0.297s] -- Detecting C compile features
+[0.297s] -- Detecting C compile features - done
+[0.300s] -- Check for working CXX compiler: /usr/bin/c++
+[0.350s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.350s] -- Detecting CXX compiler ABI info
+[0.408s] -- Detecting CXX compiler ABI info - done
+[0.417s] -- Detecting CXX compile features
+[0.417s] -- Detecting CXX compile features - done
+[0.419s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.435s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.435s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.557s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.590s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.594s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.645s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.666s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.717s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.754s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.755s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.755s] -- Looking for pthread.h
+[0.813s] -- Looking for pthread.h - found
+[0.813s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.862s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[0.862s] -- Looking for pthread_create in pthreads
+[0.900s] -- Looking for pthread_create in pthreads - not found
+[0.900s] -- Looking for pthread_create in pthread
+[0.946s] -- Looking for pthread_create in pthread - found
+[0.946s] -- Found Threads: TRUE  
+[1.041s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[1.198s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[1.218s] -- Found OpenCV: /usr (found version "4.2.0") 
+[1.219s] -- Found message_filters: 3.2.7 (/opt/ros/foxy/share/message_filters/cmake)
+[1.222s] -- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)
+[1.342s] -- Checking for module 'eigen3'
+[1.352s] --   Found eigen3, version 3.3.9
+[1.375s] -- Found Eigen: /usr/include/eigen3 (Required is at least version "3.1") 
+[1.375s] -- Eigen found (include: /usr/include/eigen3, version: 3.3.7)
+[1.405s] -- Found Boost: /usr/include (found suitable version "1.71.0", minimum required is "1.55.0") found components: system filesystem date_time iostreams regex 
+[1.417s] -- Checking for module 'flann'
+[1.427s] --   Found flann, version 1.9.1
+[1.452s] -- Found FLANN: /usr/lib/x86_64-linux-gnu/libflann_cpp.so  
+[1.489s] -- The imported target "vtkParseOGLExt" references the file
+[1.489s]    "/usr/bin/vtkParseOGLExt-7.1"
+[1.489s] but this file does not exist.  Possible reasons include:
+[1.489s] * The file was deleted, renamed, or moved to another location.
+[1.489s] * An install or uninstall procedure did not complete successfully.
+[1.489s] * The installation package was faulty and contained
+[1.489s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.489s] but not all the files it references.
+[1.489s] 
+[1.489s] -- The imported target "vtkRenderingPythonTkWidgets" references the file
+[1.490s]    "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"
+[1.490s] but this file does not exist.  Possible reasons include:
+[1.490s] * The file was deleted, renamed, or moved to another location.
+[1.490s] * An install or uninstall procedure did not complete successfully.
+[1.490s] * The installation package was faulty and contained
+[1.490s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.490s] but not all the files it references.
+[1.490s] 
+[1.490s] -- The imported target "vtk" references the file
+[1.490s]    "/usr/bin/vtk"
+[1.490s] but this file does not exist.  Possible reasons include:
+[1.490s] * The file was deleted, renamed, or moved to another location.
+[1.490s] * An install or uninstall procedure did not complete successfully.
+[1.490s] * The installation package was faulty and contained
+[1.490s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.490s] but not all the files it references.
+[1.490s] 
+[1.490s] -- The imported target "pvtk" references the file
+[1.490s]    "/usr/bin/pvtk"
+[1.491s] but this file does not exist.  Possible reasons include:
+[1.491s] * The file was deleted, renamed, or moved to another location.
+[1.491s] * An install or uninstall procedure did not complete successfully.
+[1.491s] * The installation package was faulty and contained
+[1.491s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.491s] but not all the files it references.
+[1.491s] 
+[1.503s] -- Checking for module 'libusb-1.0'
+[1.514s] --   Found libusb-1.0, version 1.0.23
+[1.539s] -- Found USB_10: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  
+[1.573s] -- Found OpenNI: /usr/lib/libOpenNI.so  
+[1.573s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[1.621s] -- Found OpenNI2: /usr/lib/libOpenNI2.so  
+[1.621s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[1.621s] ** WARNING ** io features related to pcap will be disabled
+[1.621s] ** WARNING ** io features related to png will be disabled
+[1.630s] ** WARNING ** io features related to libusb-1.0 will be disabled
+[1.630s] -- Found libusb-1.0: /usr/include  
+[1.635s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[1.639s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[1.659s] -- Found Qhull: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so  
+[1.659s] -- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)
+[1.664s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[1.672s] -- looking for PCL_COMMON
+[1.673s] -- Found PCL_COMMON: /usr/lib/x86_64-linux-gnu/libpcl_common.so  
+[1.673s] -- looking for PCL_KDTREE
+[1.674s] -- Found PCL_KDTREE: /usr/lib/x86_64-linux-gnu/libpcl_kdtree.so  
+[1.674s] -- looking for PCL_OCTREE
+[1.675s] -- Found PCL_OCTREE: /usr/lib/x86_64-linux-gnu/libpcl_octree.so  
+[1.675s] -- looking for PCL_SEARCH
+[1.676s] -- Found PCL_SEARCH: /usr/lib/x86_64-linux-gnu/libpcl_search.so  
+[1.676s] -- looking for PCL_SAMPLE_CONSENSUS
+[1.676s] -- Found PCL_SAMPLE_CONSENSUS: /usr/lib/x86_64-linux-gnu/libpcl_sample_consensus.so  
+[1.677s] -- looking for PCL_FILTERS
+[1.677s] -- Found PCL_FILTERS: /usr/lib/x86_64-linux-gnu/libpcl_filters.so  
+[1.678s] -- looking for PCL_2D
+[1.678s] -- Found PCL_2D: /usr/include/pcl-1.10  
+[1.678s] -- looking for PCL_GEOMETRY
+[1.678s] -- Found PCL_GEOMETRY: /usr/include/pcl-1.10  
+[1.678s] -- looking for PCL_IO
+[1.679s] -- Found PCL_IO: /usr/lib/x86_64-linux-gnu/libpcl_io.so  
+[1.679s] -- looking for PCL_FEATURES
+[1.680s] -- Found PCL_FEATURES: /usr/lib/x86_64-linux-gnu/libpcl_features.so  
+[1.680s] -- looking for PCL_ML
+[1.681s] -- Found PCL_ML: /usr/lib/x86_64-linux-gnu/libpcl_ml.so  
+[1.681s] -- looking for PCL_SEGMENTATION
+[1.682s] -- Found PCL_SEGMENTATION: /usr/lib/x86_64-linux-gnu/libpcl_segmentation.so  
+[1.682s] -- looking for PCL_VISUALIZATION
+[1.683s] -- Found PCL_VISUALIZATION: /usr/lib/x86_64-linux-gnu/libpcl_visualization.so  
+[1.683s] -- looking for PCL_SURFACE
+[1.684s] -- Found PCL_SURFACE: /usr/lib/x86_64-linux-gnu/libpcl_surface.so  
+[1.684s] -- looking for PCL_REGISTRATION
+[1.684s] -- Found PCL_REGISTRATION: /usr/lib/x86_64-linux-gnu/libpcl_registration.so  
+[1.685s] -- looking for PCL_KEYPOINTS
+[1.685s] -- Found PCL_KEYPOINTS: /usr/lib/x86_64-linux-gnu/libpcl_keypoints.so  
+[1.686s] -- looking for PCL_TRACKING
+[1.686s] -- Found PCL_TRACKING: /usr/lib/x86_64-linux-gnu/libpcl_tracking.so  
+[1.687s] -- looking for PCL_RECOGNITION
+[1.687s] -- Found PCL_RECOGNITION: /usr/lib/x86_64-linux-gnu/libpcl_recognition.so  
+[1.688s] -- looking for PCL_STEREO
+[1.688s] -- Found PCL_STEREO: /usr/lib/x86_64-linux-gnu/libpcl_stereo.so  
+[1.689s] -- looking for PCL_APPS
+[1.689s] -- Found PCL_APPS: /usr/lib/x86_64-linux-gnu/libpcl_apps.so  
+[1.690s] -- looking for PCL_IN_HAND_SCANNER
+[1.690s] -- Found PCL_IN_HAND_SCANNER: /usr/include/pcl-1.10  
+[1.690s] -- looking for PCL_POINT_CLOUD_EDITOR
+[1.690s] -- Found PCL_POINT_CLOUD_EDITOR: /usr/include/pcl-1.10  
+[1.691s] -- looking for PCL_OUTOFCORE
+[1.691s] -- Found PCL_OUTOFCORE: /usr/lib/x86_64-linux-gnu/libpcl_outofcore.so  
+[1.692s] -- looking for PCL_PEOPLE
+[1.692s] -- Found PCL_PEOPLE: /usr/lib/x86_64-linux-gnu/libpcl_people.so  
+[1.693s] -- Found PCL: pcl_common;pcl_kdtree;pcl_octree;pcl_search;pcl_sample_consensus;pcl_filters;pcl_io;pcl_features;pcl_ml;pcl_segmentation;pcl_visualization;pcl_surface;pcl_registration;pcl_keypoints;pcl_tracking;pcl_recognition;pcl_stereo;pcl_apps;pcl_outofcore;pcl_people;/usr/lib/x86_64-linux-gnu/libboost_system.so;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;/usr/lib/x86_64-linux-gnu/libboost_regex.so;optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so;/usr/lib/libOpenNI.so;/usr/lib/libOpenNI2.so;vtkChartsCore;vtkCommonColor;vtkCommonCore;vtksys;vtkCommonDataModel;vtkCommonMath;vtkCommonMisc;vtkCommonSystem;vtkCommonTransforms;vtkCommonExecutionModel;vtkFiltersGeneral;vtkCommonComputationalGeometry;vtkFiltersCore;vtkInfovisCore;vtkFiltersExtraction;vtkFiltersStatistics;vtkImagingFourier;vtkImagingCore;vtkalglib;vtkRenderingContext2D;vtkRenderingCore;vtkFiltersGeometry;vtkFiltersSources;vtkRenderingFreeType;/usr/lib/x86_64-linux-gnu/libfreetype.so;/usr/lib/x86_64-linux-gnu/libz.so;vtkFiltersModeling;vtkImagingSources;vtkInteractionStyle;vtkInteractionWidgets;vtkFiltersHybrid;vtkImagingColor;vtkImagingGeneral;vtkImagingHybrid;vtkIOImage;vtkDICOMParser;vtkmetaio;/usr/lib/x86_64-linux-gnu/libjpeg.so;/usr/lib/x86_64-linux-gnu/libpng.so;/usr/lib/x86_64-linux-gnu/libtiff.so;vtkRenderingAnnotation;vtkRenderingVolume;vtkIOXML;vtkIOCore;vtkIOXMLParser;/usr/lib/x86_64-linux-gnu/libexpat.so;vtkIOGeometry;vtkIOLegacy;vtkIOPLY;vtkRenderingLOD;vtkViewsContext2D;vtkViewsCore;vtkRenderingContextOpenGL2;vtkRenderingOpenGL2;FLANN::FLANN  
+[1.867s] -- Found BLAS: /usr/lib/x86_64-linux-gnu/libblas.so  
+[1.987s] -- Found AMD headers in: /usr/include/suitesparse
+[1.988s] -- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so
+[1.989s] -- Found CAMD headers in: /usr/include/suitesparse
+[1.990s] -- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so
+[1.990s] -- Found CCOLAMD headers in: /usr/include/suitesparse
+[1.991s] -- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so
+[1.991s] -- Found CHOLMOD headers in: /usr/include/suitesparse
+[1.991s] -- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so
+[1.991s] -- Found COLAMD headers in: /usr/include/suitesparse
+[1.992s] -- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so
+[1.993s] -- Found SPQR headers in: /usr/include/suitesparse
+[1.993s] -- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so
+[1.994s] -- Found Config headers in: /usr/include/suitesparse
+[1.994s] -- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+[1.996s] -- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.
+[1.996s] -- Looking for shm_open in rt
+[2.065s] -- Looking for shm_open in rt - found
+[2.065s] -- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+[2.070s] -- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) 
+[2.072s] -- Found SuiteSparse: /usr/include/suitesparse (found suitable version "5.7.1", minimum required is "5.7.1") found components: AMD CAMD CCOLAMD CHOLMOD COLAMD SPQR Config 
+[2.075s] -- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake
+[2.078s] -- Found required Ceres dependency: glog
+[2.081s] -- Found required Ceres dependency: gflags
+[2.082s] -- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]
+[2.083s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[2.167s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.168s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[2.168s] -- Configured cppcheck include dirs: 
+[2.168s] -- Configured cppcheck exclude dirs and/or files: 
+[2.169s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[2.169s] -- Configured cpplint exclude dirs and/or files: 
+[2.169s] -- Added test 'lint_cmake' to check CMake code style
+[2.170s] -- Added test 'uncrustify' to check C / C++ code style
+[2.170s] -- Configured uncrustify additional arguments: 
+[2.170s] -- Added test 'xmllint' to check XML markup files
+[2.172s] -- Configuring done
+[2.210s] -- Generating done
+[2.211s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/media
+[2.224s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake /home/weiwei/Desktop/project/ObsAvoidance/src/media -DCMAKE_INSTALL_PREFIX=/home/weiwei/Desktop/project/ObsAvoidance/install/media
+[2.226s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16
+[2.255s] [35m[1mScanning dependencies of target media[0m
+[2.328s] [ 66%] [32mBuilding CXX object CMakeFiles/media.dir/src/media.cpp.o[0m
+[2.328s] [ 66%] [32mBuilding CXX object CMakeFiles/media.dir/src/main.cpp.o[0m
+[6.587s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::getScaleSlamToWorld(const ConstSharedPtr&, const ConstSharedPtr&)[m[K’:
+[6.587s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:173:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[6.587s]   173 |   if ([01;35m[Kcircles_.size() < circle_size_thresh[m[K)
+[6.587s]       |       [01;35m[K~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~[m[K
+[6.587s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:175:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[6.587s]   175 |   for (int i=0;[01;35m[Ki<circles_.size()[m[K;i++) {
+[6.587s]       |                [01;35m[K~^~~~~~~~~~~~~~~~[m[K
+[6.587s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:181:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[6.587s]   181 |   if ([01;35m[KscaleFactList_.size()<scaleFactList_size_thresh[m[K)
+[6.587s]       |       [01;35m[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[6.605s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kbool mediaNode::detectPoseCorrect(cv::Mat, interface::msg::Slam_<std::allocator<void> >::ConstSharedPtr, double&, cv::Vec3f)[m[K’:
+[6.605s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:232:67:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[6.605s]   232 |     if ([01;35m[Kimg_dilate.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255[m[K)
+[6.605s]       |         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[6.618s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::ransacScaleFact()[m[K’:
+[6.619s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:325:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[6.619s]   325 |     for (int j = 0;[01;35m[Kj<scaleFactList_.size()[m[K;j++)
+[6.619s]       |                    [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[14.748s] [100%] [32m[1mLinking CXX executable media[0m
+[15.869s] [100%] Built target media
+[15.880s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16
+[15.902s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/media
+[15.906s] -- Install configuration: ""
+[15.906s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/media/media
+[15.908s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/media/media" to ""
+[15.908s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/ament_index/resource_index/package_run_dependencies/media
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/ament_index/resource_index/parent_prefix_path/media
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/ament_prefix_path.sh
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/ament_prefix_path.dsv
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/path.sh
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/path.dsv
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.bash
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.sh
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.zsh
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.dsv
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.dsv
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/ament_index/resource_index/packages/media
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/cmake/mediaConfig.cmake
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/cmake/mediaConfig-version.cmake
+[15.909s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.xml
+[15.911s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/media
