@@ -1,0 +1,17 @@
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib/orbslam/orbslam
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/launch/slam.launch.py
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/ament_index/resource_index/package_run_dependencies/orbslam
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/ament_index/resource_index/parent_prefix_path/orbslam
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/ament_prefix_path.sh
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/ament_prefix_path.dsv
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/path.sh
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/path.dsv
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.bash
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.sh
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.zsh
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.dsv
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.dsv
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/ament_index/resource_index/packages/orbslam
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/cmake/orbslamConfig.cmake
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/cmake/orbslamConfig-version.cmake
+/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.xml

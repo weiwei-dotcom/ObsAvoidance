@@ -2,7 +2,7 @@
 
 mediaNode::mediaNode():Node("media")
 {
-  error_type = Start;
+  error_type = OK;
   flag_getScaleFact = false;
   slam_sub.subscribe(this, "slam");
   image_sub.subscribe(this, "image_raw");
@@ -64,12 +64,12 @@ void mediaNode::changeErrorType(ERROR_TYPE newError)
       "Distance of circle is too much",
       "Not found the countour",
       "Point cloud is little",
-      "Start",
+      "OK",
       "Image recieve error",
       "The camera is not straight on the plane"
     };
     error_type = newError;
-    RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type]);
+    RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type].c_str());
   }
 }
 
@@ -176,6 +176,7 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
   }
   circles_.clear();
   distance_.clear();
+  changeErrorType(OK);
   if (scaleFactList_.size()<scaleFactList_size_thresh)
     return;
   ransacScaleFact();
