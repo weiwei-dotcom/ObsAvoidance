@@ -1,0 +1,8 @@
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::mapPoint_callback(interface::srv::MapPoint_Request_<std::allocator<void> >::SharedPtr, interface::srv::MapPoint_Response_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:13:86:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krequest[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   13 | void mediaNode::mapPoint_callback([01;35m[Kconst interface::srv::MapPoint::Request::SharedPtr request[m[K,
+      |                                   [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::camPose_callback(interface::srv::CamPose_Request_<std::allocator<void> >::SharedPtr, interface::srv::CamPose_Response_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:29:84:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krequest[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   29 | void mediaNode::camPose_callback([01;35m[Kconst interface::srv::CamPose::Request::SharedPtr request[m[K,
+      |                                  [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K

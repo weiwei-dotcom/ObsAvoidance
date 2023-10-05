@@ -1,0 +1,60 @@
+[0.233s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16
+[0.252s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.269s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.389s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.412s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.415s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.504s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.538s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.539s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.649s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[0.815s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[0.836s] -- Found message_filters: 3.2.7 (/opt/ros/foxy/share/message_filters/cmake)
+[0.837s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.884s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.884s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.884s] -- Configured cppcheck include dirs: 
+[0.884s] -- Configured cppcheck exclude dirs and/or files: 
+[0.885s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.885s] -- Configured cpplint exclude dirs and/or files: 
+[0.885s] -- Added test 'lint_cmake' to check CMake code style
+[0.886s] -- Added test 'uncrustify' to check C / C++ code style
+[0.886s] -- Configured uncrustify additional arguments: 
+[0.886s] -- Added test 'xmllint' to check XML markup files
+[0.888s] -- Configuring done
+[0.903s] -- Generating done
+[0.904s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/media
+[0.925s] [35m[1mScanning dependencies of target media[0m
+[0.952s] [ 66%] [32mBuilding CXX object CMakeFiles/media.dir/src/media.cpp.o[0m
+[0.952s] [ 66%] [32mBuilding CXX object CMakeFiles/media.dir/src/main.cpp.o[0m
+[2.692s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::mapPoint_callback(interface::srv::MapPoint_Request_<std::allocator<void> >::SharedPtr, interface::srv::MapPoint_Response_<std::allocator<void> >::SharedPtr)[m[K’:
+[2.692s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:13:86:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krequest[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[2.692s]    13 | void mediaNode::mapPoint_callback([01;35m[Kconst interface::srv::MapPoint::Request::SharedPtr request[m[K,
+[2.692s]       |                                   [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[2.695s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::camPose_callback(interface::srv::CamPose_Request_<std::allocator<void> >::SharedPtr, interface::srv::CamPose_Response_<std::allocator<void> >::SharedPtr)[m[K’:
+[2.695s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:29:84:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krequest[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[2.695s]    29 | void mediaNode::camPose_callback([01;35m[Kconst interface::srv::CamPose::Request::SharedPtr request[m[K,
+[2.695s]       |                                  [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[5.997s] [100%] [32m[1mLinking CXX executable media[0m
+[6.471s] [100%] Built target media
+[6.481s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '0': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16
+[6.500s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/media
+[6.506s] -- Install configuration: ""
+[6.506s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/media/media
+[6.508s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/media/media" to ""
+[6.508s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/ament_index/resource_index/package_run_dependencies/media
+[6.508s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/ament_index/resource_index/parent_prefix_path/media
+[6.508s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/ament_prefix_path.sh
+[6.508s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/ament_prefix_path.dsv
+[6.508s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/path.sh
+[6.508s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/path.dsv
+[6.508s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.bash
+[6.508s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.sh
+[6.508s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.zsh
+[6.508s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.dsv
+[6.508s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.dsv
+[6.508s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/ament_index/resource_index/packages/media
+[6.509s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/cmake/mediaConfig.cmake
+[6.509s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/cmake/mediaConfig-version.cmake
+[6.509s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.xml
+[6.510s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '0': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/media
