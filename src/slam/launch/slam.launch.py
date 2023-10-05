@@ -8,16 +8,16 @@ def generate_launch_description():
         executable="usb_cam_node_exe"
     )
     slam = Node(
-        package="orbslam",
-        executable="orbslam"
+        package="slam",
+        executable="slam"
     )
     media = Node(
         package="media",
         executable="media"
     )
     model = Node(
-        package="model",
-        executable="model"
+        package="model3",
+        executable="model3"
     )
     
     launch_description = LaunchDescription([usb_cam,slam,media,model])
