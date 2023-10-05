@@ -60,6 +60,9 @@ int threshToOptBlue;
 int threshToOptGreen;
 int threshToOptRed;
 
+// 是否完成建模的flag变量
+bool flag_completeModel;
+
 // ransac迭代次数
 int timesRansacIterBlue;
 int timesRansacIterGreen;
@@ -96,7 +99,7 @@ int minNumRedKeyPoint;
 // octoTree分辨率
 double octreeResolution;
 // 消息的header
-std_msgs::msg::Header m_initFrameHeader;
+std_msgs::msg::Header m_header_initFrame;
 
 // octoMap发布者指针创建
 rclcpp::Publisher<octomap_msgs::msg::Octomap>::SharedPtr octoMapPub;
@@ -124,8 +127,8 @@ std::vector<pcl::PointCloud<pcl::PointXYZ>> obstacleRedList;
 // std::vector<cv::KeyPoint> keyPoints;
 // 定义接收服务端 图像、成员变量、相机位姿、点云 的成员变量；
 cv::Mat m_img;
-Eigen::Matrix4d m_camPose;
-Eigen::Matrix4d m_world2cam;
+Eigen::Matrix4d m_transform_curToInit;
+Eigen::Matrix4d m_transform_initToCur;
 cv::Mat m_worldToCamCV;
 pcl::PointCloud<pcl::PointXYZ> m_pointCloud;
 double fx, fy, cx, cy;
@@ -154,6 +157,9 @@ pcl::PointCloud<pcl::PointXYZ> obstacleRed;
 // 历史蓝绿红色障碍物点云之和
 pcl::PointCloud<pcl::PointXYZ> obstacle;
 
+pcl::PointCloud<pcl::PointXYZ> pcl_obstacle;
+rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_pub;
+
 // 相机坐标系下的障碍物点云
 pcl::PointCloud<pcl::PointXYZ> obstacleBlueInCam;
 pcl::PointCloud<pcl::PointXYZ> obstacleGreenInCam;
@@ -166,15 +172,41 @@ void mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &pcl_
                        const sensor_msgs::msg::Image::ConstSharedPtr &img_msg,
                        const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg)
 {
+    // If have complete publish the pointcloud of model, don't need model again;
+    if (flag_completeModel)
+    {
+        return;
+    }
+    // Recieve the message data;
+    if (!recieveMsg(pcl_msg, img_msg, pose_msg))
+    {
+        return;   
+    }
+    // Start modeling;
+    Model();
+    PubModel();
+    return;
+}
+
+public:
+bool recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &pcl_msg,
+                const sensor_msgs::msg::Image::ConstSharedPtr &img_msg,
+                const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg)
+{
     // 图像赋值给成员变量；
     cv_bridge::CvImagePtr imgPtr = cv_bridge::toCvCopy(img_msg, "bgr8");
     if (imgPtr->image.empty())
     {
-        std::cout<<"Recieved image is empty!" << std::endl;
-        return ;
+        RCLCPP_INFO(this->get_logger(), "Recieve img failed !");
+        return false;
     }
     imgPtr->image.copyTo(m_img);
     // 稀疏点云赋值给成员变量；
+    if (pcl_msg->width==0)
+    {
+        RCLCPP_INFO(this->get_logger(), "Recieve pcl_msg failed !");
+        return false;
+    }
     pcl::fromROSMsg(*pcl_msg, m_pointCloud);
     // 第一帧位姿在当前帧位姿下的变换赋值给成员变量
     Eigen::Quaterniond tempQua(pose_msg->pose.orientation.w,
@@ -184,24 +216,17 @@ void mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &pcl_
     Sophus::Vector3d tempTranslattion(pose_msg->pose.position.x,
                                     pose_msg->pose.position.y,
                                     pose_msg->pose.position.z);
-    Sophus::SE3d tempWorld2Cam(tempQua, tempTranslattion);
-    m_world2cam = tempWorld2Cam.matrix();
-    m_camPose = m_world2cam.inverse();
-    m_initFrameHeader = pcl_msg->header;
-    std::cout<<"----------  这里是新的一轮循环  ------------"<<std::endl;;
-    std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
-    Model();
-    std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
-    double timespend = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1).count();
-    std::cout<<"频率为: " << (double)1/timespend <<std::endl;
-    return;
+    Sophus::SE3d temp_transform(tempQua, tempTranslattion);
+    m_transform_initToCur = temp_transform.matrix();
+    m_transform_curToInit = m_transform_initToCur.inverse();
+    m_header_initFrame = pcl_msg->header;
+    return true;
 }
-
-public:
     // 构造函数 init function()
     ModelNode():Node("model")
     {
-        ofs.open("/home/weiwei/Desktop/project/ObsAvoidance/src/model/ParamD.txt");
+        pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle", 10);
+        flag_completeModel = false;
         octoMapPub = this->create_publisher<octomap_msgs::msg::Octomap>("obstacle", 10);
         // 定义消息订阅者
         pcl_sub.subscribe(this, "pointCloud_initFrame");
@@ -242,13 +267,6 @@ public:
         int redPlusLower2 = fileRead["redPlusLower.2"];
         int redPlusLower3 = fileRead["redPlusLower.3"];
 
-        // int whiteLower1 = fileRead["whiteLower1"];
-        // int whiteLower2 = fileRead["whiteLower2"];
-        // int whiteLower3 = fileRead["whiteLower3"];
-        // int whiteUpper1 = fileRead["whiteUpper1"];
-        // int whiteUpper2 = fileRead["whiteUpper2"];
-        // int whiteUpper3 = fileRead["whiteUpper3"];
-
         blueLower = cv::Scalar(blueLower1, blueLower2, blueLower3);
         blueUpper = cv::Scalar(blueUpper1, blueUpper2, blueUpper3);
         greenLower = cv::Scalar(greenLower1, greenLower2, greenLower3);
@@ -257,8 +275,6 @@ public:
         redUpper = cv::Scalar(redUpper1, redUpper2, redUpper3);
         redPlusLower = cv::Scalar(redPlusLower1, redPlusLower2, redPlusLower3);
         redPlusUpper = cv::Scalar(redPlusUpper1, redPlusUpper2, redPlusUpper3);
-        // whiteLower = cv::Scalar(whiteLower1, whiteLower2, whiteLower3);
-        // whiteUpper = cv::Scalar(whiteUpper1, whiteUpper2, whiteUpper3);
         int open_blue_kernel_size = fileRead["open_blue_kernel_size"];
         int close_blue_kernel_size = fileRead["close_blue_kernel_size"];
         int open_green_kernel_size = fileRead["open_green_kernel_size"];
@@ -293,8 +309,14 @@ public:
         maxLengthPointCloudList = fileRead["maxLengthPointCloudList"];
     }
 
-    // 四周密封板的三维建模函数
-    
+    void PubModel()
+    {
+        sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
+        pcl::toROSMsg(pcl_obstacle, pclMsg_obstacle);
+        pclMsg_obstacle.header = m_header_initFrame;
+        pcl_pub->publish(pclMsg_obstacle);
+        flag_completeModel = true;
+    }
 
     // 该函数用来图像预处理，同时对障碍物进行二值化分割
     void preProcAndThresh()
@@ -342,7 +364,6 @@ public:
         int num_labels_blue = connectedComponentsWithStats(imgBlueClose, labels_blue, stats_blue, centroids_blue, 8, CV_16U);
         // 获取连通域的面积
         contours_blue_ex.clear(), contours_blue_in.clear();
-        // std::cout << 263 << " " ;
         std::vector<std::vector<cv::Point>> temp_contours_blue;
         std::vector<int> areas_blue;
         // 如果大于两个轮廓，也就是包括背景在内的至少有三个轮廓，那么可能存在圆孔的轮廓输出障碍物以及圆孔轮廓
@@ -352,7 +373,6 @@ public:
             {
                 areas_blue.push_back(stats_blue.at<int>(i, cv::CC_STAT_AREA));
             }
-            // std::cout << "outofrange" << std::endl; // ......................... 
             int max_area_label_blue = max_element(areas_blue.begin(), areas_blue.end()) - areas_blue.begin() + 1;
             cv::findContours((labels_blue == max_area_label_blue), temp_contours_blue, cv::RETR_CCOMP, cv::CHAIN_APPROX_SIMPLE);   
             contours_blue_ex = temp_contours_blue[0];
@@ -429,7 +449,7 @@ public:
     {
         // 将世界坐标系下的点云投影到相机坐标系下
         pcl::PointCloud<pcl::PointXYZ> pointCloudInCamFrame;
-        pcl::transformPointCloud(m_pointCloud, pointCloudInCamFrame, m_world2cam);
+        pcl::transformPointCloud(m_pointCloud, pointCloudInCamFrame, m_transform_initToCur);
 
         std::vector<cv::Point2f> projectPointsInImg;
 
@@ -608,8 +628,8 @@ public:
 
     void transformParamToCamFrame(Eigen::Vector4d &paramInWorldFrame, Eigen::Vector4d &paramInCamFrame) {
         std::cout<<"        transformParamToCamFrame"<<std::endl;
-        paramInCamFrame.block(0,0,3,1) = m_world2cam.block(0,0,3,3)*paramInWorldFrame.block(0,0,3,1);
-        Eigen::Vector3d tempCamPosition = m_camPose.block(0,3,3,1);
+        paramInCamFrame.block(0,0,3,1) = m_transform_initToCur.block(0,0,3,3)*paramInWorldFrame.block(0,0,3,1);
+        Eigen::Vector3d tempCamPosition = m_transform_curToInit.block(0,3,3,1);
         paramInCamFrame(3) = paramInWorldFrame(3) + tempCamPosition.dot(paramInWorldFrame.block(0,0,3,1));
     }
     void pixelToPlane(cv::Mat &imgClose, Eigen::Vector4d &paramInCamFrame, pcl::PointCloud<pcl::PointXYZ> &obstacle) {
@@ -635,7 +655,7 @@ public:
                 }
             }
         };
-        pcl::transformPointCloud(obstacleInCamFrame, obstacle, m_camPose);
+        pcl::transformPointCloud(obstacleInCamFrame, obstacle, m_transform_curToInit);
     };
     void updateObstacle(std::vector<pcl::PointCloud<pcl::PointXYZ>> &obstacleList, pcl::PointCloud<pcl::PointXYZ> &obstacle) {
         std::cout<<"        updateObstacle"<<std::endl;
@@ -744,7 +764,7 @@ public:
         octomap_msgs::msg::Octomap octoMap;
         // std::cout<<"    octree.size() " <<std::endl;
         // std::cout<<"    "<<     octree.size()<<std::endl;
-        octoMap.header = m_initFrameHeader;
+        octoMap.header = m_header_initFrame;
         octomap_msgs::fullMapToMsg(octree, octoMap);
         octoMapPub->publish(octoMap);
         std::cout << "octoMap published success" << std::endl;
