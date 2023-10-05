@@ -604,7 +604,6 @@ bool ModelNode::Model()
 {
     // 
     // Completing model;
-    flag_pubModel=true;
     return true;
 }
 
