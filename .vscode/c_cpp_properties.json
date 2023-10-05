@@ -7,10 +7,16 @@
             },
             "includePath": [
                 "/opt/ros/foxy/include/**",
+<<<<<<< HEAD
                 "/home/weiwei/Desktop/project/ObsAvoidance_2.0/src/orbslam/include/**",
                 "/usr/include/**",
                 "/home/weiwei/Desktop/project/ObsAvoidance_2.0/install/interface/include/**",
                 "${workspaceFolder}/build/interface/rosidl_generator_cpp"
+=======
+                "/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/include/**",
+                "/usr/include/**",
+                "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/**"
+>>>>>>> 225e199c32c4969c3f8292d5a5bf8fbce6227e83
             ],
             "name": "ROS",
             "intelliSenseMode": "gcc-x64",

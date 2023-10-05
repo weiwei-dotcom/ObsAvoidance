@@ -1,2 +1,2 @@
 # ObsAvoidance
-This branch is the scheme of using the circle information to realize getting the scale factor.
+This branch is the source code of scheme which directly using the motion capture system to getting the scale factor.

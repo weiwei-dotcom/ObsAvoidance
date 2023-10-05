@@ -7,8 +7,8 @@
 #include "octomap/OcTree.h"
 #include "cv_bridge/cv_bridge.h"
 #include "sophus/se3.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
 #include <Eigen/Eigen>
-#include "interface/srv/map_point.hpp"
 #include "yaml-cpp/yaml.h"
 #include "opencv2/core/eigen.hpp"
 #include "pcl/common/transforms.h"
@@ -19,6 +19,9 @@
 #include <ceres/ceres.h>
 #include <fstream>
 #include <algorithm>
+#include "message_filters/subscriber.h"
+#include "message_filters/time_synchronizer.h"
+#include "message_filters/sync_policies/exact_time.h"
 
 class ModelNode : public rclcpp::Node
 {
@@ -38,6 +41,16 @@ private:
     const double y_;
     const double z_;
 };
+
+// 利用message_filters订阅者声明消息订阅者
+message_filters::Subscriber<sensor_msgs::msg::PointCloud2> pcl_sub;
+message_filters::Subscriber<sensor_msgs::msg::Image> img_sub;
+message_filters::Subscriber<geometry_msgs::msg::PoseStamped> pose_sub;
+// 映射消息同步器需要的类型参数名
+typedef message_filters::sync_policies::ExactTime<sensor_msgs::msg::PointCloud2,sensor_msgs::msg::Image,geometry_msgs::msg::PoseStamped> synMsgType1;
+typedef message_filters::Synchronizer<synMsgType1> synType1;
+
+std::shared_ptr<synType1> sync1;
 
 // 点云列表的最大长度
 int maxLengthPointCloudList;
@@ -82,6 +95,8 @@ int minNumRedKeyPoint;
 
 // octoTree分辨率
 double octreeResolution;
+// 消息的header
+std_msgs::msg::Header m_initFrameHeader;
 
 // octoMap发布者指针创建
 rclcpp::Publisher<octomap_msgs::msg::Octomap>::SharedPtr octoMapPub;
@@ -113,7 +128,6 @@ Eigen::Matrix4d m_camPose;
 Eigen::Matrix4d m_world2cam;
 cv::Mat m_worldToCamCV;
 pcl::PointCloud<pcl::PointXYZ> m_pointCloud;
-rclcpp::Client<interface::srv::MapPoint>::SharedPtr mapPointCli;
 double fx, fy, cx, cy;
 Eigen::Matrix3f m_projectMatrix;
 pcl::PointCloud<pcl::PointXYZ> pointCloudInCamFrame_blue;
@@ -148,43 +162,35 @@ pcl::PointCloud<pcl::PointXYZ> obstacleRedInCam;
 // 当前蓝绿红色障碍物点云之和
 pcl::PointCloud<pcl::PointXYZ> obstacle_current;
 
-void mapPoint_callback(rclcpp::Client<interface::srv::MapPoint>::SharedFuture response) {
-    auto result = response.get();
+void mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &pcl_msg,
+                       const sensor_msgs::msg::Image::ConstSharedPtr &img_msg,
+                       const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg)
+{
     // 图像赋值给成员变量；
-    cv_bridge::CvImagePtr imgPtr = cv_bridge::toCvCopy(result->img, "bgr8");
+    cv_bridge::CvImagePtr imgPtr = cv_bridge::toCvCopy(img_msg, "bgr8");
+    if (imgPtr->image.empty())
+    {
+        std::cout<<"Recieved image is empty!" << std::endl;
+        return ;
+    }
     imgPtr->image.copyTo(m_img);
-    // cv::imwrite("/home/weiwei/Desktop/test/opencvTest/build/imagebgr.jpg", m_img);
     // 稀疏点云赋值给成员变量；
-    pcl::fromROSMsg(result->point_cloud, m_pointCloud);
-    // std::cout << "m_pointCloud size = " << m_pointCloud.points.size() << std::endl;
-    // 相机位姿赋值给成员变量
-    Eigen::Quaterniond tempQuaCamPose(result->cam_pose.orientation.w,
-                        result->cam_pose.orientation.x,
-                        result->cam_pose.orientation.y,
-                        result->cam_pose.orientation.z);
-    Sophus::Vector3d tempTranslattionCamPos(result->cam_pose.position.x,
-                                    result->cam_pose.position.y,
-                                    result->cam_pose.position.z);
-    Sophus::SE3d tempCamPose(tempQuaCamPose, tempTranslattionCamPos);
-    m_camPose = tempCamPose.matrix();
+    pcl::fromROSMsg(*pcl_msg, m_pointCloud);
     // 第一帧位姿在当前帧位姿下的变换赋值给成员变量
-    Eigen::Quaterniond tempQua(result->world2cam.orientation.w,
-                        result->world2cam.orientation.x,
-                        result->world2cam.orientation.y,
-                        result->world2cam.orientation.z);
-    Sophus::Vector3d tempTranslattion(result->world2cam.position.x,
-                                    result->world2cam.position.y,
-                                    result->world2cam.position.z);
+    Eigen::Quaterniond tempQua(pose_msg->pose.orientation.w,
+                        pose_msg->pose.orientation.x,
+                        pose_msg->pose.orientation.y,
+                        pose_msg->pose.orientation.z);
+    Sophus::Vector3d tempTranslattion(pose_msg->pose.position.x,
+                                    pose_msg->pose.position.y,
+                                    pose_msg->pose.position.z);
     Sophus::SE3d tempWorld2Cam(tempQua, tempTranslattion);
     m_world2cam = tempWorld2Cam.matrix();
-    int q=cv::waitKey(20);
+    m_camPose = m_world2cam.inverse();
+    m_initFrameHeader = pcl_msg->header;
     std::cout<<"----------  这里是新的一轮循环  ------------"<<std::endl;;
     std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
-    if (q!=27){
-        // 开始对障碍物进行建模
-        Model();
-        subscribMapPoint();
-    }
+    Model();
     std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
     double timespend = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1).count();
     std::cout<<"频率为: " << (double)1/timespend <<std::endl;
@@ -197,7 +203,15 @@ public:
     {
         ofs.open("/home/weiwei/Desktop/project/ObsAvoidance/src/model/ParamD.txt");
         octoMapPub = this->create_publisher<octomap_msgs::msg::Octomap>("obstacle", 10);
-        mapPointCli = this->create_client<interface::srv::MapPoint>("mappoint");
+        // 定义消息订阅者
+        pcl_sub.subscribe(this, "pointCloud_initFrame");
+        img_sub.subscribe(this, "image_raw");
+        pose_sub.subscribe(this, "transform_initToCur");
+        // 定义时间同步器
+        sync1.reset(new synType1(synMsgType1(10), pcl_sub, img_sub, pose_sub));
+        // 时间同步器注册回调函数
+        sync1->registerCallback(std::bind(&ModelNode::mapPoint_callback, this, std::placeholders::_1, std::placeholders::_2,std::placeholders::_3));
+
         cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
         // 读取拟合平面最小点云数参数
         minNumBlueKeyPoint = fileRead["minNumBlueKeyPoint"];
@@ -277,12 +291,6 @@ public:
         timesRansacIterRed = fileRead["timesRansacIterRed"];
         cosValueTresh = fileRead["cosValueTresh"];
         maxLengthPointCloudList = fileRead["maxLengthPointCloudList"];
-    }
-
-    // 初始化函数: 该函数用来检测入口圆孔，利用已知的圆孔实际尺寸来初始化尺度因子
-    void initModel() 
-    {
-        
     }
 
     // 四周密封板的三维建模函数
@@ -674,7 +682,7 @@ public:
                         ),
                         NULL,
                         &a,&b
-                    );           
+                    );
                 }
                 ceres::Solver::Options options;
                 options.max_num_iterations = 25;
@@ -736,7 +744,7 @@ public:
         octomap_msgs::msg::Octomap octoMap;
         // std::cout<<"    octree.size() " <<std::endl;
         // std::cout<<"    "<<     octree.size()<<std::endl;
-        octoMap.header.frame_id = "world_frame";
+        octoMap.header = m_initFrameHeader;
         octomap_msgs::fullMapToMsg(octree, octoMap);
         octoMapPub->publish(octoMap);
         std::cout << "octoMap published success" << std::endl;
@@ -780,20 +788,9 @@ public:
         // 测试代码
         octoTreeCurPub();
     }
-
-    // 服务端发起函数
-    void subscribMapPoint()
-    {
-        //FIXME: 在等待服务端上线时，使用ctrl_c关闭该进程 导致终端一直执行while中的语句且之后不会再发起服务；
-        while(!mapPointCli->wait_for_service(std::chrono::seconds(1)))
-        {
-            RCLCPP_WARN(this->get_logger(), "waiting the mapPoint servier online !!!");
-        }
-        auto request = std::make_shared<interface::srv::MapPoint_Request>();
-        mapPointCli->async_send_request(request, std::bind(&ModelNode::mapPoint_callback, this, std::placeholders::_1));
-    }
+    
     // 析构函数 delete function()
-    ~ModelNode(){
+    ~ModelNode() {
         ofs.close();
     }
 };
@@ -803,7 +800,6 @@ int main(int argc, char** argv)
 {
     rclcpp::init(argc, argv);
     auto node = std::make_shared<ModelNode>();
-    node->subscribMapPoint();
     rclcpp::spin(node);
     rclcpp::shutdown();
     return 0;
