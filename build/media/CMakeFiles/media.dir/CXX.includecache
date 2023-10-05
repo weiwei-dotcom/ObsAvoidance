@@ -74,10 +74,6 @@ interface/msg/detail/slam__traits.hpp
 interface/msg/detail/slam__type_support.hpp
 /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/interface/msg/detail/slam__type_support.hpp
 
-/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/main.cpp
-media.hpp
-/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.hpp
-
 /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp
 media.hpp
 /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.hpp
