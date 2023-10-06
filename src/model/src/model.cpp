@@ -54,6 +54,7 @@ bool ModelNode::recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &
 // 构造函数 init function()
 ModelNode::ModelNode():Node("model")
 {
+    error_type = OK;
     pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle", 10);
     flag_pubModel = false;
     octoMapPub = this->create_publisher<octomap_msgs::msg::Octomap>("obstacle", 10);
@@ -95,7 +96,10 @@ ModelNode::ModelNode():Node("model")
     int redPlusLower1 = fileRead["redPlusLower.1"];
     int redPlusLower2 = fileRead["redPlusLower.2"];
     int redPlusLower3 = fileRead["redPlusLower.3"];
-
+    int erodeStructure_size = fileRead["model_erodeStructure_size"];
+    int dilateStructure_size = fileRead["model_dilateStructure_size"];
+    structure_erode=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size, erodeStructure_size));
+    structure_dilate=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(dilateStructure_size, dilateStructure_size));
     blueLower = cv::Scalar(blueLower1, blueLower2, blueLower3);
     blueUpper = cv::Scalar(blueUpper1, blueUpper2, blueUpper3);
     greenLower = cv::Scalar(greenLower1, greenLower2, greenLower3);
@@ -136,6 +140,182 @@ ModelNode::ModelNode():Node("model")
     timesRansacIterRed = fileRead["timesRansacIterRed"];
     cosValueTresh = fileRead["cosValueTresh"];
     maxLengthPointCloudList = fileRead["maxLengthPointCloudList"];
+    minDist = fileRead["model_minDist"];
+    dp = fileRead["model_dp"];
+    cannyUpThresh = fileRead["model_cannyUpThresh"];
+    circleThresh = fileRead["model_circleThresh"];
+    minRadius = fileRead["model_minRadius"];
+    maxRadius = fileRead["model_maxRadius"];
+    difference_radius_thresh = fileRead["model_difference_radius_thresh"];
+    distance_center_thresh = fileRead["model_distance_center_thresh"];
+    cosValue_thresh = fileRead["cosValue_thresh"];
+    distance_thresh = fileRead["distance_thresh"]; 
+}
+
+void ModelNode::changeErrorType(ERROR_TYPE newError)
+{
+  if (newError != error_type)
+  {
+    static std::string errorTypeString[8] = {
+      "Circle detection is not stable",
+      "Distance of circle is too much",
+      "Not found the countour",
+      "Point cloud is little",
+      "OK",
+      "Image recieve error",
+      "The camera is not straight on the plane",
+      "the distance between camera and detect plane is too close"
+    };
+    error_type = newError;
+    RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[(int)error_type].c_str());
+  }
+}
+// 障碍物建模主函数
+bool ModelNode::Model()
+{
+    // TODO: 下面的入口圓形檢測代碼是直接複製media.cpp裏面的,需要修改
+    cv::Mat img_gray;
+    cv::cvtColor(m_img, img_gray, CV_BGR2GRAY);
+    cv::GaussianBlur(img_gray, img_gray, cv::Size(7, 7),2,2);
+    std::vector<cv::Vec3f> temp_circles;
+    cv::HoughCircles(img_gray, temp_circles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
+    if (temp_circles.size()>1) {
+        changeErrorType(Circle_detection_is_not_stable);
+        return false;    
+    }
+    if (temp_circles.size()==0) {
+        changeErrorType(Circle_detection_is_not_stable);
+        // 调试代码5
+        return false;    
+    }
+
+    float distance_center=0.0, difference_radius=0.0;
+    if (circles_.size() != 0) 
+    {
+        distance_center = std::sqrt(std::pow(temp_circles[0][0]-circles_.back()[0], 2) + std::pow(temp_circles[0][1]-circles_.back()[1], 2));
+        difference_radius=std::abs(temp_circles[0][2] - circles_.back()[2]);    
+    }
+    if (distance_center > distance_center_thresh || difference_radius > difference_radius_thresh) {
+        changeErrorType(Distance_of_circle_is_too_much);
+        circles_.clear();
+        return false;
+    }
+    // 利用稀疏点云拟合平面获得平面距离，并判断当前平面是否足够正对相机
+    double distance;
+    bool flag_poseCorrect = detectPoseCorrect(distance,temp_circles[0]);
+    if(!flag_poseCorrect) 
+        return false;
+    // 如果相機距離檢測平面太近，則很可能檢測不到實驗平臺邊沿輪廓直線
+    if (distance < distance_thresh) {
+        changeErrorType(TooClose);
+        return false;
+    }
+    // TODO: 開始檢測外觀...
+
+
+
+    circles_.push_back(temp_circles[0]);
+    // // 判断检测圆形的数量是否达到每次输出的上限
+    // if (circles_.size() < circle_size_thresh) 
+    //     return false;
+    // circles_.clear();
+    
+
+    // Completing model;
+    return true;
+}
+
+//TODO: 直接從media.cpp 裏面複製過來的，需要修改
+bool ModelNode::detectPoseCorrect(double &distanceWithPlane, const cv::Vec3f tempCircle)
+{
+  // 阈值分割
+  cv::Mat imgHsv, imgBin, img_erode, img_dilate;
+  cv::cvtColor(m_img, imgHsv, CV_BGR2HSV);
+  cv::inRange(imgHsv, blueLower, blueUpper, imgBin);
+  // 较小核腐蚀
+  cv::erode(imgBin, img_erode, structure_erode);
+  
+  // // 调试代码
+  // cv::imshow("img_erode", img_erode);
+  // cv::waitKey(20);
+
+  // 最大连通域提取轮廓
+  std::vector<cv::Point> contour;
+  bool flag_getContour = getMaxAreaContour(img_erode, contour);
+  if (!flag_getContour) 
+  {
+    changeErrorType(Not_found_the_countour);
+    return false;
+  }
+  // 较大核膨胀
+  cv::dilate(img_erode, img_dilate, structure_dilate);
+  // 点云变换坐标系至当前帧
+  pcl::PointCloud<pcl::PointXYZ> PointCloud_curFrame;
+  pcl::transformPointCloud(m_pointCloud, PointCloud_curFrame, m_transform_initToCur);
+  // 逐个点云逆投影至像素平面进行筛选
+  pcl::PointCloud<pcl::PointXYZ> finalPointCloud;
+  for (auto point:PointCloud_curFrame.points) {
+    Eigen::Vector3f tempPixelPoint = m_projectMatrix * point.getVector3fMap();
+    cv::Point2f pixelPoint(tempPixelPoint[0]/tempPixelPoint[2], tempPixelPoint[1]/tempPixelPoint[2]);
+    double polyTestValue=cv::pointPolygonTest(contour, pixelPoint, false);
+    // 特征点轮廓判断    
+    if (polyTestValue<0) 
+      continue;
+    // 特征点掩码判断    
+    if (img_dilate.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255) 
+      continue; 
+    // 半径距离判断，是否在圆孔附近 
+    float tempPixelDistance = std::sqrt(std::pow(pixelPoint.x-tempCircle[0], 2)+std::pow(pixelPoint.y-tempCircle[1],2));
+    if (tempPixelDistance < tempCircle[2]+(double)3)
+      continue;
+    
+    // // 调试代码1
+    // cv::drawMarker(img, cv::Point((int)pixelPoint.x, (int)pixelPoint.y), cv::Scalar(0,255,0), 2, 20, 3);
+
+    finalPointCloud.points.push_back(point);
+  }
+
+  // // 调试代码1
+  // cv::imshow("img", img);
+  // cv::waitKey(10);
+
+  // 用筛选后的点云拟合平面
+  if (finalPointCloud.points.size()<90) {
+    changeErrorType(Point_cloud_is_little);
+    return false;
+  }
+  Eigen::Vector4d param = calParam(finalPointCloud);
+  distanceWithPlane=-param[3];
+  // 将拟合平面后的法向量点乘当前帧坐标系z轴向量
+  Eigen::Vector3d zAxis(0,0,1);
+  double cosValue = param.block(0,0,3,1).dot(zAxis);
+  // 两向量余弦值判断
+  if (cosValue < cosValue_thresh) {
+    changeErrorType(The_camera_is_not_straight_on_the_plane);
+    return false;    
+  }
+  // // 调试代码2
+  // std::cout << "distance_plane: " << distance_plane << std::endl;
+  return true;
+}
+
+bool ModelNode::getMaxAreaContour(cv::Mat img_bin, std::vector<cv::Point> &contour) {
+    cv::Mat labels, stats, centroids;
+    int num_labels = connectedComponentsWithStats(img_bin, labels, stats, centroids, 8, CV_16U);
+    std::vector<std::vector<cv::Point>> temp_contours;
+    std::vector<int> areas;
+    if (num_labels>1)
+    {
+        for (int i = 1; i < num_labels; i++) // 忽略背景标签0
+        {
+            areas.push_back(stats.at<int>(i, cv::CC_STAT_AREA));
+        }
+        int max_area_label = max_element(areas.begin(), areas.end()) - areas.begin() + 1;
+        cv::findContours((labels == max_area_label), temp_contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);            
+        contour = temp_contours[0];
+        return true;
+    }
+    return false;
 }
 
 void ModelNode::PubModel()
@@ -374,8 +554,8 @@ void ModelNode::invProjAndSel()
     return;
 }
 
-void ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud, Eigen::Vector4d &param) {
-    std::cout<<"        calParam"<<std::endl;
+Eigen::Vector4d ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
+    Eigen::Vector4d param;
     pcl::PointCloud<pcl::PointXYZ>::Ptr pointCloud_Ptr=pointCloud.makeShared();
     pcl::SACSegmentation<pcl::PointXYZ> seg;
     pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
@@ -384,7 +564,7 @@ void ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud, Eigen::Vecto
     seg.setModelType(pcl::SACMODEL_PLANE);
     seg.setMethodType(pcl::SAC_RANSAC);
     seg.setMaxIterations(100);
-    seg.setDistanceThreshold(0.01);
+    seg.setDistanceThreshold(0.006);
     // 从点云中分割最有可能的平面
     seg.setInputCloud(pointCloud_Ptr);
     pcl::ModelCoefficients coefficient;
@@ -393,6 +573,7 @@ void ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud, Eigen::Vecto
     param(1) = coefficient.values[1];
     param(2) = coefficient.values[2];
     param(3) = coefficient.values[3];
+    return param;
 }
 
 // 获取当前用来投影的平面参数值
@@ -598,13 +779,6 @@ void ModelNode::octoTreeCurPub()
     octoMapPub->publish(octoMap);
     std::cout << "octoMap published success" << std::endl;
     return;
-}
-// 障碍物建模主函数
-bool ModelNode::Model()
-{
-    // 
-    // Completing model;
-    return true;
 }
 
 // 析构函数 delete function()

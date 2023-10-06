@@ -27,6 +27,18 @@
 class ModelNode : public rclcpp::Node
 {
 private:
+    // 錯誤類型結構體
+    enum ERROR_TYPE
+    {
+        Circle_detection_is_not_stable = 0,
+        Distance_of_circle_is_too_much = 1,
+        Not_found_the_countour = 2,
+        Point_cloud_is_little = 3,
+        OK = 4,
+        Image_recieve_error = 5,
+        The_camera_is_not_straight_on_the_plane = 6,
+        TooClose = 7
+    };
     // 定义蓝色平面法向量残差函数结构体
     struct normVecResidual {
         normVecResidual(float x, float y, float z)
@@ -74,6 +86,14 @@ private:
     Eigen::Vector3d standardParamGreen;
     Eigen::Vector3d standardParamRed;
 
+    // 圆形检测函数参数
+    double minDist, dp, cannyUpThresh, circleThresh;
+    int minRadius, maxRadius;
+    // 两帧圆之间的半径差阈值、圆心距离阈值
+    float difference_radius_thresh, distance_center_thresh;
+    // 多次圆形检测记录的圆
+    std::vector<cv::Vec3f> circles_;
+
     // 法向量参数的cos阈值
     double cosValueTresh;
 
@@ -99,6 +119,9 @@ private:
     // 消息的header
     std_msgs::msg::Header m_header_initFrame;
 
+    // 錯誤狀態變量
+    ERROR_TYPE error_type;
+
     // octoMap发布者指针创建
     rclcpp::Publisher<octomap_msgs::msg::Octomap>::SharedPtr octoMapPub;
 
@@ -112,7 +135,7 @@ private:
     cv::Mat imgBlueOpen, imgGreenOpen, imgRedOpen;
     cv::Mat imgBlueClose, imgGreenClose, imgRedClose;
     cv::Scalar blueUpper,greenUpper,redUpper, redPlusUpper, whiteLower, whiteUpper;
-    cv::Scalar  blueLower, greenLower, redLower, redPlusLower;
+    cv::Scalar blueLower, greenLower, redLower, redPlusLower;
     cv::Mat kernelOpen_blue, kernelOpen_green, kernelOpen_red;
     cv::Mat kernelClose_blue, kernelClose_green, kernelClose_red;
 
@@ -120,6 +143,13 @@ private:
     std::vector<pcl::PointCloud<pcl::PointXYZ>> obstacleBlueList;
     std::vector<pcl::PointCloud<pcl::PointXYZ>> obstacleGreenList;
     std::vector<pcl::PointCloud<pcl::PointXYZ>> obstacleRedList;
+
+    // 腐蚀膨胀操作结构体
+    cv::Mat structure_erode;
+    cv::Mat structure_dilate;
+
+    // 用来判断相机是否正视于检测平面的余弦角度阈值
+    double cosValue_thresh;
 
     // // 点云转化为当前帧相机像素点坐标
     // std::vector<cv::KeyPoint> keyPoints;
@@ -129,7 +159,7 @@ private:
     Eigen::Matrix4d m_transform_initToCur;
     cv::Mat m_worldToCamCV;
     pcl::PointCloud<pcl::PointXYZ> m_pointCloud;
-    double fx, fy, cx, cy;
+    float fx, fy, cx, cy;
     Eigen::Matrix3f m_projectMatrix;
     pcl::PointCloud<pcl::PointXYZ> pointCloudInCamFrame_blue;
     pcl::PointCloud<pcl::PointXYZ> pointCloudInCamFrame_green;
@@ -212,6 +242,9 @@ public:
     bool Model();
     // Publish the message of pointcloud of obstacle model;
     void PubModel();
-
+    void changeErrorType(ERROR_TYPE newError);
+    bool detectPoseCorrect(double &distance_plane, const cv::Vec3f tempCircle);
+    bool getMaxAreaContour(cv::Mat img_bin, std::vector<cv::Point> &contour);
+    Eigen::Vector4d calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud);
     ~ModelNode();
 };

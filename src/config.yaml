@@ -56,6 +56,19 @@ close_red_kernel_size: 7
 # 1 完成
 flag_motionControlProgramHaveDone: 0
 
+# model圆形检测参数值
+model_dp: 2
+model_minDist: 80
+model_cannyUpThresh: 80
+model_circleThresh: 180
+model_minRadius: 30
+model_maxRadius: 300
+
+# 两帧圆之间的半径差阈值、圆心距离阈值
+model_difference_radius_thresh: 15
+model_distance_center_thresh: 20
+
+
 # 圆形检测参数值
 dp: 2
 minDist: 80
@@ -71,11 +84,16 @@ distance_center_thresh: 25
 # 正视判断的cos阈值
 cosValue_thresh: 0.99
 
+distance_thresh: 350
+
 # 连续检测圆形的列表长度阈值
 circle_size_thresh: 8
 # 腐蚀膨胀核大小
 erodeStructure_size: 7
 dilateStructure_size: 15
+# model腐蚀膨胀核大小
+model_erodeStructure_size: 5
+model_dilateStructure_size: 11
 # 尺度因子列表长度阈值
 scaleFactList_size_thresh: 160
 # 尺度因子内点阈值
