@@ -81,6 +81,21 @@ private:
     //每次ransac迭代选择的子集所包含的参数数量
     int numPlaneParamSubSet;
 
+    // 存储每次检测得到的二维直线方向向量
+    std::vector<Eigen::Vector2d> horizontalLine;
+    std::vector<Eigen::Vector2d> vertialLine;
+    // // 存储每次检测得到的三维直线参数变量
+    // std::vector<Eigen::Matrix<double, 6, 1>> upLine3d;
+    // std::vector<Eigen::Matrix<double, 6, 1>> underLine3d;
+    // std::vector<Eigen::Matrix<double, 6, 1>> leftLine3d;
+    // std::vector<Eigen::Matrix<double, 6, 1>> rightLine3d;
+    
+    // 存储每次检测得到的从圆心位置出发竖直向上的三维向量变量
+    std::vector<Eigen::Vector3d> vec_upward;
+    // 存储每次检测得到的平面法向量变量
+    std::vector<Eigen::Vector3d> vec_norm;
+    // 存储每次检测得到的三维圆心位置
+    std::vector<Eigen::Vector3d> center_circle;
     // 每次优化更新的标准参数
     Eigen::Vector3d standardParamBlue;
     Eigen::Vector3d standardParamGreen;
@@ -93,6 +108,8 @@ private:
     float difference_radius_thresh, distance_center_thresh;
     // 多次圆形检测记录的圆
     std::vector<cv::Vec3f> circles_;
+    // 检测平面与相机之间的距离阈值
+    double distance_thresh;
 
     // 法向量参数的cos阈值
     double cosValueTresh;
@@ -243,8 +260,8 @@ public:
     // Publish the message of pointcloud of obstacle model;
     void PubModel();
     void changeErrorType(ERROR_TYPE newError);
-    bool detectPoseCorrect(double &distance_plane, const cv::Vec3f tempCircle);
-    bool getMaxAreaContour(cv::Mat img_bin, std::vector<cv::Point> &contour);
+    bool detectPoseCorrect(double &distance_plane, const cv::Vec3f tempCircle, cv::Mat &mask);
+    bool getMaxAreaContour(cv::Mat &img_bin, std::vector<cv::Point> &contour);
     Eigen::Vector4d calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud);
     ~ModelNode();
 };

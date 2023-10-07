@@ -57,7 +57,7 @@ mediaNode::mediaNode():Node("media")
   }
 }
 
-void ModelNode::changeErrorType(ERROR_TYPE newError)
+void mediaNode::changeErrorType(ERROR_TYPE newError)
 {
   if (newError != error_type)
   {

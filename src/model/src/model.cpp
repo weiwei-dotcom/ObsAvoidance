@@ -173,7 +173,7 @@ void ModelNode::changeErrorType(ERROR_TYPE newError)
 // 障碍物建模主函数
 bool ModelNode::Model()
 {
-    // TODO: 下面的入口圓形檢測代碼是直接複製media.cpp裏面的,需要修改
+    // 入口圓形檢測
     cv::Mat img_gray;
     cv::cvtColor(m_img, img_gray, CV_BGR2GRAY);
     cv::GaussianBlur(img_gray, img_gray, cv::Size(7, 7),2,2);
@@ -185,24 +185,24 @@ bool ModelNode::Model()
     }
     if (temp_circles.size()==0) {
         changeErrorType(Circle_detection_is_not_stable);
-        // 调试代码5
         return false;    
     }
-
-    float distance_center=0.0, difference_radius=0.0;
     if (circles_.size() != 0) 
     {
+        float distance_center, difference_radius;
         distance_center = std::sqrt(std::pow(temp_circles[0][0]-circles_.back()[0], 2) + std::pow(temp_circles[0][1]-circles_.back()[1], 2));
         difference_radius=std::abs(temp_circles[0][2] - circles_.back()[2]);    
-    }
-    if (distance_center > distance_center_thresh || difference_radius > difference_radius_thresh) {
-        changeErrorType(Distance_of_circle_is_too_much);
-        circles_.clear();
-        return false;
+        if (distance_center > distance_center_thresh || difference_radius > difference_radius_thresh) 
+        {
+            changeErrorType(Distance_of_circle_is_too_much);
+            circles_.clear();
+            return false;
+        }
     }
     // 利用稀疏点云拟合平面获得平面距离，并判断当前平面是否足够正对相机
     double distance;
-    bool flag_poseCorrect = detectPoseCorrect(distance,temp_circles[0]);
+    cv::Mat mask; // 掩码图像，用以保存最大连通域区域
+    bool flag_poseCorrect = detectPoseCorrect(distance,temp_circles[0],mask);
     if(!flag_poseCorrect) 
         return false;
     // 如果相機距離檢測平面太近，則很可能檢測不到實驗平臺邊沿輪廓直線
@@ -210,8 +210,32 @@ bool ModelNode::Model()
         changeErrorType(TooClose);
         return false;
     }
-    // TODO: 開始檢測外觀...
 
+    // TODO: 实验平台边沿直线检测...
+    // 大阈值检测直线
+    // 对直线列表按照长度从大到小排列
+    // 膨胀mask图像得到mask_dilate;
+    // 定义临时直线参数变量 tempLine
+    // for 循环从列表中筛选直线
+        // 如果当前全局直线参数列表不为空
+            // 利用两个坐标点计算二维法向量
+            // 与全局列表中最后一个不全为零的直线参数进行点乘输出绝对值
+            // 如果绝对值小于共线阈值（0.98）并且大于(0.25)
+                // continue
+        // 利用mask_dilate掩码判断直线两端点是否都在最大连通域上
+        // 不在
+            // continue
+        // 计算直线距离圆心距离
+        // 圆心距离太近
+            // continue
+        // 利用直线两端点坐标计算中点坐标
+        // 利用中点坐标计算圆心指向中点的单位向量
+        // 利用中点坐标加上20倍的单位向量计算 flag_point(cv::Point)
+        // 如果 mask.at<bool>(flag_point) == 255
+            // continue;
+        // 返回当前直线参数到 tempLine
+    // 利用
+    // 直线与圆心距离判断
 
 
     circles_.push_back(temp_circles[0]);
@@ -226,7 +250,7 @@ bool ModelNode::Model()
 }
 
 //TODO: 直接從media.cpp 裏面複製過來的，需要修改
-bool ModelNode::detectPoseCorrect(double &distanceWithPlane, const cv::Vec3f tempCircle)
+bool ModelNode::detectPoseCorrect(double &distanceWithPlane, const cv::Vec3f tempCircle, cv::Mat &mask)
 {
   // 阈值分割
   cv::Mat imgHsv, imgBin, img_erode, img_dilate;
@@ -296,10 +320,11 @@ bool ModelNode::detectPoseCorrect(double &distanceWithPlane, const cv::Vec3f tem
   }
   // // 调试代码2
   // std::cout << "distance_plane: " << distance_plane << std::endl;
+  mask=img_dilate;
   return true;
 }
 
-bool ModelNode::getMaxAreaContour(cv::Mat img_bin, std::vector<cv::Point> &contour) {
+bool ModelNode::getMaxAreaContour(cv::Mat& img_bin, std::vector<cv::Point> &contour) {
     cv::Mat labels, stats, centroids;
     int num_labels = connectedComponentsWithStats(img_bin, labels, stats, centroids, 8, CV_16U);
     std::vector<std::vector<cv::Point>> temp_contours;
@@ -311,6 +336,7 @@ bool ModelNode::getMaxAreaContour(cv::Mat img_bin, std::vector<cv::Point> &conto
             areas.push_back(stats.at<int>(i, cv::CC_STAT_AREA));
         }
         int max_area_label = max_element(areas.begin(), areas.end()) - areas.begin() + 1;
+        img_bin = (labels == max_area_label);
         cv::findContours((labels == max_area_label), temp_contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);            
         contour = temp_contours[0];
         return true;
