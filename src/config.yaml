@@ -60,14 +60,21 @@ flag_motionControlProgramHaveDone: 0
 model_dp: 2
 model_minDist: 80
 model_cannyUpThresh: 80
-model_circleThresh: 180
-model_minRadius: 30
-model_maxRadius: 300
+model_circleThresh: 150
+model_minRadius: 40
+model_maxRadius: 250
+
+# 掩码膨胀结构体大小
+dilateSize_mask: 14
 
 # 直线检测相关参数
 lineThresh: 120
-minLineLength: 180
+minLineLength: 200
 maxLineGap: 10
+
+# 最小共线阈值以及最大垂直阈值
+minCosValueThresh_collineation: 0.97
+maxCosValueThresh_vertical: 0.17
 
 # 两帧圆之间的半径差阈值、圆心距离阈值
 model_difference_radius_thresh: 6
@@ -98,8 +105,8 @@ circle_size_thresh: 5
 erodeStructure_size: 7
 dilateStructure_size: 15
 # model腐蚀膨胀核大小
-model_erodeStructure_size: 5
-model_dilateStructure_size: 12
+model_erodeStructure_size: 7
+model_dilateStructure_size: 15
 # 尺度因子列表长度阈值
 scaleFactList_size_thresh: 160
 # 尺度因子内点阈值

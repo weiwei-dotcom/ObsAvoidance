@@ -37,7 +37,9 @@ private:
         OK = 4,
         Image_recieve_error = 5,
         The_camera_is_not_straight_on_the_plane = 6,
-        TooClose = 7
+        TooClose = 7,
+        No_detect_line = 8,
+        Line_mismatch_condition = 9
     };
     // 定义蓝色平面法向量残差函数结构体
     struct normVecResidual {
@@ -81,9 +83,19 @@ private:
     //每次ransac迭代选择的子集所包含的参数数量
     int numPlaneParamSubSet;
 
-    // 存储每次检测得到的二维直线方向向量
-    std::vector<Eigen::Vector2d> horizontalLine;
-    std::vector<Eigen::Vector2d> vertialLine;
+    // 直线检测函数相关参数变量
+    int lineThresh;
+    double minLineLength,maxLineGap;
+    // 存储每次检测得到的三维直线方向向量
+    std::vector<Eigen::Vector3d> vecs_direction;
+    // 存储每次检测得到的平面法向量变量
+    std::vector<Eigen::Vector3d> vecs_norm;
+    // 存储每次检测时当前帧到初始帧的变换矩阵
+    std::vector<Eigen::Matrix4d> transforms_curToInit;
+    // 边沿直线最小共线阈值与最大垂直阈值
+    double minCosValueThresh_collineation, maxCosValueThresh_vertical;
+    
+       
     // // 存储每次检测得到的三维直线参数变量
     // std::vector<Eigen::Matrix<double, 6, 1>> upLine3d;
     // std::vector<Eigen::Matrix<double, 6, 1>> underLine3d;
@@ -92,8 +104,6 @@ private:
     
     // 存储每次检测得到的从圆心位置出发竖直向上的三维向量变量
     std::vector<Eigen::Vector3d> vec_upward;
-    // 存储每次检测得到的平面法向量变量
-    std::vector<Eigen::Vector3d> vec_norm;
     // 存储每次检测得到的三维圆心位置
     std::vector<Eigen::Vector3d> center_circle;
     // 每次优化更新的标准参数
@@ -161,6 +171,9 @@ private:
     std::vector<pcl::PointCloud<pcl::PointXYZ>> obstacleGreenList;
     std::vector<pcl::PointCloud<pcl::PointXYZ>> obstacleRedList;
 
+    // 掩码膨胀结构体
+    cv::Mat dilateStructure_mask;
+
     // 腐蚀膨胀操作结构体
     cv::Mat structure_erode;
     cv::Mat structure_dilate;
@@ -168,8 +181,6 @@ private:
     // 用来判断相机是否正视于检测平面的余弦角度阈值
     double cosValue_thresh;
 
-    // // 点云转化为当前帧相机像素点坐标
-    // std::vector<cv::KeyPoint> keyPoints;
     // 定义接收服务端 图像、成员变量、相机位姿、点云 的成员变量；
     cv::Mat m_img;
     Eigen::Matrix4d m_transform_curToInit;
@@ -218,6 +229,16 @@ private:
                         const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg);
 
 public:
+    class GreaterLength
+    {
+    public:
+        bool operator()(cv::Vec4i first, cv::Vec4i second) 
+        {
+            double lengthFirst = pow((double)first[0]-(double)first[2], 2)+pow((double)first[1]-(double)first[3], 2);
+            double lengthSecond = pow((double)second[0]-(double)second[2], 2)+pow((double)second[1]-(double)second[3], 2);
+            return lengthFirst > lengthSecond;
+        }
+    };
     bool recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &pcl_msg,
                 const sensor_msgs::msg::Image::ConstSharedPtr &img_msg,
                 const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg);
@@ -260,8 +281,9 @@ public:
     // Publish the message of pointcloud of obstacle model;
     void PubModel();
     void changeErrorType(ERROR_TYPE newError);
-    bool detectPoseCorrect(double &distance_plane, const cv::Vec3f tempCircle, cv::Mat &mask);
+    bool detectPoseCorrect(Eigen::Vector4d &param, const cv::Vec3f tempCircle, cv::Mat &mask);
     bool getMaxAreaContour(cv::Mat &img_bin, std::vector<cv::Point> &contour);
     Eigen::Vector4d calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud);
+    void from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3d &outputPoint, Eigen::Vector4d paramPlane);
     ~ModelNode();
 };

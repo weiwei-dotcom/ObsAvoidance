@@ -98,6 +98,8 @@ ModelNode::ModelNode():Node("model")
     int redPlusLower3 = fileRead["redPlusLower.3"];
     int erodeStructure_size = fileRead["model_erodeStructure_size"];
     int dilateStructure_size = fileRead["model_dilateStructure_size"];
+    int dilateSize_mask = fileRead["dilateSize_mask"];
+    dilateStructure_mask = cv::getStructuringElement(cv::MORPH_ELLIPSE,cv::Size(dilateSize_mask,dilateSize_mask));
     structure_erode=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size, erodeStructure_size));
     structure_dilate=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(dilateStructure_size, dilateStructure_size));
     blueLower = cv::Scalar(blueLower1, blueLower2, blueLower3);
@@ -150,13 +152,19 @@ ModelNode::ModelNode():Node("model")
     distance_center_thresh = fileRead["model_distance_center_thresh"];
     cosValue_thresh = fileRead["cosValue_thresh"];
     distance_thresh = fileRead["distance_thresh"]; 
+    lineThresh = fileRead["lineThresh"];
+    minLineLength = fileRead["minLineLength"];
+    maxLineGap=fileRead["maxLineGap"];
+    minCosValueThresh_collineation=fileRead["minCosValueThresh_collineation"];
+    maxCosValueThresh_vertical=fileRead["maxCosValueThresh_vertical"];
+    circle_size_thresh = fileRead["circle_size_thresh"];
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
 {
   if (newError != error_type)
   {
-    static std::string errorTypeString[8] = {
+    static std::string errorTypeString[10] = {
       "Circle detection is not stable",
       "Distance of circle is too much",
       "Not found the countour",
@@ -164,7 +172,9 @@ void ModelNode::changeErrorType(ERROR_TYPE newError)
       "OK",
       "Image recieve error",
       "The camera is not straight on the plane",
-      "the distance between camera and detect plane is too close"
+      "the distance between camera and detect plane is too close",
+      "No_detect_line",
+      "Line_mismatch_condition"
     };
     error_type = newError;
     RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[(int)error_type].c_str());
@@ -196,15 +206,20 @@ bool ModelNode::Model()
         {
             changeErrorType(Distance_of_circle_is_too_much);
             circles_.clear();
+            vecs_direction.clear();
+            vecs_norm.clear();
+            transforms_curToInit.clear();
             return false;
         }
     }
     // 利用稀疏点云拟合平面获得平面距离，并判断当前平面是否足够正对相机
-    double distance;
+    Eigen::Vector4d temp_param;
     cv::Mat mask; // 掩码图像，用以保存最大连通域区域
-    bool flag_poseCorrect = detectPoseCorrect(distance,temp_circles[0],mask);
+    bool flag_poseCorrect = detectPoseCorrect(temp_param,temp_circles[0],mask);
     if(!flag_poseCorrect) 
         return false;
+    Eigen::Vector3d vec_norm = temp_param.block(0,0,3,1);
+    double distance = abs(temp_param[4]);
     // 如果相機距離檢測平面太近，則很可能檢測不到實驗平臺邊沿輪廓直線
     if (distance < distance_thresh) {
         changeErrorType(TooClose);
@@ -213,44 +228,124 @@ bool ModelNode::Model()
 
     // TODO: 实验平台边沿直线检测...
     // 大阈值检测直线
-    // 对直线列表按照长度从大到小排列
+    std::vector<cv::Vec4i> tempLines;
+    cv::Mat img_gaussian;
+    cv::GaussianBlur(m_img, img_gaussian, cv::Size(7,7),2,2);
+    cv::HoughLinesP(img_gaussian,tempLines, 1,CV_PI/180, lineThresh, minLineLength,maxLineGap);
+    if (tempLines.size()==0)
+    {
+        changeErrorType(No_detect_line);
+        return false;
+    }
+    // 对线段列表按照长度从大到小排列
+    std::sort(tempLines.begin(), tempLines.end(), GreaterLength());
     // 膨胀mask图像得到mask_dilate;
-    // 定义临时直线参数变量 tempLine
+    cv::Mat mask_dilate;
+    cv::dilate(mask, mask_dilate, dilateStructure_mask);
+    // 定义临时线段参数变量 tempLine
+    cv::Vec4i templine(0,0,0,0);
+    Eigen::Vector3d DirectionVec_line(0,0,0);
     // for 循环从列表中筛选直线
-        // 如果当前全局直线参数列表不为空
-            // 利用两个坐标点计算二维法向量
-            // 与全局列表中最后一个不全为零的直线参数进行点乘输出绝对值
-            // 如果绝对值小于共线阈值（0.98）并且大于(0.25)
-                // continue
-        // 利用mask_dilate掩码判断直线两端点是否都在最大连通域上
-        // 不在
-            // continue
-        // 计算直线距离圆心距离
-        // 圆心距离太近
-            // continue
-        // 利用直线两端点坐标计算中点坐标
-        // 利用中点坐标计算圆心指向中点的单位向量
+    for (int i=0;i<tempLines.size();i++)
+    {
+        int x1_i = tempLines[i][0],x2_i = tempLines[i][2],y1_i=tempLines[i][1],y2_i=tempLines[i][3];
+        // 利用mask_dilate掩码判断线段两端点是否都在最大连通域上
+        if (mask_dilate.at<bool>(x1_i, y1_i)!=255 || mask_dilate.at<bool>(x2_i, y2_i)!=255)
+        {
+            continue;
+        }
+        // 利用线段两端点坐标计算中点坐标
+        double x1 = (double)tempLines[i][0],x2 = (double)tempLines[i][2],y1=(double)tempLines[i][1],y2=(double)tempLines[i][3];
+        Eigen::Vector2d temp_centerPoint((x1+x2)/(double)2, (y1+y2)/(double)2);
+        // 利用中点坐标计算圆心指向线段中点的单位向量
+        Eigen::Vector2d temp_centreToCenter(temp_centerPoint.x()-(double)temp_circles[0][0], temp_centerPoint.y()-(double)temp_circles[0][1]);
+        temp_centreToCenter.normalize();
         // 利用中点坐标加上20倍的单位向量计算 flag_point(cv::Point)
+        Eigen::Vector2d flag_point(temp_centerPoint.x()+20*temp_centreToCenter.x(),temp_centerPoint.y()+20*temp_centreToCenter.y());
         // 如果 mask.at<bool>(flag_point) == 255
-            // continue;
-        // 返回当前直线参数到 tempLine
-    // 利用
-    // 直线与圆心距离判断
-
-
+        if (mask.at<bool>((int)flag_point.x(), (int)flag_point.y()) == 255)
+        {
+            continue;
+        }
+        // 将直线两端点以及圆心像素坐标投影到三维平面上
+        Eigen::Vector2d temp_endPoint2d_1(x1,y1),temp_endPoint2d_2(x2,y2);
+        Eigen::Vector3d temp_endPoint3d_1, temp_endPoint3d_2, temp_centrePoint3d;
+        from2dTo3dPlane(temp_endPoint2d_1, temp_endPoint3d_1, temp_param);
+        from2dTo3dPlane(temp_endPoint2d_2, temp_endPoint3d_2, temp_param);
+        from2dTo3dPlane(temp_centerPoint, temp_centrePoint3d, temp_param);
+        // 计算三维空间上圆心到直线的距离
+        Eigen::Vector3d tempDirectionVec_line = (temp_endPoint3d_2-temp_endPoint3d_1).normalized();
+        Eigen::Vector3d tempVec_endPoint1ToCentre = temp_centrePoint3d-temp_endPoint2d_1;
+        double distance_lineToCentre = (tempDirectionVec_line.cross(tempVec_endPoint1ToCentre)).norm();
+        // 如果距离 小于最小距离阈值(200) || 大于最大距离阈值(245)
+        if (distance_lineToCentre < double(200))
+            continue;
+        // 如果当前全局三维方向向量列表为空
+        if (vecs_direction.size()==0)
+        {
+            vecs_direction.push_back(tempDirectionVec_line);
+            vecs_norm.push_back(vec_norm);
+            circles_.push_back(temp_circles[0]);
+            transforms_curToInit.push_back(m_transform_curToInit);
+            break;
+        }
+        // 与全局列表的方向向量最后一个元素进行点乘输出绝对值
+        double cosValue_line = tempDirectionVec_line.dot(vecs_direction.back());
+        // 如果绝对值 小于共线阈值(0.97）&& 大于垂直阈值(0.17)
+        if (abs(cosValue_line) < minCosValueThresh_collineation && abs(cosValue_line) > maxCosValueThresh_vertical)
+        {
+            continue;         
+        }
+        // 满足上诉所有筛选条件
+        DirectionVec_line = tempDirectionVec_line;
+        break;
+    }
+    // 如果当前templine参数全为零
+    if (DirectionVec_line.norm() < 1e-4)
+    {
+        changeErrorType(Line_mismatch_condition);
+        return false;
+    } 
+    vecs_direction.push_back(DirectionVec_line);
+    vecs_norm.push_back(vec_norm);
     circles_.push_back(temp_circles[0]);
-    // // 判断检测圆形的数量是否达到每次输出的上限
-    // if (circles_.size() < circle_size_thresh) 
-    //     return false;
-    // circles_.clear();
-    
+    transforms_curToInit.push_back(m_transform_curToInit);
+    int tempSizeSum = circles_.size()+vecs_norm.size()+vecs_direction.size()+transforms_curToInit.size();
+    if (tempSizeSum!=circles_.size()*4||tempSizeSum!=vecs_norm.size()*4||tempSizeSum!=vecs_direction.size()*4||tempSizeSum!=transforms_curToInit.size()*4)
+    {
+        RCLCPP_INFO(this->get_logger(), "UNKNOWN ERROR !!!");
+        return false;
+    }
+    if (circles_.size() < circle_size_thresh) 
+        return false;
 
-    // Completing model;
+    // TODO:
+    // 利用连续几次检测的存储变量列表计算模型参数添加到较长的全局模型参数列表(平面法向量、垂直方向向量、圆心位置)
+    
+    // 清除全局连续性判断变量列表
+    circles_.clear();
+    vecs_direction.clear();
+    vecs_norm.clear();
+    transforms_curToInit.clear();
+    changeErrorType(OK);
+    
+    // 最后判断全局参数列表长度是否满足数量阈值，满足计算、不满足继续检测
     return true;
 }
 
-//TODO: 直接從media.cpp 裏面複製過來的，需要修改
-bool ModelNode::detectPoseCorrect(double &distanceWithPlane, const cv::Vec3f tempCircle, cv::Mat &mask)
+void ModelNode::from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3d &outputPoint, Eigen::Vector4d paramPlane)
+{
+    double a=paramPlane[0];
+    double b=paramPlane[1];
+    double c=paramPlane[2];
+    double d=paramPlane[3];
+    outputPoint.z() = -d/(a*(inputPoint.x()-cx)/fx+b*(inputPoint.y()-cy)/fy+c);
+    outputPoint.x() = outputPoint.z()*(inputPoint.x()-cx)/fx;
+    outputPoint.y() = outputPoint.z()*(inputPoint.y()-cy)/fy;    
+}
+
+
+bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Vec3f tempCircle, cv::Mat &mask)
 {
   // 阈值分割
   cv::Mat imgHsv, imgBin, img_erode, img_dilate;
@@ -308,8 +403,8 @@ bool ModelNode::detectPoseCorrect(double &distanceWithPlane, const cv::Vec3f tem
     changeErrorType(Point_cloud_is_little);
     return false;
   }
-  Eigen::Vector4d param = calParam(finalPointCloud);
-  distanceWithPlane=-param[3];
+  param = calParam(finalPointCloud);
+
   // 将拟合平面后的法向量点乘当前帧坐标系z轴向量
   Eigen::Vector3d zAxis(0,0,1);
   double cosValue = param.block(0,0,3,1).dot(zAxis);
@@ -684,9 +779,11 @@ void ModelNode::pixelToPlane(cv::Mat &imgClose, Eigen::Vector4d &paramInCamFrame
         for (int v=0;v<cols;v+=3) {
             if (temp_imgClose.at<uchar>(u,v) == 255) {
                 pcl::PointXYZ tempPoint;
-                tempPoint.z = -d/(a*(v-cx)/fx+b*(u-cy)/fy+c);
-                tempPoint.x = tempPoint.z*(v-cx)/fx;
-                tempPoint.y = tempPoint.z*(u-cy)/fy;
+                Eigen::Vector3d Point;
+                from2dTo3dPlane(Eigen::Vector2d(v,u), Point, paramInCamFrame);
+                tempPoint.z = Point.z();
+                tempPoint.x = Point.x();
+                tempPoint.y = Point.y();
                 obstacleInCamFrame.points.push_back(tempPoint);
             }
         }
