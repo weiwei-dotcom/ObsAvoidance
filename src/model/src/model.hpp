@@ -86,12 +86,15 @@ private:
     // 直线检测函数相关参数变量
     int lineThresh;
     double minLineLength,maxLineGap;
-    // 存储每次检测得到的三维直线方向向量
+    // 存储连续检测得到的三维圆心位置
+    std::vector<Eigen::Vector3d> centrePositions;
+    // 存储连续检测得到的三维直线方向向量
     std::vector<Eigen::Vector3d> vecs_direction;
-    // 存储每次检测得到的平面法向量变量
+    // 存储连续检测得到的平面法向量变量
     std::vector<Eigen::Vector3d> vecs_norm;
-    // 存储每次检测时当前帧到初始帧的变换矩阵
+    // 存储连续检测当前帧到初始帧的变换矩阵
     std::vector<Eigen::Matrix4d> transforms_curToInit;
+
     // 边沿直线最小共线阈值与最大垂直阈值
     double minCosValueThresh_collineation, maxCosValueThresh_vertical;
     
@@ -102,14 +105,18 @@ private:
     // std::vector<Eigen::Matrix<double, 6, 1>> leftLine3d;
     // std::vector<Eigen::Matrix<double, 6, 1>> rightLine3d;
     
-    // 存储每次检测得到的从圆心位置出发竖直向上的三维向量变量
-    std::vector<Eigen::Vector3d> vec_upward;
-    // 存储每次检测得到的三维圆心位置
-    std::vector<Eigen::Vector3d> center_circle;
+    // 存储每次有效检测得到的从圆心位置出发竖直向上的三维向量变量
+    std::vector<Eigen::Vector3d> global_vecs_direction;
+    // 存储每次有效检测得到的三维圆心位置
+    std::vector<Eigen::Vector3d> global_centrePostions;
+    // 存储每次有效检测得到的平面法向量
+    std::vector<Eigen::Vector3d> global_vecs_norm;
     // 每次优化更新的标准参数
     Eigen::Vector3d standardParamBlue;
     Eigen::Vector3d standardParamGreen;
     Eigen::Vector3d standardParamRed;
+    // 圆形列表长度阈值
+    int circle_size_thresh;
 
     // 圆形检测函数参数
     double minDist, dp, cannyUpThresh, circleThresh;
@@ -140,6 +147,17 @@ private:
     int minNumBlueKeyPoint;
     int minNumGreenKeyPoint;
     int minNumRedKeyPoint;
+
+    // 随机采样的长度
+    int sample_length;
+    // 单个样本好点概率
+    float inlier_probability;
+    // ransac内点阈值
+    double inlier_thresh_centre;
+    double inlier_thresh_normVec;
+    double inlier_thresh_dirVec;
+    // 开始ransac准备建模的参数列表长度阈值；
+    int modelThresh;
 
     // octoTree分辨率
     double octreeResolution;
@@ -285,5 +303,8 @@ public:
     bool getMaxAreaContour(cv::Mat &img_bin, std::vector<cv::Point> &contour);
     Eigen::Vector4d calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud);
     void from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3d &outputPoint, Eigen::Vector4d paramPlane);
+    void pushGlobalDirectionVec(const Eigen::Vector3d vec_direction, const Eigen::Vector3d vec_norm,const Eigen::Matrix4d transform_curToInit);
+    void ransacModelParam();
+    int calRansacIterNum();
     ~ModelNode();
 };

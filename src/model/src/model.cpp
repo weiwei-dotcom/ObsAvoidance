@@ -158,6 +158,12 @@ ModelNode::ModelNode():Node("model")
     minCosValueThresh_collineation=fileRead["minCosValueThresh_collineation"];
     maxCosValueThresh_vertical=fileRead["maxCosValueThresh_vertical"];
     circle_size_thresh = fileRead["circle_size_thresh"];
+    modelThresh=fileRead["modelThresh"];
+    sample_length=fileRead["model_sample_length"];
+    inlier_probability=fileRead["model_inlier_probability"];
+    inlier_thresh_centre=fileRead["inlier_thresh_centre"];
+    inlier_thresh_dirVec=fileRead["inlier_thresh_dirVec"];
+    inlier_thresh_normVec=fileRead["inlier_thresh_normVec"];
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
@@ -245,6 +251,7 @@ bool ModelNode::Model()
     // 定义临时线段参数变量 tempLine
     cv::Vec4i templine(0,0,0,0);
     Eigen::Vector3d DirectionVec_line(0,0,0);
+    Eigen::Vector3d centrePosition;
     // for 循环从列表中筛选直线
     for (int i=0;i<tempLines.size();i++)
     {
@@ -258,6 +265,7 @@ bool ModelNode::Model()
         double x1 = (double)tempLines[i][0],x2 = (double)tempLines[i][2],y1=(double)tempLines[i][1],y2=(double)tempLines[i][3];
         Eigen::Vector2d temp_centerPoint((x1+x2)/(double)2, (y1+y2)/(double)2);
         // 利用中点坐标计算圆心指向线段中点的单位向量
+        // TODO: 这里最好改垂直于线段方向且远离圆心的单位向量
         Eigen::Vector2d temp_centreToCenter(temp_centerPoint.x()-(double)temp_circles[0][0], temp_centerPoint.y()-(double)temp_circles[0][1]);
         temp_centreToCenter.normalize();
         // 利用中点坐标加上20倍的单位向量计算 flag_point(cv::Point)
@@ -265,8 +273,9 @@ bool ModelNode::Model()
         // 如果 mask.at<bool>(flag_point) == 255
         if (mask.at<bool>((int)flag_point.x(), (int)flag_point.y()) == 255)
         {
-            continue;
+            continue;            
         }
+
         // 将直线两端点以及圆心像素坐标投影到三维平面上
         Eigen::Vector2d temp_endPoint2d_1(x1,y1),temp_endPoint2d_2(x2,y2);
         Eigen::Vector3d temp_endPoint3d_1, temp_endPoint3d_2, temp_centrePoint3d;
@@ -277,16 +286,17 @@ bool ModelNode::Model()
         Eigen::Vector3d tempDirectionVec_line = (temp_endPoint3d_2-temp_endPoint3d_1).normalized();
         Eigen::Vector3d tempVec_endPoint1ToCentre = temp_centrePoint3d-temp_endPoint2d_1;
         double distance_lineToCentre = (tempDirectionVec_line.cross(tempVec_endPoint1ToCentre)).norm();
-        // 如果距离 小于最小距离阈值(200) || 大于最大距离阈值(245)
+        // 如果距离 小于最小距离阈值(200)
         if (distance_lineToCentre < double(200))
-            continue;
+        {
+            continue;            
+        }
+
         // 如果当前全局三维方向向量列表为空
         if (vecs_direction.size()==0)
         {
-            vecs_direction.push_back(tempDirectionVec_line);
-            vecs_norm.push_back(vec_norm);
-            circles_.push_back(temp_circles[0]);
-            transforms_curToInit.push_back(m_transform_curToInit);
+            centrePosition = temp_centrePoint3d;
+            DirectionVec_line = tempDirectionVec_line;
             break;
         }
         // 与全局列表的方向向量最后一个元素进行点乘输出绝对值
@@ -298,14 +308,16 @@ bool ModelNode::Model()
         }
         // 满足上诉所有筛选条件
         DirectionVec_line = tempDirectionVec_line;
+        centrePosition = temp_centrePoint3d;
         break;
     }
     // 如果当前templine参数全为零
-    if (DirectionVec_line.norm() < 1e-4)
+    if (DirectionVec_line.norm() < 1.0e-4)
     {
         changeErrorType(Line_mismatch_condition);
         return false;
     } 
+    centrePositions.push_back(centrePosition);
     vecs_direction.push_back(DirectionVec_line);
     vecs_norm.push_back(vec_norm);
     circles_.push_back(temp_circles[0]);
@@ -320,17 +332,165 @@ bool ModelNode::Model()
         return false;
 
     // TODO:
-    // 利用连续几次检测的存储变量列表计算模型参数添加到较长的全局模型参数列表(平面法向量、垂直方向向量、圆心位置)
+    // 将连续几次检测的存储变量列表添加到较长的全局模型参数列表(平面法向量、垂直方向向量、圆心位置)
+    for (int i=0;i<circles_.size();i++)
+    {
+        Eigen::Vector4d centrePosition_init;
+        Eigen::Vector3d vec_norm_init;
+
+        centrePosition_init = transforms_curToInit[i] * Eigen::Vector4d(centrePositions[i].x(),centrePositions[i].y(),centrePositions[i].z(),1);
+        vec_norm_init=transforms_curToInit[i].block(0,0,3,3) * vecs_norm[i];
+        global_centrePostions.push_back(centrePosition_init.block(0,0,3,1));
+        global_vecs_norm.push_back(vec_norm_init);
+        pushGlobalDirectionVec(vecs_direction[i], vec_norm_init, transforms_curToInit[i]);
+    }
+    if (global_centrePostions.size()<modelThresh)
+    {
+        // 清除全局连续性判断变量列表
+        circles_.clear();
+        vecs_direction.clear();
+        vecs_norm.clear();
+        transforms_curToInit.clear();
+        changeErrorType(OK);
+        return false;
+    }
+    // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
+    ransacModelParam();
     
-    // 清除全局连续性判断变量列表
-    circles_.clear();
-    vecs_direction.clear();
-    vecs_norm.clear();
-    transforms_curToInit.clear();
-    changeErrorType(OK);
-    
-    // 最后判断全局参数列表长度是否满足数量阈值，满足计算、不满足继续检测
     return true;
+}
+
+void ModelNode::ransacModelParam()
+{
+  int iterNum = calRansacIterNum();
+  int maxInlierNum_centre = 0;
+  int maxInlierNum_dirVec = 0;
+  int maxInlierNum_normVec = 0;
+  for (int i=0;i<iterNum;i++) 
+  {
+    int inlierNum_centre = 0;
+    int inlierNum_dirVec =0;
+    int inlierNum_normVec =0;
+    std::random_shuffle(global_centrePostions.begin(), global_centrePostions.end());
+    std::random_shuffle(global_vecs_direction.begin(), global_vecs_direction.end());
+    std::random_shuffle(global_vecs_norm.begin(), global_vecs_norm.end());
+    double tempSum_x=0,tempSum_y=0,tempSum_z=0;
+    Eigen::Vector3d result_centre;
+    ceres::Problem problem_dirVec;
+    ceres::Problem problem_normVec;
+    double a_dirVec=0,b_dirVec=0,c_dirVec=0;
+    double a_normVec=0,b_normVec=0,c_normVec=0;
+    for (int j=0;j<sample_length;j++)
+    {
+        tempSum_x += global_centrePostions[j].x();
+        tempSum_y += global_centrePostions[j].y();
+        tempSum_z += global_centrePostions[j].z();
+        if (j == sample_length-1)
+        {
+            result_centre.x() = tempSum_x/sample_length;
+            result_centre.y() = tempSum_y/sample_length;
+            result_centre.z() = tempSum_z/sample_length;
+        }
+        problem_dirVec.AddResidualBlock(
+            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
+                new normVecResidual(global_vecs_direction[j].x(), global_vecs_direction[j].y(), global_vecs_direction[j].z())
+            ),
+            NULL,
+            &a_dirVec,&b_dirVec
+        );
+        problem_normVec.AddResidualBlock(
+            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
+                new normVecResidual(global_vecs_norm[j].x(), global_vecs_norm[j].y(), global_vecs_norm[j].z())
+            ),
+            NULL,
+            &a_normVec,&b_normVec
+        );
+    }
+    ceres::Solver::Options options;
+    options.max_num_iterations = 30;
+    options.linear_solver_type = ceres::DENSE_QR;
+    options.minimizer_progress_to_stdout = true;
+    options.logging_type = ceres::SILENT;
+    ceres::Solver::Summary summary_dirVec;
+    ceres::Solver::Summary summary_normVec;
+    Solve(options, &problem_dirVec, &summary_dirVec);
+    Solve(options, &problem_normVec, &summary_normVec);
+    c_dirVec = sqrt(1-pow(a_dirVec,2)-pow(b_dirVec,2));
+    c_normVec = sqrt(1-pow(a_normVec,2)-pow(b_normVec,2));
+    // 得到优化的变量以后使用该参数模型利用与样点参数之间的夹角余弦是否在夹角阈值范围内来筛选内点，并统计内点数量
+    int tempNumInlier_dirVec=0;
+    int tempNumInlier_normVec=0;
+    int tempNumInlier_centre=0;
+    for(int n=0;n<global_vecs_direction.size();n++) {
+        if (a_dirVec*global_vecs_direction[n](0)+b_dirVec*global_vecs_direction[n](1)+c_dirVec*global_vecs_direction[n](2) > inlier_thresh_dirVec) {
+            tempNumInlier_dirVec++;
+        }
+        if (a_normVec*global_vecs_norm[n](0)+b_normVec*global_vecs_norm[n](1)+c_normVec*global_vecs_norm[n](2) > inlier_thresh_normVec) {
+            tempNumInlier_normVec++;
+        }
+        if (std::sqrt(std::pow(global_centrePostions[n](0)-result_centre(0),2)
+                     +std::pow(global_centrePostions[n](1)-result_centre(1),2)
+                     +std::pow(global_centrePostions[n](2)-result_centre(2),2))<inlier_thresh_centre)
+        {
+            tempNumInlier_centre++;
+        }
+    }
+    if (inlierNum_centre > maxInlierNum_centre) 
+    {
+      maxInlierNum_centre = inlierNum_centre;
+      final_centrePosition = result_centre;
+    }
+    if (inlierNum_dirVec > maxInlierNum_dirVec) 
+    {
+      maxInlierNum_dirVec = inlierNum_dirVec;
+      final_dirVec << a_dirVec,b_dirVec,c_dirVec;
+    }
+    if (inlierNum_normVec > maxInlierNum_normVec) 
+    {
+      maxInlierNum_normVec = inlierNum_normVec;
+      final_normVec << a_normVec,b_normVec,c_normVec;
+    }
+  }
+  final_dirVec = final_normVec.cross(final_dirVec).cross(final_normVec).normalized();
+  std::cout << "******************************" << std::endl;
+  std::cout << "The final result of centre position: " << final_centrePosition.transpose() <<std::endl;
+  std::cout << "The final result of direction vector: " << final_dirVec.transpose() <<std::endl;
+  std::cout << "The final result of plane norm vector: " << final_normVec.transpose() <<std::endl;
+}
+
+int ModelNode::calRansacIterNum()
+{
+  float tempFloat = 1.0;
+  for (int i=0;i<sample_length;i++) 
+    tempFloat*=(inlier_probability * (float)modelThresh-(float)i)/(float)(modelThresh-i);
+  int iterNum = std::ceil((float)1.0/tempFloat);
+  std::cout << "***************************" << std::endl;
+  std::cout<<"Ransac iteration time is: " << iterNum <<std::endl;
+  return iterNum;
+}
+
+void ModelNode::pushGlobalDirectionVec(const Eigen::Vector3d vec_direction,
+                                       const Eigen::Vector3d vec_norm,
+                                       const Eigen::Matrix4d transform_curToInit)
+{
+    Eigen::Vector3d vec_direction_init = (transform_curToInit.block(0,0,3,3) * vec_direction).normalized();
+    if (vec_direction_init.dot(Eigen::Vector3d(0,-1,0)) > std::cos(CV_PI/4))
+    {
+        global_vecs_direction.push_back(vec_direction_init);
+    }
+    if (vec_direction_init.dot(Eigen::Vector3d(0,1,0)) > std::cos(CV_PI/4))
+    {
+        global_vecs_direction.push_back(-vec_direction_init);
+    }
+    if (vec_direction_init.dot(Eigen::Vector3d(-1,0,0)) > std::cos(CV_PI/4))
+    {
+        global_vecs_direction.push_back(vec_norm.cross(vec_direction_init).normalized());
+    }
+    if (vec_direction_init.dot(Eigen::Vector3d(1,0,0)) > std::cos(CV_PI/4))
+    {
+        global_vecs_direction.push_back(vec_direction_init.cross(vec_norm).normalized());
+    }
+    return ;
 }
 
 void ModelNode::from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3d &outputPoint, Eigen::Vector4d paramPlane)
@@ -448,233 +608,6 @@ void ModelNode::PubModel()
     flag_pubModel = true;
 }
 
-// 该函数用来图像预处理，同时对障碍物进行二值化分割
-void ModelNode::preProcAndThresh()
-{
-    threshBlue();
-    threshGreen();
-    threshRed();
-}
-
-// 分别对红绿蓝色障碍物区域进行分割
-void ModelNode::threshBlue() {
-    cv::Mat tempImgBin_white;
-    cv::cvtColor(m_img, imageHSV, cv::COLOR_BGR2HSV);
-    // cv::Mat tempImgBin_white, tempImgBin_blue;
-    cv::inRange(imageHSV, blueLower, blueUpper, imageBin_blue);
-    // cv::inRange(imageHSV, whiteLower, whiteUpper, tempImgBin_white);
-    // cv::inRange(imageHSV, blueLower, blueUpper, tempImgBin_blue);
-    // imageBin_blue = tempImgBin_blue+tempImgBin_white;
-    cv::morphologyEx(imageBin_blue, imgBlueOpen, cv::MORPH_OPEN, kernelOpen_blue);
-    cv::morphologyEx(imgBlueOpen, imgBlueClose, cv::MORPH_CLOSE, kernelClose_blue);  
-}
-void ModelNode::threshGreen() {
-    cv::cvtColor(m_img, imageHSV, cv::COLOR_BGR2HSV);
-    // cv::Mat tempImgBin_white, tempImgBin_green;
-    cv::inRange(imageHSV, greenLower, greenUpper, imageBin_green);
-    // cv::inRange(imageHSV, whiteLower, whiteUpper, tempImgBin_white);
-    // cv::inRange(imageHSV, greenLower, greenUpper, tempImgBin_green);
-    // imageBin_green = tempImgBin_green+tempImgBin_white;
-    cv::morphologyEx(imageBin_green, imgGreenOpen, cv::MORPH_OPEN, kernelOpen_green);
-    cv::morphologyEx(imgGreenOpen, imgGreenClose, cv::MORPH_CLOSE, kernelClose_green);   
-}
-void ModelNode::threshRed() {
-    cv::cvtColor(m_img, imageHSV, cv::COLOR_BGR2HSV);
-    cv::Mat tempImgBin_red1, tempImgBin_red2, tempImgBin_white;
-    cv::inRange(imageHSV, redLower, redUpper, tempImgBin_red1);
-    cv::inRange(imageHSV, redPlusLower, redPlusUpper, tempImgBin_red2);
-    // cv::inRange(imageHSV, whiteLower, whiteUpper, tempImgBin_white);
-    imageBin_red = tempImgBin_red1 + tempImgBin_red2;
-    cv::morphologyEx(imageBin_red, imgRedOpen, cv::MORPH_OPEN, kernelOpen_red);
-    cv::morphologyEx(imgRedOpen, imgRedClose, cv::MORPH_CLOSE, kernelClose_red);  
-}
-
-void ModelNode::getBlueContour() {
-    cv::Mat labels_blue, stats_blue, centroids_blue;
-    int num_labels_blue = connectedComponentsWithStats(imgBlueClose, labels_blue, stats_blue, centroids_blue, 8, CV_16U);
-    // 获取连通域的面积
-    contours_blue_ex.clear(), contours_blue_in.clear();
-    std::vector<std::vector<cv::Point>> temp_contours_blue;
-    std::vector<int> areas_blue;
-    // 如果大于两个轮廓，也就是包括背景在内的至少有三个轮廓，那么可能存在圆孔的轮廓输出障碍物以及圆孔轮廓
-    if (num_labels_blue>2)
-    {
-        for (int i = 1; i < num_labels_blue; i++) // 忽略背景标签0
-        {
-            areas_blue.push_back(stats_blue.at<int>(i, cv::CC_STAT_AREA));
-        }
-        int max_area_label_blue = max_element(areas_blue.begin(), areas_blue.end()) - areas_blue.begin() + 1;
-        cv::findContours((labels_blue == max_area_label_blue), temp_contours_blue, cv::RETR_CCOMP, cv::CHAIN_APPROX_SIMPLE);   
-        contours_blue_ex = temp_contours_blue[0];
-        int num_contour = temp_contours_blue.size();
-        int index_maxLength=0;
-        double maxLength = 0;
-        for (int i = 1; i<num_contour;i++)
-        {
-            double length = cv::arcLength(temp_contours_blue[i], close);
-            if (length>maxLength) {
-                maxLength=length;
-                index_maxLength = i;
-            }
-        }
-        contours_blue_in=temp_contours_blue[index_maxLength];
-    }
-    // 如果只有两个轮廓那么可能只有外层的障碍物轮廓
-    else if(num_labels_blue == 2)
-    {
-        cv::findContours((labels_blue == 1), temp_contours_blue, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);  
-        contours_blue_ex = temp_contours_blue[0];
-    }
-}
-void ModelNode::getGreenContour() {
-    cv::Mat labels_green, stats_green, centroids_green;
-    int num_labels_green = connectedComponentsWithStats(imgGreenClose, labels_green, stats_green, centroids_green, 8, CV_16U);
-    contours_green.clear();
-    std::vector<std::vector<cv::Point>> temp_contours_green;
-    std::vector<int> areas_green;
-    if (num_labels_green>1)
-    {
-        for (int i = 1; i < num_labels_green; i++) // 忽略背景标签0
-        {
-            areas_green.push_back(stats_green.at<int>(i, cv::CC_STAT_AREA));
-        }
-        int max_area_label_green = max_element(areas_green.begin(), areas_green.end()) - areas_green.begin() + 1;
-        cv::findContours((labels_green == max_area_label_green), temp_contours_green, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);            
-        contours_green = temp_contours_green[0];
-    }  
-}
-
-void ModelNode::getRedContour() {
-    cv::Mat labels_red, stats_red, centroids_red;
-    // std::cout << 320 << " ";
-    int num_labels_red = connectedComponentsWithStats(imgRedClose, labels_red, stats_red, centroids_red, 8, CV_16U);
-    contours_red.clear();
-    // std::cout << 324 <<" " ;
-    std::vector<std::vector<cv::Point>> temp_contours_red;
-    std::vector<int> areas_red;
-    if (num_labels_red>1)
-    {
-        for (int i = 1; i < num_labels_red; i++) // 忽略背景标签0
-        {
-            areas_red.push_back(stats_red.at<int>(i, cv::CC_STAT_AREA));
-        }
-        int max_area_label_red = max_element(areas_red.begin(), areas_red.end()) - areas_red.begin() + 1;
-        cv::findContours((labels_red == max_area_label_red), temp_contours_red, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);             
-        contours_red = temp_contours_red[0];
-    }
-}
-
-void ModelNode::selMaxArea()
-{
-    // std::cout << 342 << " ";
-    getBlueContour();
-    // std::cout << 344 << " ";
-    getRedContour();
-    // std::cout << 346<<" ";
-    getGreenContour();
-    // FIXME : 这个函数最好是用多线程来分别分割红绿蓝三种颜色的区域，节省时间；
-    return;
-}
-void ModelNode::invProjAndSel()
-{
-    // 将世界坐标系下的点云投影到相机坐标系下
-    pcl::PointCloud<pcl::PointXYZ> pointCloudInCamFrame;
-    pcl::transformPointCloud(m_pointCloud, pointCloudInCamFrame, m_transform_initToCur);
-
-    std::vector<cv::Point2f> projectPointsInImg;
-
-    // 调试查看特征点的筛选情况
-    std::vector<cv::Point2f> projectPointsInImg_blue; // .....................
-    std::vector<cv::Point2f> projectPointsInImg_green;
-    std::vector<cv::Point2f> projectPointsInImg_red;
-
-    int contour_blue_ex_size = contours_blue_ex.size();
-    int contour_blue_in_size = contours_blue_in.size();
-    int contour_green_size = contours_green.size();
-    int contour_red_size = contours_red.size();
-    bool flag_find_contour_blue = (contour_blue_ex_size > 0);
-    bool flag_find_contour_green = (contour_green_size > 0);
-    bool flag_find_contour_red = (contour_red_size > 0);
-    pointCloudInCamFrame_blue.clear();
-    pointCloudInCamFrame_green.clear();
-    pointCloudInCamFrame_red.clear();
-
-    pointCloud_blue.clear();
-    pointCloud_green.clear();
-    pointCloud_red.clear();
-
-    if (!(flag_find_contour_blue || flag_find_contour_red || flag_find_contour_green))
-    {
-        std::cout << "并没有找到轮廓" << std::endl;
-        return;
-    }
-    int index = 0;
-    std::vector<int> indexPointCloudBlue;
-    std::vector<int> indexPointCloudGreen;
-    std::vector<int> indexPointCloudRed;
-    for(auto point:pointCloudInCamFrame.points)
-    {
-        Eigen::Vector3f tempProjectPoint = m_projectMatrix * point.getVector3fMap();
-        cv::Point2f imagePoint(tempProjectPoint[0]/tempProjectPoint[2], tempProjectPoint[1]/tempProjectPoint[2]);
-        projectPointsInImg.push_back(imagePoint);
-        if(flag_find_contour_green){
-            double distance_green = cv::pointPolygonTest(contours_green, imagePoint, false);  
-            if (distance_green > 0) {
-                pointCloudInCamFrame_green.points.push_back(point);
-                indexPointCloudGreen.push_back(index);
-                projectPointsInImg_green.push_back(imagePoint); // ...........................
-                index++;
-                continue;
-            }              
-        }
-        if (flag_find_contour_red) {
-            double distance_red = cv::pointPolygonTest(contours_red, imagePoint, false); 
-            if (distance_red > 0) {
-                pointCloudInCamFrame_red.points.push_back(point);
-                indexPointCloudRed.push_back(index);
-                projectPointsInImg_red.push_back(imagePoint); // .................
-                index++;
-                continue;
-            }    
-        }
-        if (flag_find_contour_blue && contour_blue_in_size > 0)
-        {
-            double distance_blue_ex = cv::pointPolygonTest(contours_blue_ex, imagePoint, false);
-            double distance_blue_in = cv::pointPolygonTest(contours_blue_in, imagePoint, false);
-            if (distance_blue_ex > 0 && distance_blue_in < 0 )
-            {
-                pointCloudInCamFrame_blue.points.push_back(point);
-                indexPointCloudBlue.push_back(index);
-                projectPointsInImg_blue.push_back(imagePoint); // ...........................
-            }
-        }
-        else if(flag_find_contour_blue)
-        {
-            double distance_blue_ex = cv::pointPolygonTest(contours_blue_ex, imagePoint, false);
-            if (distance_blue_ex > 0)
-            {
-                pointCloudInCamFrame_blue.points.push_back(point);
-                indexPointCloudBlue.push_back(index);
-                projectPointsInImg_blue.push_back(imagePoint); // ...........................
-            }
-        }
-        index++;
-    }
-    for(int i=0; i<indexPointCloudBlue.size();i++)
-    {
-        pointCloud_blue.points.push_back(m_pointCloud.points.at(indexPointCloudBlue[i]));
-    }
-    for(int i=0; i<indexPointCloudGreen.size();i++)
-    {
-        pointCloud_green.points.push_back(m_pointCloud.points.at(indexPointCloudGreen[i]));
-    }
-    for(int i=0; i<indexPointCloudRed.size();i++)
-    {
-        pointCloud_red.points.push_back(m_pointCloud.points.at(indexPointCloudRed[i]));
-    }
-    return;
-}
-
 Eigen::Vector4d ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
     Eigen::Vector4d param;
     pcl::PointCloud<pcl::PointXYZ>::Ptr pointCloud_Ptr=pointCloud.makeShared();
@@ -697,72 +630,6 @@ Eigen::Vector4d ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
     return param;
 }
 
-// 获取当前用来投影的平面参数值
-void ModelNode::fitPlaneBlue() {
-    std::cout<<"    fitPlaneBlue: "<<std::endl;
-    // 根据当前点云数量计算当前平面参数
-    calParam(pointCloud_blue, coefficientBlue);
-    // 如果优化过了，与优化过的标准参数中的法向量进行比较
-    if (flag_optimized_blue){
-        double cosValue=coefficientBlue.block(0,0,3,1).dot(standardParamBlue);
-        // 如果在阈值范围内
-        if (cosValue > cosValueTresh){
-            // 将满足要求的参数付给当前参数
-            paramBlue=coefficientBlue;
-        }
-    }
-    // 如果没有优化过则直接使用当前参数变量作为拟合平面变量
-    else
-        paramBlue = coefficientBlue;
-    // 将当前参数变量添加到蓝色参数列表中
-    paramListBlue.push_back(coefficientBlue);
-}
-void ModelNode::fitPlaneGreen() {
-    std::cout<<"    fitPlaneGreen: "<<std::endl;
-    // 根据当前点云数量计算当前平面参数
-    calParam(pointCloud_green, coefficientGreen);
-    // 如果优化过了，与优化过的标准参数中的法向量进行比较
-    if (flag_optimized_green){
-        double cosValue=coefficientGreen.block(0,0,3,1).dot(standardParamGreen);
-        // 如果在阈值范围内
-        if (cosValue > cosValueTresh){
-            // 将满足要求的参数付给当前参数
-            paramGreen=coefficientGreen;
-        }
-    }
-    // 如果没有优化过则直接使用当前参数变量作为拟合平面变量
-    else
-        paramGreen = coefficientGreen;
-    // 将当前参数变量添加到蓝色参数列表中
-    paramListGreen.push_back(coefficientGreen);
-}
-void ModelNode::fitPlaneRed() {
-    std::cout<<"    fitPlaneRed: "<<std::endl;
-    // 根据当前点云数量计算当前平面参数
-    calParam(pointCloud_red, coefficientRed);
-    // 如果优化过了，与优化过的标准参数中的法向量进行比较
-    if (flag_optimized_red){
-        double cosValue=coefficientRed.block(0,0,3,1).dot(standardParamRed);
-        // 如果在阈值范围内
-        if (cosValue > cosValueTresh){
-            // 将满足要求的参数付给当前参数
-            paramRed=coefficientRed;
-        }
-    }
-    // 如果没有优化过则直接使用当前参数变量作为拟合平面变量
-    else
-        paramRed = coefficientRed;
-    // 将当前参数变量添加到蓝色参数列表中
-    paramListRed.push_back(coefficientRed);
-
-}
-
-void ModelNode::transformParamToCamFrame(Eigen::Vector4d &paramInWorldFrame, Eigen::Vector4d &paramInCamFrame) {
-    std::cout<<"        transformParamToCamFrame"<<std::endl;
-    paramInCamFrame.block(0,0,3,1) = m_transform_initToCur.block(0,0,3,3)*paramInWorldFrame.block(0,0,3,1);
-    Eigen::Vector3d tempCamPosition = m_transform_curToInit.block(0,3,3,1);
-    paramInCamFrame(3) = paramInWorldFrame(3) + tempCamPosition.dot(paramInWorldFrame.block(0,0,3,1));
-}
 void ModelNode::pixelToPlane(cv::Mat &imgClose, Eigen::Vector4d &paramInCamFrame, pcl::PointCloud<pcl::PointXYZ> &obstacle) {
     std::cout<<"        pixelToPlane"<<std::endl;
     double a = paramInCamFrame(0);
@@ -790,119 +657,6 @@ void ModelNode::pixelToPlane(cv::Mat &imgClose, Eigen::Vector4d &paramInCamFrame
     };
     pcl::transformPointCloud(obstacleInCamFrame, obstacle, m_transform_curToInit);
 };
-void ModelNode::updateObstacle(std::vector<pcl::PointCloud<pcl::PointXYZ>> &obstacleList, pcl::PointCloud<pcl::PointXYZ> &obstacle) {
-    std::cout<<"        updateObstacle"<<std::endl;
-    obstacleList.push_back(obstacle);
-    if (obstacleList.size() > maxLengthPointCloudList) {
-        std::vector<pcl::PointCloud<pcl::PointXYZ>>::const_iterator start=obstacleList.begin()+1;
-        std::vector<pcl::PointCloud<pcl::PointXYZ>>::const_iterator end=obstacleList.end();
-        std::vector<pcl::PointCloud<pcl::PointXYZ>> tempPointCloudList(start,end);
-        obstacleList=tempPointCloudList;
-    }
-}
-void ModelNode::pixelToBluePlane(){
-    std::cout<<"    pixelToBluePlane: "<<std::endl;
-    Eigen::Vector4d paramInCamFrame;
-    transformParamToCamFrame(paramBlue, paramInCamFrame);
-    pixelToPlane(imgBlueClose, paramInCamFrame, obstacleBlue);
-    updateObstacle(obstacleBlueList, obstacleBlue);
-}
-void ModelNode::pixelToGreenPlane() {
-    std::cout<<"    pixelToGreenPlane: "<<std::endl;
-    Eigen::Vector4d paramInCamFrame;
-    transformParamToCamFrame(paramGreen, paramInCamFrame);
-    pixelToPlane(imgGreenClose, paramInCamFrame, obstacleGreen);
-    updateObstacle(obstacleGreenList, obstacleGreen);
-}
-void ModelNode::pixelToRedPlane() {
-    std::cout<<"    pixelToRedPlane: "<<std::endl;
-    Eigen::Vector4d paramInCamFrame;
-    transformParamToCamFrame(paramRed, paramInCamFrame);
-    pixelToPlane(imgRedClose, paramInCamFrame, obstacleRed);
-    updateObstacle(obstacleRedList, obstacleRed);
-}
-void ModelNode::optimizeParam(int timesRansacIter, std::vector<Eigen::Vector4d> &paramList, Eigen::Vector3d &standardParam, bool &flag_optimized,int threshToOpt) {
-    if (paramList.size() == threshToOpt) {
-        int maxNumInlier=0;
-        for (int i=0;i<timesRansacIter;i++) {
-            std::random_shuffle(paramList.begin(), paramList.end());
-            ceres::Problem problem;
-            double a=0,b=0;
-            for (int j=0;j<numPlaneParamSubSet;j++) {
-                problem.AddResidualBlock(
-                    new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
-                        new normVecResidual(paramList[j].x(), paramList[j].y(), paramList[j].z())
-                    ),
-                    NULL,
-                    &a,&b
-                );
-            }
-            ceres::Solver::Options options;
-            options.max_num_iterations = 25;
-            options.linear_solver_type = ceres::DENSE_QR;
-            options.minimizer_progress_to_stdout = true;
-            options.logging_type = ceres::SILENT;
-            ceres::Solver::Summary summary;
-            Solve(options, &problem, &summary);
-            double c = sqrt(1-pow(a,2)-pow(b,2));
-            // 得到优化的变量以后使用该参数模型利用与样点参数之间的夹角余弦是否在夹角阈值范围内来筛选内点，并统计内点数量
-            int tempNumInlier=0;
-            for(int n=0;n<paramList.size();n++) {
-                if (a*paramList[n](0)+b*paramList[n](1)+c*paramList[n](2) > cosValueTresh) {
-                    tempNumInlier++;
-                }
-            }
-            if (maxNumInlier < tempNumInlier) {
-                maxNumInlier = tempNumInlier;
-                standardParam(0)=a;
-                standardParam(1)=b;
-                standardParam(2)=c;
-            }
-        }
-        flag_optimized = true; 
-        std::cout<< "A:" << standardParam(0) << " B:" << standardParam(1) << " C:"<<standardParam(2)<<std::endl;
-        paramList.clear();
-    }
-}
-// 发布八叉树模型
-void ModelNode::octoTreeCurPub()
-{
-    RCLCPP_INFO(this->get_logger(), "    octoTreeCurPub\n");
-    pcl::PointCloud<pcl::PointXYZ> tempObstacle;
-    std::cout<<"    obstacleBlueList.size: "<<obstacleBlueList.size()<<std::endl;
-    for (int i=0;i<obstacleBlueList.size();i++) {
-        tempObstacle+=obstacleBlueList[i];
-    }
-    std::cout<<"    obstacleGreenList.size: "<<obstacleGreenList.size()<<std::endl;
-    for (int i=0;i<obstacleGreenList.size();i++) {
-        tempObstacle+=obstacleGreenList[i];
-    }
-    std::cout<<"    obstacleRedList.size: "<<obstacleRedList.size()<<std::endl;
-    for (int i=0;i<obstacleRedList.size();i++) {
-        tempObstacle+=obstacleRedList[i];
-    }
-    if (tempObstacle.points.size() == 0)
-    {
-        RCLCPP_INFO(this->get_logger(), "当前八叉树模型为空,请对准障碍物平台");
-        return ;
-    }
-    // std::cout<<"    tempObstacle.points.size()"<<std::endl;
-    // std::cout<<"    "<<tempObstacle.points.size()<<std::endl;
-    octomap::OcTree octree(octreeResolution);
-    for (auto point:tempObstacle)
-    {
-        octree.updateNode(octomap::point3d(point.x, point.y, point.z), true);
-    }
-    octree.updateInnerOccupancy();
-    octomap_msgs::msg::Octomap octoMap;
-    // std::cout<<"    octree.size() " <<std::endl;
-    // std::cout<<"    "<<     octree.size()<<std::endl;
-    octoMap.header = m_header_initFrame;
-    octomap_msgs::fullMapToMsg(octree, octoMap);
-    octoMapPub->publish(octoMap);
-    std::cout << "octoMap published success" << std::endl;
-    return;
-}
 
 // 析构函数 delete function()
 ModelNode::~ModelNode() {

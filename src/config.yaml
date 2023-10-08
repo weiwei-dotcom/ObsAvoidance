@@ -72,6 +72,9 @@ lineThresh: 120
 minLineLength: 200
 maxLineGap: 10
 
+# ransac参数所需的参数列表长度阈值
+modelThresh: 160
+
 # 最小共线阈值以及最大垂直阈值
 minCosValueThresh_collineation: 0.97
 maxCosValueThresh_vertical: 0.17
@@ -115,6 +118,14 @@ inlier_thresh_scaleFact: 60
 sample_length: 6
 # 好点概率
 inlier_probability: 0.4
+# 随机采样的长度
+model_sample_length: 6
+# 单个样本好点概率
+model_inlier_probability: 0.4
+# ransac内点阈值
+inlier_thresh_centre: 8
+inlier_thresh_normVec: 0.98
+inlier_thresh_dirVec: 0.98
 
 octoTree.resolution: 5
 
