@@ -12,7 +12,12 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
         return;   
     // Start modeling;
     if (!Model())
-        return;
+    {
+        // 调试代码3
+        cv::waitKey(10);
+
+        return;        
+    }
     // Publish pointcloud of obstacle model;
     PubModel();        
     return;
@@ -22,6 +27,9 @@ bool ModelNode::recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &
                 const sensor_msgs::msg::Image::ConstSharedPtr &img_msg,
                 const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg)
 {
+    // 调试代码3
+    std::cout << "-----------------------------------------" << std::endl;
+    std::cout << "successNum: " << successNum << std::endl;
     // 图像赋值给成员变量；
     cv_bridge::CvImagePtr imgPtr = cv_bridge::toCvCopy(img_msg, "bgr8");
     if (imgPtr->image.empty())
@@ -49,15 +57,18 @@ bool ModelNode::recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &
     m_transform_initToCur = temp_transform.matrix();
     m_transform_curToInit = m_transform_initToCur.inverse();
     m_header_initFrame = pcl_msg->header;
+
     return true;
 }
+
 // 构造函数 init function()
 ModelNode::ModelNode():Node("model")
 {
+    // 调试代码3
+    successNum = 0;
     error_type = OK;
     pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle", 10);
     flag_pubModel = false;
-    octoMapPub = this->create_publisher<octomap_msgs::msg::Octomap>("obstacle", 10);
     // 定义消息订阅者
     pcl_sub.subscribe(this, "pointCloud_initFrame");
     img_sub.subscribe(this, "image_raw");
@@ -69,59 +80,20 @@ ModelNode::ModelNode():Node("model")
 
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
     // 读取拟合平面最小点云数参数
-    minNumBlueKeyPoint = fileRead["minNumBlueKeyPoint"];
-    minNumGreenKeyPoint = fileRead["minNumGreenKeyPoint"];
-    minNumRedKeyPoint = fileRead["minNumRedKeyPoint"];
     int blueLower1 = fileRead["blueLower.1"];
     int blueLower2 = fileRead["blueLower.2"];
     int blueLower3 = fileRead["blueLower.3"];
     int blueUpper1 = fileRead["blueUpper.1"];
     int blueUpper2 = fileRead["blueUpper.2"];
     int blueUpper3 = fileRead["blueUpper.3"];
-    int greenLower1 = fileRead["greenLower.1"];
-    int greenLower2 = fileRead["greenLower.2"];
-    int greenLower3 = fileRead["greenLower.3"];
-    int greenUpper1 = fileRead["greenUpper.1"];
-    int greenUpper2 = fileRead["greenUpper.2"];
-    int greenUpper3 = fileRead["greenUpper.3"];
-    int redLower1 = fileRead["redLower.1"];
-    int redLower2 = fileRead["redLower.2"];
-    int redLower3 = fileRead["redLower.3"];
-    int redUpper1 = fileRead["redUpper.1"];
-    int redUpper2 = fileRead["redUpper.2"];
-    int redUpper3 = fileRead["redUpper.3"];
-    int redPlusUpper1 = fileRead["redPlusUpper.1"];
-    int redPlusUpper2 = fileRead["redPlusUpper.2"];
-    int redPlusUpper3 = fileRead["redPlusUpper.3"];
-    int redPlusLower1 = fileRead["redPlusLower.1"];
-    int redPlusLower2 = fileRead["redPlusLower.2"];
-    int redPlusLower3 = fileRead["redPlusLower.3"];
-    int erodeStructure_size = fileRead["model_erodeStructure_size"];
-    int dilateStructure_size = fileRead["model_dilateStructure_size"];
-    int dilateSize_mask = fileRead["dilateSize_mask"];
-    dilateStructure_mask = cv::getStructuringElement(cv::MORPH_ELLIPSE,cv::Size(dilateSize_mask,dilateSize_mask));
-    structure_erode=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size, erodeStructure_size));
-    structure_dilate=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(dilateStructure_size, dilateStructure_size));
+    int bigCloseStructure_size = fileRead["model_bigCloseStructure_size"];
+    int erodeStructure_size1 = fileRead["model_erodeStructure_size1"];
+    int erodeStructure_size2 = fileRead["model_erodeStructure_size2"];
+    structure_erode1=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size1, erodeStructure_size1));
+    structure_erode2=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size2, erodeStructure_size2));
     blueLower = cv::Scalar(blueLower1, blueLower2, blueLower3);
     blueUpper = cv::Scalar(blueUpper1, blueUpper2, blueUpper3);
-    greenLower = cv::Scalar(greenLower1, greenLower2, greenLower3);
-    greenUpper = cv::Scalar(greenUpper1, greenUpper2, greenUpper3);
-    redLower = cv::Scalar(redLower1, redLower2, redLower3);
-    redUpper = cv::Scalar(redUpper1, redUpper2, redUpper3);
-    redPlusLower = cv::Scalar(redPlusLower1, redPlusLower2, redPlusLower3);
-    redPlusUpper = cv::Scalar(redPlusUpper1, redPlusUpper2, redPlusUpper3);
-    int open_blue_kernel_size = fileRead["open_blue_kernel_size"];
-    int close_blue_kernel_size = fileRead["close_blue_kernel_size"];
-    int open_green_kernel_size = fileRead["open_green_kernel_size"];
-    int close_green_kernel_size = fileRead["close_green_kernel_size"];
-    int open_red_kernel_size = fileRead["open_red_kernel_size"];
-    int close_red_kernel_size = fileRead["close_red_kernel_size"];
-    cv::Mat kernelOpen_blue = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(open_blue_kernel_size, open_blue_kernel_size));
-    cv::Mat kernelClose_blue = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(close_blue_kernel_size, close_blue_kernel_size));
-    cv::Mat kernelOpen_green = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(open_green_kernel_size, open_green_kernel_size));
-    cv::Mat kernelClose_green = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(close_green_kernel_size, close_green_kernel_size));
-    cv::Mat kernelOpen_red = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(open_red_kernel_size, open_red_kernel_size));
-    cv::Mat kernelClose_red = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(close_red_kernel_size, close_red_kernel_size));
+
     fx = fileRead["Camera.fx"];
     fy = fileRead["Camera.fy"];
     cx = fileRead["Camera.cx"];
@@ -129,19 +101,7 @@ ModelNode::ModelNode():Node("model")
     m_projectMatrix << fx, 0, cx,
                         0, fy, cy,
                         0,  0,  1; 
-    octreeResolution = fileRead["octoTree.resolution"];
-    obstacleBlueInCam.clear();
-    obstacleGreenInCam.clear();
-    obstacleRedInCam.clear();
-    threshToOptBlue = fileRead["threshToOptBlue"];
-    threshToOptGreen = fileRead["threshToOptGreen"];
-    threshToOptRed = fileRead["threshToOptRed"];
-    numPlaneParamSubSet = fileRead["numPlaneParamSubSet"];
-    timesRansacIterBlue = fileRead["timesRansacIterBlue"];
-    timesRansacIterGreen = fileRead["timesRansacIterGreen"];
-    timesRansacIterRed = fileRead["timesRansacIterRed"];
     cosValueTresh = fileRead["cosValueTresh"];
-    maxLengthPointCloudList = fileRead["maxLengthPointCloudList"];
     minDist = fileRead["model_minDist"];
     dp = fileRead["model_dp"];
     cannyUpThresh = fileRead["model_cannyUpThresh"];
@@ -150,7 +110,7 @@ ModelNode::ModelNode():Node("model")
     maxRadius = fileRead["model_maxRadius"];
     difference_radius_thresh = fileRead["model_difference_radius_thresh"];
     distance_center_thresh = fileRead["model_distance_center_thresh"];
-    cosValue_thresh = fileRead["cosValue_thresh"];
+    cosValueThresh_planeNormAndCameraZaxis = fileRead["model_cosValueThresh_planeNormAndCameraZaxis"];
     distance_thresh = fileRead["distance_thresh"]; 
     lineThresh = fileRead["lineThresh"];
     minLineLength = fileRead["minLineLength"];
@@ -164,13 +124,16 @@ ModelNode::ModelNode():Node("model")
     inlier_thresh_centre=fileRead["inlier_thresh_centre"];
     inlier_thresh_dirVec=fileRead["inlier_thresh_dirVec"];
     inlier_thresh_normVec=fileRead["inlier_thresh_normVec"];
+    canny_threshLow = fileRead["canny_threshLow"];
+    canny_threshUp=fileRead["canny_threshUp"];
+    kernelBigClose = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(bigCloseStructure_size, bigCloseStructure_size));
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
 {
   if (newError != error_type)
   {
-    static std::string errorTypeString[10] = {
+    static std::string errorTypeString[11] = {
       "Circle detection is not stable",
       "Distance of circle is too much",
       "Not found the countour",
@@ -180,101 +143,107 @@ void ModelNode::changeErrorType(ERROR_TYPE newError)
       "The camera is not straight on the plane",
       "the distance between camera and detect plane is too close",
       "No_detect_line",
-      "Line_mismatch_condition"
+      "Line_mismatch_condition",
+      "Can't find circle"
     };
     error_type = newError;
     RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[(int)error_type].c_str());
   }
 }
-// 障碍物建模主函数
-bool ModelNode::Model()
+// hough圆形检测函数
+void ModelNode::houghCircleDetect(std::vector<cv::Vec3f> &outputCircles, cv::Mat &img_gaussian)
 {
     // 入口圓形檢測
     cv::Mat img_gray;
     cv::cvtColor(m_img, img_gray, CV_BGR2GRAY);
-    cv::GaussianBlur(img_gray, img_gray, cv::Size(7, 7),2,2);
-    std::vector<cv::Vec3f> temp_circles;
-    cv::HoughCircles(img_gray, temp_circles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
-    if (temp_circles.size()>1) {
-        changeErrorType(Circle_detection_is_not_stable);
-        return false;    
-    }
-    if (temp_circles.size()==0) {
-        changeErrorType(Circle_detection_is_not_stable);
-        return false;    
-    }
-    if (circles_.size() != 0) 
+    cv::GaussianBlur(img_gray, img_gaussian, cv::Size(7, 7),2,2);
+    cv::HoughCircles(img_gaussian, outputCircles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
+}
+bool ModelNode::getMaxArea(cv::Mat &maxArea)
+{
+    // 阈值分割
+    cv::Mat imgHsv, imgBin, img_erode, img_dilate;
+    cv::cvtColor(m_img, imgHsv, CV_BGR2HSV);
+    cv::inRange(imgHsv, blueLower, blueUpper, imgBin);
+    // 较小核腐蚀
+    cv::erode(imgBin, img_erode, structure_erode1);
+    cv::Mat labels, stats, centroids;
+    int num_labels = connectedComponentsWithStats(img_erode, labels, stats, centroids, 8, CV_16U);
+    std::vector<std::vector<cv::Point>> temp_contours;
+    std::vector<int> areas;
+    if (num_labels>1)
     {
-        float distance_center, difference_radius;
-        distance_center = std::sqrt(std::pow(temp_circles[0][0]-circles_.back()[0], 2) + std::pow(temp_circles[0][1]-circles_.back()[1], 2));
-        difference_radius=std::abs(temp_circles[0][2] - circles_.back()[2]);    
-        if (distance_center > distance_center_thresh || difference_radius > difference_radius_thresh) 
+        for (int i = 1; i < num_labels; i++) // 忽略背景标签0
         {
-            changeErrorType(Distance_of_circle_is_too_much);
-            circles_.clear();
-            vecs_direction.clear();
-            vecs_norm.clear();
-            transforms_curToInit.clear();
-            return false;
+            areas.push_back(stats.at<int>(i, cv::CC_STAT_AREA));
         }
+        int max_area_label = max_element(areas.begin(), areas.end()) - areas.begin() + 1;
+        maxArea = (labels == max_area_label);
+        return true;
     }
-    // 利用稀疏点云拟合平面获得平面距离，并判断当前平面是否足够正对相机
-    Eigen::Vector4d temp_param;
-    cv::Mat mask; // 掩码图像，用以保存最大连通域区域
-    bool flag_poseCorrect = detectPoseCorrect(temp_param,temp_circles[0],mask);
-    if(!flag_poseCorrect) 
-        return false;
-    Eigen::Vector3d vec_norm = temp_param.block(0,0,3,1);
-    double distance = abs(temp_param[4]);
-    // 如果相機距離檢測平面太近，則很可能檢測不到實驗平臺邊沿輪廓直線
-    if (distance < distance_thresh) {
-        changeErrorType(TooClose);
-        return false;
-    }
+    return false;
+}
+bool ModelNode::testCircle(cv::Vec3f &circle,const cv::Mat mask)
+{
 
-    // TODO: 实验平台边沿直线检测...
-    // 大阈值检测直线
-    std::vector<cv::Vec4i> tempLines;
-    cv::Mat img_gaussian;
-    cv::GaussianBlur(m_img, img_gaussian, cv::Size(7,7),2,2);
-    cv::HoughLinesP(img_gaussian,tempLines, 1,CV_PI/180, lineThresh, minLineLength,maxLineGap);
-    if (tempLines.size()==0)
+}
+// 入口圆形筛选函数
+bool ModelNode::selectCircle(cv::Vec3f &circle, const std::vector<cv::Vec3f> temp_circles, cv::Mat &mask)
+{
+    cv::Mat maxArea;
+    bool flag_getMaxArea = getMaxArea(maxArea);
+    if (!flag_getMaxArea)
     {
-        changeErrorType(No_detect_line);
+        std::cout << "Can't find max area !" <<std::endl;
         return false;
     }
+    // 大尺度闭运算
+    cv::morphologyEx(maxArea, mask, cv::MORPH_CLOSE, kernelBigClose);
+    for (int i = 0;i<temp_circles.size();i++)
+    {
+        bool flag_meetCondition = testCircle(circle,mask);
+        if (!flag_meetCondition)
+            continue;
+        return true;
+    }
+    changeErrorType(Circle_detection_is_not_stable);
+    return false;
+}
+// 直线检测函数
+void ModelNode::detectLine(const cv::Mat img_gaussian, std::vector<cv::Vec4i> &tempLines)
+{
+    cv::Mat img_edge;
+    cv::Canny(img_gaussian, img_edge, canny_threshLow, canny_threshUp);
+    cv::threshold(img_edge,img_edge, 170, 255, cv::THRESH_BINARY);
+    cv::HoughLinesP(img_edge,tempLines, 1,CV_PI/180, lineThresh, minLineLength,maxLineGap);    
+}
+bool ModelNode::selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempLines, cv::Vec4i &line)
+{
     // 对线段列表按照长度从大到小排列
     std::sort(tempLines.begin(), tempLines.end(), GreaterLength());
-    // 膨胀mask图像得到mask_dilate;
-    cv::Mat mask_dilate;
-    cv::dilate(mask, mask_dilate, dilateStructure_mask);
-    // 定义临时线段参数变量 tempLine
+
+    // TODO: 利用腐蚀掩码判断：直线的两端点以及中点不在掩码区域并且向内平移之后回到掩码区域，则该直线为轮廓边缘直线
     cv::Vec4i templine(0,0,0,0);
-    Eigen::Vector3d DirectionVec_line(0,0,0);
-    Eigen::Vector3d centrePosition;
     // for 循环从列表中筛选直线
     for (int i=0;i<tempLines.size();i++)
     {
         int x1_i = tempLines[i][0],x2_i = tempLines[i][2],y1_i=tempLines[i][1],y2_i=tempLines[i][3];
         // 利用mask_dilate掩码判断线段两端点是否都在最大连通域上
-        if (mask_dilate.at<bool>(x1_i, y1_i)!=255 || mask_dilate.at<bool>(x2_i, y2_i)!=255)
+        if (img_erode.at<bool>(x1_i, y1_i)!=255 || img_erode.at<bool>(x2_i, y2_i)!=255)
         {
+            // 调试代码3
+            changeErrorType(Line_mismatch_condition); 
+            cv::Mat img_copy;
+            m_img.copyTo(img_copy);
+            cv::drawMarker(img_copy, cv::Point(x1_i,y1_i), cv::Scalar(0,255,0));
+            cv::drawMarker(img_copy, cv::Point(x2_i,y2_i), cv::Scalar(0,255,0));
+            cv::imshow("img_copy_end_point", img_copy);
+            std::cout << "掩码判断线段两端点不是都在最大连通域上！！"<<std::endl;
             continue;
         }
         // 利用线段两端点坐标计算中点坐标
         double x1 = (double)tempLines[i][0],x2 = (double)tempLines[i][2],y1=(double)tempLines[i][1],y2=(double)tempLines[i][3];
         Eigen::Vector2d temp_centerPoint((x1+x2)/(double)2, (y1+y2)/(double)2);
-        // 利用中点坐标计算圆心指向线段中点的单位向量
-        // TODO: 这里最好改垂直于线段方向且远离圆心的单位向量
-        Eigen::Vector2d temp_centreToCenter(temp_centerPoint.x()-(double)temp_circles[0][0], temp_centerPoint.y()-(double)temp_circles[0][1]);
-        temp_centreToCenter.normalize();
-        // 利用中点坐标加上20倍的单位向量计算 flag_point(cv::Point)
-        Eigen::Vector2d flag_point(temp_centerPoint.x()+20*temp_centreToCenter.x(),temp_centerPoint.y()+20*temp_centreToCenter.y());
-        // 如果 mask.at<bool>(flag_point) == 255
-        if (mask.at<bool>((int)flag_point.x(), (int)flag_point.y()) == 255)
-        {
-            continue;            
-        }
 
         // 将直线两端点以及圆心像素坐标投影到三维平面上
         Eigen::Vector2d temp_endPoint2d_1(x1,y1),temp_endPoint2d_2(x2,y2);
@@ -283,80 +252,108 @@ bool ModelNode::Model()
         from2dTo3dPlane(temp_endPoint2d_2, temp_endPoint3d_2, temp_param);
         from2dTo3dPlane(temp_centerPoint, temp_centrePoint3d, temp_param);
         // 计算三维空间上圆心到直线的距离
+
         Eigen::Vector3d tempDirectionVec_line = (temp_endPoint3d_2-temp_endPoint3d_1).normalized();
-        Eigen::Vector3d tempVec_endPoint1ToCentre = temp_centrePoint3d-temp_endPoint2d_1;
-        double distance_lineToCentre = (tempDirectionVec_line.cross(tempVec_endPoint1ToCentre)).norm();
-        // 如果距离 小于最小距离阈值(200)
-        if (distance_lineToCentre < double(200))
-        {
-            continue;            
-        }
+        Eigen::Vector3d tempVec_endPoint1ToCentre = temp_centrePoint3d-temp_endPoint3d_1;
+    }
+    changeErrorType(Line_mismatch_condition);
+    return false;
 
-        // 如果当前全局三维方向向量列表为空
-        if (vecs_direction.size()==0)
-        {
-            centrePosition = temp_centrePoint3d;
-            DirectionVec_line = tempDirectionVec_line;
-            break;
-        }
-        // 与全局列表的方向向量最后一个元素进行点乘输出绝对值
-        double cosValue_line = tempDirectionVec_line.dot(vecs_direction.back());
-        // 如果绝对值 小于共线阈值(0.97）&& 大于垂直阈值(0.17)
-        if (abs(cosValue_line) < minCosValueThresh_collineation && abs(cosValue_line) > maxCosValueThresh_vertical)
-        {
-            continue;         
-        }
-        // 满足上诉所有筛选条件
-        DirectionVec_line = tempDirectionVec_line;
-        centrePosition = temp_centrePoint3d;
-        break;
-    }
-    // 如果当前templine参数全为零
-    if (DirectionVec_line.norm() < 1.0e-4)
-    {
-        changeErrorType(Line_mismatch_condition);
+    // // TODO: 这里代码需要保留下来，可能后面的坐标系转换用这个比较方便
+    // // 将连续几次检测的存储变量列表添加到较长的全局模型参数列表(平面法向量、垂直方向向量、圆心位置)
+    // for (int i=0;i<circles_.size();i++)
+    // {
+    //     Eigen::Vector4d centrePosition_init;
+    //     Eigen::Vector3d vec_norm_init;
+
+    //     centrePosition_init = transforms_curToInit[i] * Eigen::Vector4d(centrePositions[i].x(),centrePositions[i].y(),centrePositions[i].z(),1);
+    //     vec_norm_init=transforms_curToInit[i].block(0,0,3,3) * vecs_norm[i];
+    //     global_centrePostions.push_back(centrePosition_init.block(0,0,3,1));
+    //     global_vecs_norm.push_back(vec_norm_init);
+    //     pushGlobalDirectionVec(vecs_direction[i], vec_norm_init, transforms_curToInit[i]);
+    // }
+    // if (global_centrePostions.size()<modelThresh)
+    // {
+    //     // 清除全局连续性判断变量列表
+    //     circles_.clear();
+    //     vecs_direction.clear();
+    //     vecs_norm.clear();
+    //     transforms_curToInit.clear();
+    //     return false;
+    // }
+}
+
+void ModelNode::calModelParam(const cv::Vec3f circle,const cv::Vec4i line)
+{
+
+    return;
+
+}
+// 障碍物建模主函数
+bool ModelNode::Model()
+{
+    // 入口圓形檢測
+    std::vector<cv::Vec3f> temp_circles;
+    cv::Mat img_gaussian;
+    houghCircleDetect(temp_circles,img_gaussian);
+    if (temp_circles.size()==0) {
+        changeErrorType(Can_not_find_circle);
         return false;
-    } 
-    centrePositions.push_back(centrePosition);
-    vecs_direction.push_back(DirectionVec_line);
-    vecs_norm.push_back(vec_norm);
-    circles_.push_back(temp_circles[0]);
-    transforms_curToInit.push_back(m_transform_curToInit);
-    int tempSizeSum = circles_.size()+vecs_norm.size()+vecs_direction.size()+transforms_curToInit.size();
-    if (tempSizeSum!=circles_.size()*4||tempSizeSum!=vecs_norm.size()*4||tempSizeSum!=vecs_direction.size()*4||tempSizeSum!=transforms_curToInit.size()*4)
-    {
-        RCLCPP_INFO(this->get_logger(), "UNKNOWN ERROR !!!");
-        return false;
     }
-    if (circles_.size() < circle_size_thresh) 
+
+    // 调试代码3
+    cv::Mat img_circle;
+    for (int i =0;i<temp_circles.size();i++)
+    {
+        m_img.copyTo(img_circle);
+        cv::circle(img_circle, cv::Point(temp_circles[i][0], temp_circles[i][1]), temp_circles[i][2], cv::Scalar(0,255,0), 2);        
+    }
+    cv::imshow("init_circle_img", img_circle);
+
+    cv::Vec3f circle;
+    cv::Mat mask;                                                     // 这个mask是用来保存最大区域掩码图像
+    bool flag_findCircle = selectCircle(circle, temp_circles, mask);
+    if (!flag_findCircle)
         return false;
 
-    // TODO:
-    // 将连续几次检测的存储变量列表添加到较长的全局模型参数列表(平面法向量、垂直方向向量、圆心位置)
-    for (int i=0;i<circles_.size();i++)
-    {
-        Eigen::Vector4d centrePosition_init;
-        Eigen::Vector3d vec_norm_init;
+    // 利用稀疏点云拟合平面获得平面距离，并判断当前平面是否足够正对相机
+    Eigen::Vector4d param;
+    cv::Mat img_erode;
+    bool flag_poseCorrect = detectPoseCorrect(param,mask,img_erode);
+    if(!flag_poseCorrect) return false;
 
-        centrePosition_init = transforms_curToInit[i] * Eigen::Vector4d(centrePositions[i].x(),centrePositions[i].y(),centrePositions[i].z(),1);
-        vec_norm_init=transforms_curToInit[i].block(0,0,3,3) * vecs_norm[i];
-        global_centrePostions.push_back(centrePosition_init.block(0,0,3,1));
-        global_vecs_norm.push_back(vec_norm_init);
-        pushGlobalDirectionVec(vecs_direction[i], vec_norm_init, transforms_curToInit[i]);
-    }
-    if (global_centrePostions.size()<modelThresh)
-    {
-        // 清除全局连续性判断变量列表
-        circles_.clear();
-        vecs_direction.clear();
-        vecs_norm.clear();
-        transforms_curToInit.clear();
-        changeErrorType(OK);
+    // 从拟合得到的平面参数中得到当前相机坐标系下的平面法向量以及距离平面的距离值
+    Eigen::Vector3d vec_norm = param.block(0,0,3,1);
+    double distance = abs(param[3]);
+
+    // 当相机距离检测平面太近时，可能检测不到直线
+    if (distance < distance_thresh) {
+        changeErrorType(TooClose);
         return false;
     }
+    // 大阈值检测直线
+    std::vector<cv::Vec4i> tempLines;
+    detectLine(img_gaussian, tempLines);
+    if (tempLines.size()==0)
+    {
+        changeErrorType(No_detect_line);
+        return false;
+    }
+
+    // 选择直线
+    cv::Vec4i line;
+    bool flag_findLine = selectLine(img_erode,tempLines,line);
+    if (!flag_findLine) return false;
+
+    // 计算三维全局参数;
+    calModelParam(circle, line);
+    if (global_centrePostions.size() < modelThresh)
+    {
+        return false;
+    }
+
     // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
     ransacModelParam();
-    
     return true;
 }
 
@@ -375,6 +372,7 @@ void ModelNode::ransacModelParam()
     std::random_shuffle(global_vecs_direction.begin(), global_vecs_direction.end());
     std::random_shuffle(global_vecs_norm.begin(), global_vecs_norm.end());
     double tempSum_x=0,tempSum_y=0,tempSum_z=0;
+
     Eigen::Vector3d result_centre;
     ceres::Problem problem_dirVec;
     ceres::Problem problem_normVec;
@@ -392,18 +390,18 @@ void ModelNode::ransacModelParam()
             result_centre.z() = tempSum_z/sample_length;
         }
         problem_dirVec.AddResidualBlock(
-            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
+            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1,1>(
                 new normVecResidual(global_vecs_direction[j].x(), global_vecs_direction[j].y(), global_vecs_direction[j].z())
             ),
             NULL,
-            &a_dirVec,&b_dirVec
+            &a_dirVec,&b_dirVec,&c_dirVec
         );
         problem_normVec.AddResidualBlock(
-            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
+            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1,1>(
                 new normVecResidual(global_vecs_norm[j].x(), global_vecs_norm[j].y(), global_vecs_norm[j].z())
             ),
             NULL,
-            &a_normVec,&b_normVec
+            &a_normVec,&b_normVec,&c_normVec
         );
     }
     ceres::Solver::Options options;
@@ -415,8 +413,8 @@ void ModelNode::ransacModelParam()
     ceres::Solver::Summary summary_normVec;
     Solve(options, &problem_dirVec, &summary_dirVec);
     Solve(options, &problem_normVec, &summary_normVec);
-    c_dirVec = sqrt(1-pow(a_dirVec,2)-pow(b_dirVec,2));
-    c_normVec = sqrt(1-pow(a_normVec,2)-pow(b_normVec,2));
+    // c_dirVec = sqrt(1-pow(a_dirVec,2)-pow(b_dirVec,2));
+    // c_normVec = sqrt(1-pow(a_normVec,2)-pow(b_normVec,2));
     // 得到优化的变量以后使用该参数模型利用与样点参数之间的夹角余弦是否在夹角阈值范围内来筛选内点，并统计内点数量
     int tempNumInlier_dirVec=0;
     int tempNumInlier_normVec=0;
@@ -505,78 +503,54 @@ void ModelNode::from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3
 }
 
 
-bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Vec3f tempCircle, cv::Mat &mask)
+bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv::Mat &img_erode)
 {
-  // 阈值分割
-  cv::Mat imgHsv, imgBin, img_erode, img_dilate;
-  cv::cvtColor(m_img, imgHsv, CV_BGR2HSV);
-  cv::inRange(imgHsv, blueLower, blueUpper, imgBin);
-  // 较小核腐蚀
-  cv::erode(imgBin, img_erode, structure_erode);
-  
-  // // 调试代码
-  // cv::imshow("img_erode", img_erode);
-  // cv::waitKey(20);
+    cv::Mat tempImg_erode;
+    cv::erode(mask, tempImg_erode, structure_erode2);
+    // 点云变换坐标系至当前帧
+    pcl::PointCloud<pcl::PointXYZ> PointCloud_curFrame;
+    pcl::transformPointCloud(m_pointCloud, PointCloud_curFrame, m_transform_initToCur);
+    // 逐个点云逆投影至像素平面进行筛选
+    pcl::PointCloud<pcl::PointXYZ> finalPointCloud;
 
-  // 最大连通域提取轮廓
-  std::vector<cv::Point> contour;
-  bool flag_getContour = getMaxAreaContour(img_erode, contour);
-  if (!flag_getContour) 
-  {
-    changeErrorType(Not_found_the_countour);
-    return false;
-  }
-  // 较大核膨胀
-  cv::dilate(img_erode, img_dilate, structure_dilate);
-  // 点云变换坐标系至当前帧
-  pcl::PointCloud<pcl::PointXYZ> PointCloud_curFrame;
-  pcl::transformPointCloud(m_pointCloud, PointCloud_curFrame, m_transform_initToCur);
-  // 逐个点云逆投影至像素平面进行筛选
-  pcl::PointCloud<pcl::PointXYZ> finalPointCloud;
-  for (auto point:PointCloud_curFrame.points) {
-    Eigen::Vector3f tempPixelPoint = m_projectMatrix * point.getVector3fMap();
-    cv::Point2f pixelPoint(tempPixelPoint[0]/tempPixelPoint[2], tempPixelPoint[1]/tempPixelPoint[2]);
-    double polyTestValue=cv::pointPolygonTest(contour, pixelPoint, false);
-    // 特征点轮廓判断    
-    if (polyTestValue<0) 
-      continue;
-    // 特征点掩码判断    
-    if (img_dilate.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255) 
-      continue; 
-    // 半径距离判断，是否在圆孔附近 
-    float tempPixelDistance = std::sqrt(std::pow(pixelPoint.x-tempCircle[0], 2)+std::pow(pixelPoint.y-tempCircle[1],2));
-    if (tempPixelDistance < tempCircle[2]+(double)3)
-      continue;
-    
-    // // 调试代码1
-    // cv::drawMarker(img, cv::Point((int)pixelPoint.x, (int)pixelPoint.y), cv::Scalar(0,255,0), 2, 20, 3);
+    // 调试代码3
+    cv::Mat temp_img;
+    m_img.copyTo(temp_img);
 
-    finalPointCloud.points.push_back(point);
-  }
+    for (auto point:PointCloud_curFrame.points) {
+        Eigen::Vector3f tempPixelPoint = m_projectMatrix * point.getVector3fMap();
+        cv::Point2f pixelPoint(tempPixelPoint[0]/tempPixelPoint[2], tempPixelPoint[1]/tempPixelPoint[2]);
+        // 特征点掩码判断    
+        if (tempImg_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255) continue; 
+        
+        // 调试代码3
+        cv::drawMarker(temp_img,cv::Point((int)pixelPoint.x,(int)pixelPoint.y), cv::Scalar(0,255,0),2, 5, 1);
 
-  // // 调试代码1
-  // cv::imshow("img", img);
-  // cv::waitKey(10);
+        finalPointCloud.points.push_back(point);
+    }
+
+    cv::imshow("select keypoints", temp_img);
 
   // 用筛选后的点云拟合平面
-  if (finalPointCloud.points.size()<90) {
-    changeErrorType(Point_cloud_is_little);
-    return false;
-  }
-  param = calParam(finalPointCloud);
+    if (finalPointCloud.points.size()<80) {
+        changeErrorType(Point_cloud_is_little);
+        return false;
+    }
+    param = calParam(finalPointCloud);
 
-  // 将拟合平面后的法向量点乘当前帧坐标系z轴向量
-  Eigen::Vector3d zAxis(0,0,1);
-  double cosValue = param.block(0,0,3,1).dot(zAxis);
+    // 将拟合平面后的法向量点乘当前帧坐标系z轴向量
+    Eigen::Vector3d zAxis(0,0,1);
+    double cosValue = param.block(0,0,3,1).dot(zAxis);
   // 两向量余弦值判断
-  if (cosValue < cosValue_thresh) {
-    changeErrorType(The_camera_is_not_straight_on_the_plane);
-    return false;    
-  }
-  // // 调试代码2
-  // std::cout << "distance_plane: " << distance_plane << std::endl;
-  mask=img_dilate;
-  return true;
+    if (abs(cosValue) < cosValueThresh_planeNormAndCameraZaxis) {
+        changeErrorType(The_camera_is_not_straight_on_the_plane);
+        RCLCPP_INFO(this->get_logger(), "cosValue: %f °", std::acos(cosValue)/CV_PI * 180);
+        return false;    
+    }
+    // // 调试代码2
+    // std::cout << "distance_plane: " << distance_plane << std::endl;
+    tempImg_erode.copyTo(img_erode);
+    return true;
 }
 
 bool ModelNode::getMaxAreaContour(cv::Mat& img_bin, std::vector<cv::Point> &contour) {
@@ -629,34 +603,6 @@ Eigen::Vector4d ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
     param(3) = coefficient.values[3];
     return param;
 }
-
-void ModelNode::pixelToPlane(cv::Mat &imgClose, Eigen::Vector4d &paramInCamFrame, pcl::PointCloud<pcl::PointXYZ> &obstacle) {
-    std::cout<<"        pixelToPlane"<<std::endl;
-    double a = paramInCamFrame(0);
-    double b = paramInCamFrame(1);
-    double c = paramInCamFrame(2);
-    double d = paramInCamFrame(3);
-    pcl::PointCloud<pcl::PointXYZ> obstacleInCamFrame;
-    cv::Mat temp_imgClose;
-    imgClose.convertTo(temp_imgClose, CV_8UC1);
-    int rows = temp_imgClose.rows;
-    int cols = temp_imgClose.cols;
-    std::cout<<"rows: "<<rows<<" cols: "<<cols<<std::endl;
-    for (int u=0;u<rows;u+=3) {
-        for (int v=0;v<cols;v+=3) {
-            if (temp_imgClose.at<uchar>(u,v) == 255) {
-                pcl::PointXYZ tempPoint;
-                Eigen::Vector3d Point;
-                from2dTo3dPlane(Eigen::Vector2d(v,u), Point, paramInCamFrame);
-                tempPoint.z = Point.z();
-                tempPoint.x = Point.x();
-                tempPoint.y = Point.y();
-                obstacleInCamFrame.points.push_back(tempPoint);
-            }
-        }
-    };
-    pcl::transformPointCloud(obstacleInCamFrame, obstacle, m_transform_curToInit);
-};
 
 // 析构函数 delete function()
 ModelNode::~ModelNode() {

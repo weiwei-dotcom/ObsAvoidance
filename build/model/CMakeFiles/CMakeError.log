@@ -1,21 +1,21 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_c8ace/fast && /usr/bin/make -f CMakeFiles/cmTC_c8ace.dir/build.make CMakeFiles/cmTC_c8ace.dir/build
+Run Build Command(s):/usr/bin/make cmTC_cd6d4/fast && /usr/bin/make -f CMakeFiles/cmTC_cd6d4.dir/build.make CMakeFiles/cmTC_cd6d4.dir/build
 make[1]: 进入目录“/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp”
-Building C object CMakeFiles/cmTC_c8ace.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_c8ace.dir/src.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_c8ace
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c8ace.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_c8ace.dir/src.c.o  -o cmTC_c8ace 
-/usr/bin/ld: CMakeFiles/cmTC_c8ace.dir/src.c.o: in function `main':
+Building C object CMakeFiles/cmTC_cd6d4.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_cd6d4.dir/src.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_cd6d4
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cd6d4.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_cd6d4.dir/src.c.o  -o cmTC_cd6d4 
+/usr/bin/ld: CMakeFiles/cmTC_cd6d4.dir/src.c.o: in function `main':
 src.c:(.text+0x46): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_c8ace.dir/build.make:87：cmTC_c8ace] 错误 1
+make[1]: *** [CMakeFiles/cmTC_cd6d4.dir/build.make:87：cmTC_cd6d4] 错误 1
 make[1]: 离开目录“/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp”
-make: *** [Makefile:121：cmTC_c8ace/fast] 错误 2
+make: *** [Makefile:121：cmTC_cd6d4/fast] 错误 2
 
 
 Source file was:
@@ -41,56 +41,56 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_5104c/fast && /usr/bin/make -f CMakeFiles/cmTC_5104c.dir/build.make CMakeFiles/cmTC_5104c.dir/build
+Run Build Command(s):/usr/bin/make cmTC_2bac4/fast && /usr/bin/make -f CMakeFiles/cmTC_2bac4.dir/build.make CMakeFiles/cmTC_2bac4.dir/build
 make[1]: 进入目录“/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp”
-Building C object CMakeFiles/cmTC_5104c.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_5104c.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_5104c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5104c.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_5104c.dir/CheckFunctionExists.c.o  -o cmTC_5104c  -lpthreads 
+Building C object CMakeFiles/cmTC_2bac4.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_2bac4.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2bac4
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2bac4.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_2bac4.dir/CheckFunctionExists.c.o  -o cmTC_2bac4  -lpthreads 
 /usr/bin/ld: 找不到 -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_5104c.dir/build.make:87：cmTC_5104c] 错误 1
+make[1]: *** [CMakeFiles/cmTC_2bac4.dir/build.make:87：cmTC_2bac4] 错误 1
 make[1]: 离开目录“/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp”
-make: *** [Makefile:121：cmTC_5104c/fast] 错误 2
+make: *** [Makefile:121：cmTC_2bac4/fast] 错误 2
 
 
 
 Determining if the function sgemm_ exists failed with the following output:
 Change Dir: /home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_69e7e/fast && /usr/bin/make -f CMakeFiles/cmTC_69e7e.dir/build.make CMakeFiles/cmTC_69e7e.dir/build
+Run Build Command(s):/usr/bin/make cmTC_2e5d5/fast && /usr/bin/make -f CMakeFiles/cmTC_2e5d5.dir/build.make CMakeFiles/cmTC_2e5d5.dir/build
 make[1]: 进入目录“/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp”
-Building C object CMakeFiles/cmTC_69e7e.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_   -o CMakeFiles/cmTC_69e7e.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_69e7e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_69e7e.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_     CMakeFiles/cmTC_69e7e.dir/CheckFunctionExists.c.o  -o cmTC_69e7e 
-/usr/bin/ld: CMakeFiles/cmTC_69e7e.dir/CheckFunctionExists.c.o: in function `main':
+Building C object CMakeFiles/cmTC_2e5d5.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_   -o CMakeFiles/cmTC_2e5d5.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2e5d5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2e5d5.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgemm_     CMakeFiles/cmTC_2e5d5.dir/CheckFunctionExists.c.o  -o cmTC_2e5d5 
+/usr/bin/ld: CMakeFiles/cmTC_2e5d5.dir/CheckFunctionExists.c.o: in function `main':
 CheckFunctionExists.c:(.text+0x14): undefined reference to `sgemm_'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_69e7e.dir/build.make:87：cmTC_69e7e] 错误 1
+make[1]: *** [CMakeFiles/cmTC_2e5d5.dir/build.make:87：cmTC_2e5d5] 错误 1
 make[1]: 离开目录“/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp”
-make: *** [Makefile:121：cmTC_69e7e/fast] 错误 2
+make: *** [Makefile:121：cmTC_2e5d5/fast] 错误 2
 
 
 
 Determining if the function cheev_ exists failed with the following output:
 Change Dir: /home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_efada/fast && /usr/bin/make -f CMakeFiles/cmTC_efada.dir/build.make CMakeFiles/cmTC_efada.dir/build
+Run Build Command(s):/usr/bin/make cmTC_d8076/fast && /usr/bin/make -f CMakeFiles/cmTC_d8076.dir/build.make CMakeFiles/cmTC_d8076.dir/build
 make[1]: 进入目录“/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp”
-Building C object CMakeFiles/cmTC_efada.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=cheev_   -o CMakeFiles/cmTC_efada.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_efada
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_efada.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=cheev_     CMakeFiles/cmTC_efada.dir/CheckFunctionExists.c.o  -o cmTC_efada  /usr/lib/x86_64-linux-gnu/libblas.so 
-/usr/bin/ld: CMakeFiles/cmTC_efada.dir/CheckFunctionExists.c.o: in function `main':
+Building C object CMakeFiles/cmTC_d8076.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=cheev_   -o CMakeFiles/cmTC_d8076.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d8076
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d8076.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=cheev_     CMakeFiles/cmTC_d8076.dir/CheckFunctionExists.c.o  -o cmTC_d8076  /usr/lib/x86_64-linux-gnu/libblas.so 
+/usr/bin/ld: CMakeFiles/cmTC_d8076.dir/CheckFunctionExists.c.o: in function `main':
 CheckFunctionExists.c:(.text+0x14): undefined reference to `cheev_'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_efada.dir/build.make:88：cmTC_efada] 错误 1
+make[1]: *** [CMakeFiles/cmTC_d8076.dir/build.make:88：cmTC_d8076] 错误 1
 make[1]: 离开目录“/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/CMakeTmp”
-make: *** [Makefile:121：cmTC_efada/fast] 错误 2
+make: *** [Makefile:121：cmTC_d8076/fast] 错误 2
 
 
 

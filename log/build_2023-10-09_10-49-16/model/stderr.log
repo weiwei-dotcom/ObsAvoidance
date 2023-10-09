@@ -1,0 +1,9 @@
+** WARNING ** io features related to pcap will be disabled
+** WARNING ** io features related to png will be disabled
+** WARNING ** io features related to libusb-1.0 will be disabled
+/usr/bin/ld: CMakeFiles/model.dir/src/main.cpp.o: in function `void __gnu_cxx::new_allocator<ModelNode>::construct<ModelNode>(ModelNode*)':
+main.cpp:(.text._ZN9__gnu_cxx13new_allocatorI9ModelNodeE9constructIS1_JEEEvPT_DpOT0_[_ZN9__gnu_cxx13new_allocatorI9ModelNodeE9constructIS1_JEEEvPT_DpOT0_]+0x31): undefined reference to `ModelNode::ModelNode()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/model.dir/build.make:341：model] 错误 1
+make[1]: *** [CMakeFiles/Makefile2:105：CMakeFiles/model.dir/all] 错误 2
+make: *** [Makefile:141：all] 错误 2

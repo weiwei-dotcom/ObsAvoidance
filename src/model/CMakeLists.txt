@@ -44,9 +44,9 @@ endif()
 include_directories(${EIGEN3_INCLUDE_DIR} ${Sophus_DIR} ${PCL_INCLUDE_DIRS} ${CERES_INCLUDE_DIRS})
 # include_directories(${EIGEN3_INCLUDE_DIR} ${Sophus_DIR} ${PCL_INCLUDE_DIRS})
 
-add_executable(model src/main.cpp)
+add_executable(model src/main.cpp src/model.cpp)
 
-ament_target_dependencies(model rclcpp interface cv_bridge pcl_conversions octomap_msgs octomap sensor_msgs) 
+ament_target_dependencies(model rclcpp interface cv_bridge pcl_conversions octomap_msgs octomap sensor_msgs rcutils) 
 
 # target_link_libraries(model ${OpenCV_LIBS} ${EIGEN_LIBS} ${PCL_LIBRARIES} )
 target_link_libraries(model ${OpenCV_LIBS} ${EIGEN_LIBS} ${PCL_LIBRARIES} ${CERES_LIBRARIES})

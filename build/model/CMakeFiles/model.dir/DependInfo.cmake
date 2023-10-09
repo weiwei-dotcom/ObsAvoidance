@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/model.dir/src/main.cpp.o"
+  "/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/model/CMakeFiles/model.dir/src/model.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

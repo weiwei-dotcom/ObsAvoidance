@@ -1,0 +1,224 @@
+[0.118s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16
+[0.139s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.156s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.293s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.317s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.319s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.412s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.446s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.447s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.546s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[0.700s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[0.717s] -- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)
+[0.826s] -- Found octomap_msgs: 2.0.0 (/opt/ros/foxy/share/octomap_msgs/cmake)
+[0.877s] -- Eigen found (include: /usr/include/eigen3, version: 3.3.7)
+[0.937s] -- The imported target "vtkParseOGLExt" references the file
+[0.937s]    "/usr/bin/vtkParseOGLExt-7.1"
+[0.937s] but this file does not exist.  Possible reasons include:
+[0.937s] * The file was deleted, renamed, or moved to another location.
+[0.937s] * An install or uninstall procedure did not complete successfully.
+[0.937s] * The installation package was faulty and contained
+[0.937s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.937s] but not all the files it references.
+[0.937s] 
+[0.938s] -- The imported target "vtkRenderingPythonTkWidgets" references the file
+[0.938s]    "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"
+[0.938s] but this file does not exist.  Possible reasons include:
+[0.938s] * The file was deleted, renamed, or moved to another location.
+[0.938s] * An install or uninstall procedure did not complete successfully.
+[0.938s] * The installation package was faulty and contained
+[0.938s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.938s] but not all the files it references.
+[0.938s] 
+[0.938s] -- The imported target "vtk" references the file
+[0.938s]    "/usr/bin/vtk"
+[0.938s] but this file does not exist.  Possible reasons include:
+[0.938s] * The file was deleted, renamed, or moved to another location.
+[0.938s] * An install or uninstall procedure did not complete successfully.
+[0.938s] * The installation package was faulty and contained
+[0.938s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.938s] but not all the files it references.
+[0.938s] 
+[0.938s] -- The imported target "pvtk" references the file
+[0.938s]    "/usr/bin/pvtk"
+[0.938s] but this file does not exist.  Possible reasons include:
+[0.939s] * The file was deleted, renamed, or moved to another location.
+[0.939s] * An install or uninstall procedure did not complete successfully.
+[0.939s] * The installation package was faulty and contained
+[0.939s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.939s] but not all the files it references.
+[0.939s] 
+[0.953s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[0.958s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[0.958s] ** WARNING ** io features related to pcap will be disabled
+[0.958s] ** WARNING ** io features related to png will be disabled
+[0.968s] ** WARNING ** io features related to libusb-1.0 will be disabled
+[0.973s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[0.978s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[0.987s] -- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)
+[0.992s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[1.000s] -- looking for PCL_COMMON
+[1.000s] -- looking for PCL_KDTREE
+[1.001s] -- looking for PCL_OCTREE
+[1.001s] -- looking for PCL_SEARCH
+[1.001s] -- looking for PCL_SAMPLE_CONSENSUS
+[1.002s] -- looking for PCL_FILTERS
+[1.002s] -- looking for PCL_2D
+[1.002s] -- looking for PCL_GEOMETRY
+[1.003s] -- looking for PCL_IO
+[1.003s] -- looking for PCL_FEATURES
+[1.004s] -- looking for PCL_ML
+[1.004s] -- looking for PCL_SEGMENTATION
+[1.004s] -- looking for PCL_VISUALIZATION
+[1.005s] -- looking for PCL_SURFACE
+[1.005s] -- looking for PCL_REGISTRATION
+[1.005s] -- looking for PCL_KEYPOINTS
+[1.006s] -- looking for PCL_TRACKING
+[1.006s] -- looking for PCL_RECOGNITION
+[1.007s] -- looking for PCL_STEREO
+[1.007s] -- looking for PCL_APPS
+[1.008s] -- looking for PCL_IN_HAND_SCANNER
+[1.008s] -- looking for PCL_POINT_CLOUD_EDITOR
+[1.009s] -- looking for PCL_OUTOFCORE
+[1.009s] -- looking for PCL_PEOPLE
+[1.090s] -- Found AMD headers in: /usr/include/suitesparse
+[1.090s] -- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so
+[1.090s] -- Found CAMD headers in: /usr/include/suitesparse
+[1.090s] -- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so
+[1.090s] -- Found CCOLAMD headers in: /usr/include/suitesparse
+[1.090s] -- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so
+[1.090s] -- Found CHOLMOD headers in: /usr/include/suitesparse
+[1.090s] -- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so
+[1.090s] -- Found COLAMD headers in: /usr/include/suitesparse
+[1.090s] -- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so
+[1.090s] -- Found SPQR headers in: /usr/include/suitesparse
+[1.090s] -- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so
+[1.090s] -- Found Config headers in: /usr/include/suitesparse
+[1.090s] -- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+[1.091s] -- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.
+[1.091s] -- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+[1.094s] -- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) 
+[1.097s] -- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake
+[1.097s] -- Found required Ceres dependency: glog
+[1.099s] -- Found required Ceres dependency: gflags
+[1.099s] -- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]
+[1.099s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.188s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.188s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.188s] -- Configured cppcheck include dirs: 
+[1.188s] -- Configured cppcheck exclude dirs and/or files: 
+[1.189s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.189s] -- Configured cpplint exclude dirs and/or files: 
+[1.189s] -- Added test 'lint_cmake' to check CMake code style
+[1.190s] -- Added test 'uncrustify' to check C / C++ code style
+[1.190s] -- Configured uncrustify additional arguments: 
+[1.190s] -- Added test 'xmllint' to check XML markup files
+[1.192s] -- Configuring done
+[1.245s] -- Generating done
+[1.246s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/model
+[1.299s] [ 33%] [32mBuilding CXX object CMakeFiles/model.dir/src/model.cpp.o[0m
+[6.989s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::Model()[m[K’:
+[6.989s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:256:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<int, 4> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[6.989s]   256 |     for (int i=0;[01;35m[Ki<tempLines.size()[m[K;i++)
+[6.989s]       |                  [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[6.989s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:260:45:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[6.989s]   260 |         if ([01;35m[Kmask_dilate.at<bool>(x1_i, y1_i)!=255[m[K || mask_dilate.at<bool>(x2_i, y2_i)!=255)
+[6.989s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[6.989s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:260:86:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[6.989s]   260 |         if (mask_dilate.at<bool>(x1_i, y1_i)!=255 || [01;35m[Kmask_dilate.at<bool>(x2_i, y2_i)!=255[m[K)
+[6.990s]       |                                                      [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[6.997s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:274:69:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+[6.997s]   274 |         if ([01;35m[Kmask.at<bool>((int)flag_point.x(), (int)flag_point.y()) == 255[m[K)
+[6.997s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[7.008s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:326:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[7.009s]   326 |     if ([01;35m[KtempSizeSum!=circles_.size()*4[m[K||tempSizeSum!=vecs_norm.size()*4||tempSizeSum!=vecs_direction.size()*4||tempSizeSum!=transforms_curToInit.size()*4)
+[7.009s]       |         [01;35m[K~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~[m[K
+[7.009s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:326:52:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[7.009s]   326 |     if (tempSizeSum!=circles_.size()*4||[01;35m[KtempSizeSum!=vecs_norm.size()*4[m[K||tempSizeSum!=vecs_direction.size()*4||tempSizeSum!=transforms_curToInit.size()*4)
+[7.009s]       |                                         [01;35m[K~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~[m[K
+[7.009s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:326:85:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[7.009s]   326 |     if (tempSizeSum!=circles_.size()*4||tempSizeSum!=vecs_norm.size()*4||[01;35m[KtempSizeSum!=vecs_direction.size()*4[m[K||tempSizeSum!=transforms_curToInit.size()*4)
+[7.009s]       |                                                                          [01;35m[K~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.009s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:326:123:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 4, 4> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[7.009s]   326 |     if (tempSizeSum!=circles_.size()*4||tempSizeSum!=vecs_norm.size()*4||tempSizeSum!=vecs_direction.size()*4||[01;35m[KtempSizeSum!=transforms_curToInit.size()*4[m[K)
+[7.009s]       |                                                                                                                [01;35m[K~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.009s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:331:25:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[7.009s]   331 |     if ([01;35m[Kcircles_.size() < circle_size_thresh[m[K)
+[7.009s]       |         [01;35m[K~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~[m[K
+[7.009s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:336:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[7.009s]   336 |     for (int i=0;[01;35m[Ki<circles_.size()[m[K;i++)
+[7.009s]       |                  [01;35m[K~^~~~~~~~~~~~~~~~[m[K
+[7.029s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:347:37:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[7.029s]   347 |     if ([01;35m[Kglobal_centrePostions.size()<modelThresh[m[K)
+[7.029s]       |         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~[m[K
+[7.039s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::ransacModelParam()[m[K’:
+[7.039s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:424:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[7.039s]   424 |     for(int n=0;[01;35m[Kn<global_vecs_direction.size()[m[K;n++) {
+[7.039s]       |                 [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[7.085s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::detectPoseCorrect(Eigen::Vector4d&, cv::Vec3f, cv::Mat&)[m[K’:
+[7.085s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:544:67:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[7.085s]   544 |     if ([01;35m[Kimg_dilate.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255[m[K)
+[7.085s]       |         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[8.044s] In file included from [01m[K/usr/local/include/eigen3/Eigen/Core:366[m[K,
+[8.044s]                  from [01m[K/usr/include/pcl-1.10/pcl/pcl_macros.h:75[m[K,
+[8.044s]                  from [01m[K/usr/include/pcl-1.10/pcl/PCLPointField.h:10[m[K,
+[8.044s]                  from [01m[K/usr/include/pcl-1.10/pcl/conversions.h:46[m[K,
+[8.044s]                  from [01m[K/opt/ros/foxy/include/pcl_conversions/pcl_conversions.h:46[m[K,
+[8.044s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:4[m[K,
+[8.044s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:1[m[K:
+[8.044s] /usr/local/include/eigen3/Eigen/src/Core/CwiseBinaryOp.h: In instantiation of ‘[01m[KEigen::CwiseBinaryOp<BinaryOp, Lhs, Rhs>::CwiseBinaryOp(const Lhs&, const Rhs&, const BinaryOp&) [with BinaryOp = Eigen::internal::scalar_difference_op<double, double>; LhsType = const Eigen::Matrix<double, 3, 1>; RhsType = const Eigen::Matrix<double, 2, 1>; Eigen::CwiseBinaryOp<BinaryOp, Lhs, Rhs>::Lhs = Eigen::Matrix<double, 3, 1>; Eigen::CwiseBinaryOp<BinaryOp, Lhs, Rhs>::Rhs = Eigen::Matrix<double, 2, 1>][m[K’:
+[8.044s] [01m[K/usr/local/include/eigen3/Eigen/src/plugins/CommonCwiseBinaryOps.h:19:1:[m[K   required from ‘[01m[Kconst Eigen::CwiseBinaryOp<Eigen::internal::scalar_difference_op<typename Eigen::internal::traits<T>::Scalar, typename Eigen::internal::traits<OtherDerived>::Scalar>, const Derived, const OtherDerived> Eigen::MatrixBase<Derived>::operator-(const Eigen::MatrixBase<OtherDerived>&) const [with OtherDerived = Eigen::Matrix<double, 2, 1>; Derived = Eigen::Matrix<double, 3, 1>; typename Eigen::internal::traits<OtherDerived>::Scalar = double; typename Eigen::internal::traits<T>::Scalar = double][m[K’
+[8.044s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:287:72:[m[K   required from here
+[8.044s] [01m[K/usr/local/include/eigen3/Eigen/src/Core/CwiseBinaryOp.h:109:7:[m[K [01;31m[Kerror: [m[Kstatic assertion failed: YOU_MIXED_MATRICES_OF_DIFFERENT_SIZES
+[8.044s]   109 |       [01;31m[KEIGEN_STATIC_ASSERT_SAME_MATRIX_SIZE[m[K(Lhs, Rhs)
+[8.044s]       |       [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[12.527s] In file included from [01m[K/usr/local/include/ceres/internal/autodiff.h:151[m[K,
+[12.527s]                  from [01m[K/usr/local/include/ceres/autodiff_cost_function.h:130[m[K,
+[12.527s]                  from [01m[K/usr/local/include/ceres/ceres.h:37[m[K,
+[12.527s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:19[m[K,
+[12.527s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:1[m[K:
+[12.527s] /usr/local/include/ceres/internal/variadic_evaluate.h: In instantiation of ‘[01m[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, std::false_type, std::integer_sequence<int, Indices ...>) [with Functor = ModelNode::normVecResidual; T = double; int ...Indices = {0, 1}; std::false_type = std::integral_constant<bool, false>][m[K’:
+[12.527s] [01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:77:30:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, const void*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1>; Functor = ModelNode::normVecResidual; T = double][m[K’
+[12.527s] [01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:106:45:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluate(const Functor&, const T* const*, T*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1>; Functor = ModelNode::normVecResidual; T = double][m[K’
+[12.528s] [01m[K/usr/local/include/ceres/autodiff_cost_function.h:208:55:[m[K   required from ‘[01m[Kbool ceres::AutoDiffCostFunction<CostFunctor, kNumResiduals, Ns>::Evaluate(const double* const*, double*, double**) const [with CostFunctor = ModelNode::normVecResidual; int kNumResiduals = 1; int ...Ns = {1, 1}][m[K’
+[12.528s] [01m[K/usr/local/include/ceres/autodiff_cost_function.h:201:8:[m[K   required from here
+[12.528s] [01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:55:17:[m[K [01;31m[Kerror: [m[Kno match for call to ‘[01m[K(const ModelNode::normVecResidual) (const double* const&, const double* const&, double*&)[m[K’
+[12.528s]    55 |   return [01;31m[Kfunctor(input[Indices]..., output)[m[K;
+[12.528s]       |          [01;31m[K~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[12.528s] In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:1[m[K:
+[12.528s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:48:36:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class T> bool ModelNode::normVecResidual::operator()(const T*, const T*, const T*, T*) const[m[K’
+[12.528s]    48 |         template <typename T> bool [01;36m[Koperator[m[K()(const T* const a, const T* const b,const T* const c, T* residual) const {
+[12.528s]       |                                    [01;36m[K^~~~~~~~[m[K
+[12.528s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:48:36:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[12.528s] In file included from [01m[K/usr/local/include/ceres/internal/autodiff.h:151[m[K,
+[12.528s]                  from [01m[K/usr/local/include/ceres/autodiff_cost_function.h:130[m[K,
+[12.528s]                  from [01m[K/usr/local/include/ceres/ceres.h:37[m[K,
+[12.528s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:19[m[K,
+[12.528s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:1[m[K:
+[12.528s] [01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:55:17:[m[K [01;36m[Knote: [m[K  candidate expects 4 arguments, 3 provided
+[12.528s]    55 |   return [01;36m[Kfunctor(input[Indices]..., output)[m[K;
+[12.528s]       |          [01;36m[K~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[12.588s] /usr/local/include/ceres/internal/variadic_evaluate.h: In instantiation of ‘[01m[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, std::false_type, std::integer_sequence<int, Indices ...>) [with Functor = ModelNode::normVecResidual; T = ceres::Jet<double, 2>; int ...Indices = {0, 1}; std::false_type = std::integral_constant<bool, false>][m[K’:
+[12.588s] [01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:77:30:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, const void*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1>; Functor = ModelNode::normVecResidual; T = ceres::Jet<double, 2>][m[K’
+[12.588s] [01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:106:45:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluate(const Functor&, const T* const*, T*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1>; Functor = ModelNode::normVecResidual; T = ceres::Jet<double, 2>][m[K’
+[12.588s] [01m[K/usr/local/include/ceres/internal/autodiff.h:349:39:[m[K   required from ‘[01m[Kbool ceres::internal::AutoDifferentiate(const Functor&, const T* const*, int, T*, T**) [with int kNumResiduals = 1; ParameterDims = ceres::internal::ParameterDims<false, 1, 1>; Functor = ModelNode::normVecResidual; T = double][m[K’
+[12.589s] [01m[K/usr/local/include/ceres/autodiff_cost_function.h:211:69:[m[K   required from ‘[01m[Kbool ceres::AutoDiffCostFunction<CostFunctor, kNumResiduals, Ns>::Evaluate(const double* const*, double*, double**) const [with CostFunctor = ModelNode::normVecResidual; int kNumResiduals = 1; int ...Ns = {1, 1}][m[K’
+[12.589s] [01m[K/usr/local/include/ceres/autodiff_cost_function.h:201:8:[m[K   required from here
+[12.589s] [01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:55:17:[m[K [01;31m[Kerror: [m[Kno match for call to ‘[01m[K(const ModelNode::normVecResidual) (const ceres::Jet<double, 2>* const&, const ceres::Jet<double, 2>* const&, ceres::Jet<double, 2>*&)[m[K’
+[12.589s] In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:1[m[K:
+[12.589s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:48:36:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class T> bool ModelNode::normVecResidual::operator()(const T*, const T*, const T*, T*) const[m[K’
+[12.589s]    48 |         template <typename T> bool [01;36m[Koperator[m[K()(const T* const a, const T* const b,const T* const c, T* residual) const {
+[12.589s]       |                                    [01;36m[K^~~~~~~~[m[K
+[12.589s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:48:36:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[12.589s] In file included from [01m[K/usr/local/include/ceres/internal/autodiff.h:151[m[K,
+[12.589s]                  from [01m[K/usr/local/include/ceres/autodiff_cost_function.h:130[m[K,
+[12.589s]                  from [01m[K/usr/local/include/ceres/ceres.h:37[m[K,
+[12.589s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:19[m[K,
+[12.589s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:1[m[K:
+[12.589s] [01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:55:17:[m[K [01;36m[Knote: [m[K  candidate expects 4 arguments, 3 provided
+[12.589s]    55 |   return [01;36m[Kfunctor(input[Indices]..., output)[m[K;
+[12.589s]       |          [01;36m[K~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[13.298s] make[2]: *** [CMakeFiles/model.dir/build.make:76：CMakeFiles/model.dir/src/model.cpp.o] 错误 1
+[13.299s] make[1]: *** [CMakeFiles/Makefile2:105：CMakeFiles/model.dir/all] 错误 2
+[13.299s] make: *** [Makefile:141：all] 错误 2
+[13.300s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model' returned '2': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16

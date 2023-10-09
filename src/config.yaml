@@ -60,17 +60,21 @@ flag_motionControlProgramHaveDone: 0
 model_dp: 2
 model_minDist: 80
 model_cannyUpThresh: 80
-model_circleThresh: 150
-model_minRadius: 40
-model_maxRadius: 250
+model_circleThresh: 120
+model_minRadius: 30
+model_maxRadius: 150
 
 # 掩码膨胀结构体大小
 dilateSize_mask: 14
 
+# canny直线检测时边缘检测阈值
+canny_threshLow: 40
+canny_threshUp: 90
+
 # 直线检测相关参数
-lineThresh: 120
-minLineLength: 200
-maxLineGap: 10
+lineThresh: 110
+minLineLength: 180
+maxLineGap: 13
 
 # ransac参数所需的参数列表长度阈值
 modelThresh: 160
@@ -80,8 +84,8 @@ minCosValueThresh_collineation: 0.97
 maxCosValueThresh_vertical: 0.17
 
 # 两帧圆之间的半径差阈值、圆心距离阈值
-model_difference_radius_thresh: 6
-model_distance_center_thresh: 12
+model_difference_radius_thresh: 14
+model_distance_center_thresh: 20
 
 
 # 圆形检测参数值
@@ -98,18 +102,26 @@ distance_center_thresh: 25
 
 # 正视判断的cos阈值
 cosValue_thresh: 0.99
+model_cosValueThresh_planeNormAndCameraZaxis: 0.94
 
 # 相机平面之间的距离阈值
-distance_thresh: 380
+distance_thresh: 320
 
+# 大核闭运算核大小
+model_bigCloseStructure_size: 19
 # 连续检测圆形的列表长度阈值
 circle_size_thresh: 5
 # 腐蚀膨胀核大小
 erodeStructure_size: 7
 dilateStructure_size: 15
 # model腐蚀膨胀核大小
-model_erodeStructure_size: 7
-model_dilateStructure_size: 15
+# 用来预处理去除无关区域的腐蚀大小
+model_erodeStructure_size1: 7
+# 用来筛选特征点的区域腐蚀大小
+model_erodeStructure_size2: 11
+# 用来判定边缘检测时直线是否为检测平面区域内的膨胀大小
+model_dilateStructure_size2: 20
+
 # 尺度因子列表长度阈值
 scaleFactList_size_thresh: 160
 # 尺度因子内点阈值
