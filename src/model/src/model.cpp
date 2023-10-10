@@ -198,7 +198,9 @@ bool ModelNode::selectCircle(cv::Vec3f &circle, const std::vector<cv::Vec3f> tem
         return false;
     }
     // 大尺度闭运算
-    cv::morphologyEx(maxArea, mask, cv::MORPH_CLOSE, kernelBigClose);
+    cv::Mat tempMask;
+    cv::morphologyEx(maxArea, tempMask, cv::MORPH_CLOSE, kernelBigClose);
+    cv::threshold(tempMask,mask,150,255,cv::THRESH_BINARY);
     for (int i = 0;i<temp_circles.size();i++)
     {
         bool flag_found = true;
@@ -280,29 +282,6 @@ bool ModelNode::selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempL
     }
     changeErrorType(Line_mismatch_condition);
     return false;
-
-    // // TODO: 这里代码需要保留下来，可能后面的坐标系转换用这个比较方便
-    // // 将连续几次检测的存储变量列表添加到较长的全局模型参数列表(平面法向量、垂直方向向量、圆心位置)
-    // for (int i=0;i<circles_.size();i++)
-    // {
-    //     Eigen::Vector4d centrePosition_init;
-    //     Eigen::Vector3d vec_norm_init;
-
-    //     centrePosition_init = transforms_curToInit[i] * Eigen::Vector4d(centrePositions[i].x(),centrePositions[i].y(),centrePositions[i].z(),1);
-    //     vec_norm_init=transforms_curToInit[i].block(0,0,3,3) * vecs_norm[i];
-    //     global_centrePostions.push_back(centrePosition_init.block(0,0,3,1));
-    //     global_vecs_norm.push_back(vec_norm_init);
-    //     pushGlobalDirectionVec(vecs_direction[i], vec_norm_init, transforms_curToInit[i]);
-    // }
-    // if (global_centrePostions.size()<modelThresh)
-    // {
-    //     // 清除全局连续性判断变量列表
-    //     circles_.clear();
-    //     vecs_direction.clear();
-    //     vecs_norm.clear();
-    //     transforms_curToInit.clear();
-    //     return false;
-    // }
 }
 
 void ModelNode::calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const Eigen::Vector4d param, 
@@ -314,7 +293,10 @@ void ModelNode::calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const 
     from2dTo3dPlane(Eigen::Vector2d((double)line[2],(double)line[3]), endPoint2, param);
     Eigen::Vector3d lineDirInCur = (endPoint2-endPoint1).normalized();
     Eigen::Vector3d lineDirInInit = m_transform_curToInit.block(0,0,3,3) * lineDirInCur;
+
+    // 调试代码
     std::cout << lineDirInInit.transpose() << std::endl;
+    
     if (std::abs(lineDirInInit.dot(Eigen::Vector3d(0,-1,0))) < std::cos(45))
     {
         verticalVec = lineDirInInit.cross(Eigen::Vector3d(0,-1,0).cross(lineDirInInit));
@@ -394,7 +376,11 @@ bool ModelNode::Model()
     {
         return false;
     }
-
+    // 调试代码
+    global_centrePostions.clear();
+    global_vecs_direction.clear();
+    global_vecs_norm.clear();
+    return false;
     // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
     ransacModelParam();
     return true;
@@ -434,14 +420,14 @@ void ModelNode::ransacModelParam()
         }
         problem_dirVec.AddResidualBlock(
             new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
-                new normVecResidual(global_vecs_direction[j].x(), global_vecs_direction[j].y(), global_vecs_direction[j].z())
+                new normVecResidual(global_vecs_direction[j].x(), global_vecs_direction[j].y(),global_vecs_direction[j].z())
             ),
             NULL,
             &a_dirVec,&b_dirVec
         );
         problem_normVec.AddResidualBlock(
             new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
-                new normVecResidual(global_vecs_norm[j].x(), global_vecs_norm[j].y(), global_vecs_norm[j].z())
+                new normVecResidual(global_vecs_norm[j].x(), global_vecs_norm[j].y(),global_vecs_norm[j].z())
             ),
             NULL,
             &a_normVec,&b_normVec
@@ -510,30 +496,6 @@ int ModelNode::calRansacIterNum()
   return iterNum;
 }
 
-void ModelNode::pushGlobalDirectionVec(const Eigen::Vector3d vec_direction,
-                                       const Eigen::Vector3d vec_norm,
-                                       const Eigen::Matrix4d transform_curToInit)
-{
-    Eigen::Vector3d vec_direction_init = (transform_curToInit.block(0,0,3,3) * vec_direction).normalized();
-    if (vec_direction_init.dot(Eigen::Vector3d(0,-1,0)) > std::cos(CV_PI/4))
-    {
-        global_vecs_direction.push_back(vec_direction_init);
-    }
-    if (vec_direction_init.dot(Eigen::Vector3d(0,1,0)) > std::cos(CV_PI/4))
-    {
-        global_vecs_direction.push_back(-vec_direction_init);
-    }
-    if (vec_direction_init.dot(Eigen::Vector3d(-1,0,0)) > std::cos(CV_PI/4))
-    {
-        global_vecs_direction.push_back(vec_norm.cross(vec_direction_init).normalized());
-    }
-    if (vec_direction_init.dot(Eigen::Vector3d(1,0,0)) > std::cos(CV_PI/4))
-    {
-        global_vecs_direction.push_back(vec_direction_init.cross(vec_norm).normalized());
-    }
-    return ;
-}
-
 void ModelNode::from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3d &outputPoint, Eigen::Vector4d paramPlane)
 {
     double a=paramPlane[0];
@@ -548,8 +510,9 @@ void ModelNode::from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3
 
 bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv::Mat &img_erode)
 {
-    cv::Mat tempImg_erode;
-    cv::erode(mask, img_erode, structure_erode2);
+    cv::Mat temp_imgErode;
+    cv::erode(mask, temp_imgErode, structure_erode2);
+    cv::threshold(temp_imgErode,img_erode,150,255,cv::THRESH_BINARY);
     // 点云变换坐标系至当前帧
     pcl::PointCloud<pcl::PointXYZ> PointCloud_curFrame;
     pcl::transformPointCloud(m_pointCloud, PointCloud_curFrame, m_transform_initToCur);
@@ -564,8 +527,15 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
     {
         Eigen::Vector3f tempPixelPoint = m_projectMatrix * point.getVector3fMap();
         cv::Point2f pixelPoint(tempPixelPoint[0]/tempPixelPoint[2], tempPixelPoint[1]/tempPixelPoint[2]);
+        // TODO: 
         // 特征点掩码判断    
-        if (img_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255) continue; 
+        if (img_erode.at<uchar>((int)pixelPoint.x, (int)pixelPoint.y) < 200) 
+        {
+            std::cout << "img_erode.channels() : " << img_erode.channels() << std::endl;
+            std::cout <<"img_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y): " <<img_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) <<std::endl;
+            continue;            
+        }
+ 
         
         // 调试代码3
         cv::drawMarker(temp_img,cv::Point((int)pixelPoint.x,(int)pixelPoint.y), cv::Scalar(0,255,0),2, 5, 1);
