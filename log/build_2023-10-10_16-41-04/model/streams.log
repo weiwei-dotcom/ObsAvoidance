@@ -1,0 +1,188 @@
+[0.096s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16
+[0.114s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.128s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.232s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.253s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.255s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.333s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.364s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.364s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.454s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[0.605s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[0.621s] -- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)
+[0.735s] -- Found octomap_msgs: 2.0.0 (/opt/ros/foxy/share/octomap_msgs/cmake)
+[0.785s] -- Eigen found (include: /usr/include/eigen3, version: 3.3.7)
+[0.839s] -- The imported target "vtkParseOGLExt" references the file
+[0.839s]    "/usr/bin/vtkParseOGLExt-7.1"
+[0.839s] but this file does not exist.  Possible reasons include:
+[0.839s] * The file was deleted, renamed, or moved to another location.
+[0.839s] * An install or uninstall procedure did not complete successfully.
+[0.839s] * The installation package was faulty and contained
+[0.839s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.839s] but not all the files it references.
+[0.839s] 
+[0.839s] -- The imported target "vtkRenderingPythonTkWidgets" references the file
+[0.839s]    "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"
+[0.839s] but this file does not exist.  Possible reasons include:
+[0.839s] * The file was deleted, renamed, or moved to another location.
+[0.839s] * An install or uninstall procedure did not complete successfully.
+[0.840s] * The installation package was faulty and contained
+[0.840s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.840s] but not all the files it references.
+[0.840s] 
+[0.840s] -- The imported target "vtk" references the file
+[0.840s]    "/usr/bin/vtk"
+[0.840s] but this file does not exist.  Possible reasons include:
+[0.840s] * The file was deleted, renamed, or moved to another location.
+[0.840s] * An install or uninstall procedure did not complete successfully.
+[0.840s] * The installation package was faulty and contained
+[0.840s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.840s] but not all the files it references.
+[0.840s] 
+[0.840s] -- The imported target "pvtk" references the file
+[0.840s]    "/usr/bin/pvtk"
+[0.840s] but this file does not exist.  Possible reasons include:
+[0.840s] * The file was deleted, renamed, or moved to another location.
+[0.840s] * An install or uninstall procedure did not complete successfully.
+[0.840s] * The installation package was faulty and contained
+[0.840s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.840s] but not all the files it references.
+[0.840s] 
+[0.853s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[0.857s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[0.857s] ** WARNING ** io features related to pcap will be disabled
+[0.857s] ** WARNING ** io features related to png will be disabled
+[0.865s] ** WARNING ** io features related to libusb-1.0 will be disabled
+[0.869s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[0.872s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[0.880s] -- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)
+[0.884s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[0.891s] -- looking for PCL_COMMON
+[0.892s] -- looking for PCL_KDTREE
+[0.892s] -- looking for PCL_OCTREE
+[0.892s] -- looking for PCL_SEARCH
+[0.893s] -- looking for PCL_SAMPLE_CONSENSUS
+[0.893s] -- looking for PCL_FILTERS
+[0.893s] -- looking for PCL_2D
+[0.894s] -- looking for PCL_GEOMETRY
+[0.894s] -- looking for PCL_IO
+[0.894s] -- looking for PCL_FEATURES
+[0.895s] -- looking for PCL_ML
+[0.895s] -- looking for PCL_SEGMENTATION
+[0.895s] -- looking for PCL_VISUALIZATION
+[0.896s] -- looking for PCL_SURFACE
+[0.896s] -- looking for PCL_REGISTRATION
+[0.896s] -- looking for PCL_KEYPOINTS
+[0.897s] -- looking for PCL_TRACKING
+[0.897s] -- looking for PCL_RECOGNITION
+[0.898s] -- looking for PCL_STEREO
+[0.898s] -- looking for PCL_APPS
+[0.899s] -- looking for PCL_IN_HAND_SCANNER
+[0.899s] -- looking for PCL_POINT_CLOUD_EDITOR
+[0.899s] -- looking for PCL_OUTOFCORE
+[0.899s] -- looking for PCL_PEOPLE
+[0.970s] -- Found AMD headers in: /usr/include/suitesparse
+[0.970s] -- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so
+[0.970s] -- Found CAMD headers in: /usr/include/suitesparse
+[0.970s] -- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so
+[0.970s] -- Found CCOLAMD headers in: /usr/include/suitesparse
+[0.970s] -- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so
+[0.970s] -- Found CHOLMOD headers in: /usr/include/suitesparse
+[0.970s] -- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so
+[0.970s] -- Found COLAMD headers in: /usr/include/suitesparse
+[0.970s] -- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so
+[0.970s] -- Found SPQR headers in: /usr/include/suitesparse
+[0.970s] -- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so
+[0.971s] -- Found Config headers in: /usr/include/suitesparse
+[0.971s] -- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+[0.971s] -- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.
+[0.971s] -- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+[0.973s] -- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) 
+[0.976s] -- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake
+[0.976s] -- Found required Ceres dependency: glog
+[0.977s] -- Found required Ceres dependency: gflags
+[0.978s] -- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]
+[0.978s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.051s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.051s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.051s] -- Configured cppcheck include dirs: 
+[1.051s] -- Configured cppcheck exclude dirs and/or files: 
+[1.052s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.052s] -- Configured cpplint exclude dirs and/or files: 
+[1.052s] -- Added test 'lint_cmake' to check CMake code style
+[1.052s] -- Added test 'uncrustify' to check C / C++ code style
+[1.052s] -- Configured uncrustify additional arguments: 
+[1.052s] -- Added test 'xmllint' to check XML markup files
+[1.054s] -- Configuring done
+[1.096s] -- Generating done
+[1.097s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/model
+[1.124s] [35m[1mScanning dependencies of target model[0m
+[1.175s] [ 33%] [32mBuilding CXX object CMakeFiles/model.dir/src/main.cpp.o[0m
+[1.176s] [ 66%] [32mBuilding CXX object CMakeFiles/model.dir/src/model.cpp.o[0m
+[6.614s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::selectCircle(cv::Vec3f&, std::vector<cv::Vec<float, 3> >, cv::Mat&)[m[K’:
+[6.614s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:202:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[6.614s]   202 |     for (int i = 0;[01;35m[Ki<temp_circles.size()[m[K;i++)
+[6.614s]       |                    [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[6.614s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:215:45:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+[6.614s]   215 |             if ([01;35m[Kmask.at<bool>(pointInCircle)==255[m[K||mask.at<bool>(pointOutCircle)!=255)
+[6.614s]       |                 [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[6.614s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:215:81:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[6.614s]   215 |             if (mask.at<bool>(pointInCircle)==255||[01;35m[Kmask.at<bool>(pointOutCircle)!=255[m[K)
+[6.614s]       |                                                    [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[6.617s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::selectLine(cv::Mat, std::vector<cv::Vec<int, 4> >, cv::Vec4i&, cv::Vec3f)[m[K’:
+[6.617s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:244:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<int, 4> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[6.617s]   244 |     for (int i=0;[01;35m[Ki<tempLines.size()[m[K;i++)
+[6.617s]       |                  [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[6.618s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:269:42:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+[6.618s]   269 |         if ([01;35m[Kimg_erode.at<bool>(endPoint1)==255[m[K || img_erode.at<bool>(endPoint2)==255 || img_erode.at<bool>(midPoint)==255)
+[6.618s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[6.618s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:269:80:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+[6.618s]   269 |         if (img_erode.at<bool>(endPoint1)==255 || [01;35m[Kimg_erode.at<bool>(endPoint2)==255[m[K || img_erode.at<bool>(midPoint)==255)
+[6.618s]       |                                                   [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[6.618s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:269:117:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+[6.618s]   269 |         if (img_erode.at<bool>(endPoint1)==255 || img_erode.at<bool>(endPoint2)==255 || [01;35m[Kimg_erode.at<bool>(midPoint)==255[m[K)
+[6.618s]       |                                                                                         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[6.618s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:273:44:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[6.618s]   273 |         if ([01;35m[Kimg_erode.at<bool>(flag_point1)!=255[m[K || img_erode.at<bool>(flag_point2)!=255)
+[6.618s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[6.618s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:273:84:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[6.618s]   273 |         if (img_erode.at<bool>(flag_point1)!=255 || [01;35m[Kimg_erode.at<bool>(flag_point2)!=255[m[K)
+[6.618s]       |                                                     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[6.679s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::Model()[m[K’:
+[6.679s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:345:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[6.679s]   345 |     for (int i =0;[01;35m[Ki<temp_circles.size()[m[K;i++)
+[6.679s]       |                   [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[6.680s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:393:38:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[6.680s]   393 |     if ([01;35m[Kglobal_centrePostions.size() < modelThresh[m[K)
+[6.680s]       |         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~[m[K
+[6.688s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::ransacModelParam()[m[K’:
+[6.688s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:465:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[6.688s]   465 |     for(int n=0;[01;35m[Kn<global_vecs_direction.size()[m[K;n++) {
+[6.688s]       |                 [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[6.718s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::detectPoseCorrect(Eigen::Vector4d&, cv::Mat, cv::Mat&)[m[K’:
+[6.719s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:568:70:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[6.719s]   568 |         if ([01;35m[Kimg_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255[m[K) continue;
+[6.719s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[16.717s] [100%] [32m[1mLinking CXX executable model[0m
+[18.500s] [100%] Built target model
+[18.509s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16
+[18.543s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/model
+[18.550s] -- Install configuration: ""
+[18.550s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/model/model
+[18.557s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/model/model" to ""
+[18.557s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/ament_index/resource_index/package_run_dependencies/model
+[18.557s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/ament_index/resource_index/parent_prefix_path/model
+[18.557s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/ament_prefix_path.sh
+[18.557s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/ament_prefix_path.dsv
+[18.558s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/path.sh
+[18.558s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/path.dsv
+[18.558s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.bash
+[18.558s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.sh
+[18.558s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.zsh
+[18.558s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.dsv
+[18.558s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.dsv
+[18.558s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/ament_index/resource_index/packages/model
+[18.558s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/cmake/modelConfig.cmake
+[18.558s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/cmake/modelConfig-version.cmake
+[18.558s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.xml
+[18.559s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/model

@@ -535,7 +535,7 @@ public:
         seg.setModelType(pcl::SACMODEL_PLANE);
         seg.setMethodType(pcl::SAC_RANSAC);
         seg.setMaxIterations(100);
-        seg.setDistanceThreshold(0.01);
+        seg.setDistanceThreshold(3);
         // 从点云中分割最有可能的平面
         seg.setInputCloud(pointCloud_Ptr);
         pcl::ModelCoefficients coefficient;
@@ -707,6 +707,11 @@ public:
                 }
             }
             flag_optimized = true; 
+            RCLCPP_INFO(this->get_logger(), "--------------------------------------------------");
+            RCLCPP_INFO(this->get_logger(), "--------------------------------------------------");
+            RCLCPP_INFO(this->get_logger(), "Parameter : %f, %f, %f", standardParam(0),standardParam(1),standardParam(2));
+            RCLCPP_INFO(this->get_logger(), "--------------------------------------------------");
+            RCLCPP_INFO(this->get_logger(), "--------------------------------------------------");
             std::cout<< "A:" << standardParam(0) << " B:" << standardParam(1) << " C:"<<standardParam(2)<<std::endl;
             paramList.clear();
         }

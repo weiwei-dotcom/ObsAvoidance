@@ -1,0 +1,71 @@
+[0.113s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16
+[0.155s] [35m[1mScanning dependencies of target model[0m
+[0.205s] [ 50%] [32mBuilding CXX object CMakeFiles/model.dir/src/main.cpp.o[0m
+[5.705s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::getBlueContour()[m[K’:
+[5.705s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:364:75:[m[K [01;35m[Kwarning: [m[Kthe address of ‘[01m[Kint close(int)[m[K’ will never be NULL [[01;35m[K-Waddress[m[K]
+[5.705s]   364 |                 double length = cv::arcLength(temp_contours_blue[i], close[01;35m[K)[m[K;
+[5.705s]       |                                                                           [01;35m[K^[m[K
+[5.715s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::invProjAndSel()[m[K’:
+[5.715s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:513:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<int>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.715s]   513 |         for(int i=0; [01;35m[Ki<indexPointCloudBlue.size()[m[K;i++)
+[5.715s]       |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.715s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:517:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<int>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.715s]   517 |         for(int i=0; [01;35m[Ki<indexPointCloudGreen.size()[m[K;i++)
+[5.715s]       |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.715s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:521:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<int>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.715s]   521 |         for(int i=0; [01;35m[Ki<indexPointCloudRed.size()[m[K;i++)
+[5.715s]       |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.743s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::updateObstacle(std::vector<pcl::PointCloud<pcl::PointXYZ> >&, pcl::PointCloud<pcl::PointXYZ>&)[m[K’:
+[5.743s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:643:33:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<pcl::PointCloud<pcl::PointXYZ> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[5.743s]   643 |         if ([01;35m[KobstacleList.size() > maxLengthPointCloudList[m[K) {
+[5.743s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.745s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::optimizeParam(int, std::vector<Eigen::Matrix<double, 4, 1> >&, Eigen::Vector3d&, bool&, int)[m[K’:
+[5.745s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:672:30:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<Eigen::Matrix<double, 4, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[5.745s]   672 |         if ([01;35m[KparamList.size() == threshToOpt[m[K) {
+[5.745s]       |             [01;35m[K~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~[m[K
+[5.752s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:696:30:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 4, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.752s]   696 |                 for(int n=0;[01;35m[Kn<paramList.size()[m[K;n++) {
+[5.752s]       |                             [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[5.754s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::octoTreeCurPub()[m[K’:
+[5.754s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:719:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<pcl::PointCloud<pcl::PointXYZ> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.754s]   719 |         for (int i=0;[01;35m[Ki<obstacleBlueList.size()[m[K;i++) {
+[5.754s]       |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.754s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:723:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<pcl::PointCloud<pcl::PointXYZ> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.754s]   723 |         for (int i=0;[01;35m[Ki<obstacleGreenList.size()[m[K;i++) {
+[5.754s]       |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.754s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:727:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<pcl::PointCloud<pcl::PointXYZ> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.754s]   727 |         for (int i=0;[01;35m[Ki<obstacleRedList.size()[m[K;i++) {
+[5.754s]       |                      [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.760s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::Model()[m[K’:
+[5.760s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:767:46:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::size_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[5.760s]   767 |         if ([01;35m[KpointCloudInCamFrame_blue.size() > minNumBlueKeyPoint[m[K) {
+[5.760s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~[m[K
+[5.760s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:774:46:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::size_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[5.760s]   774 |         if([01;35m[KpointCloudInCamFrame_green.size() > minNumGreenKeyPoint[m[K){
+[5.760s]       |            [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+[5.760s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:780:45:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::size_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[5.760s]   780 |         if ([01;35m[KpointCloudInCamFrame_red.size() > minNumRedKeyPoint[m[K){
+[5.760s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~[m[K
+[15.636s] [100%] [32m[1mLinking CXX executable model[0m
+[17.384s] [100%] Built target model
+[17.394s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16
+[17.418s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/model
+[17.423s] -- Install configuration: ""
+[17.423s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/model/model
+[17.431s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/model/model" to ""
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/ament_index/resource_index/package_run_dependencies/model
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/ament_index/resource_index/parent_prefix_path/model
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/ament_prefix_path.sh
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/ament_prefix_path.dsv
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/path.sh
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/environment/path.dsv
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.bash
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.sh
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.zsh
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/local_setup.dsv
+[17.431s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.dsv
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/ament_index/resource_index/packages/model
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/cmake/modelConfig.cmake
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/cmake/modelConfig-version.cmake
+[17.431s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.xml
+[17.432s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/model

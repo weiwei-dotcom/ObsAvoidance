@@ -1,0 +1,230 @@
+[0.000000] (-) TimerEvent: {}
+[0.000728] (-) JobUnselected: {'identifier': 'interface'}
+[0.000871] (-) JobUnselected: {'identifier': 'media'}
+[0.000930] (-) JobUnselected: {'identifier': 'orbslam'}
+[0.000951] (model) JobQueued: {'identifier': 'model', 'dependencies': OrderedDict([('interface', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface')])}
+[0.000973] (model) JobStarted: {'identifier': 'model'}
+[0.100113] (-) TimerEvent: {}
+[0.100382] (model) JobProgress: {'identifier': 'model', 'progress': 'cmake'}
+[0.101027] (model) JobProgress: {'identifier': 'model', 'progress': 'build'}
+[0.101660] (model) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/weiwei/Desktop/project/ObsAvoidance/build/model', '--', '-j16', '-l16'], 'cwd': '/home/weiwei/Desktop/project/ObsAvoidance/build/model', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en_US:en'), ('USER', 'weiwei'), ('LC_TIME', 'zh_CN.UTF-8'), ('SSH_AGENT_PID', '1608'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('QT4_IM_MODULE', 'fcitx'), ('HOME', '/home/weiwei'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.82.3'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('MANAGERPID', '1401'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3068'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install'), ('ROS_DISTRO', 'foxy'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'weiwei'), ('JOURNAL_STREAM', '8:39640'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'weiwei'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/weiwei/.local/bin:/opt/ros/foxy/bin:/home/weiwei/Desktop/thirdParty/anaconda3/condabin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/hello-world:@/tmp/.ICE-unix/1654,unix/hello-world:/tmp/.ICE-unix/1654'), ('INVOCATION_ID', '69078933cd4e4d048b2254f88e100ce3'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-bbf023cb46.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('CLASSPATH', '.:/home/weiwei/Desktop/application/jdk1.8.0_381/lib:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/lib'), ('QT_IM_MODULE', 'fcitx'), ('JAVA_HOME', '/home/weiwei/Desktop/application/jdk1.8.0_381'), ('PWD', '/home/weiwei/Desktop/project/ObsAvoidance/build/model'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'fcitx'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy')]), 'shell': False}
+[0.141932] (model) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target model\x1b[0m\n'}
+[0.192973] (model) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/model.dir/src/main.cpp.o\x1b[0m\n'}
+[0.200274] (-) TimerEvent: {}
+[0.300624] (-) TimerEvent: {}
+[0.400893] (-) TimerEvent: {}
+[0.501260] (-) TimerEvent: {}
+[0.601585] (-) TimerEvent: {}
+[0.701926] (-) TimerEvent: {}
+[0.802246] (-) TimerEvent: {}
+[0.902502] (-) TimerEvent: {}
+[1.002791] (-) TimerEvent: {}
+[1.103153] (-) TimerEvent: {}
+[1.203476] (-) TimerEvent: {}
+[1.303796] (-) TimerEvent: {}
+[1.404087] (-) TimerEvent: {}
+[1.504425] (-) TimerEvent: {}
+[1.604684] (-) TimerEvent: {}
+[1.705067] (-) TimerEvent: {}
+[1.805453] (-) TimerEvent: {}
+[1.905711] (-) TimerEvent: {}
+[2.005968] (-) TimerEvent: {}
+[2.106320] (-) TimerEvent: {}
+[2.206666] (-) TimerEvent: {}
+[2.306960] (-) TimerEvent: {}
+[2.407294] (-) TimerEvent: {}
+[2.507554] (-) TimerEvent: {}
+[2.607896] (-) TimerEvent: {}
+[2.708178] (-) TimerEvent: {}
+[2.808468] (-) TimerEvent: {}
+[2.908835] (-) TimerEvent: {}
+[3.009230] (-) TimerEvent: {}
+[3.109475] (-) TimerEvent: {}
+[3.209720] (-) TimerEvent: {}
+[3.309988] (-) TimerEvent: {}
+[3.410306] (-) TimerEvent: {}
+[3.510630] (-) TimerEvent: {}
+[3.611095] (-) TimerEvent: {}
+[3.711450] (-) TimerEvent: {}
+[3.811730] (-) TimerEvent: {}
+[3.912087] (-) TimerEvent: {}
+[4.012452] (-) TimerEvent: {}
+[4.112773] (-) TimerEvent: {}
+[4.213054] (-) TimerEvent: {}
+[4.313365] (-) TimerEvent: {}
+[4.413649] (-) TimerEvent: {}
+[4.513951] (-) TimerEvent: {}
+[4.614287] (-) TimerEvent: {}
+[4.714644] (-) TimerEvent: {}
+[4.814945] (-) TimerEvent: {}
+[4.915310] (-) TimerEvent: {}
+[5.015639] (-) TimerEvent: {}
+[5.115971] (-) TimerEvent: {}
+[5.216286] (-) TimerEvent: {}
+[5.316615] (-) TimerEvent: {}
+[5.416933] (-) TimerEvent: {}
+[5.517248] (-) TimerEvent: {}
+[5.617568] (-) TimerEvent: {}
+[5.717899] (-) TimerEvent: {}
+[5.781193] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid ModelNode::getBlueContour()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.781363] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:364:75:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kthe address of \xe2\x80\x98\x1b[01m\x1b[Kint close(int)\x1b[m\x1b[K\xe2\x80\x99 will never be NULL [\x1b[01;35m\x1b[K-Waddress\x1b[m\x1b[K]\n'}
+[5.781418] (model) StderrLine: {'line': b'  364 |                 double length = cv::arcLength(temp_contours_blue[i], close\x1b[01;35m\x1b[K)\x1b[m\x1b[K;\n'}
+[5.781469] (model) StderrLine: {'line': b'      |                                                                           \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[5.791044] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid ModelNode::invProjAndSel()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.791134] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:513:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<int>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.791178] (model) StderrLine: {'line': b'  513 |         for(int i=0; \x1b[01;35m\x1b[Ki<indexPointCloudBlue.size()\x1b[m\x1b[K;i++)\n'}
+[5.791213] (model) StderrLine: {'line': b'      |                      \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.791247] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:517:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<int>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.791282] (model) StderrLine: {'line': b'  517 |         for(int i=0; \x1b[01;35m\x1b[Ki<indexPointCloudGreen.size()\x1b[m\x1b[K;i++)\n'}
+[5.791317] (model) StderrLine: {'line': b'      |                      \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.791349] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:521:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<int>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.791383] (model) StderrLine: {'line': b'  521 |         for(int i=0; \x1b[01;35m\x1b[Ki<indexPointCloudRed.size()\x1b[m\x1b[K;i++)\n'}
+[5.791422] (model) StderrLine: {'line': b'      |                      \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.817215] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid ModelNode::updateObstacle(std::vector<pcl::PointCloud<pcl::PointXYZ> >&, pcl::PointCloud<pcl::PointXYZ>&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.817357] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:643:33:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<pcl::PointCloud<pcl::PointXYZ> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.817408] (model) StderrLine: {'line': b'  643 |         if (\x1b[01;35m\x1b[KobstacleList.size() > maxLengthPointCloudList\x1b[m\x1b[K) {\n'}
+[5.817448] (model) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.817965] (-) TimerEvent: {}
+[5.818619] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid ModelNode::optimizeParam(int, std::vector<Eigen::Matrix<double, 4, 1> >&, Eigen::Vector3d&, bool&, int)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.818692] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:672:30:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<Eigen::Matrix<double, 4, 1> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.818744] (model) StderrLine: {'line': b'  672 |         if (\x1b[01;35m\x1b[KparamList.size() == threshToOpt\x1b[m\x1b[K) {\n'}
+[5.818780] (model) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.825987] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:696:30:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<Eigen::Matrix<double, 4, 1> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.826137] (model) StderrLine: {'line': b'  696 |                 for(int n=0;\x1b[01;35m\x1b[Kn<paramList.size()\x1b[m\x1b[K;n++) {\n'}
+[5.826177] (model) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.827489] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid ModelNode::octoTreeCurPub()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.827568] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:719:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<pcl::PointCloud<pcl::PointXYZ> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.827610] (model) StderrLine: {'line': b'  719 |         for (int i=0;\x1b[01;35m\x1b[Ki<obstacleBlueList.size()\x1b[m\x1b[K;i++) {\n'}
+[5.827653] (model) StderrLine: {'line': b'      |                      \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.827830] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:723:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<pcl::PointCloud<pcl::PointXYZ> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.827907] (model) StderrLine: {'line': b'  723 |         for (int i=0;\x1b[01;35m\x1b[Ki<obstacleGreenList.size()\x1b[m\x1b[K;i++) {\n'}
+[5.827947] (model) StderrLine: {'line': b'      |                      \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.828014] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:727:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<pcl::PointCloud<pcl::PointXYZ> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.828054] (model) StderrLine: {'line': b'  727 |         for (int i=0;\x1b[01;35m\x1b[Ki<obstacleRedList.size()\x1b[m\x1b[K;i++) {\n'}
+[5.828089] (model) StderrLine: {'line': b'      |                      \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.834358] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid ModelNode::Model()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.834420] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:767:46:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kstd::size_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.834461] (model) StderrLine: {'line': b'  767 |         if (\x1b[01;35m\x1b[KpointCloudInCamFrame_blue.size() > minNumBlueKeyPoint\x1b[m\x1b[K) {\n'}
+[5.834495] (model) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.834530] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:774:46:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kstd::size_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.834567] (model) StderrLine: {'line': b'  774 |         if(\x1b[01;35m\x1b[KpointCloudInCamFrame_green.size() > minNumGreenKeyPoint\x1b[m\x1b[K){\n'}
+[5.834602] (model) StderrLine: {'line': b'      |            \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.834676] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:780:45:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kstd::size_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[5.834720] (model) StderrLine: {'line': b'  780 |         if (\x1b[01;35m\x1b[KpointCloudInCamFrame_red.size() > minNumRedKeyPoint\x1b[m\x1b[K){\n'}
+[5.834758] (model) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.918136] (-) TimerEvent: {}
+[6.018449] (-) TimerEvent: {}
+[6.118723] (-) TimerEvent: {}
+[6.219053] (-) TimerEvent: {}
+[6.319369] (-) TimerEvent: {}
+[6.419681] (-) TimerEvent: {}
+[6.519996] (-) TimerEvent: {}
+[6.620308] (-) TimerEvent: {}
+[6.720688] (-) TimerEvent: {}
+[6.821002] (-) TimerEvent: {}
+[6.921328] (-) TimerEvent: {}
+[7.021587] (-) TimerEvent: {}
+[7.121912] (-) TimerEvent: {}
+[7.222229] (-) TimerEvent: {}
+[7.322548] (-) TimerEvent: {}
+[7.422872] (-) TimerEvent: {}
+[7.523186] (-) TimerEvent: {}
+[7.623510] (-) TimerEvent: {}
+[7.723854] (-) TimerEvent: {}
+[7.824191] (-) TimerEvent: {}
+[7.924525] (-) TimerEvent: {}
+[8.024864] (-) TimerEvent: {}
+[8.125202] (-) TimerEvent: {}
+[8.225541] (-) TimerEvent: {}
+[8.325792] (-) TimerEvent: {}
+[8.426116] (-) TimerEvent: {}
+[8.526389] (-) TimerEvent: {}
+[8.626652] (-) TimerEvent: {}
+[8.726954] (-) TimerEvent: {}
+[8.827281] (-) TimerEvent: {}
+[8.927587] (-) TimerEvent: {}
+[9.027906] (-) TimerEvent: {}
+[9.128218] (-) TimerEvent: {}
+[9.228526] (-) TimerEvent: {}
+[9.328851] (-) TimerEvent: {}
+[9.429190] (-) TimerEvent: {}
+[9.529465] (-) TimerEvent: {}
+[9.629736] (-) TimerEvent: {}
+[9.729982] (-) TimerEvent: {}
+[9.830267] (-) TimerEvent: {}
+[9.930540] (-) TimerEvent: {}
+[10.030853] (-) TimerEvent: {}
+[10.131121] (-) TimerEvent: {}
+[10.231393] (-) TimerEvent: {}
+[10.331693] (-) TimerEvent: {}
+[10.431964] (-) TimerEvent: {}
+[10.532360] (-) TimerEvent: {}
+[10.632694] (-) TimerEvent: {}
+[10.733027] (-) TimerEvent: {}
+[10.750779] (model) StderrLine: {'line': b'/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kbool ModelNode::normVecResidual::operator()(const T*, const T*, const T*, T*) const [with T = ceres::Jet<double, 3>]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[10.750995] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/internal/variadic_evaluate.h:55:17:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, std::false_type, std::integer_sequence<int, Indices ...>) [with Functor = ModelNode::normVecResidual; T = ceres::Jet<double, 3>; int ...Indices = {0, 1, 2}; std::false_type = std::integral_constant<bool, false>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.751043] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/internal/variadic_evaluate.h:77:30:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, const void*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1, 1>; Functor = ModelNode::normVecResidual; T = ceres::Jet<double, 3>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.751106] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/internal/variadic_evaluate.h:106:45:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kbool ceres::internal::VariadicEvaluate(const Functor&, const T* const*, T*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1, 1>; Functor = ModelNode::normVecResidual; T = ceres::Jet<double, 3>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.751143] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/internal/autodiff.h:349:39:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kbool ceres::internal::AutoDifferentiate(const Functor&, const T* const*, int, T*, T**) [with int kNumResiduals = 1; ParameterDims = ceres::internal::ParameterDims<false, 1, 1, 1>; Functor = ModelNode::normVecResidual; T = double]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.751179] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/autodiff_cost_function.h:211:69:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kbool ceres::AutoDiffCostFunction<CostFunctor, kNumResiduals, Ns>::Evaluate(const double* const*, double*, double**) const [with CostFunctor = ModelNode::normVecResidual; int kNumResiduals = 1; int ...Ns = {1, 1, 1}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.751221] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/autodiff_cost_function.h:201:8:\x1b[m\x1b[K   required from here\n'}
+[10.751255] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:36:23:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno match for \xe2\x80\x98\x1b[01m\x1b[Koperator-\x1b[m\x1b[K\xe2\x80\x99 (operand types are \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kceres::Jet<double, 3>\x1b[m\x1b[K\xe2\x80\x99)\n'}
+[10.751306] (model) StderrLine: {'line': b'   36 |         residual[0] =\x1b[01;31m\x1b[K1- x_*a[\x1b[m\x1b[K0]-y_*b[0]-z_*c[0]+ sqrt(pow(a[0],2)+pow(b[0],2)+pow(c[0],2))-1;\n'}
+[10.751341] (model) StderrLine: {'line': b'      |                      \x1b[01;31m\x1b[K~^~~~~~~\x1b[m\x1b[K\n'}
+[10.751380] (model) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/local/include/ceres/internal/autodiff.h:152\x1b[m\x1b[K,\n'}
+[10.751414] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/include/ceres/autodiff_cost_function.h:130\x1b[m\x1b[K,\n'}
+[10.751447] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/include/ceres/ceres.h:37\x1b[m\x1b[K,\n'}
+[10.751480] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:19\x1b[m\x1b[K:\n'}
+[10.751514] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/jet.h:307:18:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class T, int N> ceres::Jet<T, N> ceres::operator-(const ceres::Jet<T, N>&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.751547] (model) StderrLine: {'line': b'  307 | inline Jet<T, N> \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K-(const Jet<T, N>& f) {\n'}
+[10.751580] (model) StderrLine: {'line': b'      |                  \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[10.751614] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/jet.h:307:18:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[10.751647] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:36:23:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  mismatched types \xe2\x80\x98\x1b[01m\x1b[Kconst ceres::Jet<T, N>\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.751682] (model) StderrLine: {'line': b'   36 |         residual[0] =\x1b[01;36m\x1b[K1- x_*a[\x1b[m\x1b[K0]-y_*b[0]-z_*c[0]+ sqrt(pow(a[0],2)+pow(b[0],2)+pow(c[0],2))-1;\n'}
+[10.751717] (model) StderrLine: {'line': b'      |                      \x1b[01;36m\x1b[K~^~~~~~~\x1b[m\x1b[K\n'}
+[10.751751] (model) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/local/include/ceres/internal/autodiff.h:152\x1b[m\x1b[K,\n'}
+[10.751786] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/include/ceres/autodiff_cost_function.h:130\x1b[m\x1b[K,\n'}
+[10.751820] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/include/ceres/ceres.h:37\x1b[m\x1b[K,\n'}
+[10.751853] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:19\x1b[m\x1b[K:\n'}
+[10.751887] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/jet.h:331:18:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class T, int N> ceres::Jet<T, N> ceres::operator-(const ceres::Jet<T, N>&, const ceres::Jet<T, N>&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.751922] (model) StderrLine: {'line': b'  331 | inline Jet<T, N> \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K-(const Jet<T, N>& f, const Jet<T, N>& g) {\n'}
+[10.751955] (model) StderrLine: {'line': b'      |                  \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[10.751994] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/jet.h:331:18:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[10.752029] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:36:23:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  mismatched types \xe2\x80\x98\x1b[01m\x1b[Kconst ceres::Jet<T, N>\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.752062] (model) StderrLine: {'line': b'   36 |         residual[0] =\x1b[01;36m\x1b[K1- x_*a[\x1b[m\x1b[K0]-y_*b[0]-z_*c[0]+ sqrt(pow(a[0],2)+pow(b[0],2)+pow(c[0],2))-1;\n'}
+[10.752099] (model) StderrLine: {'line': b'      |                      \x1b[01;36m\x1b[K~^~~~~~~\x1b[m\x1b[K\n'}
+[10.752133] (model) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/local/include/ceres/internal/autodiff.h:152\x1b[m\x1b[K,\n'}
+[10.752168] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/include/ceres/autodiff_cost_function.h:130\x1b[m\x1b[K,\n'}
+[10.752203] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/include/ceres/ceres.h:37\x1b[m\x1b[K,\n'}
+[10.752236] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:19\x1b[m\x1b[K:\n'}
+[10.752269] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/jet.h:337:18:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class T, int N> ceres::Jet<T, N> ceres::operator-(const ceres::Jet<T, N>&, T)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.752303] (model) StderrLine: {'line': b'  337 | inline Jet<T, N> \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K-(const Jet<T, N>& f, T s) {\n'}
+[10.752336] (model) StderrLine: {'line': b'      |                  \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[10.752369] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/jet.h:337:18:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[10.752402] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:36:23:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  mismatched types \xe2\x80\x98\x1b[01m\x1b[Kconst ceres::Jet<T, N>\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.752434] (model) StderrLine: {'line': b'   36 |         residual[0] =\x1b[01;36m\x1b[K1- x_*a[\x1b[m\x1b[K0]-y_*b[0]-z_*c[0]+ sqrt(pow(a[0],2)+pow(b[0],2)+pow(c[0],2))-1;\n'}
+[10.752467] (model) StderrLine: {'line': b'      |                      \x1b[01;36m\x1b[K~^~~~~~~\x1b[m\x1b[K\n'}
+[10.752500] (model) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/local/include/ceres/internal/autodiff.h:152\x1b[m\x1b[K,\n'}
+[10.752533] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/include/ceres/autodiff_cost_function.h:130\x1b[m\x1b[K,\n'}
+[10.752566] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/local/include/ceres/ceres.h:37\x1b[m\x1b[K,\n'}
+[10.752599] (model) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:19\x1b[m\x1b[K:\n'}
+[10.752632] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/jet.h:343:18:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class T, int N> ceres::Jet<T, N> ceres::operator-(T, const ceres::Jet<T, N>&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[10.752666] (model) StderrLine: {'line': b'  343 | inline Jet<T, N> \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K-(T s, const Jet<T, N>& f) {\n'}
+[10.752700] (model) StderrLine: {'line': b'      |                  \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[10.752733] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/local/include/ceres/jet.h:343:18:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[10.752768] (model) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:36:23:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  deduced conflicting types for parameter \xe2\x80\x98\x1b[01m\x1b[KT\x1b[m\x1b[K\xe2\x80\x99 (\xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99)\n'}
+[10.752803] (model) StderrLine: {'line': b'   36 |         residual[0] =\x1b[01;36m\x1b[K1- x_*a[\x1b[m\x1b[K0]-y_*b[0]-z_*c[0]+ sqrt(pow(a[0],2)+pow(b[0],2)+pow(c[0],2))-1;\n'}
+[10.752836] (model) StderrLine: {'line': b'      |                      \x1b[01;36m\x1b[K~^~~~~~~\x1b[m\x1b[K\n'}
+[10.833203] (-) TimerEvent: {}
+[10.933569] (-) TimerEvent: {}
+[11.033832] (-) TimerEvent: {}
+[11.134078] (-) TimerEvent: {}
+[11.234384] (-) TimerEvent: {}
+[11.334697] (-) TimerEvent: {}
+[11.378372] (model) StderrLine: {'line': b'make[2]: *** [CMakeFiles/model.dir/build.make:63\xef\xbc\x9aCMakeFiles/model.dir/src/main.cpp.o] \xe9\x94\x99\xe8\xaf\xaf 1\n'}
+[11.378749] (model) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:105\xef\xbc\x9aCMakeFiles/model.dir/all] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[11.378968] (model) StderrLine: {'line': b'make: *** [Makefile:141\xef\xbc\x9aall] \xe9\x94\x99\xe8\xaf\xaf 2\n'}
+[11.380257] (model) CommandEnded: {'returncode': 2}
+[11.434888] (-) TimerEvent: {}
+[11.489061] (model) JobEnded: {'identifier': 'model', 'rc': 2}
+[11.499484] (-) EventReactorShutdown: {}
