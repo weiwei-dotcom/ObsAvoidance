@@ -46,8 +46,8 @@ private:
     struct normVecResidual {
         normVecResidual(double x, double y, double z)
                 : x_(x), y_(y), z_(z) {}
-        template <typename T> bool operator()(const T* const a, const T* const b,const T* const c, T* residual) const {
-            residual[0] = x_*a[0]+y_*b[0]+z_*c[0]-sqrt(pow(a[0],2)+pow(b[0],2)+pow(c[0],2));
+        template <typename T> bool operator()(const T* const a, const T* const b, T* residual) const {
+            residual[0] = 1.0-x_*a[0]-y_*b[0]-z_*sqrt(1.0-pow(a[0],2)-pow(b[0],2));
             return true;
         }
     private:
@@ -131,8 +131,13 @@ private:
     // 开始ransac准备建模的参数列表长度阈值；
     int modelThresh;
 
-    //
+    // 圆检测时圆周上的点向圆外以及圆内的像素值
+    float outCircleVal,inCircleVal;
+
     int canny_threshLow,canny_threshUp;
+
+    // 直线端点掩码判断时，线段端点的向内的平移量
+    double pixelNum_translate;
 
     // 消息的header
     std_msgs::msg::Header m_header_initFrame;
@@ -207,8 +212,9 @@ public:
     bool getMaxArea(cv::Mat &maxArea);
     bool testCircle(cv::Vec3f &temp_circle,const cv::Mat mask);
     void detectLine(const cv::Mat img_gaussian, std::vector<cv::Vec4i> &tempLines);
-    bool selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempLines, cv::Vec4i &line);
-    void calModelParam(const cv::Vec3f circle,const cv::Vec4i line);
+    bool selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempLines, cv::Vec4i &line,const cv::Vec3f circle);
+    void calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const Eigen::Vector4d param, 
+                Eigen::Vector3d &planeNormalVec,Eigen::Vector3d &verticalVec, Eigen::Vector3d &circleCentre);
 
     ~ModelNode();
 };

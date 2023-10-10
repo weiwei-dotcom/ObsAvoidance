@@ -18,6 +18,7 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
 
         return;        
     }
+    cv::waitKey(10);
     // Publish pointcloud of obstacle model;
     PubModel();        
     return;
@@ -93,6 +94,7 @@ ModelNode::ModelNode():Node("model")
     structure_erode2=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size2, erodeStructure_size2));
     blueLower = cv::Scalar(blueLower1, blueLower2, blueLower3);
     blueUpper = cv::Scalar(blueUpper1, blueUpper2, blueUpper3);
+    pixelNum_translate = fileRead["pixelNum_translate"];
 
     fx = fileRead["Camera.fx"];
     fy = fileRead["Camera.fy"];
@@ -127,6 +129,8 @@ ModelNode::ModelNode():Node("model")
     canny_threshLow = fileRead["canny_threshLow"];
     canny_threshUp=fileRead["canny_threshUp"];
     kernelBigClose = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(bigCloseStructure_size, bigCloseStructure_size));
+    outCircleVal=fileRead["outCircleVal"];
+    inCircleVal=fileRead["inCircleVal"];
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
@@ -183,10 +187,6 @@ bool ModelNode::getMaxArea(cv::Mat &maxArea)
     }
     return false;
 }
-bool ModelNode::testCircle(cv::Vec3f &circle,const cv::Mat mask)
-{
-
-}
 // 入口圆形筛选函数
 bool ModelNode::selectCircle(cv::Vec3f &circle, const std::vector<cv::Vec3f> temp_circles, cv::Mat &mask)
 {
@@ -201,9 +201,28 @@ bool ModelNode::selectCircle(cv::Vec3f &circle, const std::vector<cv::Vec3f> tem
     cv::morphologyEx(maxArea, mask, cv::MORPH_CLOSE, kernelBigClose);
     for (int i = 0;i<temp_circles.size();i++)
     {
-        bool flag_meetCondition = testCircle(circle,mask);
-        if (!flag_meetCondition)
+        bool flag_found = true;
+        for (int j=0;j<8;j++)
+        {
+            cv::Point pointInCircle((int)(temp_circles[i][0]+(temp_circles[i][2]-inCircleVal)*std::cos(CV_PI/4*j)), (int)(temp_circles[i][1]+(double)(temp_circles[i][2]-inCircleVal)*std::sin(CV_PI/4*j)));
+            cv::Point pointOutCircle((int)(temp_circles[i][0]+(temp_circles[i][2]+outCircleVal)*std::cos(CV_PI/4*j)), (int)(temp_circles[i][1]+(double)(temp_circles[i][2]+outCircleVal)*std::sin(CV_PI/4*j)));
+            if (pointInCircle.x < 0 || pointInCircle.x > 639 || pointInCircle.y > 479 || pointInCircle.y < 0 
+                || pointOutCircle.x < 0 || pointOutCircle.x > 639 || pointOutCircle.y > 479 || pointOutCircle.y < 0)
+            {
+                flag_found=false;
+                break;
+            }
+            if (mask.at<bool>(pointInCircle)==255||mask.at<bool>(pointOutCircle)!=255)
+            {
+                flag_found=false;
+                break;
+            }
+        }
+        if (!flag_found)
+        {
             continue;
+        }
+        circle=temp_circles[i];
         return true;
     }
     changeErrorType(Circle_detection_is_not_stable);
@@ -217,44 +236,47 @@ void ModelNode::detectLine(const cv::Mat img_gaussian, std::vector<cv::Vec4i> &t
     cv::threshold(img_edge,img_edge, 170, 255, cv::THRESH_BINARY);
     cv::HoughLinesP(img_edge,tempLines, 1,CV_PI/180, lineThresh, minLineLength,maxLineGap);    
 }
-bool ModelNode::selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempLines, cv::Vec4i &line)
+bool ModelNode::selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempLines, cv::Vec4i &line,const cv::Vec3f circle)
 {
     // 对线段列表按照长度从大到小排列
     std::sort(tempLines.begin(), tempLines.end(), GreaterLength());
-
-    // TODO: 利用腐蚀掩码判断：直线的两端点以及中点不在掩码区域并且向内平移之后回到掩码区域，则该直线为轮廓边缘直线
-    cv::Vec4i templine(0,0,0,0);
     // for 循环从列表中筛选直线
     for (int i=0;i<tempLines.size();i++)
     {
         int x1_i = tempLines[i][0],x2_i = tempLines[i][2],y1_i=tempLines[i][1],y2_i=tempLines[i][3];
-        // 利用mask_dilate掩码判断线段两端点是否都在最大连通域上
-        if (img_erode.at<bool>(x1_i, y1_i)!=255 || img_erode.at<bool>(x2_i, y2_i)!=255)
+        cv::Point endPoint1(x1_i, y1_i), endPoint2(x2_i,y2_i), midPoint((x1_i+x2_i)/2, (y1_i+y2_i)/2);
+        // 将z轴分量置为零计算三维向量，利用叉乘较方便的计算垂直直线指向二维圆心的方向向量
+        Eigen::Vector3d temp_dirLine1((double)(x2_i-x1_i),(double)(y2_i-y1_i),0),temp_dirEndToCentre((double)(circle[0]-x1_i), (double)(circle[1]-y1_i),0);
+        Eigen::Vector3d dirNorm=temp_dirLine1.cross(temp_dirEndToCentre).cross(temp_dirLine1).normalized();
+        cv::Point flag_point1(x1_i+(int)(pixelNum_translate*dirNorm[0]), y1_i+(int)(pixelNum_translate*dirNorm[1])),flag_point2(x2_i+(int)(pixelNum_translate*dirNorm[0]), y2_i+(int)(pixelNum_translate*dirNorm[1]));
+        if (flag_point1.x>639 || flag_point1.x<0 ||flag_point1.y>479 || flag_point1.y<0 
+            || flag_point2.x>639 || flag_point2.x<0 ||flag_point2.y>479 || flag_point2.y<0)
         {
-            // 调试代码3
-            changeErrorType(Line_mismatch_condition); 
-            cv::Mat img_copy;
-            m_img.copyTo(img_copy);
-            cv::drawMarker(img_copy, cv::Point(x1_i,y1_i), cv::Scalar(0,255,0));
-            cv::drawMarker(img_copy, cv::Point(x2_i,y2_i), cv::Scalar(0,255,0));
-            cv::imshow("img_copy_end_point", img_copy);
-            std::cout << "掩码判断线段两端点不是都在最大连通域上！！"<<std::endl;
             continue;
         }
-        // 利用线段两端点坐标计算中点坐标
-        double x1 = (double)tempLines[i][0],x2 = (double)tempLines[i][2],y1=(double)tempLines[i][1],y2=(double)tempLines[i][3];
-        Eigen::Vector2d temp_centerPoint((x1+x2)/(double)2, (y1+y2)/(double)2);
 
+        // 调试代码3
+        cv::Mat img_copy;
+        m_img.copyTo(img_copy);
+        cv::drawMarker(img_copy, endPoint1, cv::Scalar(0,255,0),2, 10, 2);
+        cv::drawMarker(img_copy, endPoint2, cv::Scalar(0,255,0),2, 10, 2);
+        cv::drawMarker(img_copy, midPoint, cv::Scalar(0,255,0),2, 10, 2);
+        cv::drawMarker(img_copy, flag_point1, cv::Scalar(0,0,255),2, 10, 2);
+        cv::drawMarker(img_copy, flag_point2, cv::Scalar(0,0,255),2, 10, 2);
+
+        cv::imshow("img_endPoint", img_copy);
+        
+        if (img_erode.at<bool>(endPoint1)==255 || img_erode.at<bool>(endPoint2)==255 || img_erode.at<bool>(midPoint)==255)
+        {
+            continue;
+        }
+        if (img_erode.at<bool>(flag_point1)!=255 || img_erode.at<bool>(flag_point2)!=255)
+        {
+            continue;
+        }
         // 将直线两端点以及圆心像素坐标投影到三维平面上
-        Eigen::Vector2d temp_endPoint2d_1(x1,y1),temp_endPoint2d_2(x2,y2);
-        Eigen::Vector3d temp_endPoint3d_1, temp_endPoint3d_2, temp_centrePoint3d;
-        from2dTo3dPlane(temp_endPoint2d_1, temp_endPoint3d_1, temp_param);
-        from2dTo3dPlane(temp_endPoint2d_2, temp_endPoint3d_2, temp_param);
-        from2dTo3dPlane(temp_centerPoint, temp_centrePoint3d, temp_param);
-        // 计算三维空间上圆心到直线的距离
-
-        Eigen::Vector3d tempDirectionVec_line = (temp_endPoint3d_2-temp_endPoint3d_1).normalized();
-        Eigen::Vector3d tempVec_endPoint1ToCentre = temp_centrePoint3d-temp_endPoint3d_1;
+        line = tempLines[i];
+        return true;
     }
     changeErrorType(Line_mismatch_condition);
     return false;
@@ -283,11 +305,28 @@ bool ModelNode::selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempL
     // }
 }
 
-void ModelNode::calModelParam(const cv::Vec3f circle,const cv::Vec4i line)
+void ModelNode::calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const Eigen::Vector4d param, 
+                Eigen::Vector3d &planeNormalVec,Eigen::Vector3d &verticalVec, Eigen::Vector3d &circleCentre)
 {
-
+    Eigen::Vector3d temp_circleCentre,endPoint1,endPoint2;
+    from2dTo3dPlane(Eigen::Vector2d((double)circle[0],(double)circle[1]), temp_circleCentre, param);
+    from2dTo3dPlane(Eigen::Vector2d((double)line[0],(double)line[1]), endPoint1, param);
+    from2dTo3dPlane(Eigen::Vector2d((double)line[2],(double)line[3]), endPoint2, param);
+    Eigen::Vector3d lineDirInCur = (endPoint2-endPoint1).normalized();
+    Eigen::Vector3d lineDirInInit = m_transform_curToInit.block(0,0,3,3) * lineDirInCur;
+    std::cout << lineDirInInit.transpose() << std::endl;
+    if (std::abs(lineDirInInit.dot(Eigen::Vector3d(0,-1,0))) < std::cos(45))
+    {
+        verticalVec = lineDirInInit.cross(Eigen::Vector3d(0,-1,0).cross(lineDirInInit));
+    }
+    else
+    {
+        verticalVec = lineDirInInit.dot(Eigen::Vector3d(0,-1,0)) > 0 ? lineDirInInit.normalized() : (-lineDirInInit.normalized());
+    }
+    planeNormalVec = m_transform_curToInit.block(0,0,3,3) * param.block(0,0,3,1);
+    Eigen::Vector4d tempCentreInCur(temp_circleCentre[0],temp_circleCentre[1],temp_circleCentre[2],1);
+    circleCentre = (m_transform_curToInit*tempCentreInCur).block(0,0,3,1);
     return;
-
 }
 // 障碍物建模主函数
 bool ModelNode::Model()
@@ -323,8 +362,7 @@ bool ModelNode::Model()
     if(!flag_poseCorrect) return false;
 
     // 从拟合得到的平面参数中得到当前相机坐标系下的平面法向量以及距离平面的距离值
-    Eigen::Vector3d vec_norm = param.block(0,0,3,1);
-    double distance = abs(param[3]);
+    double distance = std::abs(param[3]);
 
     // 当相机距离检测平面太近时，可能检测不到直线
     if (distance < distance_thresh) {
@@ -342,11 +380,16 @@ bool ModelNode::Model()
 
     // 选择直线
     cv::Vec4i line;
-    bool flag_findLine = selectLine(img_erode,tempLines,line);
+    bool flag_findLine = selectLine(img_erode,tempLines,line,circle);
     if (!flag_findLine) return false;
 
     // 计算三维全局参数;
-    calModelParam(circle, line);
+    Eigen::Vector3d planeNormalVec, verticalVec, circleCentre;
+    calModelParam(circle, line, param,planeNormalVec, verticalVec, circleCentre);
+    global_centrePostions.push_back(circleCentre);
+    global_vecs_direction.push_back(verticalVec);
+    global_vecs_norm.push_back(planeNormalVec);
+    successNum++;
     if (global_centrePostions.size() < modelThresh)
     {
         return false;
@@ -376,8 +419,8 @@ void ModelNode::ransacModelParam()
     Eigen::Vector3d result_centre;
     ceres::Problem problem_dirVec;
     ceres::Problem problem_normVec;
-    double a_dirVec=0,b_dirVec=0,c_dirVec=0;
-    double a_normVec=0,b_normVec=0,c_normVec=0;
+    double a_dirVec=0,b_dirVec=0,c_dirVec;
+    double a_normVec=0,b_normVec=0,c_normVec;
     for (int j=0;j<sample_length;j++)
     {
         tempSum_x += global_centrePostions[j].x();
@@ -390,18 +433,18 @@ void ModelNode::ransacModelParam()
             result_centre.z() = tempSum_z/sample_length;
         }
         problem_dirVec.AddResidualBlock(
-            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1,1>(
+            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
                 new normVecResidual(global_vecs_direction[j].x(), global_vecs_direction[j].y(), global_vecs_direction[j].z())
             ),
             NULL,
-            &a_dirVec,&b_dirVec,&c_dirVec
+            &a_dirVec,&b_dirVec
         );
         problem_normVec.AddResidualBlock(
-            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1,1>(
+            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
                 new normVecResidual(global_vecs_norm[j].x(), global_vecs_norm[j].y(), global_vecs_norm[j].z())
             ),
             NULL,
-            &a_normVec,&b_normVec,&c_normVec
+            &a_normVec,&b_normVec
         );
     }
     ceres::Solver::Options options;
@@ -413,8 +456,8 @@ void ModelNode::ransacModelParam()
     ceres::Solver::Summary summary_normVec;
     Solve(options, &problem_dirVec, &summary_dirVec);
     Solve(options, &problem_normVec, &summary_normVec);
-    // c_dirVec = sqrt(1-pow(a_dirVec,2)-pow(b_dirVec,2));
-    // c_normVec = sqrt(1-pow(a_normVec,2)-pow(b_normVec,2));
+    c_dirVec = sqrt(1-pow(a_dirVec,2)-pow(b_dirVec,2));
+    c_normVec = sqrt(1-pow(a_normVec,2)-pow(b_normVec,2));
     // 得到优化的变量以后使用该参数模型利用与样点参数之间的夹角余弦是否在夹角阈值范围内来筛选内点，并统计内点数量
     int tempNumInlier_dirVec=0;
     int tempNumInlier_normVec=0;
@@ -506,22 +549,23 @@ void ModelNode::from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3
 bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv::Mat &img_erode)
 {
     cv::Mat tempImg_erode;
-    cv::erode(mask, tempImg_erode, structure_erode2);
+    cv::erode(mask, img_erode, structure_erode2);
     // 点云变换坐标系至当前帧
     pcl::PointCloud<pcl::PointXYZ> PointCloud_curFrame;
     pcl::transformPointCloud(m_pointCloud, PointCloud_curFrame, m_transform_initToCur);
     // 逐个点云逆投影至像素平面进行筛选
     pcl::PointCloud<pcl::PointXYZ> finalPointCloud;
-
+    cv::imshow("img_erode", img_erode);
     // 调试代码3
     cv::Mat temp_img;
     m_img.copyTo(temp_img);
 
-    for (auto point:PointCloud_curFrame.points) {
+    for (auto point:PointCloud_curFrame.points) 
+    {
         Eigen::Vector3f tempPixelPoint = m_projectMatrix * point.getVector3fMap();
         cv::Point2f pixelPoint(tempPixelPoint[0]/tempPixelPoint[2], tempPixelPoint[1]/tempPixelPoint[2]);
         // 特征点掩码判断    
-        if (tempImg_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255) continue; 
+        if (img_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255) continue; 
         
         // 调试代码3
         cv::drawMarker(temp_img,cv::Point((int)pixelPoint.x,(int)pixelPoint.y), cv::Scalar(0,255,0),2, 5, 1);
@@ -531,7 +575,7 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
 
     cv::imshow("select keypoints", temp_img);
 
-  // 用筛选后的点云拟合平面
+    // 用筛选后的点云拟合平面
     if (finalPointCloud.points.size()<80) {
         changeErrorType(Point_cloud_is_little);
         return false;
@@ -541,36 +585,13 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
     // 将拟合平面后的法向量点乘当前帧坐标系z轴向量
     Eigen::Vector3d zAxis(0,0,1);
     double cosValue = param.block(0,0,3,1).dot(zAxis);
-  // 两向量余弦值判断
+    // 两向量余弦值判断
     if (abs(cosValue) < cosValueThresh_planeNormAndCameraZaxis) {
         changeErrorType(The_camera_is_not_straight_on_the_plane);
         RCLCPP_INFO(this->get_logger(), "cosValue: %f °", std::acos(cosValue)/CV_PI * 180);
         return false;    
     }
-    // // 调试代码2
-    // std::cout << "distance_plane: " << distance_plane << std::endl;
-    tempImg_erode.copyTo(img_erode);
     return true;
-}
-
-bool ModelNode::getMaxAreaContour(cv::Mat& img_bin, std::vector<cv::Point> &contour) {
-    cv::Mat labels, stats, centroids;
-    int num_labels = connectedComponentsWithStats(img_bin, labels, stats, centroids, 8, CV_16U);
-    std::vector<std::vector<cv::Point>> temp_contours;
-    std::vector<int> areas;
-    if (num_labels>1)
-    {
-        for (int i = 1; i < num_labels; i++) // 忽略背景标签0
-        {
-            areas.push_back(stats.at<int>(i, cv::CC_STAT_AREA));
-        }
-        int max_area_label = max_element(areas.begin(), areas.end()) - areas.begin() + 1;
-        img_bin = (labels == max_area_label);
-        cv::findContours((labels == max_area_label), temp_contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);            
-        contour = temp_contours[0];
-        return true;
-    }
-    return false;
 }
 
 void ModelNode::PubModel()
@@ -591,8 +612,8 @@ Eigen::Vector4d ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
     seg.setOptimizeCoefficients(true);
     seg.setModelType(pcl::SACMODEL_PLANE);
     seg.setMethodType(pcl::SAC_RANSAC);
-    seg.setMaxIterations(100);
-    seg.setDistanceThreshold(0.006);
+    seg.setMaxIterations(200);
+    seg.setDistanceThreshold(3);
     // 从点云中分割最有可能的平面
     seg.setInputCloud(pointCloud_Ptr);
     pcl::ModelCoefficients coefficient;

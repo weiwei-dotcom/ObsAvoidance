@@ -121,52 +121,75 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
     changeErrorType(Image_recieve_error);
     return;
   }
+  RCLCPP_INFO(this->get_logger(), "124");
   cv::Mat img_gray;
   cv::cvtColor(img, img_gray, CV_BGR2GRAY);
   cv::GaussianBlur(img_gray, img_gray, cv::Size(7, 7),2,2);
+  RCLCPP_INFO(this->get_logger(), "128");
+
   std::vector<cv::Vec3f> temp_circles;
+  RCLCPP_INFO(this->get_logger(), "131");
+
   cv::HoughCircles(img_gray, temp_circles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
+  RCLCPP_INFO(this->get_logger(), "134");
+
   if (temp_circles.size()>1) {
     changeErrorType(Circle_detection_is_not_stable);
     // 调试代码5
     return;    
   }
+  RCLCPP_INFO(this->get_logger(), "141");
+
   if (temp_circles.size()==0) {
     changeErrorType(Circle_detection_is_not_stable);
     // 调试代码5
     return;    
   }
+  RCLCPP_INFO(this->get_logger(), "148");
+
   float distance_center=0.0, difference_radius=0.0;
   if (circles_.size() != 0) 
   {
     distance_center = std::sqrt(std::pow(temp_circles[0][0]-circles_.back()[0], 2) + std::pow(temp_circles[0][1]-circles_.back()[1], 2));
     difference_radius=std::abs(temp_circles[0][2] - circles_.back()[2]);    
   }
+  RCLCPP_INFO(this->get_logger(), "156");
+
   if (distance_center > distance_center_thresh || difference_radius > difference_radius_thresh) {
     changeErrorType(Distance_of_circle_is_too_much);
     distance_.clear();
     circles_.clear();
     return;
   }
+  RCLCPP_INFO(this->get_logger(), "164");
+
   // 利用稀疏点云拟合平面获得slam尺度的平面距离，并判断当前平面是否足够正对相机
   double distance;
   bool flag_poseCorrect = detectPoseCorrect(img,slamMsg,distance,temp_circles[0]);
   if(!flag_poseCorrect) 
     return;
+  RCLCPP_INFO(this->get_logger(), "171");
+  
   circles_.push_back(temp_circles[0]);
   distance_.push_back(distance);
   // 判断检测圆形的数量是否达到每次输出的上限
   if (circles_.size() < circle_size_thresh) 
     return;
+  RCLCPP_INFO(this->get_logger(), "178");
+  
   for (int i=0;i<circles_.size();i++) {
     double scaleFact=(double)100.0 *  fx_ / ((double)circles_[i][2] * distance_[i]);
     scaleFactList_.push_back(scaleFact);
   }
+  RCLCPP_INFO(this->get_logger(), "184");
+
   circles_.clear();
   distance_.clear();
   changeErrorType(OK);
   if (scaleFactList_.size()<scaleFactList_size_thresh)
     return;
+  RCLCPP_INFO(this->get_logger(), "191");
+
   ransacScaleFact();
   flag_getScaleFact = true;
 }
@@ -282,7 +305,7 @@ Eigen::Vector4d mediaNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
     seg.setModelType(pcl::SACMODEL_PLANE);
     seg.setMethodType(pcl::SAC_RANSAC);
     seg.setMaxIterations(100);
-    seg.setDistanceThreshold(0.006);
+    seg.setDistanceThreshold(3);
     // 从点云中分割最有可能的平面
     seg.setInputCloud(pointCloud_Ptr);
     pcl::ModelCoefficients coefficient;

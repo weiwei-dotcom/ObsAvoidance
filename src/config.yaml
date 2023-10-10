@@ -121,6 +121,11 @@ model_erodeStructure_size1: 7
 model_erodeStructure_size2: 11
 # 用来判定边缘检测时直线是否为检测平面区域内的膨胀大小
 model_dilateStructure_size2: 20
+pixelNum_translate: 20
+
+# 圆检测时圆周上的点向圆外以及圆内的像素值
+outCircleVal: 20
+inCircleVal: 5
 
 # 尺度因子列表长度阈值
 scaleFactList_size_thresh: 160
