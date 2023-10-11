@@ -118,11 +118,6 @@ private:
     // 检测平面与相机之间的距离阈值
     double distance_thresh;
 
-    // 法向量参数的cos阈值
-    double cosValueTresh;
-
-    std::ofstream ofs;
-
     // 随机采样的长度
     int sample_length;
     // 单个样本好点概率

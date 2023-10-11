@@ -110,7 +110,6 @@ ModelNode::ModelNode():Node("model")
     m_projectMatrix << fx, 0, cx,
                         0, fy, cy,
                         0,  0,  1; 
-    cosValueTresh = fileRead["cosValueTresh"];
     minDist = fileRead["model_minDist"];
     dp = fileRead["model_dp"];
     cannyUpThresh = fileRead["model_cannyUpThresh"];
@@ -162,6 +161,7 @@ void ModelNode::changeErrorType(ERROR_TYPE newError)
     RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[(int)error_type].c_str());
   }
 }
+
 // hough圆形检测函数
 void ModelNode::houghCircleDetect(std::vector<cv::Vec3f> &outputCircles, cv::Mat &img_gaussian)
 {
@@ -172,6 +172,7 @@ void ModelNode::houghCircleDetect(std::vector<cv::Vec3f> &outputCircles, cv::Mat
     cv::GaussianBlur(img_gray, img_gaussian, cv::Size(7, 7),2,2);
     cv::HoughCircles(img_gaussian, outputCircles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
 }
+
 bool ModelNode::getMaxArea(cv::Mat &maxArea)
 {
     // 阈值分割    
@@ -416,11 +417,20 @@ bool ModelNode::Model()
         std::cout<< "global_vecs_norm[" << i<<"]: "<<global_vecs_norm[i].transpose()<< std::endl;
         std::cout<< "-----------------------------------------------------" << std::endl;
     }
+
     cv::waitKey(0);
     // 
     // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
     ransacModelParam();
     return true;
+
+    // 开始利用结构关系构建目标障碍物点云地图
+    buildFront();
+    buildBack();
+    buildSide();
+    buildStructure1();
+    buildStructure2();
+    
 }
 
 void ModelNode::ransacModelParam()
@@ -600,10 +610,11 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
         cv::Point pixelPoint((int)(tempPixelPoint[0]/tempPixelPoint[2]), (int)(tempPixelPoint[1]/tempPixelPoint[2]));
         // TODO: 
         // 特征点掩码判断    
-        if (img_erode.at<bool>(pixelPoint) == 0) 
+        if (pixelPoint.x>639 || pixelPoint.y>479 || pixelPoint.x<0||pixelPoint.y<0|| img_erode.at<bool>(pixelPoint) == 0) 
         {
             continue;            
         }
+
         // 调试代码3
         cv::drawMarker(temp_img,cv::Point(pixelPoint), cv::Scalar(0,255,0),2, 5, 1);
 
