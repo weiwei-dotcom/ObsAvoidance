@@ -201,16 +201,13 @@ public:
     void PubModel();
     void changeErrorType(ERROR_TYPE newError);
     bool detectPoseCorrect(Eigen::Vector4d &param,const cv::Mat mask,cv::Mat &img_erode);
-    bool getMaxAreaContour(cv::Mat &img_bin, std::vector<cv::Point> &contour);
     Eigen::Vector4d calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud);
     void from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3d &outputPoint, Eigen::Vector4d paramPlane);
-    void pushGlobalDirectionVec(const Eigen::Vector3d vec_direction, const Eigen::Vector3d vec_norm,const Eigen::Matrix4d transform_curToInit);
     void ransacModelParam();
     int calRansacIterNum();
     void houghCircleDetect(std::vector<cv::Vec3f> &outputCircles, cv::Mat &img_gaussian);
     bool selectCircle(cv::Vec3f &temp_circle, const std::vector<cv::Vec3f> temp_circles, cv::Mat &mask);
     bool getMaxArea(cv::Mat &maxArea);
-    bool testCircle(cv::Vec3f &temp_circle,const cv::Mat mask);
     void detectLine(const cv::Mat img_gaussian, std::vector<cv::Vec4i> &tempLines);
     bool selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempLines, cv::Vec4i &line,const cv::Vec3f circle);
     void calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const Eigen::Vector4d param, 

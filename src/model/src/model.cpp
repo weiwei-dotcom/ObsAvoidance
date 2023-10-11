@@ -324,9 +324,9 @@ bool ModelNode::Model()
 
     // 调试代码3
     cv::Mat img_circle;
+    m_img.copyTo(img_circle);
     for (int i =0;i<temp_circles.size();i++)
     {
-        m_img.copyTo(img_circle);
         cv::circle(img_circle, cv::Point(temp_circles[i][0], temp_circles[i][1]), temp_circles[i][2], cv::Scalar(0,255,0), 2);        
     }
     cv::imshow("init_circle_img", img_circle);
@@ -511,8 +511,8 @@ void ModelNode::from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3
 bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv::Mat &img_erode)
 {
     cv::Mat temp_imgErode;
-    cv::erode(mask, temp_imgErode, structure_erode2);
-    cv::threshold(temp_imgErode,img_erode,150,255,cv::THRESH_BINARY);
+    cv::erode(mask, img_erode, structure_erode2);
+    // cv::threshold(temp_imgErode,img_erode,150,255,cv::THRESH_BINARY);
     // 点云变换坐标系至当前帧
     pcl::PointCloud<pcl::PointXYZ> PointCloud_curFrame;
     pcl::transformPointCloud(m_pointCloud, PointCloud_curFrame, m_transform_initToCur);
@@ -526,19 +526,20 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
     for (auto point:PointCloud_curFrame.points) 
     {
         Eigen::Vector3f tempPixelPoint = m_projectMatrix * point.getVector3fMap();
-        cv::Point2f pixelPoint(tempPixelPoint[0]/tempPixelPoint[2], tempPixelPoint[1]/tempPixelPoint[2]);
+        cv::Point pixelPoint((int)(tempPixelPoint[0]/tempPixelPoint[2]), (int)(tempPixelPoint[1]/tempPixelPoint[2]));
         // TODO: 
         // 特征点掩码判断    
-        if (img_erode.at<uchar>((int)pixelPoint.x, (int)pixelPoint.y) < 200) 
+        if (img_erode.at<bool>(pixelPoint) == 0) 
         {
             std::cout << "img_erode.channels() : " << img_erode.channels() << std::endl;
-            std::cout <<"img_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y): " <<img_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) <<std::endl;
+            std::cout <<"img_erode.at<bool>(pixelPoint): " <<img_erode.at<bool>(pixelPoint) <<std::endl;
             continue;            
         }
- 
+
         
         // 调试代码3
-        cv::drawMarker(temp_img,cv::Point((int)pixelPoint.x,(int)pixelPoint.y), cv::Scalar(0,255,0),2, 5, 1);
+        cv::drawMarker(temp_img,cv::Point(pixelPoint), cv::Scalar(0,255,0),2, 5, 1);
+        std::cout <<"img_erode.at<bool>(pixelPoint): " <<img_erode.at<bool>(pixelPoint) <<std::endl;
 
         finalPointCloud.points.push_back(point);
     }
