@@ -1,0 +1,4 @@
+make[2]: *** [CMakeFiles/model.dir/build.make:63: CMakeFiles/model.dir/src/main.cpp.o] 中断
+make[2]: *** [CMakeFiles/model.dir/build.make:76: CMakeFiles/model.dir/src/model.cpp.o] 中断
+make[1]: *** [CMakeFiles/Makefile2:105: CMakeFiles/model.dir/all] 中断
+make: *** [Makefile:141: all] 中断

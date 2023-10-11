@@ -1,0 +1,81 @@
+[35m[1mScanning dependencies of target model[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/model.dir/src/main.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/model.dir/src/model.cpp.o[0m
+In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp:1[m[K:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:[m[K In member function ‘[01m[Kbool ModelNode::normVecResidual::operator()(const T*, const T*, const T*, T*) const[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:50:52:[m[K [01;31m[Kerror: [m[K‘[01m[Kz_c[m[K’ was not declared in this scope; did you mean ‘[01m[Kz_[m[K’?
+   50 |             residual[0] =std::acos(x_*a[0]+y_*b[0]+[01;31m[Kz_c[m[K[0])+(pow(a[0],2)+pow(b[0],2)+pow(b[0],2)-1.0);
+      |                                                    [01;31m[K^~~[m[K
+      |                                                    [32m[Kz_[m[K
+In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:1[m[K:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:[m[K In member function ‘[01m[Kbool ModelNode::normVecResidual::operator()(const T*, const T*, const T*, T*) const[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:50:52:[m[K [01;31m[Kerror: [m[K‘[01m[Kz_c[m[K’ was not declared in this scope; did you mean ‘[01m[Kz_[m[K’?
+   50 |             residual[0] =std::acos(x_*a[0]+y_*b[0]+[01;31m[Kz_c[m[K[0])+(pow(a[0],2)+pow(b[0],2)+pow(b[0],2)-1.0);
+      |                                                    [01;31m[K^~~[m[K
+      |                                                    [32m[Kz_[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::selectCircle(cv::Vec3f&, std::vector<cv::Vec<float, 3> >, cv::Mat&)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:220:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  220 |     for (int i = 0;[01;35m[Ki<temp_circles.size()[m[K;i++)
+      |                    [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:233:45:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+  233 |             if ([01;35m[Kmask.at<bool>(pointInCircle)==255[m[K||mask.at<bool>(pointOutCircle)!=255)
+      |                 [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:233:81:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+  233 |             if (mask.at<bool>(pointInCircle)==255||[01;35m[Kmask.at<bool>(pointOutCircle)!=255[m[K)
+      |                                                    [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::selectLine(cv::Mat, std::vector<cv::Vec<int, 4> >, cv::Vec4i&, cv::Vec3f)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:267:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<int, 4> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  267 |     for (int i=0;[01;35m[Ki<tempLines.size()[m[K;i++)
+      |                  [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:292:42:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+  292 |         if ([01;35m[Kimg_erode.at<bool>(endPoint1)==255[m[K || img_erode.at<bool>(endPoint2)==255 || img_erode.at<bool>(midPoint)==255)
+      |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:292:80:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+  292 |         if (img_erode.at<bool>(endPoint1)==255 || [01;35m[Kimg_erode.at<bool>(endPoint2)==255[m[K || img_erode.at<bool>(midPoint)==255)
+      |                                                   [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:292:117:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+  292 |         if (img_erode.at<bool>(endPoint1)==255 || img_erode.at<bool>(endPoint2)==255 || [01;35m[Kimg_erode.at<bool>(midPoint)==255[m[K)
+      |                                                                                         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:296:44:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+  296 |         if ([01;35m[Kimg_erode.at<bool>(flag_point1)!=255[m[K || img_erode.at<bool>(flag_point2)!=255)
+      |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:296:84:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+  296 |         if (img_erode.at<bool>(flag_point1)!=255 || [01;35m[Kimg_erode.at<bool>(flag_point2)!=255[m[K)
+      |                                                     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::Model()[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:358:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  358 |     for (int i =0;[01;35m[Ki<temp_circles.size()[m[K;i++)
+      |                   [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:405:38:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  405 |     if ([01;35m[Kglobal_centrePostions.size() < modelThresh[m[K)
+      |         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:411:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  411 |     for (int i=0;[01;35m[Ki<global_centrePostions.size()[m[K;i++)
+      |                  [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::ransacModelParam()[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:513:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  513 |         for(int n=0;[01;35m[Kn<global_vecs_direction.size()[m[K;n++) {
+      |                     [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/model.dir/build.make:63：CMakeFiles/model.dir/src/main.cpp.o] 错误 1
+make[2]: *** 正在等待未完成的任务....
+In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:1[m[K:
+/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp: In instantiation of ‘[01m[Kbool ModelNode::normVecResidual::operator()(const T*, const T*, const T*, T*) const [with T = double][m[K’:
+[01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:55:17:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, std::false_type, std::integer_sequence<int, Indices ...>) [with Functor = ModelNode::normVecResidual; T = double; int ...Indices = {0, 1, 2}; std::false_type = std::integral_constant<bool, false>][m[K’
+[01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:77:30:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, const void*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1, 1>; Functor = ModelNode::normVecResidual; T = double][m[K’
+[01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:106:45:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluate(const Functor&, const T* const*, T*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1, 1>; Functor = ModelNode::normVecResidual; T = double][m[K’
+[01m[K/usr/local/include/ceres/autodiff_cost_function.h:208:55:[m[K   required from ‘[01m[Kbool ceres::AutoDiffCostFunction<CostFunctor, kNumResiduals, Ns>::Evaluate(const double* const*, double*, double**) const [with CostFunctor = ModelNode::normVecResidual; int kNumResiduals = 1; int ...Ns = {1, 1, 1}][m[K’
+[01m[K/usr/local/include/ceres/autodiff_cost_function.h:201:8:[m[K   required from here
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:49:98:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kc[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+   49 |         template <typename T> bool operator()(const T* const a, const T* const b, [01;35m[Kconst T* const c[m[K, T* residual) const {
+      |                                                                                   [01;35m[K~~~~~~~~~~~~~~~^[m[K
+/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp: In instantiation of ‘[01m[Kbool ModelNode::normVecResidual::operator()(const T*, const T*, const T*, T*) const [with T = ceres::Jet<double, 3>][m[K’:
+[01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:55:17:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, std::false_type, std::integer_sequence<int, Indices ...>) [with Functor = ModelNode::normVecResidual; T = ceres::Jet<double, 3>; int ...Indices = {0, 1, 2}; std::false_type = std::integral_constant<bool, false>][m[K’
+[01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:77:30:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluateImpl(const Functor&, const T* const*, T*, const void*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1, 1>; Functor = ModelNode::normVecResidual; T = ceres::Jet<double, 3>][m[K’
+[01m[K/usr/local/include/ceres/internal/variadic_evaluate.h:106:45:[m[K   required from ‘[01m[Kbool ceres::internal::VariadicEvaluate(const Functor&, const T* const*, T*) [with ParameterDims = ceres::internal::ParameterDims<false, 1, 1, 1>; Functor = ModelNode::normVecResidual; T = ceres::Jet<double, 3>][m[K’
+[01m[K/usr/local/include/ceres/internal/autodiff.h:349:39:[m[K   required from ‘[01m[Kbool ceres::internal::AutoDifferentiate(const Functor&, const T* const*, int, T*, T**) [with int kNumResiduals = 1; ParameterDims = ceres::internal::ParameterDims<false, 1, 1, 1>; Functor = ModelNode::normVecResidual; T = double][m[K’
+[01m[K/usr/local/include/ceres/autodiff_cost_function.h:211:69:[m[K   required from ‘[01m[Kbool ceres::AutoDiffCostFunction<CostFunctor, kNumResiduals, Ns>::Evaluate(const double* const*, double*, double**) const [with CostFunctor = ModelNode::normVecResidual; int kNumResiduals = 1; int ...Ns = {1, 1, 1}][m[K’
+[01m[K/usr/local/include/ceres/autodiff_cost_function.h:201:8:[m[K   required from here
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp:49:98:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kc[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+make[2]: *** [CMakeFiles/model.dir/build.make:76：CMakeFiles/model.dir/src/model.cpp.o] 错误 1
+make[1]: *** [CMakeFiles/Makefile2:105：CMakeFiles/model.dir/all] 错误 2
+make: *** [Makefile:141：all] 错误 2

@@ -58,9 +58,9 @@ flag_motionControlProgramHaveDone: 0
 
 # model圆形检测参数值
 model_dp: 2
-model_minDist: 80
+model_minDist: 40
 model_cannyUpThresh: 80
-model_circleThresh: 120
+model_circleThresh: 140
 model_minRadius: 30
 model_maxRadius: 150
 
@@ -77,7 +77,7 @@ minLineLength: 180
 maxLineGap: 13
 
 # ransac参数所需的参数列表长度阈值
-modelThresh: 160
+modelThresh: 200
 
 # 最小共线阈值以及最大垂直阈值
 minCosValueThresh_collineation: 0.97
@@ -140,9 +140,9 @@ model_sample_length: 6
 # 单个样本好点概率
 model_inlier_probability: 0.4
 # ransac内点阈值
-inlier_thresh_centre: 8
-inlier_thresh_normVec: 0.98
-inlier_thresh_dirVec: 0.98
+inlier_thresh_centre: 5
+inlier_thresh_normVec: 0.99
+inlier_thresh_dirVec: 0.99
 
 octoTree.resolution: 5
 

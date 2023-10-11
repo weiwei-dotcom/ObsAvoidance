@@ -46,8 +46,8 @@ private:
     struct normVecResidual {
         normVecResidual(double x, double y, double z)
                 : x_(x), y_(y), z_(z) {}
-        template <typename T> bool operator()(const T* const a, const T* const b, T* residual) const {
-            residual[0] = 1.0-x_*a[0]-y_*b[0]-z_*sqrt(1.0-pow(a[0],2)-pow(b[0],2));
+        template <typename T> bool operator()(const T* const a, const T* const b, const T* const c, T* residual) const {
+            residual[0] = acos(x_*a[0]+y_*b[0]+z_*c[0])+(pow(a[0],2)+pow(b[0],2)+pow(c[0],2)-1.0);
             return true;
         }
     private:

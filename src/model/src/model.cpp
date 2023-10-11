@@ -6,12 +6,16 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
 {
     // If have complete publish the pointcloud of model, don't need model again;
 
-    // 调试代码3
-    std::cout << "-----------------------------------------" << std::endl;
-    std::cout << "Start recieving the msg" << std::endl;
+    // // 调试代码3
+    // std::cout << "-----------------------------------------" << std::endl;
+    // std::cout << "Start recieving the msg" << std::endl;
 
     if (flag_pubModel)
-        return;
+    {
+        PubModel(); 
+        return;        
+    }
+
     // Recieve the message data;
     if (!recieveMsg(pcl_msg, img_msg, pose_msg))
         return;   
@@ -21,7 +25,7 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
         // 调试代码3
         cv::waitKey(10);
 
-        return;        
+        return; 
     }
     cv::waitKey(10);
     // Publish pointcloud of obstacle model;
@@ -402,6 +406,17 @@ bool ModelNode::Model()
     {
         return false;
     }
+
+    // debug
+    for (int i=0;i<global_centrePostions.size();i++)
+    {
+        std::cout<< "global_centrePostions[" << i<<"]: "<<global_centrePostions[i].transpose()<< std::endl;
+        std::cout<< "global_vecs_direction[" << i<<"]: "<<global_vecs_direction[i].transpose()<< std::endl;
+        std::cout<< "global_vecs_norm[" << i<<"]: "<<global_vecs_norm[i].transpose()<< std::endl;
+        std::cout<< "-----------------------------------------------------" << std::endl;
+    }
+    cv::waitKey(0);
+    // 
     // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
     ransacModelParam();
     return true;
@@ -412,11 +427,21 @@ void ModelNode::ransacModelParam()
     std::cout << "ransacModelParam()" <<std::endl;
 
     int iterNum = calRansacIterNum();
+    std::cout <<"iterNum: " <<iterNum<<std::endl;
+    cv::waitKey(0);
     int maxInlierNum_centre = 0;
     int maxInlierNum_dirVec = 0;
     int maxInlierNum_normVec = 0;
+
+    //debug
+    int loopCount=0;
+    std::cout << "global_vecs_direction.size(): " <<global_vecs_direction.size() <<std::endl;
+    std::cout << "global_vecs_norm.size(): " << global_vecs_norm.size()<<std::endl;
+    std::cout << "global_centrePostions.size(): "<<global_centrePostions.size() <<std::endl;
+
     for (int i=0;i<iterNum;i++) 
     {
+        loopCount++;
         int inlierNum_centre = 0;
         int inlierNum_dirVec =0;
         int inlierNum_normVec =0;
@@ -428,8 +453,8 @@ void ModelNode::ransacModelParam()
         Eigen::Vector3d result_centre;
         ceres::Problem problem_dirVec;
         ceres::Problem problem_normVec;
-        double a_dirVec=0,b_dirVec=0,c_dirVec;
-        double a_normVec=0,b_normVec=0,c_normVec;
+        double a_dirVec=0,b_dirVec=-1,c_dirVec=0;
+        double a_normVec=0,b_normVec=0,c_normVec=1;
         for (int j=0;j<sample_length;j++)
         {
             tempSum_x += global_centrePostions[j].x();
@@ -442,18 +467,18 @@ void ModelNode::ransacModelParam()
                 result_centre.z() = tempSum_z/sample_length;
             }
             problem_dirVec.AddResidualBlock(
-                new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
+                new ceres::AutoDiffCostFunction<normVecResidual,1,1,1,1>(
                     new normVecResidual(global_vecs_direction[j].x(), global_vecs_direction[j].y(),global_vecs_direction[j].z())
                 ),
                 NULL,
-                &a_dirVec,&b_dirVec
+                &a_dirVec,&b_dirVec,&c_dirVec
             );
             problem_normVec.AddResidualBlock(
-                new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
+                new ceres::AutoDiffCostFunction<normVecResidual,1,1,1,1>(
                     new normVecResidual(global_vecs_norm[j].x(), global_vecs_norm[j].y(),global_vecs_norm[j].z())
                 ),
                 NULL,
-                &a_normVec,&b_normVec
+                &a_normVec,&b_normVec,&c_normVec
             );
         }
         ceres::Solver::Options options;
@@ -465,40 +490,57 @@ void ModelNode::ransacModelParam()
         ceres::Solver::Summary summary_normVec;
         Solve(options, &problem_dirVec, &summary_dirVec);
         Solve(options, &problem_normVec, &summary_normVec);
-        c_dirVec = sqrt(1-pow(a_dirVec,2)-pow(b_dirVec,2));
-        c_normVec = sqrt(1-pow(a_normVec,2)-pow(b_normVec,2));
+        // c_dirVec = sqrt(1-pow(a_dirVec,2)-pow(b_dirVec,2));
+        // c_normVec = sqrt(1-pow(a_normVec,2)-pow(b_normVec,2));
+        //debug
+        if (loopCount==5)
+        {
+            //debug
+            std::cout <<"result_centre: " << result_centre.transpose()<<std::endl;
+            std::cout <<"maxInlierNum_centre: "<<maxInlierNum_centre<<std::endl;
+            std::cout <<"final_centrePosition: "<<final_centrePosition.transpose()<<std::endl;
+            std::cout << "dirVec: " << a_dirVec<<" "<<b_dirVec<<" "<<c_dirVec<<std::endl;
+            std::cout <<"maxInlierNum_dirVec: "<<maxInlierNum_dirVec<<std::endl;
+            std::cout <<"final_dirVec: "<<final_dirVec.transpose()<<std::endl;
+            std::cout << "normVec: " << a_normVec<<" "<<b_normVec<<" "<<c_normVec<<std::endl; 
+            std::cout <<"maxInlierNum_normVec: "<<maxInlierNum_normVec<<std::endl;
+            std::cout <<"final_normVec: "<<final_normVec.transpose()<<std::endl;
+            loopCount=0;   
+            cv::waitKey(0);        
+        }
+        Eigen::Vector3d temp_dirVec(a_dirVec,b_dirVec,c_dirVec);
+        Eigen::Vector3d temp_normVec(a_normVec,b_normVec,c_normVec);
+        temp_dirVec.normalize();
+        temp_normVec.normalize();
         // 得到优化的变量以后使用该参数模型利用与样点参数之间的夹角余弦是否在夹角阈值范围内来筛选内点，并统计内点数量
-        int tempNumInlier_dirVec=0;
-        int tempNumInlier_normVec=0;
-        int tempNumInlier_centre=0;
         for(int n=0;n<global_vecs_direction.size();n++) {
-            if (a_dirVec*global_vecs_direction[n](0)+b_dirVec*global_vecs_direction[n](1)+c_dirVec*global_vecs_direction[n](2) > inlier_thresh_dirVec) {
-                tempNumInlier_dirVec++;
+            if (temp_dirVec.dot(global_vecs_direction[n]) > inlier_thresh_dirVec) {
+                inlierNum_dirVec++;
             }
-            if (a_normVec*global_vecs_norm[n](0)+b_normVec*global_vecs_norm[n](1)+c_normVec*global_vecs_norm[n](2) > inlier_thresh_normVec) {
-                tempNumInlier_normVec++;
+            if (temp_normVec.dot(global_vecs_norm[n]) > inlier_thresh_normVec) {
+                inlierNum_normVec++;
             }
-            if (std::sqrt(std::pow(global_centrePostions[n](0)-result_centre(0),2)
-                        +std::pow(global_centrePostions[n](1)-result_centre(1),2)
-                        +std::pow(global_centrePostions[n](2)-result_centre(2),2))<inlier_thresh_centre)
+            if (std::sqrt(std::pow(global_centrePostions[n][0]-result_centre[0],2)
+                        +std::pow(global_centrePostions[n][1]-result_centre[1],2)
+                        +std::pow(global_centrePostions[n][2]-result_centre[2],2))< inlier_thresh_centre)
             {
-                tempNumInlier_centre++;
+                inlierNum_centre++;
             }
         }
         if (inlierNum_centre > maxInlierNum_centre) 
         {
-        maxInlierNum_centre = inlierNum_centre;
-        final_centrePosition = result_centre;
+            maxInlierNum_centre = inlierNum_centre;
+            final_centrePosition = result_centre;
         }
         if (inlierNum_dirVec > maxInlierNum_dirVec) 
         {
-        maxInlierNum_dirVec = inlierNum_dirVec;
-        final_dirVec << a_dirVec,b_dirVec,c_dirVec;
+            maxInlierNum_dirVec = inlierNum_dirVec;
+            final_dirVec = temp_dirVec;
         }
         if (inlierNum_normVec > maxInlierNum_normVec) 
         {
-        maxInlierNum_normVec = inlierNum_normVec;
-        final_normVec << a_normVec,b_normVec,c_normVec;
+            maxInlierNum_normVec = inlierNum_normVec;
+            final_normVec = temp_normVec;
         }
     }
     final_dirVec = final_normVec.cross(final_dirVec).cross(final_normVec).normalized();
@@ -516,7 +558,7 @@ int ModelNode::calRansacIterNum()
         tempFloat*=(inlier_probability * (float)modelThresh-(float)i)/(float)(modelThresh-i);
     int iterNum = std::ceil((float)1.0/tempFloat);
     std::cout << "***************************" << std::endl;
-    std::cout<<"Ransac iteration time is: " << iterNum <<std::endl;
+    std::cout<<"Ransac iteration time is: " <<  iterNum <<std::endl;
     return iterNum;
 }
 
@@ -605,6 +647,7 @@ void ModelNode::PubModel()
 }
 
 Eigen::Vector4d ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
+
     std::cout << "calParam()"<<std::endl;
 
     Eigen::Vector4d param;
