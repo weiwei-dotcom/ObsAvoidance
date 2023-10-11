@@ -102,7 +102,7 @@ ModelNode::ModelNode():Node("model")
     blueLower = cv::Scalar(blueLower1, blueLower2, blueLower3);
     blueUpper = cv::Scalar(blueUpper1, blueUpper2, blueUpper3);
     pixelNum_translate = fileRead["pixelNum_translate"];
-
+    distanceThresh_plandAndPoint=fileRead["distanceThresh_plandAndPoint"];
     fx = fileRead["Camera.fx"];
     fy = fileRead["Camera.fy"];
     cx = fileRead["Camera.cx"];
@@ -138,6 +138,7 @@ ModelNode::ModelNode():Node("model")
     kernelBigClose = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(bigCloseStructure_size, bigCloseStructure_size));
     outCircleVal=fileRead["outCircleVal"];
     inCircleVal=fileRead["inCircleVal"];
+    mapPointNumThresh=fileRead["mapPointNumThresh"];
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
@@ -601,15 +602,10 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
         // 特征点掩码判断    
         if (img_erode.at<bool>(pixelPoint) == 0) 
         {
-            std::cout << "img_erode.channels() : " << img_erode.channels() << std::endl;
-            std::cout <<"img_erode.at<bool>(pixelPoint): " <<img_erode.at<bool>(pixelPoint) <<std::endl;
             continue;            
         }
-
-        
         // 调试代码3
         cv::drawMarker(temp_img,cv::Point(pixelPoint), cv::Scalar(0,255,0),2, 5, 1);
-        std::cout <<"img_erode.at<bool>(pixelPoint): " <<img_erode.at<bool>(pixelPoint) <<std::endl;
 
         finalPointCloud.points.push_back(point);
     }
@@ -617,7 +613,7 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
     cv::imshow("select keypoints", temp_img);
 
     // 用筛选后的点云拟合平面
-    if (finalPointCloud.points.size()<80) {
+    if (finalPointCloud.points.size()<mapPointNumThresh) {
         changeErrorType(Point_cloud_is_little);
         return false;
     }
@@ -659,7 +655,7 @@ Eigen::Vector4d ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
     seg.setModelType(pcl::SACMODEL_PLANE);
     seg.setMethodType(pcl::SAC_RANSAC);
     seg.setMaxIterations(200);
-    seg.setDistanceThreshold(3);
+    seg.setDistanceThreshold(distanceThresh_plandAndPoint); // attention: the parameter fill in here is not supporting variant;
     // 从点云中分割最有可能的平面
     seg.setInputCloud(pointCloud_Ptr);
     pcl::ModelCoefficients coefficient;

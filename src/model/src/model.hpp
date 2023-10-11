@@ -69,6 +69,8 @@ private:
     bool flag_pubModel;
 
     cv::Scalar blueLower, blueUpper;
+    // 检测平面筛选出来的点云数量阈值，小于该阈值则不进行平面拟合
+    int mapPointNumThresh;
 
     // 直线检测函数相关参数变量
     int lineThresh;
@@ -84,6 +86,7 @@ private:
 
     // 边沿直线最小共线阈值与最大垂直阈值
     double minCosValueThresh_collineation, maxCosValueThresh_vertical;
+    double distanceThresh_plandAndPoint;
     
        
     // // 存储每次检测得到的三维直线参数变量

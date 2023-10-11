@@ -141,8 +141,13 @@ model_sample_length: 6
 model_inlier_probability: 0.4
 # ransac内点阈值
 inlier_thresh_centre: 5
-inlier_thresh_normVec: 0.99
-inlier_thresh_dirVec: 0.99
+inlier_thresh_normVec: 0.983
+inlier_thresh_dirVec: 0.983
+# pcl点云拟合平面时内点的距离阈值
+distanceThresh_plandAndPoint: 2.7
+
+# 拟合平面时的点云数量阈值
+mapPointNumThresh: 90
 
 octoTree.resolution: 5
 
