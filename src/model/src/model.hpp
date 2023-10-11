@@ -211,7 +211,6 @@ public:
     void detectLine(const cv::Mat img_gaussian, std::vector<cv::Vec4i> &tempLines);
     bool selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempLines, cv::Vec4i &line,const cv::Vec3f circle);
     void calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const Eigen::Vector4d param, 
-                Eigen::Vector3d &planeNormalVec,Eigen::Vector3d &verticalVec, Eigen::Vector3d &circleCentre);
-
+                Eigen::Vector3d &planeNormalVec,Eigen::Vector3d &verticalVec, Eigen::Vector3d &circleCentreInInit);
     ~ModelNode();
 };

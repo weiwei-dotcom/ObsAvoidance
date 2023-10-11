@@ -5,6 +5,11 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
                        const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg)
 {
     // If have complete publish the pointcloud of model, don't need model again;
+
+    // 调试代码3
+    std::cout << "-----------------------------------------" << std::endl;
+    std::cout << "Start recieving the msg" << std::endl;
+
     if (flag_pubModel)
         return;
     // Recieve the message data;
@@ -28,9 +33,6 @@ bool ModelNode::recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &
                 const sensor_msgs::msg::Image::ConstSharedPtr &img_msg,
                 const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg)
 {
-    // 调试代码3
-    std::cout << "-----------------------------------------" << std::endl;
-    std::cout << "successNum: " << successNum << std::endl;
     // 图像赋值给成员变量；
     cv_bridge::CvImagePtr imgPtr = cv_bridge::toCvCopy(img_msg, "bgr8");
     if (imgPtr->image.empty())
@@ -58,7 +60,7 @@ bool ModelNode::recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &
     m_transform_initToCur = temp_transform.matrix();
     m_transform_curToInit = m_transform_initToCur.inverse();
     m_header_initFrame = pcl_msg->header;
-
+    std::cout << "Msg recieved success !" << std::endl;
     return true;
 }
 
@@ -67,6 +69,7 @@ ModelNode::ModelNode():Node("model")
 {
     // 调试代码3
     successNum = 0;
+
     error_type = OK;
     pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle", 10);
     flag_pubModel = false;
@@ -158,6 +161,7 @@ void ModelNode::changeErrorType(ERROR_TYPE newError)
 void ModelNode::houghCircleDetect(std::vector<cv::Vec3f> &outputCircles, cv::Mat &img_gaussian)
 {
     // 入口圓形檢測
+    std::cout << "houghCircleDetect()" <<std::endl;
     cv::Mat img_gray;
     cv::cvtColor(m_img, img_gray, CV_BGR2GRAY);
     cv::GaussianBlur(img_gray, img_gaussian, cv::Size(7, 7),2,2);
@@ -165,15 +169,17 @@ void ModelNode::houghCircleDetect(std::vector<cv::Vec3f> &outputCircles, cv::Mat
 }
 bool ModelNode::getMaxArea(cv::Mat &maxArea)
 {
-    // 阈值分割
+    // 阈值分割    
+    std::cout << "getMaxArea()" <<std::endl;
     cv::Mat imgHsv, imgBin, img_erode, img_dilate;
     cv::cvtColor(m_img, imgHsv, CV_BGR2HSV);
     cv::inRange(imgHsv, blueLower, blueUpper, imgBin);
     // 较小核腐蚀
     cv::erode(imgBin, img_erode, structure_erode1);
+    cv::imshow("temp_img_erode", img_erode);
     cv::Mat labels, stats, centroids;
     int num_labels = connectedComponentsWithStats(img_erode, labels, stats, centroids, 8, CV_16U);
-    std::vector<std::vector<cv::Point>> temp_contours;
+    std::cout<<"num_labels: " <<num_labels<<std::endl;
     std::vector<int> areas;
     if (num_labels>1)
     {
@@ -183,13 +189,19 @@ bool ModelNode::getMaxArea(cv::Mat &maxArea)
         }
         int max_area_label = max_element(areas.begin(), areas.end()) - areas.begin() + 1;
         maxArea = (labels == max_area_label);
+        std::cout << "getMaxArea()" <<std::endl;
+
         return true;
     }
+    std::cout << "getMaxArea()" <<std::endl;
+
     return false;
+    
 }
 // 入口圆形筛选函数
 bool ModelNode::selectCircle(cv::Vec3f &circle, const std::vector<cv::Vec3f> temp_circles, cv::Mat &mask)
 {
+    std::cout << "selectCircle()" <<std::endl;
     cv::Mat maxArea;
     bool flag_getMaxArea = getMaxArea(maxArea);
     if (!flag_getMaxArea)
@@ -198,9 +210,9 @@ bool ModelNode::selectCircle(cv::Vec3f &circle, const std::vector<cv::Vec3f> tem
         return false;
     }
     // 大尺度闭运算
-    cv::Mat tempMask;
-    cv::morphologyEx(maxArea, tempMask, cv::MORPH_CLOSE, kernelBigClose);
-    cv::threshold(tempMask,mask,150,255,cv::THRESH_BINARY);
+    cv::morphologyEx(maxArea, mask, cv::MORPH_CLOSE, kernelBigClose);
+    std::cout << "selectCircle()2" <<std::endl;
+
     for (int i = 0;i<temp_circles.size();i++)
     {
         bool flag_found = true;
@@ -225,6 +237,7 @@ bool ModelNode::selectCircle(cv::Vec3f &circle, const std::vector<cv::Vec3f> tem
             continue;
         }
         circle=temp_circles[i];
+        std::cout << "selectCircle()" <<std::endl;
         return true;
     }
     changeErrorType(Circle_detection_is_not_stable);
@@ -233,6 +246,8 @@ bool ModelNode::selectCircle(cv::Vec3f &circle, const std::vector<cv::Vec3f> tem
 // 直线检测函数
 void ModelNode::detectLine(const cv::Mat img_gaussian, std::vector<cv::Vec4i> &tempLines)
 {
+    std::cout << "detectLine()" <<std::endl;
+
     cv::Mat img_edge;
     cv::Canny(img_gaussian, img_edge, canny_threshLow, canny_threshUp);
     cv::threshold(img_edge,img_edge, 170, 255, cv::THRESH_BINARY);
@@ -240,6 +255,8 @@ void ModelNode::detectLine(const cv::Mat img_gaussian, std::vector<cv::Vec4i> &t
 }
 bool ModelNode::selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempLines, cv::Vec4i &line,const cv::Vec3f circle)
 {
+    std::cout << "selectLine()" <<std::endl;
+
     // 对线段列表按照长度从大到小排列
     std::sort(tempLines.begin(), tempLines.end(), GreaterLength());
     // for 循环从列表中筛选直线
@@ -285,8 +302,10 @@ bool ModelNode::selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempL
 }
 
 void ModelNode::calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const Eigen::Vector4d param, 
-                Eigen::Vector3d &planeNormalVec,Eigen::Vector3d &verticalVec, Eigen::Vector3d &circleCentre)
+                Eigen::Vector3d &planeNormalVec,Eigen::Vector3d &verticalVec, Eigen::Vector3d &circleCentreInInit)
 {
+    std::cout << "calModelParam()" <<std::endl;
+
     Eigen::Vector3d temp_circleCentre,endPoint1,endPoint2;
     from2dTo3dPlane(Eigen::Vector2d((double)circle[0],(double)circle[1]), temp_circleCentre, param);
     from2dTo3dPlane(Eigen::Vector2d((double)line[0],(double)line[1]), endPoint1, param);
@@ -295,24 +314,31 @@ void ModelNode::calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const 
     Eigen::Vector3d lineDirInInit = m_transform_curToInit.block(0,0,3,3) * lineDirInCur;
 
     // 调试代码
-    std::cout << lineDirInInit.transpose() << std::endl;
+    std::cout << "lineDirInInit.transpose(): "<<lineDirInInit.transpose() << std::endl;
     
     if (std::abs(lineDirInInit.dot(Eigen::Vector3d(0,-1,0))) < std::cos(45))
     {
         verticalVec = lineDirInInit.cross(Eigen::Vector3d(0,-1,0).cross(lineDirInInit));
+        std::cout <<"verticalVec: "<<verticalVec.transpose()<<std::endl;
     }
     else
     {
         verticalVec = lineDirInInit.dot(Eigen::Vector3d(0,-1,0)) > 0 ? lineDirInInit.normalized() : (-lineDirInInit.normalized());
+        std::cout <<"verticalVec: "<<verticalVec.transpose()<<std::endl;
     }
     planeNormalVec = m_transform_curToInit.block(0,0,3,3) * param.block(0,0,3,1);
+    std::cout <<"planeNormalVec: "<<planeNormalVec.transpose()<<std::endl;
     Eigen::Vector4d tempCentreInCur(temp_circleCentre[0],temp_circleCentre[1],temp_circleCentre[2],1);
-    circleCentre = (m_transform_curToInit*tempCentreInCur).block(0,0,3,1);
+    circleCentreInInit = (m_transform_curToInit*tempCentreInCur).block(0,0,3,1);
+    std::cout <<"circleCentre: "<<circleCentreInInit.transpose()<<std::endl;
+    std::cout << "calModelParam()" <<std::endl;
     return;
 }
 // 障碍物建模主函数
 bool ModelNode::Model()
 {
+    std::cout << "Model()" <<std::endl;
+
     // 入口圓形檢測
     std::vector<cv::Vec3f> temp_circles;
     cv::Mat img_gaussian;
@@ -376,11 +402,6 @@ bool ModelNode::Model()
     {
         return false;
     }
-    // 调试代码
-    global_centrePostions.clear();
-    global_vecs_direction.clear();
-    global_vecs_norm.clear();
-    return false;
     // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
     ransacModelParam();
     return true;
@@ -388,116 +409,121 @@ bool ModelNode::Model()
 
 void ModelNode::ransacModelParam()
 {
-  int iterNum = calRansacIterNum();
-  int maxInlierNum_centre = 0;
-  int maxInlierNum_dirVec = 0;
-  int maxInlierNum_normVec = 0;
-  for (int i=0;i<iterNum;i++) 
-  {
-    int inlierNum_centre = 0;
-    int inlierNum_dirVec =0;
-    int inlierNum_normVec =0;
-    std::random_shuffle(global_centrePostions.begin(), global_centrePostions.end());
-    std::random_shuffle(global_vecs_direction.begin(), global_vecs_direction.end());
-    std::random_shuffle(global_vecs_norm.begin(), global_vecs_norm.end());
-    double tempSum_x=0,tempSum_y=0,tempSum_z=0;
+    std::cout << "ransacModelParam()" <<std::endl;
 
-    Eigen::Vector3d result_centre;
-    ceres::Problem problem_dirVec;
-    ceres::Problem problem_normVec;
-    double a_dirVec=0,b_dirVec=0,c_dirVec;
-    double a_normVec=0,b_normVec=0,c_normVec;
-    for (int j=0;j<sample_length;j++)
+    int iterNum = calRansacIterNum();
+    int maxInlierNum_centre = 0;
+    int maxInlierNum_dirVec = 0;
+    int maxInlierNum_normVec = 0;
+    for (int i=0;i<iterNum;i++) 
     {
-        tempSum_x += global_centrePostions[j].x();
-        tempSum_y += global_centrePostions[j].y();
-        tempSum_z += global_centrePostions[j].z();
-        if (j == sample_length-1)
+        int inlierNum_centre = 0;
+        int inlierNum_dirVec =0;
+        int inlierNum_normVec =0;
+        std::random_shuffle(global_centrePostions.begin(), global_centrePostions.end());
+        std::random_shuffle(global_vecs_direction.begin(), global_vecs_direction.end());
+        std::random_shuffle(global_vecs_norm.begin(), global_vecs_norm.end());
+        double tempSum_x=0,tempSum_y=0,tempSum_z=0;
+
+        Eigen::Vector3d result_centre;
+        ceres::Problem problem_dirVec;
+        ceres::Problem problem_normVec;
+        double a_dirVec=0,b_dirVec=0,c_dirVec;
+        double a_normVec=0,b_normVec=0,c_normVec;
+        for (int j=0;j<sample_length;j++)
         {
-            result_centre.x() = tempSum_x/sample_length;
-            result_centre.y() = tempSum_y/sample_length;
-            result_centre.z() = tempSum_z/sample_length;
+            tempSum_x += global_centrePostions[j].x();
+            tempSum_y += global_centrePostions[j].y();
+            tempSum_z += global_centrePostions[j].z();
+            if (j == sample_length-1)
+            {
+                result_centre.x() = tempSum_x/sample_length;
+                result_centre.y() = tempSum_y/sample_length;
+                result_centre.z() = tempSum_z/sample_length;
+            }
+            problem_dirVec.AddResidualBlock(
+                new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
+                    new normVecResidual(global_vecs_direction[j].x(), global_vecs_direction[j].y(),global_vecs_direction[j].z())
+                ),
+                NULL,
+                &a_dirVec,&b_dirVec
+            );
+            problem_normVec.AddResidualBlock(
+                new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
+                    new normVecResidual(global_vecs_norm[j].x(), global_vecs_norm[j].y(),global_vecs_norm[j].z())
+                ),
+                NULL,
+                &a_normVec,&b_normVec
+            );
         }
-        problem_dirVec.AddResidualBlock(
-            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
-                new normVecResidual(global_vecs_direction[j].x(), global_vecs_direction[j].y(),global_vecs_direction[j].z())
-            ),
-            NULL,
-            &a_dirVec,&b_dirVec
-        );
-        problem_normVec.AddResidualBlock(
-            new ceres::AutoDiffCostFunction<normVecResidual,1,1,1>(
-                new normVecResidual(global_vecs_norm[j].x(), global_vecs_norm[j].y(),global_vecs_norm[j].z())
-            ),
-            NULL,
-            &a_normVec,&b_normVec
-        );
-    }
-    ceres::Solver::Options options;
-    options.max_num_iterations = 30;
-    options.linear_solver_type = ceres::DENSE_QR;
-    options.minimizer_progress_to_stdout = true;
-    options.logging_type = ceres::SILENT;
-    ceres::Solver::Summary summary_dirVec;
-    ceres::Solver::Summary summary_normVec;
-    Solve(options, &problem_dirVec, &summary_dirVec);
-    Solve(options, &problem_normVec, &summary_normVec);
-    c_dirVec = sqrt(1-pow(a_dirVec,2)-pow(b_dirVec,2));
-    c_normVec = sqrt(1-pow(a_normVec,2)-pow(b_normVec,2));
-    // 得到优化的变量以后使用该参数模型利用与样点参数之间的夹角余弦是否在夹角阈值范围内来筛选内点，并统计内点数量
-    int tempNumInlier_dirVec=0;
-    int tempNumInlier_normVec=0;
-    int tempNumInlier_centre=0;
-    for(int n=0;n<global_vecs_direction.size();n++) {
-        if (a_dirVec*global_vecs_direction[n](0)+b_dirVec*global_vecs_direction[n](1)+c_dirVec*global_vecs_direction[n](2) > inlier_thresh_dirVec) {
-            tempNumInlier_dirVec++;
+        ceres::Solver::Options options;
+        options.max_num_iterations = 30;
+        options.linear_solver_type = ceres::DENSE_QR;
+        options.minimizer_progress_to_stdout = true;
+        options.logging_type = ceres::SILENT;
+        ceres::Solver::Summary summary_dirVec;
+        ceres::Solver::Summary summary_normVec;
+        Solve(options, &problem_dirVec, &summary_dirVec);
+        Solve(options, &problem_normVec, &summary_normVec);
+        c_dirVec = sqrt(1-pow(a_dirVec,2)-pow(b_dirVec,2));
+        c_normVec = sqrt(1-pow(a_normVec,2)-pow(b_normVec,2));
+        // 得到优化的变量以后使用该参数模型利用与样点参数之间的夹角余弦是否在夹角阈值范围内来筛选内点，并统计内点数量
+        int tempNumInlier_dirVec=0;
+        int tempNumInlier_normVec=0;
+        int tempNumInlier_centre=0;
+        for(int n=0;n<global_vecs_direction.size();n++) {
+            if (a_dirVec*global_vecs_direction[n](0)+b_dirVec*global_vecs_direction[n](1)+c_dirVec*global_vecs_direction[n](2) > inlier_thresh_dirVec) {
+                tempNumInlier_dirVec++;
+            }
+            if (a_normVec*global_vecs_norm[n](0)+b_normVec*global_vecs_norm[n](1)+c_normVec*global_vecs_norm[n](2) > inlier_thresh_normVec) {
+                tempNumInlier_normVec++;
+            }
+            if (std::sqrt(std::pow(global_centrePostions[n](0)-result_centre(0),2)
+                        +std::pow(global_centrePostions[n](1)-result_centre(1),2)
+                        +std::pow(global_centrePostions[n](2)-result_centre(2),2))<inlier_thresh_centre)
+            {
+                tempNumInlier_centre++;
+            }
         }
-        if (a_normVec*global_vecs_norm[n](0)+b_normVec*global_vecs_norm[n](1)+c_normVec*global_vecs_norm[n](2) > inlier_thresh_normVec) {
-            tempNumInlier_normVec++;
-        }
-        if (std::sqrt(std::pow(global_centrePostions[n](0)-result_centre(0),2)
-                     +std::pow(global_centrePostions[n](1)-result_centre(1),2)
-                     +std::pow(global_centrePostions[n](2)-result_centre(2),2))<inlier_thresh_centre)
+        if (inlierNum_centre > maxInlierNum_centre) 
         {
-            tempNumInlier_centre++;
+        maxInlierNum_centre = inlierNum_centre;
+        final_centrePosition = result_centre;
+        }
+        if (inlierNum_dirVec > maxInlierNum_dirVec) 
+        {
+        maxInlierNum_dirVec = inlierNum_dirVec;
+        final_dirVec << a_dirVec,b_dirVec,c_dirVec;
+        }
+        if (inlierNum_normVec > maxInlierNum_normVec) 
+        {
+        maxInlierNum_normVec = inlierNum_normVec;
+        final_normVec << a_normVec,b_normVec,c_normVec;
         }
     }
-    if (inlierNum_centre > maxInlierNum_centre) 
-    {
-      maxInlierNum_centre = inlierNum_centre;
-      final_centrePosition = result_centre;
-    }
-    if (inlierNum_dirVec > maxInlierNum_dirVec) 
-    {
-      maxInlierNum_dirVec = inlierNum_dirVec;
-      final_dirVec << a_dirVec,b_dirVec,c_dirVec;
-    }
-    if (inlierNum_normVec > maxInlierNum_normVec) 
-    {
-      maxInlierNum_normVec = inlierNum_normVec;
-      final_normVec << a_normVec,b_normVec,c_normVec;
-    }
-  }
-  final_dirVec = final_normVec.cross(final_dirVec).cross(final_normVec).normalized();
-  std::cout << "******************************" << std::endl;
-  std::cout << "The final result of centre position: " << final_centrePosition.transpose() <<std::endl;
-  std::cout << "The final result of direction vector: " << final_dirVec.transpose() <<std::endl;
-  std::cout << "The final result of plane norm vector: " << final_normVec.transpose() <<std::endl;
+    final_dirVec = final_normVec.cross(final_dirVec).cross(final_normVec).normalized();
+    std::cout << "******************************" << std::endl;
+    std::cout << "The final result of centre position: " << final_centrePosition.transpose() <<std::endl;
+    std::cout << "The final result of direction vector: " << final_dirVec.transpose() <<std::endl;
+    std::cout << "The final result of plane norm vector: " << final_normVec.transpose() <<std::endl;
 }
 
 int ModelNode::calRansacIterNum()
 {
-  float tempFloat = 1.0;
-  for (int i=0;i<sample_length;i++) 
-    tempFloat*=(inlier_probability * (float)modelThresh-(float)i)/(float)(modelThresh-i);
-  int iterNum = std::ceil((float)1.0/tempFloat);
-  std::cout << "***************************" << std::endl;
-  std::cout<<"Ransac iteration time is: " << iterNum <<std::endl;
-  return iterNum;
+    std::cout << "calRansacIterNum()"<<std::endl;
+    float tempFloat = 1.0;
+    for (int i=0;i<sample_length;i++) 
+        tempFloat*=(inlier_probability * (float)modelThresh-(float)i)/(float)(modelThresh-i);
+    int iterNum = std::ceil((float)1.0/tempFloat);
+    std::cout << "***************************" << std::endl;
+    std::cout<<"Ransac iteration time is: " << iterNum <<std::endl;
+    return iterNum;
 }
 
 void ModelNode::from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3d &outputPoint, Eigen::Vector4d paramPlane)
 {
+    std::cout << "from2dTo3dPlane()"<<std::endl;
+
     double a=paramPlane[0];
     double b=paramPlane[1];
     double c=paramPlane[2];
@@ -510,6 +536,8 @@ void ModelNode::from2dTo3dPlane(const Eigen::Vector2d inputPoint, Eigen::Vector3
 
 bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv::Mat &img_erode)
 {
+    std::cout << "detectPoseCorrect()"<<std::endl;
+    
     cv::Mat temp_imgErode;
     cv::erode(mask, img_erode, structure_erode2);
     // cv::threshold(temp_imgErode,img_erode,150,255,cv::THRESH_BINARY);
@@ -567,6 +595,8 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
 
 void ModelNode::PubModel()
 {
+    std::cout << "PubModel()"<<std::endl;
+
     sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
     pcl::toROSMsg(pcl_obstacle, pclMsg_obstacle);
     pclMsg_obstacle.header = m_header_initFrame;
@@ -575,6 +605,8 @@ void ModelNode::PubModel()
 }
 
 Eigen::Vector4d ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
+    std::cout << "calParam()"<<std::endl;
+
     Eigen::Vector4d param;
     pcl::PointCloud<pcl::PointXYZ>::Ptr pointCloud_Ptr=pointCloud.makeShared();
     pcl::SACSegmentation<pcl::PointXYZ> seg;
