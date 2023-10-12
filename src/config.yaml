@@ -141,8 +141,8 @@ model_sample_length: 6
 model_inlier_probability: 0.4
 # ransac内点阈值
 inlier_thresh_centre: 5
-inlier_thresh_normVec: 0.985
-inlier_thresh_dirVec: 0.985
+inlier_thresh_normVec: 0.998
+inlier_thresh_dirVec: 0.998
 # pcl点云拟合平面时内点的距离阈值
 distanceThresh_plandAndPoint: 2.7
 

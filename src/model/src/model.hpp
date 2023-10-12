@@ -102,9 +102,23 @@ private:
     // 存储每次有效检测得到的平面法向量
     std::vector<Eigen::Vector3d> global_vecs_norm;
     // 最终参数
-    Eigen::Vector3d final_centrePosition;
-    Eigen::Vector3d final_normVec;
-    Eigen::Vector3d final_dirVec;
+    // 水平向右
+    Eigen::Vector3d Xaxis;
+    // 垂直平面远离光心
+    Eigen::Vector3d Yaxis;
+    // 垂直向上
+    Eigen::Vector3d Zaxis;
+    // 入口圆心位置
+    Eigen::Vector3d centrePosition;
+    // 用来建模的结构点位置
+    Eigen::Vector3d frontLeftUnder; 
+    Eigen::Vector3d frontRightUnder;
+    Eigen::Vector3d frontLeftUp;
+    Eigen::Vector3d backLeftUnder; 
+    Eigen::Vector3d structureLeftUnder1;
+    Eigen::Vector3d structureLeftUnder2;
+
+
     // 圆形列表长度阈值
     int circle_size_thresh;
 
@@ -164,9 +178,7 @@ private:
     float fx, fy, cx, cy;
     Eigen::Matrix3f m_projectMatrix;
 
-    // 历史蓝绿红色障碍物点云之和
-    pcl::PointCloud<pcl::PointXYZ> obstacle;
-
+    // 存储障碍物点云
     pcl::PointCloud<pcl::PointXYZ> pcl_obstacle;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_pub;
     // 调试代码3
@@ -210,5 +222,10 @@ public:
     bool selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempLines, cv::Vec4i &line,const cv::Vec3f circle);
     void calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const Eigen::Vector4d param, 
                 Eigen::Vector3d &planeNormalVec,Eigen::Vector3d &verticalVec, Eigen::Vector3d &circleCentreInInit);
+    void buildFront();
+    void buildBack();
+    void buildSide();
+    void buildStructure1();
+    void buildStructure2();
     ~ModelNode();
 };
