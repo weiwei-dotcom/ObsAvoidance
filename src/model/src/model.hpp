@@ -154,6 +154,9 @@ private:
     // 消息的header
     std_msgs::msg::Header m_header_initFrame;
 
+    //开始改变阈值的循环次数占总迭代次数的比例
+    double scale_startLoopCountTochangeInlierThresh;
+
     // 錯誤狀態變量
     ERROR_TYPE error_type;
 

@@ -123,6 +123,9 @@ model_erodeStructure_size2: 11
 model_dilateStructure_size2: 20
 pixelNum_translate: 20
 
+# 开始改变阈值的循环次数占总迭代次数的比例
+scale_startLoopCountTochangeInlierThresh: 0.1
+
 # 圆检测时圆周上的点向圆外以及圆内的像素值
 outCircleVal: 20
 inCircleVal: 5
@@ -138,9 +141,9 @@ inlier_probability: 0.4
 # 随机采样的长度
 model_sample_length: 6
 # 单个样本好点概率
-model_inlier_probability: 0.4
+model_inlier_probability: 0.3
 # ransac内点阈值
-inlier_thresh_centre: 5
+inlier_thresh_centre: 3
 inlier_thresh_normVec: 0.998
 inlier_thresh_dirVec: 0.998
 # pcl点云拟合平面时内点的距离阈值

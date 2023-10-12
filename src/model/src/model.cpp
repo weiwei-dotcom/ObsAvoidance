@@ -138,6 +138,7 @@ ModelNode::ModelNode():Node("model")
     outCircleVal=fileRead["outCircleVal"];
     inCircleVal=fileRead["inCircleVal"];
     mapPointNumThresh=fileRead["mapPointNumThresh"];
+    scale_startLoopCountTochangeInlierThresh=fileRead["scale_startLoopCountTochangeInlierThresh"];
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
@@ -358,6 +359,9 @@ void ModelNode::ransacModelParam()
 
     //debug
     int loopCount=0;
+    int LoopCountToChangeInlierThresh_centre = (int)(iterNum*scale_startLoopCountTochangeInlierThresh);
+    int LoopCountToChangeInlierThresh_dirVec = (int)(iterNum*scale_startLoopCountTochangeInlierThresh);
+    int LoopCountToChangeInlierThresh_normVec = (int)(iterNum*scale_startLoopCountTochangeInlierThresh);
     std::cout << "global_vecs_direction.size(): " <<global_vecs_direction.size() <<std::endl;
     std::cout << "global_vecs_norm.size(): " << global_vecs_norm.size()<<std::endl;
     std::cout << "global_centrePostions.size(): "<<global_centrePostions.size() <<std::endl;
@@ -430,6 +434,10 @@ void ModelNode::ransacModelParam()
             std::cout <<"maxInlierNum_normVec: "<<maxInlierNum_normVec<<std::endl;
             std::cout <<"final_normVec: "<<final_normVec.transpose()<<std::endl;
             debugLoopCount=0;   
+            std::cout << "loopCount: " << loopCount<<std::endl;
+            std::cout << "inlier_thresh_centre"<<inlier_thresh_centre <<std::endl;
+            std::cout << "inlier_thresh_dirVec"<<inlier_thresh_dirVec <<std::endl;
+            std::cout << "inlier_thresh_normVec"<<inlier_thresh_normVec <<std::endl;
             cv::waitKey(0);        
         }
         Eigen::Vector3d temp_dirVec(a_dirVec,b_dirVec,c_dirVec);
@@ -466,15 +474,27 @@ void ModelNode::ransacModelParam()
             maxInlierNum_normVec = inlierNum_normVec;
             final_normVec = temp_normVec;
         }
-        if (loopCount > modelThresh/2 && maxInlierNum_dirVec < modelThresh/10)
+        // 当循环次数大于设定阈值且最大的内点数量小于样点数量的5/8时改变内点阈值；
+        if (loopCount > LoopCountToChangeInlierThresh_centre && maxInlierNum_centre < modelThresh*5/8)
         {
-            inlier_thresh_dirVec-=0.01;
+            std::cout << "start to change dirVec inlierThresh"<<std::endl;
+            LoopCountToChangeInlierThresh_centre+=(int)iterNum/40;
+            inlier_thresh_centre+=0.15;
         }
-        if (loopCount > modelThresh/2 && maxInlierNum_normVec < modelThresh/10)
+        if (loopCount > LoopCountToChangeInlierThresh_dirVec && maxInlierNum_dirVec < modelThresh*5/8)
         {
-            inlier_thresh_normVec-=0.01;
+            std::cout << "start to change dirVec inlierThresh"<<std::endl;
+            LoopCountToChangeInlierThresh_dirVec+=(int)iterNum/40;
+            inlier_thresh_dirVec -= 0.0015;
+        }
+        if (loopCount > LoopCountToChangeInlierThresh_normVec && maxInlierNum_normVec < modelThresh*5/8)
+        {
+            std::cout << "start to change normVec inlierThresh"<<std::endl;
+            LoopCountToChangeInlierThresh_normVec+=(int)iterNum/40;
+            inlier_thresh_normVec -= 0.0015;
         }
     }
+
     final_dirVec = final_normVec.cross(final_dirVec).cross(final_normVec).normalized();
     std::cout << "******************************" << std::endl;
     std::cout << "The final result of centre position: " << final_centrePosition.transpose() <<std::endl;
@@ -680,7 +700,7 @@ bool ModelNode::Model()
         std::cout<< "global_vecs_norm[" << i<<"]: "<<global_vecs_norm[i].transpose()<< std::endl;
         std::cout<< "-----------------------------------------------------" << std::endl;
     }
-    cv::waitKey(0);
+    // cv::waitKey(0);
 
     // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
     ransacModelParam();
