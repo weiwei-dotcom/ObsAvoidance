@@ -10,15 +10,14 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     // std::cout << "-----------------------------------------" << std::endl;
     // std::cout << "Start recieving the msg" << std::endl;
 
+    // Recieve the message data;
+    if (!recieveMsg(pcl_msg, img_msg, pose_msg))
+        return;   
     if (flag_pubModel)
     {
         PubModel(); 
         return;        
     }
-
-    // Recieve the message data;
-    if (!recieveMsg(pcl_msg, img_msg, pose_msg))
-        return;   
     // Start modeling;
     if (!Model())
     {
@@ -139,6 +138,10 @@ ModelNode::ModelNode():Node("model")
     inCircleVal=fileRead["inCircleVal"];
     mapPointNumThresh=fileRead["mapPointNumThresh"];
     scale_startLoopCountTochangeInlierThresh=fileRead["scale_startLoopCountTochangeInlierThresh"];
+    buildPointStep = fileRead["buildPointStep"];
+    xSize = fileRead["xSize"];
+    ySize = fileRead["ySize"];
+    zSize = fileRead["zSize"];
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
@@ -527,11 +530,13 @@ void ModelNode::ransacModelParam()
 
 void ModelNode::buildFront()
 {
-    for (int i=1;i<220;i++)
+    int buildStepNum_z = (int)(zSize/buildPointStep);
+    int buildStepNum_x = (int)(xSize/buildPointStep);
+    for (int i=1;i<buildStepNum_z;i++)
     {  
-        for(int j=1;j<220;j++)
+        for(int j=1;j<buildStepNum_x;j++)
         {
-            Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)220)+(frontRightUnder-frontLeftUnder)*((double)j/(double)220);
+            Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
             if ((pointPosition-centrePosition).norm() < 100)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
@@ -541,11 +546,13 @@ void ModelNode::buildFront()
 }
 void ModelNode::buildBack()
 {
-    for (int i=1;i<220;i++)
+    int buildStepNum_z = (int)(zSize/buildPointStep);
+    int buildStepNum_x = (int)(xSize/buildPointStep);
+    for (int i=1;i<buildStepNum_z;i++)
     {  
-        for(int j=1;j<220;j++)
+        for(int j=1;j<buildStepNum_x;j++)
         {
-            Eigen::Vector3d pointPosition = backLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)220)+(frontRightUnder-frontLeftUnder)*((double)j/(double)220);
+            Eigen::Vector3d pointPosition = backLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
         }
@@ -553,42 +560,44 @@ void ModelNode::buildBack()
 }
 void ModelNode::buildSide()
 {
+    int buildStepNum_z = (int)(zSize/buildPointStep);
+    int buildStepNum_y = (int)(ySize/buildPointStep);
     // 从前方左下角开始逐行建模
-    for (int i=1;i<220;i++)
+    for (int i=1;i<buildStepNum_z;i++)
     {  
-        for(int j=1;j<368;j++)
+        for(int j=1;j<buildStepNum_y;j++)
         {
-            Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)220)+(backLeftUnder-frontLeftUnder)*((double)j/(double)368);
+            Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
         }
     }
     // 从前方左上角开始逐行建模
-    for (int i=1;i<220;i++)
+    for (int i=1;i<buildStepNum_z;i++)
     {  
-        for(int j=1;j<368;j++)
+        for(int j=1;j<buildStepNum_y;j++)
         {
-            Eigen::Vector3d pointPosition = frontLeftUp+(frontRightUnder-frontLeftUnder)*((double)i/(double)220)+(backLeftUnder-frontLeftUnder)*((double)j/(double)368);
+            Eigen::Vector3d pointPosition = frontLeftUp+(frontRightUnder-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
         }
     }
     // 从前方右下角开始逐行建模
-    for (int i=1;i<220;i++)
+    for (int i=1;i<buildStepNum_z;i++)
     {  
-        for(int j=1;j<368;j++)
+        for(int j=1;j<buildStepNum_y;j++)
         {
-            Eigen::Vector3d pointPosition = frontRightUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)220)+(backLeftUnder-frontLeftUnder)*((double)j/(double)368);
+            Eigen::Vector3d pointPosition = frontRightUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
         }
     }
     // 前方左下角开始逐行建模
-    for (int i=1;i<220;i++)
+    for (int i=1;i<buildStepNum_z;i++)
     {  
-        for(int j=1;j<368;j++)
+        for(int j=1;j<buildStepNum_y;j++)
         {
-            Eigen::Vector3d pointPosition = frontLeftUnder+(frontRightUnder-frontLeftUnder)*((double)i/(double)220)+(backLeftUnder-frontLeftUnder)*((double)j/(double)368);
+            Eigen::Vector3d pointPosition = frontLeftUnder+(frontRightUnder-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
         }
@@ -596,12 +605,15 @@ void ModelNode::buildSide()
 }
 void ModelNode::buildStructure1()
 {
-    for (int i=1;i<220;i++)
+    int buildStepNum_z = (int)(zSize/buildPointStep);
+    int buildStepNum_x = (int)(xSize/buildPointStep);
+    for (int i=1;i<buildStepNum_z;i++)
     {  
-        for(int j=1;j<220;j++)
+        for(int j=1;j<buildStepNum_x;j++)
         {
-            Eigen::Vector3d pointPosition = structureLeftUnder1+(frontLeftUp-frontLeftUnder)*((double)i/(double)220)+(frontRightUnder-frontLeftUnder)*((double)j/(double)220);
-            if (i>90 && j<130)
+            Eigen::Vector3d pointPosition = structureLeftUnder1+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
+            // TODO:
+            if (i>45 && j<65)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
@@ -610,17 +622,40 @@ void ModelNode::buildStructure1()
 }
 void ModelNode::buildStructure2()
 {
-    for (int i=1;i<220;i++)
+    int buildStepNum_z = (int)(zSize/buildPointStep);
+    int buildStepNum_x = (int)(xSize/buildPointStep);
+    for (int i=1;i<buildStepNum_z;i++)
     {  
-        for(int j=1;j<220;j++)
+        for(int j=1;j<buildStepNum_x;j++)
         {
-            Eigen::Vector3d pointPosition = structureLeftUnder2+(frontLeftUp-frontLeftUnder)*((double)i/(double)220)+(frontRightUnder-frontLeftUnder)*((double)j/(double)220);
-            if (i<125 && j>95)
+            Eigen::Vector3d pointPosition = structureLeftUnder2+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
+            if (i<63 && j>48)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
         }
     }
+}
+
+void ModelNode::PubModel()
+{
+    std::cout << "PubModel()"<<std::endl;
+    pcl::PointCloud<pcl::PointXYZ> realTimePcl;
+    // // 便利障碍物点云，得到在可视空间内的点云
+    // for (auto point:pcl_obstacle.points)
+    // {
+    //     Eigen::Vector3d tempPosition(point.x, point.y, point.z);
+    //     if (acos(Eigen::Vector3d(m_transform_curToInit.block(0,2,3,1)).dot(tempPosition.normalized()))>CV_PI/(double)180 *(double)30)
+    //     {
+    //         continue;
+    //     }
+    //     realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
+    // }
+    sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
+    pcl::toROSMsg(realTimePcl, pclMsg_obstacle);
+    pclMsg_obstacle.header = m_header_initFrame;
+    pcl_pub->publish(pclMsg_obstacle);
+    flag_pubModel = true;
 }
 
 // 障碍物建模主函数
@@ -794,17 +829,6 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
         return false;    
     }
     return true;
-}
-
-void ModelNode::PubModel()
-{
-    std::cout << "PubModel()"<<std::endl;
-
-    sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
-    pcl::toROSMsg(pcl_obstacle, pclMsg_obstacle);
-    pclMsg_obstacle.header = m_header_initFrame;
-    pcl_pub->publish(pclMsg_obstacle);
-    flag_pubModel = true;
 }
 
 Eigen::Vector4d ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {

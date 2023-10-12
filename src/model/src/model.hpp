@@ -157,6 +157,13 @@ private:
     //开始改变阈值的循环次数占总迭代次数的比例
     double scale_startLoopCountTochangeInlierThresh;
 
+    // 建立点云模型时的步进值(mm)
+    double buildPointStep;
+// 整个模型的xyz轴尺寸(mm)
+    double xSize;
+    double ySize;
+    double zSize;
+
     // 錯誤狀態變量
     ERROR_TYPE error_type;
 

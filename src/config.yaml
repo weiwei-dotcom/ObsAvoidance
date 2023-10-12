@@ -87,6 +87,12 @@ maxCosValueThresh_vertical: 0.17
 model_difference_radius_thresh: 14
 model_distance_center_thresh: 20
 
+# 建立点云模型时的步进值(mm)
+buildPointStep: 4
+# 整个模型的xyz轴尺寸(mm)
+xSize: 440
+ySize: 440
+zSize: 735
 
 # 圆形检测参数值
 dp: 2
