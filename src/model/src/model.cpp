@@ -438,7 +438,7 @@ void ModelNode::ransacModelParam()
             std::cout << "inlier_thresh_centre"<<inlier_thresh_centre <<std::endl;
             std::cout << "inlier_thresh_dirVec"<<inlier_thresh_dirVec <<std::endl;
             std::cout << "inlier_thresh_normVec"<<inlier_thresh_normVec <<std::endl;
-            cv::waitKey(0);        
+                
         }
         Eigen::Vector3d temp_dirVec(a_dirVec,b_dirVec,c_dirVec);
         Eigen::Vector3d temp_normVec(a_normVec,b_normVec,c_normVec);
