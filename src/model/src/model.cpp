@@ -26,7 +26,6 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
 
         return; 
     }
-    cv::waitKey(10);
     // Publish pointcloud of obstacle model;
     PubModel();        
     return;
@@ -769,12 +768,12 @@ Eigen::Vector3d ModelNode::indexToCoor(const int index)
     //debug
     std::cout <<"indexToCoor()" <<std::endl;
     std::cout << "index: " << index <<std::endl;
-    std::cout<<Eigen::Vector3d((index%xAxisGridNum)*gridResolution+0.5*gridResolution ,
-                           ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution, 
-                           (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution).transpose() << std::endl;
-    return Eigen::Vector3d((index%xAxisGridNum)*gridResolution+0.5*gridResolution ,
-                           ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution, 
-                           (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution);
+    std::cout<<Eigen::Vector3d((index%xAxisGridNum)*gridResolution+0.5*gridResolution+xBoundLow ,
+                           ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution+yBoundLow, 
+                           (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution+zBoundLow).transpose() << std::endl;
+    return Eigen::Vector3d((index%xAxisGridNum)*gridResolution+0.5*gridResolution+xBoundLow ,
+                           ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution+yBoundLow, 
+                           (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution+zBoundLow);
 }
 
 void ModelNode::PubModel()
@@ -785,29 +784,34 @@ void ModelNode::PubModel()
     Eigen::Vector3d tempZaxis = m_transform_curToInit.block(0,2,3,1);
     Eigen::Vector3d tempYaxis = m_transform_curToInit.block(0,1,3,1);
     Eigen::Vector3d tempXaxis = m_transform_curToInit.block(0,0,3,1);
-
+    Eigen::Vector3d tempOrigin = m_transform_curToInit.block(0,3,3,1);
+    std::cout << "here" <<std::endl;
     for (int u=-125;u<=125;u++)
     {
         for (int v=-150;v>=150;v++)
         {
             Eigen::Vector3d tempDirVec=1500.0*tempZaxis+1500.0*tan(0.23*v/180*CV_PI)*tempXaxis+1500.0*tan(0.23*u/180*CV_PI)*tempYaxis;
             tempDirVec.normalize();
-            for(int i=0;i<1500/gridResolution;i++)
+            std::cout <<"tempDirVec.transpose()"<<tempDirVec.transpose() <<std::endl;
+            for(int i=0;i<(1200+1e-4)/gridResolution;i++)
             {
-                Eigen::Vector3d tempRay(m_transform_curToInit.block(0,3,3,1)+tempDirVec*i);
+                Eigen::Vector3d tempRay(tempOrigin+tempDirVec*i*gridResolution);
                 if (tempRay.x() < xBoundLow || 
                     tempRay.y() < yBoundLow || 
                     tempRay.z() < zBoundLow || 
                     tempRay.x() > xBoundUp || 
                     tempRay.y() > yBoundUp || 
                     tempRay.z() > zBoundUp) break;
-                if (!occupancyList.at(coorToIndex(tempRay))) continue;
-                realTimePcl.points.push_back(pcl::PointXYZ(tempRay.x(), tempRay.y(), tempRay.z()));
+                int tempIndex = coorToIndex(tempRay);
+                if (!occupancyList.at(tempIndex)) continue;
+                Eigen::Vector3d tempPosition = indexToCoor(tempIndex);
+                realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
+                std::cout << tempPosition.transpose() <<std::endl;
                 break;
             }
         }
     }
-    // // 便利障碍物点云，得到在可视空间内的点云
+    // // 遍历障碍物点云，得到在可视空间内的点云
     // for (auto point:pcl_obstacle.points)
     // {
     //     Eigen::Vector3d tempPosition(point.x, point.y, point.z);
