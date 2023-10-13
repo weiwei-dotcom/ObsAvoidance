@@ -13,6 +13,7 @@ mediaNode::mediaNode():Node("media")
   );
   sync1->registerCallback(std::bind(&mediaNode::slam_callback, this, std::placeholders::_1, std::placeholders::_2));
   transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
+  transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
   cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
   minDist = fileRead["minDist"];
@@ -99,17 +100,34 @@ void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_m
   point_cloud_pub_msg.header = slam_msg->point_cloud.header;
   // std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
   pointCloud_pub->publish(point_cloud_pub_msg);
-  geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg;
+  geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg;
   transform_init2cur_pub_msg = slam_msg->transform_init2cur;
   transform_init2cur_pub_msg.pose.position.x *= scaleFact_slamToWorld;
   transform_init2cur_pub_msg.pose.position.y *= scaleFact_slamToWorld;
   transform_init2cur_pub_msg.pose.position.z *= scaleFact_slamToWorld;
+
+  Eigen::Quaterniond tempQua(transform_init2cur_pub_msg.pose.orientation.w,
+                      transform_init2cur_pub_msg.pose.orientation.x,
+                      transform_init2cur_pub_msg.pose.orientation.y,
+                      transform_init2cur_pub_msg.pose.orientation.z);
+
+  Eigen::Quaterniond tempQ(tempQua.matrix().inverse());
+  transform_cur2init_pub_msg.header = slam_msg->point_cloud.header;
+  transform_cur2init_pub_msg.pose.orientation.w = tempQ.w();
+  transform_cur2init_pub_msg.pose.orientation.x = tempQ.x();
+  transform_cur2init_pub_msg.pose.orientation.y = tempQ.y();
+  transform_cur2init_pub_msg.pose.orientation.z = tempQ.z();
+  transform_cur2init_pub_msg.pose.position.x = -transform_init2cur_pub_msg.pose.position.x;
+  transform_cur2init_pub_msg.pose.position.y = -transform_init2cur_pub_msg.pose.position.y;
+  transform_cur2init_pub_msg.pose.position.z = -transform_init2cur_pub_msg.pose.position.z;
+  
   // //调试代码3
   // std::cout << "transform_init2cur_pub_msg.pose.position.x: " << transform_init2cur_pub_msg.pose.position.x << std::endl;
   // std::cout << "transform_init2cur_pub_msg.pose.position.y: " << transform_init2cur_pub_msg.pose.position.y << std::endl;
   // std::cout << "transform_init2cur_pub_msg.pose.position.z: " << transform_init2cur_pub_msg.pose.position.z << std::endl;
   // std::cout << "transform_init2cur_pub_msg.header.frame_id: " << transform_init2cur_pub_msg.header.frame_id << std::endl;
   transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
+  transformCurToInit_pub->publish(transform_cur2init_pub_msg);
   return;
 }
 

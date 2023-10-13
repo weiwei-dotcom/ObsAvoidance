@@ -159,10 +159,25 @@ private:
 
     // 建立点云模型时的步进值(mm)
     double buildPointStep;
-// 整个模型的xyz轴尺寸(mm)
+    // 整个模型的xyz轴尺寸(mm)
     double xSize;
     double ySize;
     double zSize;
+
+    // 占据网格的xyz轴上下边界
+    double xBoundLow;
+    double yBoundLow;
+    double zBoundLow;
+    double xBoundUp;
+    double yBoundUp;
+    double zBoundUp;
+    // 占据网格分辨率,每个网格占多少尺寸(mm)的空间
+    double gridResolution;
+    // 对应网格索引的占据状态列表
+    std::vector<bool> occupancyList;
+    int xAxisGridNum;
+    int yAxisGridNum;
+    int zAxisGridNum;
 
     // 錯誤狀態變量
     ERROR_TYPE error_type;
@@ -237,5 +252,8 @@ public:
     void buildSide();
     void buildStructure1();
     void buildStructure2();
+    void rasterizationModel();
+    int coorToIndex(const Eigen::Vector3d inputCoor);
+    Eigen::Vector3d indexToCoor(const int index);
     ~ModelNode();
 };

@@ -91,8 +91,17 @@ model_distance_center_thresh: 20
 buildPointStep: 4
 # 整个模型的xyz轴尺寸(mm)
 xSize: 440
-ySize: 440
-zSize: 735
+ySize: 735
+zSize: 440
+# 对地图进行栅格化的xyz上下边界
+xBoundLow: -1000
+yBoundLow: -500
+zBoundLow: -1000
+xBoundUp: 1000
+yBoundUp: 1500
+zBoundUp: 1000
+# 占据网格的分辨率大小
+gridResolution: 10
 
 # 圆形检测参数值
 dp: 2

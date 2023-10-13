@@ -142,6 +142,21 @@ ModelNode::ModelNode():Node("model")
     xSize = fileRead["xSize"];
     ySize = fileRead["ySize"];
     zSize = fileRead["zSize"];
+    yBoundLow=fileRead["yBoundLow"];
+    xBoundLow=fileRead["xBoundLow"];
+    zBoundLow=fileRead["zBoundLow"];
+    xBoundUp=fileRead["xBoundUp"];
+    yBoundUp=fileRead["yBoundUp"];
+    zBoundUp=fileRead["zBoundUp"];
+    gridResolution=fileRead["gridResolution"];
+    occupancyList.resize(floor(((xBoundUp-xBoundLow)+1.0e-4)/gridResolution)
+                        *floor(((yBoundUp-yBoundLow)+1.0e-4)/gridResolution)
+                        *floor(((zBoundUp-zBoundLow)+1.0e-4)/gridResolution));
+    occupancyList.assign(occupancyList.size(), false);
+    xAxisGridNum = floor(((xBoundUp-xBoundLow)+1.0e-4)/gridResolution);
+    yAxisGridNum = floor(((yBoundUp-yBoundLow)+1.0e-4)/gridResolution);
+    zAxisGridNum = floor(((zBoundUp-zBoundLow)+1.0e-4)/gridResolution);
+
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
@@ -612,8 +627,7 @@ void ModelNode::buildStructure1()
         for(int j=1;j<buildStepNum_x;j++)
         {
             Eigen::Vector3d pointPosition = structureLeftUnder1+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
-            // TODO:
-            if (i>45 && j<65)
+            if (i>180/buildPointStep && j<260/buildPointStep)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
@@ -629,7 +643,7 @@ void ModelNode::buildStructure2()
         for(int j=1;j<buildStepNum_x;j++)
         {
             Eigen::Vector3d pointPosition = structureLeftUnder2+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
-            if (i<63 && j>48)
+            if (i<250/buildPointStep && j>190/buildPointStep)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
@@ -637,27 +651,15 @@ void ModelNode::buildStructure2()
     }
 }
 
-void ModelNode::PubModel()
+void ModelNode::rasterizationModel()
 {
-    std::cout << "PubModel()"<<std::endl;
-    pcl::PointCloud<pcl::PointXYZ> realTimePcl;
-    // // 便利障碍物点云，得到在可视空间内的点云
-    // for (auto point:pcl_obstacle.points)
-    // {
-    //     Eigen::Vector3d tempPosition(point.x, point.y, point.z);
-    //     if (acos(Eigen::Vector3d(m_transform_curToInit.block(0,2,3,1)).dot(tempPosition.normalized()))>CV_PI/(double)180 *(double)30)
-    //     {
-    //         continue;
-    //     }
-    //     realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
-    // }
-    sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
-    pcl::toROSMsg(realTimePcl, pclMsg_obstacle);
-    pclMsg_obstacle.header = m_header_initFrame;
-    pcl_pub->publish(pclMsg_obstacle);
-    flag_pubModel = true;
+    for (auto point:pcl_obstacle.points)
+    {
+        Eigen::Vector3d tempPosition(point.x,point.y,point.z);
+        occupancyList.at(coorToIndex(tempPosition)) = true;
+    }
+    return;
 }
-
 // 障碍物建模主函数
 bool ModelNode::Model()
 {
@@ -746,8 +748,80 @@ bool ModelNode::Model()
     buildSide();
     buildStructure1();
     buildStructure2();
+    //将地图栅格化并对每个栅格的占据元素进行赋值
+    rasterizationModel();
 
     return true;
+}
+
+int ModelNode::coorToIndex(const Eigen::Vector3d inputCoor)
+{
+    //debug
+    std::cout<<"inputCoor: " <<inputCoor.transpose() <<std::endl;
+    int index = floor((inputCoor.x()-xBoundLow)/gridResolution)
+                +floor((inputCoor.y()-yBoundLow)/gridResolution)*xAxisGridNum
+                +floor((inputCoor.z()-zBoundLow)/gridResolution)*xAxisGridNum*yAxisGridNum;
+    std::cout<<index<<std::endl;
+    return index;
+}
+Eigen::Vector3d ModelNode::indexToCoor(const int index)
+{
+    //debug
+    std::cout <<"indexToCoor()" <<std::endl;
+    std::cout << "index: " << index <<std::endl;
+    std::cout<<Eigen::Vector3d((index%xAxisGridNum)*gridResolution+0.5*gridResolution ,
+                           ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution, 
+                           (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution).transpose() << std::endl;
+    return Eigen::Vector3d((index%xAxisGridNum)*gridResolution+0.5*gridResolution ,
+                           ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution, 
+                           (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution);
+}
+
+void ModelNode::PubModel()
+{
+    std::cout << "PubModel()"<<std::endl;
+    pcl::PointCloud<pcl::PointXYZ> realTimePcl;
+    // 利用相机投影矩阵的投影线进行碰撞检测
+    Eigen::Vector3d tempZaxis = m_transform_curToInit.block(0,2,3,1);
+    Eigen::Vector3d tempYaxis = m_transform_curToInit.block(0,1,3,1);
+    Eigen::Vector3d tempXaxis = m_transform_curToInit.block(0,0,3,1);
+
+    for (int u=-125;u<=125;u++)
+    {
+        for (int v=-150;v>=150;v++)
+        {
+            Eigen::Vector3d tempDirVec=1500.0*tempZaxis+1500.0*tan(0.23*v/180*CV_PI)*tempXaxis+1500.0*tan(0.23*u/180*CV_PI)*tempYaxis;
+            tempDirVec.normalize();
+            for(int i=0;i<1500/gridResolution;i++)
+            {
+                Eigen::Vector3d tempRay(m_transform_curToInit.block(0,3,3,1)+tempDirVec*i);
+                if (tempRay.x() < xBoundLow || 
+                    tempRay.y() < yBoundLow || 
+                    tempRay.z() < zBoundLow || 
+                    tempRay.x() > xBoundUp || 
+                    tempRay.y() > yBoundUp || 
+                    tempRay.z() > zBoundUp) break;
+                if (!occupancyList.at(coorToIndex(tempRay))) continue;
+                realTimePcl.points.push_back(pcl::PointXYZ(tempRay.x(), tempRay.y(), tempRay.z()));
+                break;
+            }
+        }
+    }
+    // // 便利障碍物点云，得到在可视空间内的点云
+    // for (auto point:pcl_obstacle.points)
+    // {
+    //     Eigen::Vector3d tempPosition(point.x, point.y, point.z);
+    //     if (acos(Eigen::Vector3d(m_transform_curToInit.block(0,2,3,1)).dot(tempPosition.normalized()))>(float)CV_PI/(float)180 *(float)20)
+    //     {
+    //         continue;
+    //     }
+    //     realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
+    // }
+    sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
+    pcl::toROSMsg(realTimePcl, pclMsg_obstacle);
+    pclMsg_obstacle.header = m_header_initFrame;
+    pcl_pub->publish(pclMsg_obstacle);
+    flag_pubModel = true;
 }
 
 int ModelNode::calRansacIterNum()
@@ -797,7 +871,6 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
     {
         Eigen::Vector3f tempPixelPoint = m_projectMatrix * point.getVector3fMap();
         cv::Point pixelPoint((int)(tempPixelPoint[0]/tempPixelPoint[2]), (int)(tempPixelPoint[1]/tempPixelPoint[2]));
-        // TODO: 
         // 特征点掩码判断    
         if (pixelPoint.x>639 || pixelPoint.y>479 || pixelPoint.x<0||pixelPoint.y<0|| img_erode.at<bool>(pixelPoint) == 0) 
         {

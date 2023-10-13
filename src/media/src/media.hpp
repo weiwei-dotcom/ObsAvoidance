@@ -84,6 +84,7 @@ private:
     message_filters::Subscriber<sensor_msgs::msg::Image> image_sub;
     // 声明发布器
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformInit2Cur_pub;
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformCurToInit_pub;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pointCloud_pub;
     // 声明时间对齐器
     std::shared_ptr<message_filters::Synchronizer<message_filters::sync_policies::ExactTime<interface::msg::Slam, sensor_msgs::msg::Image>>> sync1;
