@@ -755,22 +755,22 @@ bool ModelNode::Model()
 
 int ModelNode::coorToIndex(const Eigen::Vector3d inputCoor)
 {
-    //debug
-    std::cout<<"inputCoor: " <<inputCoor.transpose() <<std::endl;
+    // //debug
+    // std::cout<<"inputCoor: " <<inputCoor.transpose() <<std::endl;
     int index = floor((inputCoor.x()-xBoundLow)/gridResolution)
                 +floor((inputCoor.y()-yBoundLow)/gridResolution)*xAxisGridNum
                 +floor((inputCoor.z()-zBoundLow)/gridResolution)*xAxisGridNum*yAxisGridNum;
-    std::cout<<index<<std::endl;
+    // std::cout<<index<<std::endl;
     return index;
 }
 Eigen::Vector3d ModelNode::indexToCoor(const int index)
 {
-    //debug
-    std::cout <<"indexToCoor()" <<std::endl;
-    std::cout << "index: " << index <<std::endl;
-    std::cout<<Eigen::Vector3d((index%xAxisGridNum)*gridResolution+0.5*gridResolution+xBoundLow ,
-                           ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution+yBoundLow, 
-                           (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution+zBoundLow).transpose() << std::endl;
+    // //debug
+    // std::cout <<"indexToCoor()" <<std::endl;
+    // std::cout << "index: " << index <<std::endl;
+    // std::cout<<Eigen::Vector3d((index%xAxisGridNum)*gridResolution+0.5*gridResolution+xBoundLow ,
+    //                        ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution+yBoundLow, 
+    //                        (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution+zBoundLow).transpose() << std::endl;
     return Eigen::Vector3d((index%xAxisGridNum)*gridResolution+0.5*gridResolution+xBoundLow ,
                            ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution+yBoundLow, 
                            (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution+zBoundLow);
@@ -785,14 +785,14 @@ void ModelNode::PubModel()
     Eigen::Vector3d tempYaxis = m_transform_curToInit.block(0,1,3,1);
     Eigen::Vector3d tempXaxis = m_transform_curToInit.block(0,0,3,1);
     Eigen::Vector3d tempOrigin = m_transform_curToInit.block(0,3,3,1);
-    std::cout << "here" <<std::endl;
+
     for (int u=-125;u<=125;u++)
     {
-        for (int v=-150;v>=150;v++)
+        for (int v=-150;v<=150;v++)
         {
             Eigen::Vector3d tempDirVec=1500.0*tempZaxis+1500.0*tan(0.23*v/180*CV_PI)*tempXaxis+1500.0*tan(0.23*u/180*CV_PI)*tempYaxis;
             tempDirVec.normalize();
-            std::cout <<"tempDirVec.transpose()"<<tempDirVec.transpose() <<std::endl;
+            // std::cout <<"tempDirVec.transpose()"<<tempDirVec.transpose() <<std::endl;
             for(int i=0;i<(1200+1e-4)/gridResolution;i++)
             {
                 Eigen::Vector3d tempRay(tempOrigin+tempDirVec*i*gridResolution);
@@ -806,7 +806,7 @@ void ModelNode::PubModel()
                 if (!occupancyList.at(tempIndex)) continue;
                 Eigen::Vector3d tempPosition = indexToCoor(tempIndex);
                 realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
-                std::cout << tempPosition.transpose() <<std::endl;
+                // std::cout << tempPosition.transpose() <<std::endl;
                 break;
             }
         }

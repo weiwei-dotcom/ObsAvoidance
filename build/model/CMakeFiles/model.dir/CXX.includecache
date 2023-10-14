@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/main.cpp
+model.hpp
+/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp
+
 /home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp
 model.hpp
 /home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.hpp
