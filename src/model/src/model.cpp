@@ -13,21 +13,15 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     // Recieve the message data;
     if (!recieveMsg(pcl_msg, img_msg, pose_msg))
         return;   
+    // 如果建模完成则开始发布障碍物模型
     if (flag_pubModel)
     {
         PubModel(); 
         return;        
     }
     // Start modeling;
-    if (!Model())
-    {
-        // 调试代码3
-        cv::waitKey(10);
-
-        return; 
-    }
-    // Publish pointcloud of obstacle model;
-    PubModel();        
+    flag_pubModel=Model();
+    cv::waitKey(10);
     return;
 }
 
@@ -64,6 +58,7 @@ bool ModelNode::recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &
     m_header_initFrame = pcl_msg->header;
     std::cout << "Msg recieved success !" << std::endl;
     return true;
+
 }
 
 // 构造函数 init function()
@@ -85,6 +80,7 @@ ModelNode::ModelNode():Node("model")
     sync1->registerCallback(std::bind(&ModelNode::mapPoint_callback, this, std::placeholders::_1, std::placeholders::_2,std::placeholders::_3));
 
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
+    double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
     // 读取拟合平面最小点云数参数
     int blueLower1 = fileRead["blueLower.1"];
     int blueLower2 = fileRead["blueLower.2"];
@@ -101,6 +97,7 @@ ModelNode::ModelNode():Node("model")
     blueUpper = cv::Scalar(blueUpper1, blueUpper2, blueUpper3);
     pixelNum_translate = fileRead["pixelNum_translate"];
     distanceThresh_plandAndPoint=fileRead["distanceThresh_plandAndPoint"];
+    distanceThresh_plandAndPoint*=scaleFact_mmToTarget;
     fx = fileRead["Camera.fx"];
     fy = fileRead["Camera.fy"];
     cx = fileRead["Camera.cx"];
@@ -114,10 +111,10 @@ ModelNode::ModelNode():Node("model")
     circleThresh = fileRead["model_circleThresh"];
     minRadius = fileRead["model_minRadius"];
     maxRadius = fileRead["model_maxRadius"];
-    difference_radius_thresh = fileRead["model_difference_radius_thresh"];
-    distance_center_thresh = fileRead["model_distance_center_thresh"];
     cosValueThresh_planeNormAndCameraZaxis = fileRead["model_cosValueThresh_planeNormAndCameraZaxis"];
     distance_thresh = fileRead["distance_thresh"]; 
+    distance_thresh*=scaleFact_mmToTarget;
+
     lineThresh = fileRead["lineThresh"];
     minLineLength = fileRead["minLineLength"];
     maxLineGap=fileRead["maxLineGap"];
@@ -127,9 +124,19 @@ ModelNode::ModelNode():Node("model")
     modelThresh=fileRead["modelThresh"];
     sample_length=fileRead["model_sample_length"];
     inlier_probability=fileRead["model_inlier_probability"];
+
     inlier_thresh_centre=fileRead["inlier_thresh_centre"];
+    inlier_thresh_centre*=scaleFact_mmToTarget;
     inlier_thresh_dirVec=fileRead["inlier_thresh_dirVec"];
+    inlier_thresh_dirVec*=scaleFact_mmToTarget;
     inlier_thresh_normVec=fileRead["inlier_thresh_normVec"];
+    inlier_thresh_normVec*=scaleFact_mmToTarget;
+    adaptiveIncrement_inlier_thresh_centre=fileRead["adaptiveIncrement_inlier_thresh_centre"];
+    adaptiveIncrement_inlier_thresh_centre*=scaleFact_mmToTarget;
+    adaptiveIncrement_inlier_thresh_dirVec=fileRead["adaptiveIncrement_inlier_thresh_dirVec"];
+    adaptiveIncrement_inlier_thresh_dirVec*=scaleFact_mmToTarget;
+    adaptiveIncrement_inlier_thresh_normVec=fileRead["adaptiveIncrement_inlier_thresh_normVec"];
+    adaptiveIncrement_inlier_thresh_normVec*=scaleFact_mmToTarget;
     canny_threshLow = fileRead["canny_threshLow"];
     canny_threshUp=fileRead["canny_threshUp"];
     kernelBigClose = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(bigCloseStructure_size, bigCloseStructure_size));
@@ -137,25 +144,48 @@ ModelNode::ModelNode():Node("model")
     inCircleVal=fileRead["inCircleVal"];
     mapPointNumThresh=fileRead["mapPointNumThresh"];
     scale_startLoopCountTochangeInlierThresh=fileRead["scale_startLoopCountTochangeInlierThresh"];
+    circleRadius=fileRead["circleRadius"];
+    circleRadius*=scaleFact_mmToTarget;
     buildPointStep = fileRead["buildPointStep"];
+    buildPointStep*=scaleFact_mmToTarget;
+    frontToStructureSize2 = fileRead["frontToStructureSize2"];
+    frontToStructureSize2*=scaleFact_mmToTarget;
+    frontToStructureSize1 = fileRead["frontToStructureSize1"];
+    frontToStructureSize1*=scaleFact_mmToTarget;
+    structureGapSize1=fileRead["structureGapSize1"];
+    structureGapSize1*=scaleFact_mmToTarget;
+    structureGapSize2=fileRead["structureGapSize2"];
+    structureGapSize2*=scaleFact_mmToTarget;
     xSize = fileRead["xSize"];
+    xSize*=scaleFact_mmToTarget;
     ySize = fileRead["ySize"];
+    ySize*=scaleFact_mmToTarget;
     zSize = fileRead["zSize"];
+    zSize*=scaleFact_mmToTarget;
     yBoundLow=fileRead["yBoundLow"];
+    yBoundLow*=scaleFact_mmToTarget;
     xBoundLow=fileRead["xBoundLow"];
+    xBoundLow*=scaleFact_mmToTarget;
     zBoundLow=fileRead["zBoundLow"];
+    zBoundLow*=scaleFact_mmToTarget;
     xBoundUp=fileRead["xBoundUp"];
+    xBoundUp*=scaleFact_mmToTarget;
     yBoundUp=fileRead["yBoundUp"];
+    yBoundUp*=scaleFact_mmToTarget;
     zBoundUp=fileRead["zBoundUp"];
+    zBoundUp*=scaleFact_mmToTarget;
     gridResolution=fileRead["gridResolution"];
-    occupancyList.resize(floor(((xBoundUp-xBoundLow)+1.0e-4)/gridResolution)
-                        *floor(((yBoundUp-yBoundLow)+1.0e-4)/gridResolution)
-                        *floor(((zBoundUp-zBoundLow)+1.0e-4)/gridResolution));
+    gridResolution*=scaleFact_mmToTarget;
+    occupancyList.resize(floor(((xBoundUp-xBoundLow)+(1.0e-4)*scaleFact_mmToTarget)/gridResolution)
+                        *floor(((yBoundUp-yBoundLow)+(1.0e-4)*scaleFact_mmToTarget)/gridResolution)
+                        *floor(((zBoundUp-zBoundLow)+(1.0e-4)*scaleFact_mmToTarget)/gridResolution));
     occupancyList.assign(occupancyList.size(), false);
-    xAxisGridNum = floor(((xBoundUp-xBoundLow)+1.0e-4)/gridResolution);
-    yAxisGridNum = floor(((yBoundUp-yBoundLow)+1.0e-4)/gridResolution);
-    zAxisGridNum = floor(((zBoundUp-zBoundLow)+1.0e-4)/gridResolution);
 
+    xAxisGridNum = floor(((xBoundUp-xBoundLow)+(1.0e-4)*scaleFact_mmToTarget)/gridResolution);
+    yAxisGridNum = floor(((yBoundUp-yBoundLow)+(1.0e-4)*scaleFact_mmToTarget)/gridResolution);
+    zAxisGridNum = floor(((zBoundUp-zBoundLow)+(1.0e-4)*scaleFact_mmToTarget)/gridResolution);
+    horizontal=fileRead["horizontal"];
+    horizontal*=scaleFact_mmToTarget;
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
@@ -195,7 +225,7 @@ bool ModelNode::getMaxArea(cv::Mat &maxArea)
 {
     // 阈值分割    
     std::cout << "getMaxArea()" <<std::endl;
-    cv::Mat imgHsv, imgBin, img_erode, img_dilate;
+    cv::Mat imgHsv, imgBin, img_erode;
     cv::cvtColor(m_img, imgHsv, CV_BGR2HSV);
     cv::inRange(imgHsv, blueLower, blueUpper, imgBin);
     // 较小核腐蚀
@@ -203,7 +233,6 @@ bool ModelNode::getMaxArea(cv::Mat &maxArea)
     cv::imshow("temp_img_erode", img_erode);
     cv::Mat labels, stats, centroids;
     int num_labels = connectedComponentsWithStats(img_erode, labels, stats, centroids, 8, CV_16U);
-    std::cout<<"num_labels: " <<num_labels<<std::endl;
     std::vector<int> areas;
     if (num_labels>1)
     {
@@ -219,8 +248,7 @@ bool ModelNode::getMaxArea(cv::Mat &maxArea)
     }
     std::cout << "getMaxArea()" <<std::endl;
 
-    return false;
-    
+    return false; 
 }
 // 入口圆形筛选函数
 bool ModelNode::selectCircle(cv::Vec3f &circle, const std::vector<cv::Vec3f> temp_circles, cv::Mat &mask)
@@ -336,13 +364,14 @@ void ModelNode::calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const 
     from2dTo3dPlane(Eigen::Vector2d((double)line[2],(double)line[3]), endPoint2, param);
     Eigen::Vector3d lineDirInCur = (endPoint2-endPoint1).normalized();
     Eigen::Vector3d lineDirInInit = m_transform_curToInit.block(0,0,3,3) * lineDirInCur;
+    planeNormalVec = (m_transform_curToInit.block(0,0,3,3) * param.block(0,0,3,1)).normalized();
 
-    // 调试代码
-    std::cout << "lineDirInInit.transpose(): "<<lineDirInInit.transpose() << std::endl;
+    // // 调试代码
+    // std::cout << "lineDirInInit.transpose(): "<<lineDirInInit.transpose() << std::endl;
     
     if (std::abs(lineDirInInit.dot(Eigen::Vector3d(0,-1,0))) < std::cos(45))
     {
-        verticalVec = lineDirInInit.cross(Eigen::Vector3d(0,-1,0).cross(lineDirInInit)).normalized();
+        verticalVec = lineDirInInit.dot(Eigen::Vector3d(1,0,0)) > 0 ? lineDirInInit.cross(planeNormalVec).normalized():planeNormalVec.cross(lineDirInInit).normalized();
         std::cout <<"verticalVec: "<<verticalVec.transpose()<<std::endl;
     }
     else
@@ -350,7 +379,6 @@ void ModelNode::calModelParam(const cv::Vec3f circle,const cv::Vec4i line,const 
         verticalVec = lineDirInInit.dot(Eigen::Vector3d(0,-1,0)) > 0 ? lineDirInInit.normalized() : (-lineDirInInit.normalized());
         std::cout <<"verticalVec: "<<verticalVec.transpose()<<std::endl;
     }
-    planeNormalVec = (m_transform_curToInit.block(0,0,3,3) * param.block(0,0,3,1)).normalized();
     std::cout <<"planeNormalVec: "<<planeNormalVec.transpose()<<std::endl;
     Eigen::Vector4d tempCentreInCur(temp_circleCentre[0],temp_circleCentre[1],temp_circleCentre[2],1);
     circleCentreInInit = (m_transform_curToInit*tempCentreInCur).block(0,0,3,1);
@@ -365,7 +393,6 @@ void ModelNode::ransacModelParam()
 
     int iterNum = calRansacIterNum();
     std::cout <<"iterNum: " <<iterNum<<std::endl;
-    cv::waitKey(0);
     int maxInlierNum_centre = 0;
     int maxInlierNum_dirVec = 0;
     int maxInlierNum_normVec = 0;
@@ -450,12 +477,11 @@ void ModelNode::ransacModelParam()
             std::cout << "normVec: " << a_normVec<<" "<<b_normVec<<" "<<c_normVec<<std::endl; 
             std::cout <<"maxInlierNum_normVec: "<<maxInlierNum_normVec<<std::endl;
             std::cout <<"final_normVec: "<<final_normVec.transpose()<<std::endl;
-            debugLoopCount=0;   
             std::cout << "loopCount: " << loopCount<<std::endl;
             std::cout << "inlier_thresh_centre"<<inlier_thresh_centre <<std::endl;
             std::cout << "inlier_thresh_dirVec"<<inlier_thresh_dirVec <<std::endl;
             std::cout << "inlier_thresh_normVec"<<inlier_thresh_normVec <<std::endl;
-                
+            debugLoopCount=0;   
         }
         Eigen::Vector3d temp_dirVec(a_dirVec,b_dirVec,c_dirVec);
         Eigen::Vector3d temp_normVec(a_normVec,b_normVec,c_normVec);
@@ -491,24 +517,24 @@ void ModelNode::ransacModelParam()
             maxInlierNum_normVec = inlierNum_normVec;
             final_normVec = temp_normVec;
         }
-        // 当循环次数大于设定阈值且最大的内点数量小于样点数量的5/8时改变内点阈值；
+        // 当循环次数大于设定阈值且最大的内点数量小于样点数量的5/8时改变内点阈值
         if (loopCount > LoopCountToChangeInlierThresh_centre && maxInlierNum_centre < modelThresh*5/8)
         {
             std::cout << "start to change dirVec inlierThresh"<<std::endl;
             LoopCountToChangeInlierThresh_centre+=(int)iterNum/40;
-            inlier_thresh_centre+=0.15;
+            inlier_thresh_centre+=adaptiveIncrement_inlier_thresh_centre;
         }
         if (loopCount > LoopCountToChangeInlierThresh_dirVec && maxInlierNum_dirVec < modelThresh*5/8)
         {
             std::cout << "start to change dirVec inlierThresh"<<std::endl;
             LoopCountToChangeInlierThresh_dirVec+=(int)iterNum/40;
-            inlier_thresh_dirVec -= 0.0015;
+            inlier_thresh_dirVec -= adaptiveIncrement_inlier_thresh_dirVec;
         }
         if (loopCount > LoopCountToChangeInlierThresh_normVec && maxInlierNum_normVec < modelThresh*5/8)
         {
             std::cout << "start to change normVec inlierThresh"<<std::endl;
             LoopCountToChangeInlierThresh_normVec+=(int)iterNum/40;
-            inlier_thresh_normVec -= 0.0015;
+            inlier_thresh_normVec -= adaptiveIncrement_inlier_thresh_normVec;
         }
     }
 
@@ -522,12 +548,12 @@ void ModelNode::ransacModelParam()
     Zaxis = final_dirVec;
     Xaxis = Yaxis.cross(Zaxis);
     centrePosition=final_centrePosition;
-    frontLeftUnder = centrePosition-Zaxis*220-Xaxis*220;
-    structureLeftUnder1 = frontLeftUnder+Yaxis*185;
-    structureLeftUnder2 = frontLeftUnder+Yaxis*410;
-    backLeftUnder = frontLeftUnder+Yaxis*735;
-    frontRightUnder=centrePosition+220*Xaxis-220*Zaxis;
-    frontLeftUp=centrePosition-220*Xaxis+220*Zaxis;
+    frontLeftUnder = centrePosition-Zaxis*zSize/2.0-Xaxis*xSize/2.0;
+    structureLeftUnder1 = frontLeftUnder+Yaxis*frontToStructureSize1;
+    structureLeftUnder2 = frontLeftUnder+Yaxis*frontToStructureSize2;
+    backLeftUnder = frontLeftUnder+Yaxis*ySize;
+    frontRightUnder=centrePosition+xSize/2.0*Xaxis-zSize/2.0*Zaxis;
+    frontLeftUp=centrePosition-xSize/2.0*Xaxis+zSize/2.0*Zaxis;
 
     std::cout << "Xaxis: " <<Xaxis.transpose() << std::endl;
     std::cout << "Yaxis: " <<Yaxis.transpose() << std::endl;
@@ -539,19 +565,18 @@ void ModelNode::ransacModelParam()
     std::cout << "backLeftUnder: " <<backLeftUnder.transpose() << std::endl;
     std::cout << "frontRightUnder: " <<frontRightUnder.transpose() << std::endl;
     std::cout << "frontLeftUp: " << frontLeftUp.transpose() << std::endl;
-    cv::waitKey(0);
 }
 
 void ModelNode::buildFront()
 {
-    int buildStepNum_z = (int)(zSize/buildPointStep);
-    int buildStepNum_x = (int)(xSize/buildPointStep);
+    int buildStepNum_z = ceil(zSize/buildPointStep);
+    int buildStepNum_x = ceil(xSize/buildPointStep);
     for (int i=1;i<buildStepNum_z;i++)
     {  
         for(int j=1;j<buildStepNum_x;j++)
         {
             Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
-            if ((pointPosition-centrePosition).norm() < 100)
+            if ((pointPosition-centrePosition).norm() < circleRadius)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
@@ -560,8 +585,8 @@ void ModelNode::buildFront()
 }
 void ModelNode::buildBack()
 {
-    int buildStepNum_z = (int)(zSize/buildPointStep);
-    int buildStepNum_x = (int)(xSize/buildPointStep);
+    int buildStepNum_z = ceil(zSize/buildPointStep);
+    int buildStepNum_x = ceil(xSize/buildPointStep);
     for (int i=1;i<buildStepNum_z;i++)
     {  
         for(int j=1;j<buildStepNum_x;j++)
@@ -574,8 +599,8 @@ void ModelNode::buildBack()
 }
 void ModelNode::buildSide()
 {
-    int buildStepNum_z = (int)(zSize/buildPointStep);
-    int buildStepNum_y = (int)(ySize/buildPointStep);
+    int buildStepNum_z = ceil(zSize/buildPointStep);
+    int buildStepNum_y = ceil(ySize/buildPointStep);
     // 从前方左下角开始逐行建模
     for (int i=1;i<buildStepNum_z;i++)
     {  
@@ -619,14 +644,14 @@ void ModelNode::buildSide()
 }
 void ModelNode::buildStructure1()
 {
-    int buildStepNum_z = (int)(zSize/buildPointStep);
-    int buildStepNum_x = (int)(xSize/buildPointStep);
+    int buildStepNum_z = ceil(zSize/buildPointStep);
+    int buildStepNum_x = ceil(xSize/buildPointStep);
     for (int i=1;i<buildStepNum_z;i++)
     {  
         for(int j=1;j<buildStepNum_x;j++)
         {
             Eigen::Vector3d pointPosition = structureLeftUnder1+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
-            if (i>180/buildPointStep && j<260/buildPointStep)
+            if ((double)i>(zSize-structureGapSize1)/buildPointStep && (double)j<structureGapSize1/buildPointStep)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
@@ -635,14 +660,14 @@ void ModelNode::buildStructure1()
 }
 void ModelNode::buildStructure2()
 {
-    int buildStepNum_z = (int)(zSize/buildPointStep);
-    int buildStepNum_x = (int)(xSize/buildPointStep);
+    int buildStepNum_z = ceil(zSize/buildPointStep);
+    int buildStepNum_x = ceil(xSize/buildPointStep);
     for (int i=1;i<buildStepNum_z;i++)
     {  
         for(int j=1;j<buildStepNum_x;j++)
         {
             Eigen::Vector3d pointPosition = structureLeftUnder2+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
-            if (i<250/buildPointStep && j>190/buildPointStep)
+            if ((double)i<structureGapSize2/buildPointStep && (double)j>(xSize-structureGapSize2)/buildPointStep)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
             pcl_obstacle.points.push_back(point);
@@ -683,7 +708,7 @@ bool ModelNode::Model()
     cv::imshow("init_circle_img", img_circle);
 
     cv::Vec3f circle;
-    cv::Mat mask;                                                     // 这个mask是用来保存最大区域掩码图像
+    cv::Mat mask;    // 这个mask是用来保存最大区域掩码图像
     bool flag_findCircle = selectCircle(circle, temp_circles, mask);
     if (!flag_findCircle)
         return false;
@@ -749,7 +774,6 @@ bool ModelNode::Model()
     buildStructure2();
     //将地图栅格化并对每个栅格的占据元素进行赋值
     rasterizationModel();
-
     return true;
 }
 
@@ -790,10 +814,10 @@ void ModelNode::PubModel()
     {
         for (int v=-150;v<=150;v++)
         {
-            Eigen::Vector3d tempDirVec=1500.0*tempZaxis+1500.0*tan(0.23*v/180*CV_PI)*tempXaxis+1500.0*tan(0.23*u/180*CV_PI)*tempYaxis;
+            Eigen::Vector3d tempDirVec=horizontal*tempZaxis+horizontal*tan(0.23*v/180*CV_PI)*tempXaxis+horizontal*tan(0.23*u/180*CV_PI)*tempYaxis;
             tempDirVec.normalize();
             // std::cout <<"tempDirVec.transpose()"<<tempDirVec.transpose() <<std::endl;
-            for(int i=0;i<(1200+1e-4)/gridResolution;i++)
+            for(int i=0;i<(horizontal+1e-4)/gridResolution;i++)
             {
                 Eigen::Vector3d tempRay(tempOrigin+tempDirVec*i*gridResolution);
                 if (tempRay.x() < xBoundLow || 
@@ -806,7 +830,7 @@ void ModelNode::PubModel()
                 if (!occupancyList.at(tempIndex)) continue;
                 Eigen::Vector3d tempPosition = indexToCoor(tempIndex);
                 realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
-                // std::cout << tempPosition.transpose() <<std::endl;
+                std::cout << tempPosition.transpose() <<std::endl;
                 break;
             }
         }
@@ -825,7 +849,6 @@ void ModelNode::PubModel()
     pcl::toROSMsg(realTimePcl, pclMsg_obstacle);
     pclMsg_obstacle.header = m_header_initFrame;
     pcl_pub->publish(pclMsg_obstacle);
-    flag_pubModel = true;
 }
 
 int ModelNode::calRansacIterNum()
@@ -881,8 +904,8 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
             continue;            
         }
 
-        // 调试代码3
-        cv::drawMarker(temp_img,cv::Point(pixelPoint), cv::Scalar(0,255,0),2, 5, 1);
+        // // 调试代码3
+        // cv::drawMarker(temp_img,cv::Point(pixelPoint), cv::Scalar(0,255,0),2, 5, 1);
 
         finalPointCloud.points.push_back(point);
     }

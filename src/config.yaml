@@ -1,5 +1,7 @@
 %YAML:1.0
 ---
+# 该配置文件默认均为mm单位制尺度。
+# 如需更改单位，可将scaleFact_mmToTarget配置为目标单位/mm单位。
 
 Camera.order: 0
 Camera.fx: 425.7142390419255
@@ -19,42 +21,20 @@ blueLower.3: 46
 blueUpper.1: 149
 blueUpper.2: 255
 blueUpper.3: 255
-greenLower.1: 50
-greenLower.2: 43
-greenLower.3: 46
-greenUpper.1: 90
-greenUpper.2: 255
-greenUpper.3: 255
-redLower.1: 150
-redLower.2: 43
-redLower.3: 46
-redUpper.1: 180
-redUpper.2: 255
-redUpper.3: 255
-redPlusUpper.1: 33
-redPlusUpper.2: 255
-redPlusUpper.3: 255 
-redPlusLower.1: 0
-redPlusLower.2: 255
-redPlusLower.3: 255
-whiteLower1: 0
-whiteLower2: 0
-whiteLower3: 221
-whiteUpper1: 180
-whiteUpper2: 30
-whiteUpper3: 255
 
 open_blue_kernel_size: 17
 close_blue_kernel_size: 15
-open_green_kernel_size: 5
-close_green_kernel_size: 9
-open_red_kernel_size: 5
-close_red_kernel_size: 7
 
 # 判断motionControl功能包程序是否编写完成的标志:
 # 0 未完成
 # 1 完成
 flag_motionControlProgramHaveDone: 0
+
+# mm制尺度到实际应用尺度(eg: M ,scaleFact_mmToTarget: 0.001)的转换因子
+scaleFact_mmToTarget: 0.001
+
+# 实时建图的视野范围
+horizontal: 1200.0
 
 # model圆形检测参数值
 model_dp: 2
@@ -86,22 +66,28 @@ maxCosValueThresh_vertical: 0.17
 # 两帧圆之间的半径差阈值、圆心距离阈值
 model_difference_radius_thresh: 14
 model_distance_center_thresh: 20
+# 实际圆形半径
+circleRadius: 100
 
 # 建立点云模型时的步进值(mm)
-buildPointStep: 4
+buildPointStep: 4.0
 # 整个模型的xyz轴尺寸(mm)
-xSize: 440
-ySize: 735
-zSize: 440
-# 对地图进行栅格化的xyz上下边界
-xBoundLow: -1000
-yBoundLow: -1000
-zBoundLow: -500
-xBoundUp: 1000
-yBoundUp: 1000
-zBoundUp: 1500
-# 占据网格的分辨率大小
-gridResolution: 10
+xSize: 440.0
+ySize: 735.0
+zSize: 440.0
+frontToStructureSize1: 185.0
+frontToStructureSize2: 410.0
+structureGapSize1: 260.0
+structureGapSize2: 250.0
+# 对地图进行栅格化的xyz上下边界(mm)
+xBoundLow: -1000.0
+yBoundLow: -1000.0
+zBoundLow: -500.0
+xBoundUp: 1000.0
+yBoundUp: 1000.0
+zBoundUp: 1500.0
+# 占据网格的分辨率大小(mm)
+gridResolution: 10.0
 
 # 圆形检测参数值
 dp: 2
@@ -117,10 +103,10 @@ distance_center_thresh: 25
 
 # 正视判断的cos阈值
 cosValue_thresh: 0.988
-model_cosValueThresh_planeNormAndCameraZaxis: 0.94
+model_cosValueThresh_planeNormAndCameraZaxis: 0.96
 
 # 相机平面之间的距离阈值
-distance_thresh: 320
+distance_thresh: 320.0
 
 # 大核闭运算核大小
 model_bigCloseStructure_size: 19
@@ -148,7 +134,7 @@ inCircleVal: 5
 # 尺度因子列表长度阈值
 scaleFactList_size_thresh: 160
 # 尺度因子内点阈值
-inlier_thresh_scaleFact: 60
+inlier_thresh_scaleFact: 60.0
 # ransac尺度因子采样长度
 sample_length: 6
 # 好点概率
@@ -158,49 +144,21 @@ model_sample_length: 6
 # 单个样本好点概率
 model_inlier_probability: 0.35
 # ransac内点阈值
-inlier_thresh_centre: 3
-inlier_thresh_normVec: 0.998
-inlier_thresh_dirVec: 0.998
+inlier_thresh_centre: 3.0
+inlier_thresh_normVec: 0.9980
+inlier_thresh_dirVec: 0.9980
+# 圆心位置内点阈值的自适应增量
+adaptiveIncrement_inlier_thresh_centre: 0.15
+adaptiveIncrement_inlier_thresh_normVec: 0.0015
+adaptiveIncrement_inlier_thresh_dirVec: 0.0015
 # pcl点云拟合平面时内点的距离阈值
-distanceThresh_plandAndPoint: 2.7
+distanceThresh_plandAndPoint: 2.80
 
 # 拟合平面时的点云数量阈值
 mapPointNumThresh: 90
 
-octoTree.resolution: 5
-
-minNumBlueKeyPoint: 70
-minNumGreenKeyPoint: 40
-minNumRedKeyPoint: 40
-
-minNumPlaneParam: 100
+octoTree.resolution: 5.0
 
 numIteration: 10000
 
-numPlaneParamSubSet: 10
-
-timesIteration_BlueD: 40
-timesIteration_GreenD: 40
-timesIteration_RedD: 40
-
-timesRansacIterBlue: 1000
-timesRansacIterGreen: 500
-timesRansacIterRed: 800
-
-numSampleBlue: 50
-numSampleGreen: 40
-numSampleRed: 30
-numsubSampleBlue: 5
-numsubSampleGreen: 5
-numsubSampleRed: 5
-numRansacIterBlue: 1500
-numRansacIterGreen: 1000
-numRansacIterRed: 500
-
 cosValueTresh: 0.97
-
-maxLengthPointCloudList: 10
-
-threshToOptBlue: 50
-threshToOptGreen: 40
-threshToOptRed: 40

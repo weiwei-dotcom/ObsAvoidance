@@ -16,6 +16,7 @@ mediaNode::mediaNode():Node("media")
   transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
   cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
+  double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
   minDist = fileRead["minDist"];
   dp = fileRead["dp"];
   cannyUpThresh = fileRead["cannyUpThresh"];
@@ -45,13 +46,17 @@ mediaNode::mediaNode():Node("media")
                       0, fy, cy,
                       0,  0,  1; 
   scaleFactList_size_thresh = fileRead["scaleFactList_size_thresh"];
+
   inlier_thresh_scaleFact = fileRead["inlier_thresh_scaleFact"];
+  inlier_thresh_scaleFact*=scaleFact_mmToTarget;
   sample_length = fileRead["sample_length"];
   fx_ = fileRead["Camera.fx"];
   inlier_probability_=fileRead["inlier_probability"];
   cosValue_thresh = fileRead["cosValue_thresh"];
   flag_motionControlProgramHaveDone = fileRead["flag_motionControlProgramHaveDone"];
   flag_slamInited = false;
+  circleRadius=fileRead["circleRadius"];
+  circleRadius*=scaleFact_mmToTarget;
   // 在运动控制程序编写完成之前不执行该判断内部的代码
   if (flag_motionControlProgramHaveDone == 1) {
 
@@ -139,31 +144,25 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
     changeErrorType(Image_recieve_error);
     return;
   }
-  RCLCPP_INFO(this->get_logger(), "124");
   cv::Mat img_gray;
   cv::cvtColor(img, img_gray, CV_BGR2GRAY);
   cv::GaussianBlur(img_gray, img_gray, cv::Size(7, 7),2,2);
-  RCLCPP_INFO(this->get_logger(), "128");
 
   std::vector<cv::Vec3f> temp_circles;
-  RCLCPP_INFO(this->get_logger(), "131");
 
   cv::HoughCircles(img_gray, temp_circles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
-  RCLCPP_INFO(this->get_logger(), "134");
 
   if (temp_circles.size()>1) {
     changeErrorType(Circle_detection_is_not_stable);
     // 调试代码5
     return;    
   }
-  RCLCPP_INFO(this->get_logger(), "141");
 
   if (temp_circles.size()==0) {
     changeErrorType(Circle_detection_is_not_stable);
     // 调试代码5
     return;    
   }
-  RCLCPP_INFO(this->get_logger(), "148");
 
   float distance_center=0.0, difference_radius=0.0;
   if (circles_.size() != 0) 
@@ -171,7 +170,6 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
     distance_center = std::sqrt(std::pow(temp_circles[0][0]-circles_.back()[0], 2) + std::pow(temp_circles[0][1]-circles_.back()[1], 2));
     difference_radius=std::abs(temp_circles[0][2] - circles_.back()[2]);    
   }
-  RCLCPP_INFO(this->get_logger(), "156");
 
   if (distance_center > distance_center_thresh || difference_radius > difference_radius_thresh) {
     changeErrorType(Distance_of_circle_is_too_much);
@@ -179,34 +177,29 @@ void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPt
     circles_.clear();
     return;
   }
-  RCLCPP_INFO(this->get_logger(), "164");
 
   // 利用稀疏点云拟合平面获得slam尺度的平面距离，并判断当前平面是否足够正对相机
   double distance;
   bool flag_poseCorrect = detectPoseCorrect(img,slamMsg,distance,temp_circles[0]);
   if(!flag_poseCorrect) 
     return;
-  RCLCPP_INFO(this->get_logger(), "171");
   
   circles_.push_back(temp_circles[0]);
   distance_.push_back(distance);
   // 判断检测圆形的数量是否达到每次输出的上限
   if (circles_.size() < circle_size_thresh) 
     return;
-  RCLCPP_INFO(this->get_logger(), "178");
   
   for (int i=0;i<circles_.size();i++) {
-    double scaleFact=(double)100.0 *  fx_ / ((double)circles_[i][2] * distance_[i]);
+    double scaleFact= circleRadius *  fx_ / ((double)circles_[i][2] * distance_[i]);
     scaleFactList_.push_back(scaleFact);
   }
-  RCLCPP_INFO(this->get_logger(), "184");
 
   circles_.clear();
   distance_.clear();
   changeErrorType(OK);
   if (scaleFactList_.size()<scaleFactList_size_thresh)
     return;
-  RCLCPP_INFO(this->get_logger(), "191");
 
   ransacScaleFact();
   flag_getScaleFact = true;
@@ -339,14 +332,24 @@ void mediaNode::ransacScaleFact()
 {
   int iterNum = calRansacIterNum();
   int maxInlierNum = 0;
+  for (int i=0;i<scaleFactList_.size();i++)
+  {
+    std::cout.precision(12);
+    std::cout << scaleFactList_[i] << std::endl;
+  }
   for (int i=0;i<iterNum;i++) 
   {
     int inlierNum = 0;
     std::random_shuffle(scaleFactList_.begin(), scaleFactList_.end());
-    std::vector<double>::const_iterator front = scaleFactList_.begin();
-    std::vector<double>::const_iterator back = scaleFactList_.begin()+sample_length;
-    std::vector<double> tempScaleFactList(front, back);
-    double tempSum = std::accumulate(tempScaleFactList.begin(), tempScaleFactList.end(), 0);
+    // std::vector<double>::const_iterator front = scaleFactList_.begin();
+    // std::vector<double>::const_iterator back = scaleFactList_.begin()+sample_length;
+    // std::vector<double> tempScaleFactList(front, back);
+    // double tempSum = std::accumulate(tempScaleFactList.begin(), tempScaleFactList.end(), 0);
+    double tempSum=0;
+    for (int j=0;j<sample_length;j++)
+    {
+      tempSum+=scaleFactList_[j];
+    }
     double result = tempSum/(double)sample_length;
     for (int j = 0;j<scaleFactList_.size();j++)
     {
@@ -355,13 +358,15 @@ void mediaNode::ransacScaleFact()
         inlierNum++;
       }
     }
-    if (inlierNum > maxInlierNum) 
+    std::cout << "result: " << result <<std::endl;
+    if (inlierNum >= maxInlierNum) 
     {
       maxInlierNum = inlierNum;
-      scaleFact_slamToWorld = (float)result;
+      scaleFact_slamToWorld = result;
     }
   }
   std::cout << "******************************" << std::endl;
+  std::cout.precision(12);
   std::cout << "The final result of scale fact: " << scaleFact_slamToWorld <<std::endl;
 }
 

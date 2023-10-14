@@ -125,8 +125,6 @@ private:
     // 圆形检测函数参数
     double minDist, dp, cannyUpThresh, circleThresh;
     int minRadius, maxRadius;
-    // 两帧圆之间的半径差阈值、圆心距离阈值
-    float difference_radius_thresh, distance_center_thresh;
     // 多次圆形检测记录的圆
     std::vector<cv::Vec3f> circles_;
     // 检测平面与相机之间的距离阈值
@@ -140,6 +138,10 @@ private:
     double inlier_thresh_centre;
     double inlier_thresh_normVec;
     double inlier_thresh_dirVec;
+    // ransac内点阈值的自适应增量
+    double adaptiveIncrement_inlier_thresh_centre;
+    double adaptiveIncrement_inlier_thresh_normVec;
+    double adaptiveIncrement_inlier_thresh_dirVec;
     // 开始ransac准备建模的参数列表长度阈值；
     int modelThresh;
 
@@ -156,14 +158,20 @@ private:
 
     //开始改变阈值的循环次数占总迭代次数的比例
     double scale_startLoopCountTochangeInlierThresh;
-
+    // 圆形入口的实际大小
+    double circleRadius;
     // 建立点云模型时的步进值(mm)
     double buildPointStep;
+    // 障碍物的缺口大小
+    double structureGapSize2;
+    double structureGapSize1;
+
     // 整个模型的xyz轴尺寸(mm)
     double xSize;
     double ySize;
     double zSize;
-
+    double frontToStructureSize1;
+    double frontToStructureSize2;
     // 占据网格的xyz轴上下边界
     double xBoundLow;
     double yBoundLow;
@@ -171,6 +179,8 @@ private:
     double xBoundUp;
     double yBoundUp;
     double zBoundUp;
+    // 工作空间的视野范围
+    double horizontal;
     // 占据网格分辨率,每个网格占多少尺寸(mm)的空间
     double gridResolution;
     // 对应网格索引的占据状态列表

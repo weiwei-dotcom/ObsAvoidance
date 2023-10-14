@@ -73,6 +73,8 @@ private:
     bool flag_getScaleFact;
     // 多次圆形检测记录的圆
     std::vector<cv::Vec3f> circles_;
+    // 实际入口圆形半径
+    double circleRadius;
     // 圆形列表长度阈值
     int circle_size_thresh;
     // slam系统初始化之后的尺度到真实尺度的尺度变换因子

@@ -1,0 +1,7 @@
+[35m[1mScanning dependencies of target media[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/media.dir/src/media.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/media.dir/src/main.cpp.o[0m
+make[2]: *** [CMakeFiles/media.dir/build.make:63: CMakeFiles/media.dir/src/main.cpp.o] 中断
+make[2]: *** [CMakeFiles/media.dir/build.make:76: CMakeFiles/media.dir/src/media.cpp.o] 中断
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/media.dir/all] 中断
+make: *** [Makefile:141: all] 中断

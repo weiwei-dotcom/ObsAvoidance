@@ -1,0 +1,9 @@
+[0.305s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16
+[0.343s] [35m[1mScanning dependencies of target media[0m
+[0.400s] [ 66%] [32mBuilding CXX object CMakeFiles/media.dir/src/media.cpp.o[0m
+[0.400s] [ 66%] [32mBuilding CXX object CMakeFiles/media.dir/src/main.cpp.o[0m
+[3.102s] make[2]: *** [CMakeFiles/media.dir/build.make:63: CMakeFiles/media.dir/src/main.cpp.o] 中断
+[3.102s] make[2]: *** [CMakeFiles/media.dir/build.make:76: CMakeFiles/media.dir/src/media.cpp.o] 中断
+[3.102s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/media.dir/all] 中断
+[3.103s] make: *** [Makefile:141: all] 中断
+[3.137s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '-2': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16

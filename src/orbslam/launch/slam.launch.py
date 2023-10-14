@@ -15,10 +15,10 @@ def generate_launch_description():
         package="media",
         executable="media"
     )
-    # model = Node(
-    #     package="model",
-    #     executable="model"
-    # )
+    model = Node(
+        package="model",
+        executable="model"
+    )
     
     launch_description = LaunchDescription([usb_cam,slam,media])
     return launch_description
