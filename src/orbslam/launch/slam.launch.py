@@ -20,5 +20,5 @@ def generate_launch_description():
         executable="model"
     )
     
-    launch_description = LaunchDescription([usb_cam,slam,media])
+    launch_description = LaunchDescription([usb_cam,slam,media,model])
     return launch_description
