@@ -820,12 +820,12 @@ void ModelNode::PubModel()
             for(int i=0;i<(horizontal+1e-4)/gridResolution;i++)
             {
                 Eigen::Vector3d tempRay(tempOrigin+tempDirVec*i*gridResolution);
-                if (tempRay.x() < xBoundLow || 
-                    tempRay.y() < yBoundLow || 
-                    tempRay.z() < zBoundLow || 
-                    tempRay.x() > xBoundUp || 
-                    tempRay.y() > yBoundUp || 
-                    tempRay.z() > zBoundUp) break;
+                if (tempRay.x() <= xBoundLow || 
+                    tempRay.y() <= yBoundLow || 
+                    tempRay.z() <= zBoundLow || 
+                    tempRay.x() >= xBoundUp || 
+                    tempRay.y() >= yBoundUp || 
+                    tempRay.z() >= zBoundUp) break;
                 int tempIndex = coorToIndex(tempRay);
                 if (!occupancyList.at(tempIndex)) continue;
                 Eigen::Vector3d tempPosition = indexToCoor(tempIndex);
