@@ -33,6 +33,10 @@ flag_motionControlProgramHaveDone: 0
 # mm制尺度到实际应用尺度(eg: M ,scaleFact_mmToTarget: 0.001)的转换因子
 scaleFact_mmToTarget: 0.001
 
+# 局部可视点云的水平与竖直方向的角度阈值
+horizontalAngleThresh_localPointCloud: 50
+verticalAngleThresh_localPointCloud: 40
+
 # 实时建图的视野范围
 horizontal: 1000.0
 

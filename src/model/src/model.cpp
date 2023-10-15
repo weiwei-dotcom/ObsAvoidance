@@ -186,6 +186,8 @@ ModelNode::ModelNode():Node("model")
     zAxisGridNum = floor(((zBoundUp-zBoundLow)+(1.0e-4)*scaleFact_mmToTarget)/gridResolution);
     horizontal=fileRead["horizontal"];
     horizontal*=scaleFact_mmToTarget;
+    horizontalAngleThresh_localPointCloud=fileRead["horizontalAngleThresh_localPointCloud"];
+    verticalAngleThresh_localPointCloud=fileRead["verticalAngleThresh_localPointCloud"];
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
@@ -809,42 +811,47 @@ void ModelNode::PubModel()
     Eigen::Vector3d tempYaxis = m_transform_curToInit.block(0,1,3,1);
     Eigen::Vector3d tempXaxis = m_transform_curToInit.block(0,0,3,1);
     Eigen::Vector3d tempOrigin = m_transform_curToInit.block(0,3,3,1);
-
-    for (int u=-125;u<=125;u++)
-    {
-        for (int v=-150;v<=150;v++)
-        {
-            Eigen::Vector3d tempDirVec=horizontal*tempZaxis+horizontal*tan(0.23*v/180*CV_PI)*tempXaxis+horizontal*tan(0.23*u/180*CV_PI)*tempYaxis;
-            tempDirVec.normalize();
-            // std::cout <<"tempDirVec.transpose()"<<tempDirVec.transpose() <<std::endl;
-            for(int i=0;i<(horizontal+1e-4)/gridResolution;i++)
-            {
-                Eigen::Vector3d tempRay(tempOrigin+tempDirVec*i*gridResolution);
-                if (tempRay.x() <= xBoundLow || 
-                    tempRay.y() <= yBoundLow || 
-                    tempRay.z() <= zBoundLow || 
-                    tempRay.x() >= xBoundUp || 
-                    tempRay.y() >= yBoundUp || 
-                    tempRay.z() >= zBoundUp) break;
-                int tempIndex = coorToIndex(tempRay);
-                if (!occupancyList.at(tempIndex)) continue;
-                Eigen::Vector3d tempPosition = indexToCoor(tempIndex);
-                realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
-                std::cout << tempPosition.transpose() <<std::endl;
-                break;
-            }
-        }
-    }
-    // // 遍历障碍物点云，得到在可视空间内的点云
-    // for (auto point:pcl_obstacle.points)
+    // // 利用从当前位置的出发的射线对栅格化的地图进行碰撞检测获得最前端的障碍物点云图像
+    // for (int u=-125;u<=125;u++)
     // {
-    //     Eigen::Vector3d tempPosition(point.x, point.y, point.z);
-    //     if (acos(Eigen::Vector3d(m_transform_curToInit.block(0,2,3,1)).dot(tempPosition.normalized()))>(float)CV_PI/(float)180 *(float)20)
+    //     for (int v=-150;v<=150;v++)
     //     {
-    //         continue;
+    //         Eigen::Vector3d tempDirVec=horizontal*tempZaxis+horizontal*tan(0.23*v/180*CV_PI)*tempXaxis+horizontal*tan(0.23*u/180*CV_PI)*tempYaxis;
+    //         tempDirVec.normalize();
+    //         // std::cout <<"tempDirVec.transpose()"<<tempDirVec.transpose() <<std::endl;
+    //         for(int i=0;i<(horizontal+1e-4)/gridResolution;i++)
+    //         {
+    //             Eigen::Vector3d tempRay(tempOrigin+tempDirVec*i*gridResolution);
+    //             if (tempRay.x() <= xBoundLow || 
+    //                 tempRay.y() <= yBoundLow || 
+    //                 tempRay.z() <= zBoundLow || 
+    //                 tempRay.x() >= xBoundUp || 
+    //                 tempRay.y() >= yBoundUp || 
+    //                 tempRay.z() >= zBoundUp) break;
+    //             int tempIndex = coorToIndex(tempRay);
+    //             if (!occupancyList.at(tempIndex)) continue;
+    //             Eigen::Vector3d tempPosition = indexToCoor(tempIndex);
+    //             realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
+    //             std::cout << tempPosition.transpose() <<std::endl;
+    //             break;
+    //         }
     //     }
-    //     realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
     // }
+    // 遍历障碍物点云，得到在可视空间内的点云
+    double horizontalTanThresh_localPointCloud = std::tan(horizontalAngleThresh_localPointCloud/180.0*M_PI/2);
+    double verticalTanThresh_localPointCloud = std::tan(verticalAngleThresh_localPointCloud/180.0*M_PI/2);
+    for (auto point:pcl_obstacle.points)
+    {
+        Eigen::Vector3d tempPosition(point.x, point.y, point.z);
+        
+        if (tempZaxis.dot(tempPosition-tempOrigin)<=1e-4 || 
+            abs(tempXaxis.dot(tempPosition-tempOrigin))/tempZaxis.dot(tempPosition-tempOrigin)>horizontalTanThresh_localPointCloud ||
+            abs(tempYaxis.dot(tempPosition-tempOrigin))/tempZaxis.dot(tempPosition-tempOrigin)>verticalTanThresh_localPointCloud)
+        {
+            continue;
+        }
+        realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
+    }
     sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
     pcl::toROSMsg(realTimePcl, pclMsg_obstacle);
     pclMsg_obstacle.header = m_header_initFrame;

@@ -87,6 +87,10 @@ private:
     // 边沿直线最小共线阈值与最大垂直阈值
     double minCosValueThresh_collineation, maxCosValueThresh_vertical;
     double distanceThresh_plandAndPoint;
+
+    // 局部可视点云的水平与竖直方向的角度阈值
+    double horizontalAngleThresh_localPointCloud;
+    double verticalAngleThresh_localPointCloud;
     
        
     // // 存储每次检测得到的三维直线参数变量
