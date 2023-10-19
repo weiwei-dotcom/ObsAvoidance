@@ -26,7 +26,7 @@ def generate_launch_description():
         namespace='',
         executable='rviz2',
         name='rviz2',
-        arguments=['-d', '/home/weiwei/Desktop/project/ObsAvoidance/src/rviz2_default.rviz']
+        arguments=['-d', '/home/weiwei/Desktop/project/ObsAvoidance/src/rviz_default.rviz']
     )
     
     launch_description = LaunchDescription([usb_cam,slam,media,model,rviz2])
