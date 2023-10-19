@@ -6,12 +6,8 @@ mediaNode::mediaNode():Node("media")
 {
   error_type = OK;
   flag_getScaleFact = false;
-  slam_sub.subscribe(this, "slam");
-  image_sub.subscribe(this, "image_raw");
-  sync1.reset(new message_filters::Synchronizer<message_filters::sync_policies::ExactTime<interface::msg::Slam, sensor_msgs::msg::Image>>(
-      message_filters::sync_policies::ExactTime<interface::msg::Slam, sensor_msgs::msg::Image>(10), slam_sub, image_sub)
-  );
-  sync1->registerCallback(std::bind(&mediaNode::slam_callback, this, std::placeholders::_1, std::placeholders::_2));
+  flag_getTransformToBase = false;
+  slam_sub = this->create_subscription<interface::msg::Slam>("slam", 10, std::bind(&mediaNode::slam_callback, this, std::placeholders::_1));
   transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
   transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
@@ -53,14 +49,10 @@ mediaNode::mediaNode():Node("media")
   fx_ = fileRead["Camera.fx"];
   inlier_probability_=fileRead["inlier_probability"];
   cosValue_thresh = fileRead["cosValue_thresh"];
-  flag_motionControlProgramHaveDone = fileRead["flag_motionControlProgramHaveDone"];
   flag_slamInited = false;
   circleRadius=fileRead["circleRadius"];
   circleRadius*=scaleFact_mmToTarget;
-  // 在运动控制程序编写完成之前不执行该判断内部的代码
-  if (flag_motionControlProgramHaveDone == 1) {
-
-  }
+  m_transformToBase = Eigen::Matrix4d::Identity();
 }
 
 void mediaNode::changeErrorType(ERROR_TYPE newError)
@@ -80,16 +72,29 @@ void mediaNode::changeErrorType(ERROR_TYPE newError)
     RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type].c_str());
   }
 }
-
-void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_msg, 
-                              const sensor_msgs::msg::Image::ConstSharedPtr &image_msg)
+void mediaNode::getSlamToWorldScaleFact()
 {
-  // 初始化获得到真实世界的尺度因子
-  if (!flag_getScaleFact) {
-    getScaleSlamToWorld(image_msg, slam_msg);
-    return;
-  }
+  //TODO: These two function (with getTransformToBase()) should use a action mechanism to realization
   // 
+  return ;
+}
+
+void mediaNode::getTransformToBase()
+{
+  //TODO: These two function (with getSlamToWorldScaleFact()) should use a action mechanism to realization
+  //
+  return;
+}
+
+void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
+{
+  //if haven't get the scale fact of slam to real world, return.
+  if (!flag_getScaleFact)
+    return;
+  //if have't get the transform of initframe to robot base frame, return.
+  if (!flag_getTransformToBase)
+    return;
+  
   // 如果初始化获得了到真实世界的尺度因子，将slam尺度下的点云坐标以及相机的位移量乘上尺度因子就获得了真实世界下的点云数据以及相机位移
   pcl::PointCloud<pcl::PointXYZ> temp_pointCloud;
   pcl::fromROSMsg(slam_msg->point_cloud, temp_pointCloud);
@@ -134,75 +139,6 @@ void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_m
   transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
   transformCurToInit_pub->publish(transform_cur2init_pub_msg);
   return;
-}
-
-void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPtr &imageMsg, const interface::msg::Slam::ConstSharedPtr &slamMsg) 
-{
-  cv_bridge::CvImagePtr img_ptr = cv_bridge::toCvCopy(imageMsg, "bgr8");
-  cv::Mat img = img_ptr->image;
-  if (img.empty()){
-    changeErrorType(Image_recieve_error);
-    return;
-  }
-  cv::Mat img_gray;
-  cv::cvtColor(img, img_gray, CV_BGR2GRAY);
-  cv::GaussianBlur(img_gray, img_gray, cv::Size(7, 7),2,2);
-
-  std::vector<cv::Vec3f> temp_circles;
-
-  cv::HoughCircles(img_gray, temp_circles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
-
-  if (temp_circles.size()>1) {
-    changeErrorType(Circle_detection_is_not_stable);
-    // 调试代码5
-    return;    
-  }
-
-  if (temp_circles.size()==0) {
-    changeErrorType(Circle_detection_is_not_stable);
-    // 调试代码5
-    return;    
-  }
-
-  float distance_center=0.0, difference_radius=0.0;
-  if (circles_.size() != 0) 
-  {
-    distance_center = std::sqrt(std::pow(temp_circles[0][0]-circles_.back()[0], 2) + std::pow(temp_circles[0][1]-circles_.back()[1], 2));
-    difference_radius=std::abs(temp_circles[0][2] - circles_.back()[2]);    
-  }
-
-  if (distance_center > distance_center_thresh || difference_radius > difference_radius_thresh) {
-    changeErrorType(Distance_of_circle_is_too_much);
-    distance_.clear();
-    circles_.clear();
-    return;
-  }
-
-  // 利用稀疏点云拟合平面获得slam尺度的平面距离，并判断当前平面是否足够正对相机
-  double distance;
-  bool flag_poseCorrect = detectPoseCorrect(img,slamMsg,distance,temp_circles[0]);
-  if(!flag_poseCorrect) 
-    return;
-  
-  circles_.push_back(temp_circles[0]);
-  distance_.push_back(distance);
-  // 判断检测圆形的数量是否达到每次输出的上限
-  if (circles_.size() < circle_size_thresh) 
-    return;
-  
-  for (int i=0;i<circles_.size();i++) {
-    double scaleFact= circleRadius *  fx_ / ((double)circles_[i][2] * distance_[i]);
-    scaleFactList_.push_back(scaleFact);
-  }
-
-  circles_.clear();
-  distance_.clear();
-  changeErrorType(OK);
-  if (scaleFactList_.size()<scaleFactList_size_thresh)
-    return;
-
-  ransacScaleFact();
-  flag_getScaleFact = true;
 }
 
 bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam::ConstSharedPtr slamMsg, double &distance_plane, const cv::Vec3f tempCircle)

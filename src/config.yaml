@@ -25,13 +25,8 @@ blueUpper.3: 255
 open_blue_kernel_size: 17
 close_blue_kernel_size: 15
 
-# 判断motionControl功能包程序是否编写完成的标志:
-# 0 未完成
-# 1 完成
-flag_motionControlProgramHaveDone: 0
-
 # mm制尺度到实际应用尺度(eg: M ,scaleFact_mmToTarget: 0.001)的转换因子
-scaleFact_mmToTarget: 0.001
+scaleFact_mmToTarget: 1
 
 # 局部可视点云的水平与竖直方向的角度阈值
 horizontalAngleThresh_localPointCloud: 50
@@ -166,3 +161,12 @@ octoTree.resolution: 5.0
 numIteration: 10000
 
 cosValueTresh: 0.97
+
+extrinsicMatrix: 
+  rows: 4
+  cols: 4
+  dt: d
+  data: [0.0, 0.0, 0.0, 0.0,
+         0.0, 0.0, 0.0, 0.0,
+         0.0, 0.0, 0.0, 0.0,
+         0.0, 0.0, 0.0, 0.0]

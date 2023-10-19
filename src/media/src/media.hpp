@@ -36,10 +36,7 @@ private:
     };
     // 错误状态
     ERROR_TYPE error_type;
-    // motionControl功能包根据别的功能包输出的位姿信息来通过逆运动学或者其他方法来计算绳索绳索拉伸量
 
-    // 判断motionControl功能包程序是否编写完成的标志
-    int flag_motionControlProgramHaveDone;
     // 判断slam系统是否完成一段运动实现初始化标志
     bool flag_slamInited;
     // 用来判断相机是否正视于检测平面的余弦角度阈值
@@ -59,6 +56,8 @@ private:
     std::vector<double> distance_;
     // 针孔相机投影矩阵
     Eigen::Matrix3f m_projectMatrix; 
+    // 相机初始帧到机器人基座标系的转换矩阵
+    Eigen::Matrix4d m_transformToBase;
     // 腐蚀膨胀操作结构体
     cv::Mat structure_erode;
     cv::Mat structure_dilate;
@@ -69,8 +68,9 @@ private:
     int minRadius, maxRadius;
     // 两帧圆之间的半径差阈值、圆心距离阈值
     float difference_radius_thresh, distance_center_thresh;
-    // 是否获得了slam到真实世界的尺度标志
+    // 是否获得了slam到真实世界的尺度标志,是否获得将世界坐标系转换到机器人基座标系转换矩阵标志
     bool flag_getScaleFact;
+    bool flag_getTransformToBase;
     // 多次圆形检测记录的圆
     std::vector<cv::Vec3f> circles_;
     // 实际入口圆形半径
@@ -81,23 +81,21 @@ private:
     float scaleFact_slamToWorld;
     // 创建互斥锁变量
     std::mutex mtx;
-    // message_filters创建话题消息接收器
-    message_filters::Subscriber<interface::msg::Slam> slam_sub;
-    message_filters::Subscriber<sensor_msgs::msg::Image> image_sub;
     // 声明发布器
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformInit2Cur_pub;
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformCurToInit_pub;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pointCloud_pub;
-    // 声明时间对齐器
-    std::shared_ptr<message_filters::Synchronizer<message_filters::sync_policies::ExactTime<interface::msg::Slam, sensor_msgs::msg::Image>>> sync1;
     // 声明订阅slam话题的回调函数
-    void slam_callback(const interface::msg::Slam::ConstSharedPtr &slamMsg,const sensor_msgs::msg::Image::ConstSharedPtr &imageMsg);
+    void slam_callback(const interface::msg::Slam::SharedPtr slamMsg);
+    rclcpp::Subscription<interface::msg::Slam>::SharedPtr slam_sub;
 
 public:
     // 构造函数
     mediaNode();
-    // 初始化获得尺度转换因子函数
-    void getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPtr &imageMsg, const interface::msg::Slam::ConstSharedPtr &slamMsg);
+    // 从运动捕捉数据得到真实世界的尺度转换因子函数
+    void getSlamToWorldScaleFact();
+    // 获取从相机当前坐标系到基座标系下的转换矩阵
+    void getTransformToBase();
     // 判断是否正对检测平面函数
     bool detectPoseCorrect(const cv::Mat img, const interface::msg::Slam::ConstSharedPtr slamMsg, double &distance_plane, const cv::Vec3f tempCircle);
     // 提取最大连通域轮廓函数
@@ -110,6 +108,7 @@ public:
     int calRansacIterNum();
     // 打印检测错误状态信息
     void changeErrorType(ERROR_TYPE newError);
+    
     // 析构函数
     ~mediaNode();
 };
