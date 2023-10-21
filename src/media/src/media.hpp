@@ -96,6 +96,12 @@ private:
     // 相机初始帧到基座标系的转换矩阵
     Eigen::Matrix4d transform_initToBase;
 
+    // TODO: Before completing the function as follow, we should know the data interface transmit on corresponding node.
+    // Client of sending the request to get the state of slam system initialization 
+
+    // Client of sending the request to get the transform matrix of init to base frame
+    // Action client of sending the request to get the scale fact of slam to realworld
+
 public:
     // 构造函数
     mediaNode();
