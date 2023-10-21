@@ -68,7 +68,7 @@ ModelNode::ModelNode():Node("model")
     successNum = 0;
 
     error_type = OK;
-    pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle", 10);
+    pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle_initFrame", 10);
     flag_pubModel = false;
     // 定义消息订阅者
     pcl_sub.subscribe(this, "pointCloud_initFrame");

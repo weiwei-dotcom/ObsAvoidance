@@ -5,13 +5,24 @@
 mediaNode::mediaNode():Node("media")
 {
   error_type = OK;
+  
+  // the flag of finish the process of initialization
+  flag_haveInitialized=false;
   flag_getScaleFact = false;
   flag_getTransformToBase = false;
+  flag_slamInitialized=false;
+
   slam_sub = this->create_subscription<interface::msg::Slam>("slam", 10, std::bind(&mediaNode::slam_callback, this, std::placeholders::_1));
   transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
   transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
   cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
+  
+  cv::Mat tempExtrinsicMatrix(4,4,CV_64F);
+  fileRead["extrinsicMatrix"] >> tempExtrinsicMatrix;
+  cv::cv2eigen(tempExtrinsicMatrix, extrinsicMatrix);
+  //TODO: The measure unit of extrinsicMatrix's translation is unknown, it should be transformed to the target measure unit
+  
   double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
   minDist = fileRead["minDist"];
   dp = fileRead["dp"];
@@ -49,7 +60,6 @@ mediaNode::mediaNode():Node("media")
   fx_ = fileRead["Camera.fx"];
   inlier_probability_=fileRead["inlier_probability"];
   cosValue_thresh = fileRead["cosValue_thresh"];
-  flag_slamInited = false;
   circleRadius=fileRead["circleRadius"];
   circleRadius*=scaleFact_mmToTarget;
   m_transformToBase = Eigen::Matrix4d::Identity();
@@ -72,29 +82,64 @@ void mediaNode::changeErrorType(ERROR_TYPE newError)
     RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type].c_str());
   }
 }
+
+void mediaNode::initialization()
+{
+  //TODO:
+  initializeSlam();
+  while(!flag_slamInitialized);
+  getSlamToWorldScaleFact();
+  while(!flag_getScaleFact);
+  getTransformToBase();
+  while(!flag_getTransformToBase);
+  flag_haveInitialized=true;
+  return;
+}
+
+void mediaNode::initializeSlam()
+{
+  //TODO: 
+  return;
+}
 void mediaNode::getSlamToWorldScaleFact()
 {
-  //TODO: These two function (with getTransformToBase()) should use a action mechanism to realization
+  //TODO: These two function (with getTransformToBase()) may use a action mechanism to realization
   // 
   return ;
 }
 
 void mediaNode::getTransformToBase()
 {
-  //TODO: These two function (with getSlamToWorldScaleFact()) should use a action mechanism to realization
-  //
+  //TODO: These two function (with getSlamToWorldScaleFact()) may use a action mechanism to realization
+  // 
   return;
+}
+// Calculate the Frame from three flag points
+void calFrameFromPoints(Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Matrix<double, 3, 1> &t) {
+    // 由三个坐标点取平均获得坐标原点
+    t(0) = (points(0,0) + points(1,0) + points(2,0)) / 3; 
+    t(1) = (points(0,1) + points(1,1) + points(2,1)) / 3; 
+    t(2) = (points(0,2) + points(1,2) + points(2,2)) / 3; 
+    Eigen::Vector3d arr21,arr20;
+    arr20 = points.row(0)-points.row(2);
+    arr21 = points.row(1)-points.row(2);
+    Eigen::Vector3d axisY = arr21.cross(arr20);
+    axisY.normalize();
+    Eigen::Vector3d axisZ;
+    axisZ.x() =points(0,0)-t(0);
+    axisZ.y() =points(0,1)-t(1) ;
+    axisZ.z() =points(0,2)-t(2);
+    axisZ.normalize();
+    Eigen::Vector3d axisX = axisY.cross(axisZ);
+    R.col(0) = axisX;
+    R.col(1) = axisY;
+    R.col(2) = axisZ;
 }
 
 void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 {
-  //if haven't get the scale fact of slam to real world, return.
-  if (!flag_getScaleFact)
-    return;
-  //if have't get the transform of initframe to robot base frame, return.
-  if (!flag_getTransformToBase)
-    return;
-  
+  if (!flag_haveInitialized) return;
+
   // 如果初始化获得了到真实世界的尺度因子，将slam尺度下的点云坐标以及相机的位移量乘上尺度因子就获得了真实世界下的点云数据以及相机位移
   pcl::PointCloud<pcl::PointXYZ> temp_pointCloud;
   pcl::fromROSMsg(slam_msg->point_cloud, temp_pointCloud);

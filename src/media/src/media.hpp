@@ -10,6 +10,7 @@
 #include "message_filters/sync_policies/exact_time.h"
 #include "cv_bridge/cv_bridge.h"
 #include "opencv2/opencv.hpp"
+#include "opencv2/core/eigen.hpp"
 #include "pcl/common/transforms.h"
 #include <pcl/point_types.h>
 #include <pcl/filters/extract_indices.h>
@@ -20,6 +21,7 @@
 #include <mutex>
 #include <numeric>
 #include <cmath>
+#include <thread>
 
 class mediaNode : public rclcpp :: Node
 {
@@ -36,9 +38,10 @@ private:
     };
     // 错误状态
     ERROR_TYPE error_type;
-
-    // 判断slam系统是否完成一段运动实现初始化标志
-    bool flag_slamInited;
+    // the flag of slam system been initialized
+    bool flag_slamInitialized;
+    // the flag of be initialized
+    bool flag_haveInitialized;
     // 用来判断相机是否正视于检测平面的余弦角度阈值
     double cosValue_thresh;
     // 尺度因子单个样本好点概率
@@ -88,6 +91,10 @@ private:
     // 声明订阅slam话题的回调函数
     void slam_callback(const interface::msg::Slam::SharedPtr slamMsg);
     rclcpp::Subscription<interface::msg::Slam>::SharedPtr slam_sub;
+    // 相机到末端工具坐标系的转换矩阵
+    Eigen::Matrix4d extrinsicMatrix;
+    // 相机初始帧到基座标系的转换矩阵
+    Eigen::Matrix4d transform_initToBase;
 
 public:
     // 构造函数
@@ -108,6 +115,10 @@ public:
     int calRansacIterNum();
     // 打印检测错误状态信息
     void changeErrorType(ERROR_TYPE newError);
+    // 初始化slam动作发送程序
+    void initializeSlam();
+    // The main function of initialization whole system;
+    void initialization();
     
     // 析构函数
     ~mediaNode();
