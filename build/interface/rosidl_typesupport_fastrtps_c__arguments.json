@@ -3,7 +3,9 @@
   "output_dir": "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_c/interface",
   "template_dir": "/opt/ros/foxy/share/rosidl_typesupport_fastrtps_c/resource",
   "idl_tuples": [
-    "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:msg/Slam.idl"
+    "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:msg/Slam.idl",
+    "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:action/Move.idl",
+    "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:srv/SlamInitialized.idl"
   ],
   "ros_interface_dependencies": [
     "sensor_msgs:/opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl",
@@ -94,7 +96,12 @@
     "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt64.idl",
     "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt64MultiArray.idl",
     "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt8.idl",
-    "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl"
+    "std_msgs:/opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl",
+    "action_msgs:/opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl",
+    "action_msgs:/opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl",
+    "action_msgs:/opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl",
+    "action_msgs:/opt/ros/foxy/share/action_msgs/srv/CancelGoal.idl",
+    "unique_identifier_msgs:/opt/ros/foxy/share/unique_identifier_msgs/msg/UUID.idl"
   ],
   "target_dependencies": [
     "/opt/ros/foxy/lib/rosidl_typesupport_fastrtps_c/rosidl_typesupport_fastrtps_c",
@@ -106,6 +113,8 @@
     "/opt/ros/foxy/share/rosidl_typesupport_fastrtps_c/resource/srv__rosidl_typesupport_fastrtps_c.h.em",
     "/opt/ros/foxy/share/rosidl_typesupport_fastrtps_c/resource/srv__type_support_c.cpp.em",
     "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface/msg/Slam.idl",
+    "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface/action/Move.idl",
+    "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface/srv/SlamInitialized.idl",
     "/opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl",
     "/opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl",
     "/opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl",
@@ -194,6 +203,11 @@
     "/opt/ros/foxy/share/std_msgs/msg/UInt64.idl",
     "/opt/ros/foxy/share/std_msgs/msg/UInt64MultiArray.idl",
     "/opt/ros/foxy/share/std_msgs/msg/UInt8.idl",
-    "/opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl"
+    "/opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl",
+    "/opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl",
+    "/opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl",
+    "/opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl",
+    "/opt/ros/foxy/share/action_msgs/srv/CancelGoal.idl",
+    "/opt/ros/foxy/share/unique_identifier_msgs/msg/UUID.idl"
   ]
 }

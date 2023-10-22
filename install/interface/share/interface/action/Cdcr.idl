@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from interface/action/Cdcr.action
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Pose.idl"
+
+module interface {
+  module action {
+    struct Cdcr_Goal {
+      geometry_msgs::msg::Pose goal_pose;
+    };
+    struct Cdcr_Result {
+      geometry_msgs::msg::Pose result_pose;
+    };
+    struct Cdcr_Feedback {
+      geometry_msgs::msg::Pose feedback_pose;
+    };
+  };
+};

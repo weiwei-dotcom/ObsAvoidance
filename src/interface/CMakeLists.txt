@@ -39,6 +39,8 @@ endif()
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Slam.msg"
+  "action/Move.action"
+  "srv/SlamInitialized.srv"
   DEPENDENCIES
   sensor_msgs
   geometry_msgs

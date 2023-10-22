@@ -1,1 +1,3 @@
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:msg/Slam.idl
+/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:action/Move.idl
+/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:srv/SlamInitialized.idl

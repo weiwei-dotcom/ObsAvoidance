@@ -18,6 +18,7 @@ CMakeFiles/interface__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/interf
  /opt/ros/foxy/include/sensor_msgs/msg/detail/point_cloud2__struct.h
  /opt/ros/foxy/include/sensor_msgs/msg/detail/point_field__struct.h
  /opt/ros/foxy/include/std_msgs/msg/detail/header__struct.h
+ /opt/ros/foxy/include/unique_identifier_msgs/msg/detail/uuid__struct.h
  /usr/include/python3.8/Python.h
  /usr/include/python3.8/abstract.h
  /usr/include/python3.8/bltinmodule.h
@@ -105,7 +106,13 @@ CMakeFiles/interface__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/interf
  /usr/include/python3.8/unicodeobject.h
  /usr/include/python3.8/warnings.h
  /usr/include/python3.8/weakrefobject.h
+ rosidl_generator_c/interface/action/detail/move__functions.h
+ rosidl_generator_c/interface/action/detail/move__struct.h
+ rosidl_generator_c/interface/action/detail/move__type_support.h
  rosidl_generator_c/interface/msg/detail/slam__functions.h
  rosidl_generator_c/interface/msg/detail/slam__struct.h
  rosidl_generator_c/interface/msg/detail/slam__type_support.h
  rosidl_generator_c/interface/msg/rosidl_generator_c__visibility_control.h
+ rosidl_generator_c/interface/srv/detail/slam_initialized__functions.h
+ rosidl_generator_c/interface/srv/detail/slam_initialized__struct.h
+ rosidl_generator_c/interface/srv/detail/slam_initialized__type_support.h

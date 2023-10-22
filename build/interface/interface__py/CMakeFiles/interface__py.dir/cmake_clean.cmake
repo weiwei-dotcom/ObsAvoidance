@@ -2,9 +2,15 @@ file(REMOVE_RECURSE
   "../rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_c.c"
   "../rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "../rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_introspection_c.c"
+  "../rosidl_generator_py/interface/action/__init__.py"
+  "../rosidl_generator_py/interface/action/_move.py"
+  "../rosidl_generator_py/interface/action/_move_s.c"
   "../rosidl_generator_py/interface/msg/__init__.py"
   "../rosidl_generator_py/interface/msg/_slam.py"
   "../rosidl_generator_py/interface/msg/_slam_s.c"
+  "../rosidl_generator_py/interface/srv/__init__.py"
+  "../rosidl_generator_py/interface/srv/_slam_initialized.py"
+  "../rosidl_generator_py/interface/srv/_slam_initialized_s.c"
   "CMakeFiles/interface__py"
 )
 

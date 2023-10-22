@@ -58,6 +58,16 @@ CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__build
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__struct.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/action/move.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/action/detail/move__builder.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/action/detail/move__struct.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/action/detail/move__traits.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/action/detail/move__type_support.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/slam_initialized.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/slam_initialized__builder.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/slam_initialized__struct.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/slam_initialized__traits.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/slam_initialized__type_support.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/rosidl_generator_cpp__visibility_control.hpp
 
 
@@ -81,6 +91,8 @@ rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/rosidl_generato
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__traits.hpp.em
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__type_support.hpp.em
 rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/msg/Slam.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/action/Move.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/srv/SlamInitialized.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -170,6 +182,11 @@ rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/std_msgs/msg/UI
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/std_msgs/msg/UInt64MultiArray.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/std_msgs/msg/UInt8.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/action_msgs/srv/CancelGoal.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/unique_identifier_msgs/msg/UUID.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code for ROS interfaces"
 	/usr/bin/python3 /opt/ros/foxy/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp --generator-arguments-file /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp__arguments.json
 
@@ -185,12 +202,52 @@ rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp: rosidl_generator_cpp
 rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp
 
+rosidl_generator_cpp/interface/action/move.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/action/move.hpp
+
+rosidl_generator_cpp/interface/action/detail/move__builder.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/action/detail/move__builder.hpp
+
+rosidl_generator_cpp/interface/action/detail/move__struct.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/action/detail/move__struct.hpp
+
+rosidl_generator_cpp/interface/action/detail/move__traits.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/action/detail/move__traits.hpp
+
+rosidl_generator_cpp/interface/action/detail/move__type_support.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/action/detail/move__type_support.hpp
+
+rosidl_generator_cpp/interface/srv/slam_initialized.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/slam_initialized.hpp
+
+rosidl_generator_cpp/interface/srv/detail/slam_initialized__builder.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/slam_initialized__builder.hpp
+
+rosidl_generator_cpp/interface/srv/detail/slam_initialized__struct.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/slam_initialized__struct.hpp
+
+rosidl_generator_cpp/interface/srv/detail/slam_initialized__traits.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/slam_initialized__traits.hpp
+
+rosidl_generator_cpp/interface/srv/detail/slam_initialized__type_support.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/slam_initialized__type_support.hpp
+
 interface__cpp: CMakeFiles/interface__cpp
 interface__cpp: rosidl_generator_cpp/interface/msg/slam.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__builder.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__struct.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp
+interface__cpp: rosidl_generator_cpp/interface/action/move.hpp
+interface__cpp: rosidl_generator_cpp/interface/action/detail/move__builder.hpp
+interface__cpp: rosidl_generator_cpp/interface/action/detail/move__struct.hpp
+interface__cpp: rosidl_generator_cpp/interface/action/detail/move__traits.hpp
+interface__cpp: rosidl_generator_cpp/interface/action/detail/move__type_support.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/slam_initialized.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/slam_initialized__builder.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/slam_initialized__struct.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/slam_initialized__traits.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/slam_initialized__type_support.hpp
 interface__cpp: CMakeFiles/interface__cpp.dir/build.make
 
 .PHONY : interface__cpp

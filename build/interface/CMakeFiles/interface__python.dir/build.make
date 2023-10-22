@@ -70,14 +70,44 @@ CMakeFiles/interface__python.dir/rosidl_generator_py/interface/msg/_slam_s.c.s: 
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__python.dir/rosidl_generator_py/interface/msg/_slam_s.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/msg/_slam_s.c -o CMakeFiles/interface__python.dir/rosidl_generator_py/interface/msg/_slam_s.c.s
 
+CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.o: CMakeFiles/interface__python.dir/flags.make
+CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.o: rosidl_generator_py/interface/action/_move_s.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/action/_move_s.c
+
+CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/action/_move_s.c > CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.i
+
+CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/action/_move_s.c -o CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.s
+
+CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.o: CMakeFiles/interface__python.dir/flags.make
+CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.o: rosidl_generator_py/interface/srv/_slam_initialized_s.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_slam_initialized_s.c
+
+CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_slam_initialized_s.c > CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.i
+
+CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_slam_initialized_s.c -o CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.s
+
 # Object files for target interface__python
 interface__python_OBJECTS = \
-"CMakeFiles/interface__python.dir/rosidl_generator_py/interface/msg/_slam_s.c.o"
+"CMakeFiles/interface__python.dir/rosidl_generator_py/interface/msg/_slam_s.c.o" \
+"CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.o" \
+"CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.o"
 
 # External object files for target interface__python
 interface__python_EXTERNAL_OBJECTS =
 
 rosidl_generator_py/interface/libinterface__python.so: CMakeFiles/interface__python.dir/rosidl_generator_py/interface/msg/_slam_s.c.o
+rosidl_generator_py/interface/libinterface__python.so: CMakeFiles/interface__python.dir/rosidl_generator_py/interface/action/_move_s.c.o
+rosidl_generator_py/interface/libinterface__python.so: CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_slam_initialized_s.c.o
 rosidl_generator_py/interface/libinterface__python.so: CMakeFiles/interface__python.dir/build.make
 rosidl_generator_py/interface/libinterface__python.so: libinterface__rosidl_generator_c.so
 rosidl_generator_py/interface/libinterface__python.so: /usr/lib/x86_64-linux-gnu/libpython3.8.so
@@ -86,6 +116,8 @@ rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/share/senso
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/share/builtin_interfaces/cmake/../../../lib/libbuiltin_interfaces__python.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/share/geometry_msgs/cmake/../../../lib/libgeometry_msgs__python.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/share/std_msgs/cmake/../../../lib/libstd_msgs__python.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/share/action_msgs/cmake/../../../lib/libaction_msgs__python.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/share/unique_identifier_msgs/cmake/../../../lib/libunique_identifier_msgs__python.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_c.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_generator_c.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_c.so
@@ -101,20 +133,30 @@ rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libstd_
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_c.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_introspection_cpp.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_cpp.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_c.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_generator_c.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_c.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_cpp.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_cpp.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_generator_c.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_c.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_cpp.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_c.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_generator_c.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_c.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_cpp.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/librosidl_typesupport_introspection_cpp.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/librosidl_typesupport_introspection_c.so
-rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so
+rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_cpp.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/librosidl_typesupport_cpp.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/librosidl_typesupport_c.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/librosidl_runtime_c.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/librcpputils.so
 rosidl_generator_py/interface/libinterface__python.so: /opt/ros/foxy/lib/librcutils.so
 rosidl_generator_py/interface/libinterface__python.so: CMakeFiles/interface__python.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C shared library rosidl_generator_py/interface/libinterface__python.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C shared library rosidl_generator_py/interface/libinterface__python.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/interface__python.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

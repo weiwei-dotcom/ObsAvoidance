@@ -24,6 +24,7 @@ mediaNode::mediaNode():Node("media")
   //TODO: The measure unit of extrinsicMatrix's translation is unknown, it should be transformed to the target measure unit
   
   double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
+  scaleFact_slamToWorld = 1;
   minDist = fileRead["minDist"];
   dp = fileRead["dp"];
   cannyUpThresh = fileRead["cannyUpThresh"];
@@ -115,7 +116,8 @@ void mediaNode::getTransformToBase()
   return;
 }
 // Calculate the Frame from three flag points
-void calFrameFromPoints(Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Matrix<double, 3, 1> &t) {
+void calFrameFromPoints(Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Matrix<double, 3, 1> &t) 
+{
     // 由三个坐标点取平均获得坐标原点
     t(0) = (points(0,0) + points(1,0) + points(2,0)) / 3; 
     t(1) = (points(0,1) + points(1,1) + points(2,1)) / 3; 
@@ -138,8 +140,31 @@ void calFrameFromPoints(Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Matri
 
 void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 {
-  if (!flag_haveInitialized) return;
+  geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg;
+  transform_init2cur_pub_msg = slam_msg->transform_init2cur;
+  transform_init2cur_pub_msg.pose.position.x *= scaleFact_slamToWorld;
+  transform_init2cur_pub_msg.pose.position.y *= scaleFact_slamToWorld;
+  transform_init2cur_pub_msg.pose.position.z *= scaleFact_slamToWorld;
 
+  Eigen::Quaterniond tempQua(transform_init2cur_pub_msg.pose.orientation.w,
+                      transform_init2cur_pub_msg.pose.orientation.x,
+                      transform_init2cur_pub_msg.pose.orientation.y,
+                      transform_init2cur_pub_msg.pose.orientation.z);
+  Eigen::Quaterniond tempQ(tempQua.inverse());
+  transform_cur2init_pub_msg.header = slam_msg->point_cloud.header;
+  transform_cur2init_pub_msg.pose.orientation.w = tempQ.w();
+  transform_cur2init_pub_msg.pose.orientation.x = tempQ.x();
+  transform_cur2init_pub_msg.pose.orientation.y = tempQ.y();
+  transform_cur2init_pub_msg.pose.orientation.z = tempQ.z();
+  transform_cur2init_pub_msg.pose.position.x = -transform_init2cur_pub_msg.pose.position.x;
+  transform_cur2init_pub_msg.pose.position.y = -transform_init2cur_pub_msg.pose.position.y;
+  transform_cur2init_pub_msg.pose.position.z = -transform_init2cur_pub_msg.pose.position.z;
+  // //调试代码3
+  // std::cout << "transform_init2cur_pub_msg.pose.position.x: " << transform_init2cur_pub_msg.pose.position.x << std::endl;
+  // std::cout << "transform_init2cur_pub_msg.pose.position.y: " << transform_init2cur_pub_msg.pose.position.y << std::endl;
+  // std::cout << "transform_init2cur_pub_msg.pose.position.z: " << transform_init2cur_pub_msg.pose.position.z << std::endl;
+  // std::cout << "transform_init2cur_pub_msg.header.frame_id: " << transform_init2cur_pub_msg.header.frame_id << std::endl;
+  
   // 如果初始化获得了到真实世界的尺度因子，将slam尺度下的点云坐标以及相机的位移量乘上尺度因子就获得了真实世界下的点云数据以及相机位移
   pcl::PointCloud<pcl::PointXYZ> temp_pointCloud;
   pcl::fromROSMsg(slam_msg->point_cloud, temp_pointCloud);
@@ -152,37 +177,17 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
   }
   sensor_msgs::msg::PointCloud2 point_cloud_pub_msg;
   pcl::toROSMsg(temp_pointCloud, point_cloud_pub_msg);
-  point_cloud_pub_msg.header = slam_msg->point_cloud.header;
-  // std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
-  pointCloud_pub->publish(point_cloud_pub_msg);
-  geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg;
-  transform_init2cur_pub_msg = slam_msg->transform_init2cur;
-  transform_init2cur_pub_msg.pose.position.x *= scaleFact_slamToWorld;
-  transform_init2cur_pub_msg.pose.position.y *= scaleFact_slamToWorld;
-  transform_init2cur_pub_msg.pose.position.z *= scaleFact_slamToWorld;
-
-  Eigen::Quaterniond tempQua(transform_init2cur_pub_msg.pose.orientation.w,
-                      transform_init2cur_pub_msg.pose.orientation.x,
-                      transform_init2cur_pub_msg.pose.orientation.y,
-                      transform_init2cur_pub_msg.pose.orientation.z);
-
-  Eigen::Quaterniond tempQ(tempQua.matrix().inverse());
-  transform_cur2init_pub_msg.header = slam_msg->point_cloud.header;
-  transform_cur2init_pub_msg.pose.orientation.w = tempQ.w();
-  transform_cur2init_pub_msg.pose.orientation.x = tempQ.x();
-  transform_cur2init_pub_msg.pose.orientation.y = tempQ.y();
-  transform_cur2init_pub_msg.pose.orientation.z = tempQ.z();
-  transform_cur2init_pub_msg.pose.position.x = -transform_init2cur_pub_msg.pose.position.x;
-  transform_cur2init_pub_msg.pose.position.y = -transform_init2cur_pub_msg.pose.position.y;
-  transform_cur2init_pub_msg.pose.position.z = -transform_init2cur_pub_msg.pose.position.z;
-  
-  // //调试代码3
-  // std::cout << "transform_init2cur_pub_msg.pose.position.x: " << transform_init2cur_pub_msg.pose.position.x << std::endl;
-  // std::cout << "transform_init2cur_pub_msg.pose.position.y: " << transform_init2cur_pub_msg.pose.position.y << std::endl;
-  // std::cout << "transform_init2cur_pub_msg.pose.position.z: " << transform_init2cur_pub_msg.pose.position.z << std::endl;
-  // std::cout << "transform_init2cur_pub_msg.header.frame_id: " << transform_init2cur_pub_msg.header.frame_id << std::endl;
+  // Put the publish operation in here is for the posible delay result of pcl operation, 
+  // that may increase the message filter's load.
   transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
   transformCurToInit_pub->publish(transform_cur2init_pub_msg);
+  if (!flag_haveInitialized) return;
+  point_cloud_pub_msg.header = slam_msg->point_cloud.header;
+
+
+  // std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
+  pointCloud_pub->publish(point_cloud_pub_msg);
+
   return;
 }
 

@@ -30,6 +30,7 @@ find_package(PCL REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Sophus REQUIRED)
 find_package(Ceres REQUIRED)
+find_package(rclcpp_action REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -46,7 +47,7 @@ include_directories(${EIGEN3_INCLUDE_DIR} ${Sophus_DIR} ${PCL_INCLUDE_DIRS} ${CE
 
 add_executable(media src/main.cpp src/media.cpp)
 
-ament_target_dependencies(media rclcpp interface geometry_msgs sensor_msgs cv_bridge message_filters pcl_conversions rcutils)
+ament_target_dependencies(media rclcpp interface geometry_msgs sensor_msgs cv_bridge message_filters pcl_conversions rcutils rclcpp_action)
 
 target_link_libraries(media ${PCL_LIBRARIES})
 # target_link_libraries(media ${OpenCV_LIBS} ${PCL_LIBRARIES})

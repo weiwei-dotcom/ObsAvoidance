@@ -54,6 +54,10 @@ CMAKE_BINARY_DIR = /home/weiwei/Desktop/project/ObsAvoidance/build/interface
 include CMakeFiles/interface.dir/progress.make
 
 CMakeFiles/interface: /home/weiwei/Desktop/project/ObsAvoidance/src/interface/msg/Slam.msg
+CMakeFiles/interface: /home/weiwei/Desktop/project/ObsAvoidance/src/interface/action/Move.action
+CMakeFiles/interface: /home/weiwei/Desktop/project/ObsAvoidance/src/interface/srv/SlamInitialized.srv
+CMakeFiles/interface: rosidl_cmake/srv/SlamInitialized_Request.msg
+CMakeFiles/interface: rosidl_cmake/srv/SlamInitialized_Response.msg
 CMakeFiles/interface: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 CMakeFiles/interface: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 CMakeFiles/interface: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -111,6 +115,10 @@ CMakeFiles/interface: /opt/ros/foxy/share/geometry_msgs/msg/Vector3.idl
 CMakeFiles/interface: /opt/ros/foxy/share/geometry_msgs/msg/Vector3Stamped.idl
 CMakeFiles/interface: /opt/ros/foxy/share/geometry_msgs/msg/Wrench.idl
 CMakeFiles/interface: /opt/ros/foxy/share/geometry_msgs/msg/WrenchStamped.idl
+CMakeFiles/interface: /opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl
+CMakeFiles/interface: /opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl
+CMakeFiles/interface: /opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl
+CMakeFiles/interface: /opt/ros/foxy/share/action_msgs/srv/CancelGoal.idl
 
 
 interface: CMakeFiles/interface

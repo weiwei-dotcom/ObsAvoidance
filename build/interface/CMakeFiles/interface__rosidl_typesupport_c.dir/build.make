@@ -64,6 +64,8 @@ rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/r
 rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/rosidl_typesupport_c/resource/msg__type_support.cpp.em
 rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/rosidl_typesupport_c/resource/srv__type_support.cpp.em
 rosidl_typesupport_c/interface/msg/slam__type_support.cpp: rosidl_adapter/interface/msg/Slam.idl
+rosidl_typesupport_c/interface/msg/slam__type_support.cpp: rosidl_adapter/interface/action/Move.idl
+rosidl_typesupport_c/interface/msg/slam__type_support.cpp: rosidl_adapter/interface/srv/SlamInitialized.idl
 rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -153,8 +155,19 @@ rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/s
 rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/std_msgs/msg/UInt64MultiArray.idl
 rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/std_msgs/msg/UInt8.idl
 rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/std_msgs/msg/UInt8MultiArray.idl
+rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl
+rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl
+rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl
+rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/action_msgs/srv/CancelGoal.idl
+rosidl_typesupport_c/interface/msg/slam__type_support.cpp: /opt/ros/foxy/share/unique_identifier_msgs/msg/UUID.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C type support dispatch for ROS interfaces"
 	/usr/bin/python3 /opt/ros/foxy/lib/rosidl_typesupport_c/rosidl_typesupport_c --generator-arguments-file /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c__arguments.json --typesupports rosidl_typesupport_fastrtps_c rosidl_typesupport_introspection_c
+
+rosidl_typesupport_c/interface/action/move__type_support.cpp: rosidl_typesupport_c/interface/msg/slam__type_support.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_c/interface/action/move__type_support.cpp
+
+rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp: rosidl_typesupport_c/interface/msg/slam__type_support.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp
 
 CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.o: CMakeFiles/interface__rosidl_typesupport_c.dir/flags.make
 CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.o: rosidl_typesupport_c/interface/msg/slam__type_support.cpp
@@ -169,19 +182,53 @@ CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/ms
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/msg/slam__type_support.cpp -o CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.s
 
+CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.o: CMakeFiles/interface__rosidl_typesupport_c.dir/flags.make
+CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.o: rosidl_typesupport_c/interface/action/move__type_support.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.o -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/action/move__type_support.cpp
+
+CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/action/move__type_support.cpp > CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.i
+
+CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/action/move__type_support.cpp -o CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.s
+
+CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.o: CMakeFiles/interface__rosidl_typesupport_c.dir/flags.make
+CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.o: rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.o -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp
+
+CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp > CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.i
+
+CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp -o CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.s
+
 # Object files for target interface__rosidl_typesupport_c
 interface__rosidl_typesupport_c_OBJECTS = \
-"CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.o"
+"CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.o" \
+"CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.o" \
+"CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.o"
 
 # External object files for target interface__rosidl_typesupport_c
 interface__rosidl_typesupport_c_EXTERNAL_OBJECTS =
 
 libinterface__rosidl_typesupport_c.so: CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.o
+libinterface__rosidl_typesupport_c.so: CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.o
+libinterface__rosidl_typesupport_c.so: CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.o
 libinterface__rosidl_typesupport_c.so: CMakeFiles/interface__rosidl_typesupport_c.dir/build.make
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_cpp.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_cpp.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_c.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_c.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_cpp.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_cpp.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_generator_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_introspection_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libgeometry_msgs__rosidl_generator_c.so
@@ -193,20 +240,26 @@ libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libstd_msgs__rosidl_gen
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_introspection_cpp.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_cpp.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libaction_msgs__rosidl_generator_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_generator_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_cpp.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_c.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_generator_c.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_c.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_cpp.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/librosidl_typesupport_introspection_cpp.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/librosidl_typesupport_introspection_c.so
-libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so
+libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_cpp.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/librosidl_typesupport_cpp.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/librosidl_typesupport_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/librosidl_runtime_c.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/librcpputils.so
 libinterface__rosidl_typesupport_c.so: /opt/ros/foxy/lib/librcutils.so
 libinterface__rosidl_typesupport_c.so: CMakeFiles/interface__rosidl_typesupport_c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libinterface__rosidl_typesupport_c.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library libinterface__rosidl_typesupport_c.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/interface__rosidl_typesupport_c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -219,6 +272,8 @@ CMakeFiles/interface__rosidl_typesupport_c.dir/clean:
 .PHONY : CMakeFiles/interface__rosidl_typesupport_c.dir/clean
 
 CMakeFiles/interface__rosidl_typesupport_c.dir/depend: rosidl_typesupport_c/interface/msg/slam__type_support.cpp
+CMakeFiles/interface__rosidl_typesupport_c.dir/depend: rosidl_typesupport_c/interface/action/move__type_support.cpp
+CMakeFiles/interface__rosidl_typesupport_c.dir/depend: rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp
 	cd /home/weiwei/Desktop/project/ObsAvoidance/build/interface && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_c.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/interface__rosidl_typesupport_c.dir/depend
 

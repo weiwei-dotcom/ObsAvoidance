@@ -1,2 +1,8 @@
+action/Move.action
+action/Move.idl
 msg/Slam.idl
 msg/Slam.msg
+srv/SlamInitialized.idl
+srv/SlamInitialized.srv
+srv/SlamInitialized_Request.msg
+srv/SlamInitialized_Response.msg

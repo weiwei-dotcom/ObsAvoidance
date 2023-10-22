@@ -1,6 +1,8 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/int32.hpp"
 #include "interface/msg/slam.hpp"
+#include "interface/srv/slam_initialized.hpp"
+#include "interface/action/move.hpp"
 #include "pcl/conversions.h"
 #include "geometry_msgs/msg/pose.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
@@ -18,10 +20,13 @@
 #include "pcl_conversions/pcl_conversions.h"
 #include "sophus/se3.hpp"
 #include <Eigen/Eigen>
+#include <sophus/so3.hpp>
+#include <sophus/se3.hpp>
 #include <mutex>
 #include <numeric>
 #include <cmath>
 #include <thread>
+#include <rclcpp_action/rclcpp_action.hpp>
 
 class mediaNode : public rclcpp :: Node
 {
@@ -81,7 +86,7 @@ private:
     // 圆形列表长度阈值
     int circle_size_thresh;
     // slam系统初始化之后的尺度到真实尺度的尺度变换因子
-    float scaleFact_slamToWorld;
+    double scaleFact_slamToWorld;
     // 创建互斥锁变量
     std::mutex mtx;
     // 声明发布器
@@ -98,9 +103,9 @@ private:
 
     // TODO: Before completing the function as follow, we should know the data interface transmit on corresponding node.
     // Client of sending the request to get the state of slam system initialization 
-
-    // Client of sending the request to get the transform matrix of init to base frame
+    rclcpp::Client<interface::srv::SlamInitialized>::SharedPtr slamInitializedFlag_cli;
     // Action client of sending the request to get the scale fact of slam to realworld
+    rclcpp_action::Client<interface::action::Move>::SharedPtr moveCDCR_cli;
 
 public:
     // 构造函数
