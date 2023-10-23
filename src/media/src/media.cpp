@@ -2,176 +2,235 @@
 // TODO: 修改配置文件让获取尺度因子的时间更长一点，精确度更高点;
 #include "media.hpp"
 
-mediaNode::mediaNode():Node("media")
+using MoveAction = interface::action::Move;
+using GoalHandleMoveAction = rclcpp_action::ClientGoalHandle<MoveAction>;
+
+mediaNode::mediaNode() : Node("media")
 {
-  error_type = OK;
-  flag_trouble=false;
-  // the flag of finish the process of initialization
-  flag_haveInitialized=false;
-  flag_getScaleFact = false;
-  flag_getTransformToBase = false;
-  flag_slamInitialized=false;
-  flag_timeout=false;
+	error_type = OK;
+	flag_trouble=false;
+	// the flag of finish the process of initialization
+	flag_haveInitialized=false;
+	flag_getScaleFact = false;
+	flag_getTransformToBase = false;
+	flag_slamInitialized=false;
+	flag_timeout=false;
 
-  slam_sub = this->create_subscription<interface::msg::Slam>("slam", 10, std::bind(&mediaNode::slam_callback, this, std::placeholders::_1));
-  transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
-  transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
-  pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
-  cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
-  
-  cv::Mat tempExtrinsicMatrix(4,4,CV_64F);
-  fileRead["extrinsicMatrix"] >> tempExtrinsicMatrix;
-  cv::cv2eigen(tempExtrinsicMatrix, extrinsicMatrix);
-  //TODO: The measure unit of extrinsicMatrix's translation is unknown, it should be transformed to the target measure unit
-  TimeOut = fileRead["TimeOut"];
-  double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
-  scaleFact_slamToWorld = 1;
-  minDist = fileRead["minDist"];
-  dp = fileRead["dp"];
-  cannyUpThresh = fileRead["cannyUpThresh"];
-  circleThresh = fileRead["circleThresh"];
-  minRadius = fileRead["minRadius"];
-  maxRadius = fileRead["maxRadius"];
-  difference_radius_thresh = fileRead["difference_radius_thresh"];
-  distance_center_thresh = fileRead["distance_center_thresh"];
-  circle_size_thresh = fileRead["circle_size_thresh"];
-  double blueUpperThreshH = fileRead["blueUpper.1"];
-  double blueUpperThreshS = fileRead["blueUpper.2"];
-  double blueUpperThreshV = fileRead["blueUpper.3"];
-  double blueLowerThreshH = fileRead["blueLower.1"];
-  double blueLowerThreshS = fileRead["blueLower.2"];
-  double blueLowerThreshV = fileRead["blueLower.3"];
-  blueLowerThresh = cv::Scalar(blueLowerThreshH,blueLowerThreshS,blueLowerThreshV);
-  blueUpperThresh = cv::Scalar(blueUpperThreshH,blueUpperThreshS,blueUpperThreshV);
-  int erodeStructure_size = fileRead["erodeStructure_size"];
-  int dilateStructure_size = fileRead["dilateStructure_size"];
-  structure_erode=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size, erodeStructure_size));
-  structure_dilate=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(dilateStructure_size, dilateStructure_size));
-  float fx = fileRead["Camera.fx"];
-  float fy = fileRead["Camera.fy"];
-  float cx = fileRead["Camera.cx"];
-  float cy = fileRead["Camera.cy"];
-  m_projectMatrix << fx,  0, cx,
-                      0, fy, cy,
-                      0,  0,  1; 
-  scaleFactList_size_thresh = fileRead["scaleFactList_size_thresh"];
+	cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
+	
+	cv::Mat tempExtrinsicMatrix(4,4,CV_64F);
+	fileRead["extrinsicMatrix"] >> tempExtrinsicMatrix;
+	cv::cv2eigen(tempExtrinsicMatrix, extrinsicMatrix);
+	//TODO: The measure unit of extrinsicMatrix's translation is unknown, it should be transformed to the target measure unit
+	TimeOut = fileRead["TimeOut"];
+	double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
+	scaleFact_slamToWorld = 1;
+	minDist = fileRead["minDist"];
+	dp = fileRead["dp"];
+	cannyUpThresh = fileRead["cannyUpThresh"];
+	circleThresh = fileRead["circleThresh"];
+	minRadius = fileRead["minRadius"];
+	maxRadius = fileRead["maxRadius"];
+	difference_radius_thresh = fileRead["difference_radius_thresh"];
+	distance_center_thresh = fileRead["distance_center_thresh"];
+	circle_size_thresh = fileRead["circle_size_thresh"];
+	double blueUpperThreshH = fileRead["blueUpper.1"];
+	double blueUpperThreshS = fileRead["blueUpper.2"];
+	double blueUpperThreshV = fileRead["blueUpper.3"];
+	double blueLowerThreshH = fileRead["blueLower.1"];
+	double blueLowerThreshS = fileRead["blueLower.2"];
+	double blueLowerThreshV = fileRead["blueLower.3"];
+	blueLowerThresh = cv::Scalar(blueLowerThreshH,blueLowerThreshS,blueLowerThreshV);
+	blueUpperThresh = cv::Scalar(blueUpperThreshH,blueUpperThreshS,blueUpperThreshV);
+	int erodeStructure_size = fileRead["erodeStructure_size"];
+	int dilateStructure_size = fileRead["dilateStructure_size"];
+	structure_erode=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size, erodeStructure_size));
+	structure_dilate=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(dilateStructure_size, dilateStructure_size));
+	float fx = fileRead["Camera.fx"];
+	float fy = fileRead["Camera.fy"];
+	float cx = fileRead["Camera.cx"];
+	float cy = fileRead["Camera.cy"];
+	m_projectMatrix << fx,  0, cx,
+						0, fy, cy,
+						0,  0,  1; 
+	scaleFactList_size_thresh = fileRead["scaleFactList_size_thresh"];
 
-  inlier_thresh_scaleFact = fileRead["inlier_thresh_scaleFact"];
-  inlier_thresh_scaleFact*=scaleFact_mmToTarget;
-  sample_length = fileRead["sample_length"];
-  fx_ = fileRead["Camera.fx"];
-  inlier_probability_=fileRead["inlier_probability"];
-  cosValue_thresh = fileRead["cosValue_thresh"];
-  circleRadius=fileRead["circleRadius"];
-  circleRadius*=scaleFact_mmToTarget;
-  m_transformToBase = Eigen::Matrix4d::Identity();
+	inlier_thresh_scaleFact = fileRead["inlier_thresh_scaleFact"];
+	inlier_thresh_scaleFact*=scaleFact_mmToTarget;
+	sample_length = fileRead["sample_length"];
+	fx_ = fileRead["Camera.fx"];
+	inlier_probability_=fileRead["inlier_probability"];
+	cosValue_thresh = fileRead["cosValue_thresh"];
+	circleRadius=fileRead["circleRadius"];
+	circleRadius*=scaleFact_mmToTarget;
+	m_transformToBase = Eigen::Matrix4d::Identity();
+
+	// TODO: transform the target vector to robot msg;
+	m_goal_pose.orientation.w = fileRead["goal_orientation_w"];
+	m_goal_pose.orientation.x = fileRead["goal_orientation_x"];
+	m_goal_pose.orientation.y = fileRead["goal_orientation_y"];
+	m_goal_pose.orientation.z = fileRead["goal_orientation_z"];
+	m_goal_pose.position.x = fileRead["goal_position_x"];
+	m_goal_pose.position.y = fileRead["goal_position_y"];
+	m_goal_pose.position.z = fileRead["goal_position_z"];
+	this->slamInitializedFlag_cli = this->create_client<interface::srv::SlamInitialized>(
+		"slam_initialization"
+	);
+	this->move_cdcr_cli = rclcpp_action::create_client<interface::action::Move>(
+		this,
+		"move_cdcr"
+	);
+	slam_sub = this->create_subscription<interface::msg::Slam>("slam", 10, std::bind(&mediaNode::slam_callback, this, std::placeholders::_1));
+	transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
+	transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
+	pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
 }
 
 void mediaNode::changeErrorType(ERROR_TYPE newError)
 {
-  if (newError != error_type)
-  {
-    static std::string errorTypeString[7] = {
-      "Circle detection is not stable",
-      "Distance of circle is too much",
-      "Not found the countour",
-      "Point cloud is little",
-      "OK",
-      "Image recieve error",
-      "The camera is not straight on the plane"
-    };
-    error_type = newError;
-    RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type].c_str());
-  }
+	if (newError != error_type)
+	{
+		static std::string errorTypeString[7] = {
+			"Circle detection is not stable",
+			"Distance of circle is too much",
+			"Not found the countour",
+			"Point cloud is little",
+			"OK",
+			"Image recieve error",
+			"The camera is not straight on the plane"
+		};
+		error_type = newError;
+		RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type].c_str());
+	}
 }
 
 void mediaNode::initialization()
 {
-  //TODO:
-  rclcpp::Rate timer(1);
-  initializeSlam();
-  while(!flag_slamInitialized)
-  {
-    if(flag_trouble||flag_timeout)
-    {
-      rclcpp::shutdown();
-      return; 
-    }    
-    timer.sleep();
-  }
-  getSlamToWorldScaleFact();
-  while(!flag_getScaleFact);
-  {
-    if(flag_trouble||flag_timeout)
-    {
-      rclcpp::shutdown();
-      return; 
-    }      
-    timer.sleep();
-  }
-
-  getTransformToBase();
-  while(!flag_getTransformToBase);
-  {
-    if(flag_trouble||flag_timeout)
-    {
-      rclcpp::shutdown();
-      return; 
-    }      
-    timer.sleep();
-  }
-  flag_haveInitialized=true;
-  return;
+	//TODO:
+	rclcpp::Rate timer(1);
+	initializeSlam();
+	while(!flag_slamInitialized)
+	{
+		if(flag_trouble||flag_timeout)
+		{
+			rclcpp::shutdown();
+			return; 
+		}    
+		timer.sleep();
+	}
+	getSlamToWorldScaleFact();
+	while(!flag_getScaleFact);
+	{
+		if(flag_trouble||flag_timeout)
+		{
+			rclcpp::shutdown();
+			return; 
+		}      
+		timer.sleep();
+	}
+	getTransformToBase();
+	while(!flag_getTransformToBase);
+	{
+		if(flag_trouble||flag_timeout)
+		{
+			rclcpp::shutdown();
+			return; 
+		}      
+		timer.sleep();
+	}
+	flag_haveInitialized=true;
+	return;
 }
+
 void mediaNode::slamInitialzed_callback(rclcpp::Client<interface::srv::SlamInitialized>::SharedFuture response)
 {
-  auto result = response.get();
-  if (!result->flag_slam_initialized)
-  {
-    this->flag_trouble = true;
-    RCLCPP_INFO(this->get_logger(), "Cdcr controller can't finish slam initialization.");
-    return;
-  }
-  this->flag_slamInitialized = true;
-  RCLCPP_INFO(this->get_logger(), "Cdcr controller finish slam initialization.");
-  return;
+	auto result = response.get();
+	if (!result->flag_slam_initialized)
+	{
+		this->flag_trouble = true;
+		RCLCPP_INFO(this->get_logger(), "Cdcr controller can't finish slam initialization.");
+		return;
+	}
+	this->flag_slamInitialized = true;
+	RCLCPP_INFO(this->get_logger(), "Cdcr controller finish slam initialization.");
+	return;
 }
 void mediaNode::initializeSlam()
 {
-  std::chrono::steady_clock::time_point t_start = std::chrono::steady_clock::now();
-  std::chrono::steady_clock::time_point t_now;
-  double time_spend;
-  while (!slamInitializedFlag_cli->wait_for_service(std::chrono::seconds(1)))
-  {
-    t_now = std::chrono::steady_clock::now();
-    time_spend = std::chrono::duration_cast<std::chrono::seconds>(t_now-t_start).count();
-    if (time_spend > TimeOut)
-    {
-      RCLCPP_ERROR(this->get_logger(), "Wait Timeout");
-      flag_timeout=true;
-      return;      
-    }
-    RCLCPP_INFO(this->get_logger(), "Waiting for the slamInitialzation server online");
-  }
-  auto request = std::make_shared<interface::srv::SlamInitialized_Request>();
-  this->slamInitializedFlag_cli->async_send_request(request, 
-      std::bind(&mediaNode::slamInitialzed_callback,this,std::placeholders::_1));
-  RCLCPP_INFO(this->get_logger(), "slamInitialization service is online, wait the process of slamInitialization finish!");
-  return;
+	std::chrono::steady_clock::time_point t_start = std::chrono::steady_clock::now();
+	std::chrono::steady_clock::time_point t_now;
+	double time_spend;
+	while (!slamInitializedFlag_cli->wait_for_service(std::chrono::seconds(1)))
+	{
+		t_now = std::chrono::steady_clock::now();
+		time_spend = std::chrono::duration_cast<std::chrono::seconds>(t_now-t_start).count();
+		if (time_spend > TimeOut)
+		{
+			RCLCPP_ERROR(this->get_logger(), "Waiting slamInitialzation server TIME_OUT!!");
+			flag_timeout=true;
+			return; 
+		}
+		RCLCPP_INFO(this->get_logger(), "Waiting slamInitialzation server online");
+	}
+	auto request = std::make_shared<interface::srv::SlamInitialized_Request>();
+	this->slamInitializedFlag_cli->async_send_request(request, 
+		std::bind(&mediaNode::slamInitialzed_callback,this,std::placeholders::_1));
+	RCLCPP_INFO(this->get_logger(), "slamInitialization service is online, wait the process of slamInitialization finish!");
+	return;
 }
+
+void mediaNode::goalPose_callback(std::shared_future<GoalHandleMoveAction::SharedPtr> future)
+{
+
+	return;
+};
+void mediaNode::feedbackPose_callback(GoalHandleMoveAction::SharedPtr, 
+							const std::shared_ptr<const MoveAction::Feedback> feedback)
+{
+
+	return;
+}
+void mediaNode::resultPose_callback(const GoalHandleMoveAction::WrappedResult & result)
+{
+
+	return;
+}
+
 void mediaNode::getSlamToWorldScaleFact()
 {
-  //TODO: These two function (with getTransformToBase()) may use a action mechanism to realization
-  // 
-
-  return ;
+    //TODO: These function may use a action mechanism to realization
+    // 
+	std::chrono::steady_clock::time_point t_start = std::chrono::steady_clock::now();
+	std::chrono::steady_clock::time_point t_now;
+	double t_spend ;
+    RCLCPP_INFO(this->get_logger(), "Start to get the scale factor of slam to world");
+	while (!this->move_cdcr_cli->wait_for_action_server(std::chrono::seconds(1)))
+	{
+		t_now = std::chrono::steady_clock::now();
+		t_spend = std::chrono::duration_cast<std::chrono::seconds>(t_now-t_start).count();
+		if (t_spend > TimeOut)
+		{
+			RCLCPP_ERROR(this->get_logger(), "Waiting cdcr_movement service TIME_OUT!");
+			flag_timeout=true;
+			return;
+		}
+		RCLCPP_INFO(this->get_logger(), "Waiting cdcr_movement service online!");
+	}
+	auto goal = MoveAction::Goal();
+	goal.goal_pose = m_goal_pose;
+	auto send_goal_options = rclcpp_action::Client<MoveAction>::SendGoalOptions();
+	send_goal_options.goal_response_callback = std::bind(&mediaNode::goalPose_callback,this,std::placeholders::_1);
+	send_goal_options.feedback_callback = std::bind(&mediaNode::feedbackPose_callback,this,std::placeholders::_1,std::placeholders::_2);
+	send_goal_options.result_callback = std::bind(&mediaNode::resultPose_callback,this,std::placeholders::_1);
+	this->move_cdcr_cli->async_send_goal(goal, send_goal_options);
+    return;
 }
 
 void mediaNode::getTransformToBase()
 {
-  //TODO:
-  // 
-  return;
+	//TODO:
+	// 
+	return;
 }
 // Calculate the Frame from three flag points
 void calFrameFromPoints(Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Matrix<double, 3, 1> &t) 

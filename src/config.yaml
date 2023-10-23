@@ -165,6 +165,10 @@ numIteration: 10000
 
 cosValueTresh: 0.97
 
+# TODO: the target pose vector ;
+# target vector1: the direction vector of end plat in the base frame
+# target vector2: the position of end plat center in the base frame
+
 extrinsicMatrix: 
   rows: 4
   cols: 4

@@ -30,6 +30,8 @@
 
 class mediaNode : public rclcpp :: Node
 {
+using MoveAction = interface::action::Move;
+using GoalHandleMoveAction = rclcpp_action::ClientGoalHandle<MoveAction>;
 private:
     enum ERROR_TYPE
     {
@@ -106,6 +108,8 @@ private:
     double TimeOut;
     // 
     bool flag_timeout;
+    // The target pose of process getting the scale factor
+    geometry_msgs::msg::Pose m_goal_pose;
     //
     void slamInitialzed_callback(rclcpp::Client<interface::srv::SlamInitialized>::SharedFuture response);
 
@@ -113,7 +117,11 @@ private:
     // Client of sending the request to get the state of slam system initialization 
     rclcpp::Client<interface::srv::SlamInitialized>::SharedPtr slamInitializedFlag_cli;
     // Action client of sending the request to get the scale fact of slam to realworld
-    rclcpp_action::Client<interface::action::Move>::SharedPtr moveCDCR_cli;
+    rclcpp_action::Client<interface::action::Move>::SharedPtr move_cdcr_cli;
+    void goalPose_callback(std::shared_future<GoalHandleMoveAction::SharedPtr> future);
+    void feedbackPose_callback(GoalHandleMoveAction::SharedPtr, 
+                               const std::shared_ptr<const MoveAction::Feedback> feedback);
+    void resultPose_callback(const GoalHandleMoveAction::WrappedResult & result);
 
 public:
     // 构造函数
