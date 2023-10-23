@@ -153,6 +153,9 @@ adaptiveIncrement_inlier_thresh_dirVec: 0.0015
 # pcl点云拟合平面时内点的距离阈值
 distanceThresh_plandAndPoint: 2.80
 
+# time out value(second)
+TimeOut: 60
+
 # 拟合平面时的点云数量阈值
 mapPointNumThresh: 90
 

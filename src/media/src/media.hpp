@@ -100,6 +100,14 @@ private:
     Eigen::Matrix4d extrinsicMatrix;
     // 相机初始帧到基座标系的转换矩阵
     Eigen::Matrix4d transform_initToBase;
+    // flag of recieve state relation to initialization process;
+    bool flag_trouble;
+    // time out value;
+    double TimeOut;
+    // 
+    bool flag_timeout;
+    //
+    void slamInitialzed_callback(rclcpp::Client<interface::srv::SlamInitialized>::SharedFuture response);
 
     // TODO: Before completing the function as follow, we should know the data interface transmit on corresponding node.
     // Client of sending the request to get the state of slam system initialization 
@@ -110,6 +118,7 @@ private:
 public:
     // 构造函数
     mediaNode();
+    // 
     // 从运动捕捉数据得到真实世界的尺度转换因子函数
     void getSlamToWorldScaleFact();
     // 获取从相机当前坐标系到基座标系下的转换矩阵

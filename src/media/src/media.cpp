@@ -5,12 +5,13 @@
 mediaNode::mediaNode():Node("media")
 {
   error_type = OK;
-  
+  flag_trouble=false;
   // the flag of finish the process of initialization
   flag_haveInitialized=false;
   flag_getScaleFact = false;
   flag_getTransformToBase = false;
   flag_slamInitialized=false;
+  flag_timeout=false;
 
   slam_sub = this->create_subscription<interface::msg::Slam>("slam", 10, std::bind(&mediaNode::slam_callback, this, std::placeholders::_1));
   transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
@@ -22,7 +23,7 @@ mediaNode::mediaNode():Node("media")
   fileRead["extrinsicMatrix"] >> tempExtrinsicMatrix;
   cv::cv2eigen(tempExtrinsicMatrix, extrinsicMatrix);
   //TODO: The measure unit of extrinsicMatrix's translation is unknown, it should be transformed to the target measure unit
-  
+  TimeOut = fileRead["TimeOut"];
   double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
   scaleFact_slamToWorld = 1;
   minDist = fileRead["minDist"];
@@ -87,31 +88,88 @@ void mediaNode::changeErrorType(ERROR_TYPE newError)
 void mediaNode::initialization()
 {
   //TODO:
+  rclcpp::Rate timer(1);
   initializeSlam();
-  while(!flag_slamInitialized);
+  while(!flag_slamInitialized)
+  {
+    if(flag_trouble||flag_timeout)
+    {
+      rclcpp::shutdown();
+      return; 
+    }    
+    timer.sleep();
+  }
   getSlamToWorldScaleFact();
   while(!flag_getScaleFact);
+  {
+    if(flag_trouble||flag_timeout)
+    {
+      rclcpp::shutdown();
+      return; 
+    }      
+    timer.sleep();
+  }
+
   getTransformToBase();
   while(!flag_getTransformToBase);
+  {
+    if(flag_trouble||flag_timeout)
+    {
+      rclcpp::shutdown();
+      return; 
+    }      
+    timer.sleep();
+  }
   flag_haveInitialized=true;
   return;
 }
-
+void mediaNode::slamInitialzed_callback(rclcpp::Client<interface::srv::SlamInitialized>::SharedFuture response)
+{
+  auto result = response.get();
+  if (!result->flag_slam_initialized)
+  {
+    this->flag_trouble = true;
+    RCLCPP_INFO(this->get_logger(), "Cdcr controller can't finish slam initialization.");
+    return;
+  }
+  this->flag_slamInitialized = true;
+  RCLCPP_INFO(this->get_logger(), "Cdcr controller finish slam initialization.");
+  return;
+}
 void mediaNode::initializeSlam()
 {
-  //TODO: 
+  std::chrono::steady_clock::time_point t_start = std::chrono::steady_clock::now();
+  std::chrono::steady_clock::time_point t_now;
+  double time_spend;
+  while (!slamInitializedFlag_cli->wait_for_service(std::chrono::seconds(1)))
+  {
+    t_now = std::chrono::steady_clock::now();
+    time_spend = std::chrono::duration_cast<std::chrono::seconds>(t_now-t_start).count();
+    if (time_spend > TimeOut)
+    {
+      RCLCPP_ERROR(this->get_logger(), "Wait Timeout");
+      flag_timeout=true;
+      return;      
+    }
+    RCLCPP_INFO(this->get_logger(), "Waiting for the slamInitialzation server online");
+  }
+  auto request = std::make_shared<interface::srv::SlamInitialized_Request>();
+  this->slamInitializedFlag_cli->async_send_request(request, 
+      std::bind(&mediaNode::slamInitialzed_callback,this,std::placeholders::_1));
+  RCLCPP_INFO(this->get_logger(), "slamInitialization service is online, wait the process of slamInitialization finish!");
   return;
 }
 void mediaNode::getSlamToWorldScaleFact()
 {
   //TODO: These two function (with getTransformToBase()) may use a action mechanism to realization
   // 
+
   return ;
 }
 
 void mediaNode::getTransformToBase()
 {
-  //TODO: These two function (with getSlamToWorldScaleFact()) may use a action mechanism to realization
+  //TODO:
   // 
   return;
 }
@@ -177,14 +235,14 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
   }
   sensor_msgs::msg::PointCloud2 point_cloud_pub_msg;
   pcl::toROSMsg(temp_pointCloud, point_cloud_pub_msg);
+  
   // Put the publish operation in here is for the posible delay result of pcl operation, 
   // that may increase the message filter's load.
   transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
   transformCurToInit_pub->publish(transform_cur2init_pub_msg);
   if (!flag_haveInitialized) return;
+
   point_cloud_pub_msg.header = slam_msg->point_cloud.header;
-
-
   // std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
   pointCloud_pub->publish(point_cloud_pub_msg);
 
