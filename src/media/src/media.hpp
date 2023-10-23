@@ -88,7 +88,7 @@ private:
     // 圆形列表长度阈值
     int circle_size_thresh;
     // slam系统初始化之后的尺度到真实尺度的尺度变换因子
-    double scaleFact_slamToWorld;
+    double scaleFactor_slamToWorld;
     // 创建互斥锁变量
     std::mutex mtx;
     // 声明发布器
@@ -106,11 +106,17 @@ private:
     bool flag_trouble;
     // time out value;
     double TimeOut;
+    // recieve the msg of slam system that contain the info of current camera pose;
+    geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg;
     // 
     bool flag_timeout;
     // The target pose of process getting the scale factor
     geometry_msgs::msg::Pose m_goal_pose;
-    //
+    // start frame flag point and end frame flag point at process of getting scale factor;
+    Eigen::Matrix3d start_frame_points, end_frame_points;
+    // start and end position of camera at process of getting scale factor
+    Eigen::Vector3d start_camera_position, end_camera_position;
+    // 
     void slamInitialzed_callback(rclcpp::Client<interface::srv::SlamInitialized>::SharedFuture response);
 
     // TODO: Before completing the function as follow, we should know the data interface transmit on corresponding node.
@@ -129,6 +135,8 @@ public:
     // 
     // 从运动捕捉数据得到真实世界的尺度转换因子函数
     void getSlamToWorldScaleFact();
+    // calculate the transform matrix from three points
+    void calTransformMatrixFromPoints(Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Matrix<double, 3, 1> &t) ;
     // 获取从相机当前坐标系到基座标系下的转换矩阵
     void getTransformToBase();
     // 判断是否正对检测平面函数
@@ -147,6 +155,9 @@ public:
     void initializeSlam();
     // The main function of initialization whole system;
     void initialization();
+    // calculate the scale factor of transformation the measure value from slam to world
+    void calSlamToWorldScaleFactor();
+
     
     // 析构函数
     ~mediaNode();
