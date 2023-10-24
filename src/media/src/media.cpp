@@ -84,56 +84,56 @@ void mediaNode::changeErrorType(ERROR_TYPE newError)
 void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_msg, 
                               const sensor_msgs::msg::Image::ConstSharedPtr &image_msg)
 {
-  // 初始化获得到真实世界的尺度因子
-  if (!flag_getScaleFact) {
-    getScaleSlamToWorld(image_msg, slam_msg);
-    return;
-  }
-  // 
-  // 如果初始化获得了到真实世界的尺度因子，将slam尺度下的点云坐标以及相机的位移量乘上尺度因子就获得了真实世界下的点云数据以及相机位移
-  pcl::PointCloud<pcl::PointXYZ> temp_pointCloud;
-  pcl::fromROSMsg(slam_msg->point_cloud, temp_pointCloud);
-  // 调试代码3
-  // std::cout << "temp_pointCloud.size(): " << temp_pointCloud.points.size() << std::endl;
-  for (size_t i=0;i<temp_pointCloud.points.size();i++) {
-    temp_pointCloud.points[i].x *= scaleFact_slamToWorld;
-    temp_pointCloud.points[i].y *= scaleFact_slamToWorld;
-    temp_pointCloud.points[i].z *= scaleFact_slamToWorld;
-  }
-  sensor_msgs::msg::PointCloud2 point_cloud_pub_msg;
-  pcl::toROSMsg(temp_pointCloud, point_cloud_pub_msg);
-  point_cloud_pub_msg.header = slam_msg->point_cloud.header;
-  // std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
-  pointCloud_pub->publish(point_cloud_pub_msg);
-  geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg;
-  transform_init2cur_pub_msg = slam_msg->transform_init2cur;
-  transform_init2cur_pub_msg.pose.position.x *= scaleFact_slamToWorld;
-  transform_init2cur_pub_msg.pose.position.y *= scaleFact_slamToWorld;
-  transform_init2cur_pub_msg.pose.position.z *= scaleFact_slamToWorld;
+	// 初始化获得到真实世界的尺度因子
+	if (!flag_getScaleFact) {
+		getScaleSlamToWorld(image_msg, slam_msg);
+		return;
+	}
+	// 
+	// 如果初始化获得了到真实世界的尺度因子，将slam尺度下的点云坐标以及相机的位移量乘上尺度因子就获得了真实世界下的点云数据以及相机位移
+	pcl::PointCloud<pcl::PointXYZ> temp_pointCloud;
+	pcl::fromROSMsg(slam_msg->point_cloud, temp_pointCloud);
+	// 调试代码3
+	// std::cout << "temp_pointCloud.size(): " << temp_pointCloud.points.size() << std::endl;
+	for (size_t i=0;i<temp_pointCloud.points.size();i++) {
+		temp_pointCloud.points[i].x *= scaleFact_slamToWorld;
+		temp_pointCloud.points[i].y *= scaleFact_slamToWorld;
+		temp_pointCloud.points[i].z *= scaleFact_slamToWorld;
+	}
+	sensor_msgs::msg::PointCloud2 point_cloud_pub_msg;
+	pcl::toROSMsg(temp_pointCloud, point_cloud_pub_msg);
+	point_cloud_pub_msg.header = slam_msg->point_cloud.header;
+	// std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
+	pointCloud_pub->publish(point_cloud_pub_msg);
+	geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg;
+	transform_init2cur_pub_msg = slam_msg->transform_init2cur;
+	transform_init2cur_pub_msg.pose.position.x *= scaleFact_slamToWorld;
+	transform_init2cur_pub_msg.pose.position.y *= scaleFact_slamToWorld;
+	transform_init2cur_pub_msg.pose.position.z *= scaleFact_slamToWorld;
 
-  Eigen::Quaterniond tempQua(transform_init2cur_pub_msg.pose.orientation.w,
-                      transform_init2cur_pub_msg.pose.orientation.x,
-                      transform_init2cur_pub_msg.pose.orientation.y,
-                      transform_init2cur_pub_msg.pose.orientation.z);
-
-  Eigen::Quaterniond tempQ(tempQua.matrix().inverse());
-  transform_cur2init_pub_msg.header = slam_msg->point_cloud.header;
-  transform_cur2init_pub_msg.pose.orientation.w = tempQ.w();
-  transform_cur2init_pub_msg.pose.orientation.x = tempQ.x();
-  transform_cur2init_pub_msg.pose.orientation.y = tempQ.y();
-  transform_cur2init_pub_msg.pose.orientation.z = tempQ.z();
-  transform_cur2init_pub_msg.pose.position.x = -transform_init2cur_pub_msg.pose.position.x;
-  transform_cur2init_pub_msg.pose.position.y = -transform_init2cur_pub_msg.pose.position.y;
-  transform_cur2init_pub_msg.pose.position.z = -transform_init2cur_pub_msg.pose.position.z;
+	Eigen::Quaterniond q_init_to_cur(transform_init2cur_pub_msg.pose.orientation.w,
+									 transform_init2cur_pub_msg.pose.orientation.x,
+									 transform_init2cur_pub_msg.pose.orientation.y,
+									 transform_init2cur_pub_msg.pose.orientation.z);
+	Eigen::Vector3d t_init_to_cur(transform_init2cur_pub_msg.pose.position.x,
+								  transform_init2cur_pub_msg.pose.position.y,
+								  transform_init2cur_pub_msg.pose.position.z);
+	Eigen::Matrix4d tempT_init_to_cur=Eigen::Matrix4d::Identity();
+	tempT_init_to_cur.block(0,0,3,3) = q_init_to_cur.matrix();
+	tempT_init_to_cur.block(0,3,3,1) = t_init_to_cur;
+	Eigen::Matrix4d tempT_cur_to_init=tempT_init_to_cur.inverse();
+	transform_cur2init_pub_msg.pose.orientation.w = (q_init_to_cur.inverse().w());
+	transform_cur2init_pub_msg.pose.orientation.x = (q_init_to_cur.inverse().x());
+	transform_cur2init_pub_msg.pose.orientation.y = (q_init_to_cur.inverse().y());
+	transform_cur2init_pub_msg.pose.orientation.z = (q_init_to_cur.inverse().z());
+	transform_cur2init_pub_msg.pose.position.x = tempT_cur_to_init(0,3);
+	transform_cur2init_pub_msg.pose.position.y = tempT_cur_to_init(1,3);
+	transform_cur2init_pub_msg.pose.position.z = tempT_cur_to_init(2,3);
+	transform_cur2init_pub_msg.header = slam_msg->point_cloud.header;
   
-  // //调试代码3
-  // std::cout << "transform_init2cur_pub_msg.pose.position.x: " << transform_init2cur_pub_msg.pose.position.x << std::endl;
-  // std::cout << "transform_init2cur_pub_msg.pose.position.y: " << transform_init2cur_pub_msg.pose.position.y << std::endl;
-  // std::cout << "transform_init2cur_pub_msg.pose.position.z: " << transform_init2cur_pub_msg.pose.position.z << std::endl;
-  // std::cout << "transform_init2cur_pub_msg.header.frame_id: " << transform_init2cur_pub_msg.header.frame_id << std::endl;
-  transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
-  transformCurToInit_pub->publish(transform_cur2init_pub_msg);
-  return;
+	transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
+	transformCurToInit_pub->publish(transform_cur2init_pub_msg);
+	return;
 }
 
 void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPtr &imageMsg, const interface::msg::Slam::ConstSharedPtr &slamMsg) 

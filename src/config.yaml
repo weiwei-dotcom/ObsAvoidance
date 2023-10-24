@@ -31,7 +31,7 @@ close_blue_kernel_size: 15
 flag_motionControlProgramHaveDone: 0
 
 # mm制尺度到实际应用尺度(eg: M ,scaleFact_mmToTarget: 0.001)的转换因子
-scaleFact_mmToTarget: 1
+scaleFact_mmToTarget: 0.001
 
 # 局部可视点云的水平与竖直方向的角度阈值
 horizontalAngleThresh_localPointCloud: 50
