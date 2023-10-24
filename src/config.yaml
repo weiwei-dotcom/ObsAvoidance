@@ -175,11 +175,12 @@ goal_position.x: 0.0
 goal_position.y: 1000.0
 goal_position.z: 0.0
 # The translation of base relative to world
-T_baseToWorld.position.x: 1500
-T_baseToWorld.position.y: 1000
-T_baseToWorld.position.z: 1500
+T_baseToWorld.position.x: 1500.0
+T_baseToWorld.position.y: 1000.0
+T_baseToWorld.position.z: 1500.0
 
-extrinsicMatrix: 
+# TODO: 
+T_camera_to_tool: 
   rows: 4
   cols: 4
   dt: d

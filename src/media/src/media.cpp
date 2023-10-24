@@ -18,34 +18,15 @@ mediaNode::mediaNode() : Node("media")
 
 	cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
 	
-	cv::Mat tempExtrinsicMatrix(4,4,CV_64F);
-	fileRead["extrinsicMatrix"] >> tempExtrinsicMatrix;
-	cv::cv2eigen(tempExtrinsicMatrix, extrinsicMatrix);
-	//TODO: The measure unit of extrinsicMatrix's translation is unknown, it should be transformed to the target measure unit
+	cv::Mat Tmat_camera_to_tool(4,4,CV_64F);
+	fileRead["T_camera_to_tool"] >> Tmat_camera_to_tool;
+	cv::cv2eigen(Tmat_camera_to_tool, T_camera_to_tool);
+	T_camera_to_tool.block(0,3,3,1) = T_camera_to_tool.block(0,3,3,1)*scaleFact_mmToTarget;
+	//TODO: The measure unit of T_camera_to_tool's translation is unknown, it should be transformed to the target measure unit
 	TimeOut = fileRead["TimeOut"];
-	double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
+	scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
 	scaleFactor_slamToWorld = 1.0;
-	minDist = fileRead["minDist"];
-	dp = fileRead["dp"];
-	cannyUpThresh = fileRead["cannyUpThresh"];
-	circleThresh = fileRead["circleThresh"];
-	minRadius = fileRead["minRadius"];
-	maxRadius = fileRead["maxRadius"];
-	difference_radius_thresh = fileRead["difference_radius_thresh"];
-	distance_center_thresh = fileRead["distance_center_thresh"];
-	circle_size_thresh = fileRead["circle_size_thresh"];
-	double blueUpperThreshH = fileRead["blueUpper.1"];
-	double blueUpperThreshS = fileRead["blueUpper.2"];
-	double blueUpperThreshV = fileRead["blueUpper.3"];
-	double blueLowerThreshH = fileRead["blueLower.1"];
-	double blueLowerThreshS = fileRead["blueLower.2"];
-	double blueLowerThreshV = fileRead["blueLower.3"];
-	blueLowerThresh = cv::Scalar(blueLowerThreshH,blueLowerThreshS,blueLowerThreshV);
-	blueUpperThresh = cv::Scalar(blueUpperThreshH,blueUpperThreshS,blueUpperThreshV);
-	int erodeStructure_size = fileRead["erodeStructure_size"];
-	int dilateStructure_size = fileRead["dilateStructure_size"];
-	structure_erode=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size, erodeStructure_size));
-	structure_dilate=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(dilateStructure_size, dilateStructure_size));
+
 	float fx = fileRead["Camera.fx"];
 	float fy = fileRead["Camera.fy"];
 	float cx = fileRead["Camera.cx"];
@@ -53,17 +34,6 @@ mediaNode::mediaNode() : Node("media")
 	m_projectMatrix << fx,  0, cx,
 						0, fy, cy,
 						0,  0,  1; 
-	scaleFactList_size_thresh = fileRead["scaleFactList_size_thresh"];
-
-	inlier_thresh_scaleFact = fileRead["inlier_thresh_scaleFact"];
-	inlier_thresh_scaleFact*=scaleFact_mmToTarget;
-	sample_length = fileRead["sample_length"];
-	fx_ = fileRead["Camera.fx"];
-	inlier_probability_=fileRead["inlier_probability"];
-	cosValue_thresh = fileRead["cosValue_thresh"];
-	circleRadius=fileRead["circleRadius"];
-	circleRadius*=scaleFact_mmToTarget;
-	m_transformToBase = Eigen::Matrix4d::Identity();
 
 	// TODO: transform the target vector to robot msg;
 	Eigen::Vector3d goal_direction, goal_position;
@@ -71,15 +41,23 @@ mediaNode::mediaNode() : Node("media")
 	goal_direction(1)=fileRead["goal_direction.y"];
 	goal_direction(2)=fileRead["goal_direction.z"];
 	m_goal_pose.position.x=fileRead["goal_position.x"];
+	m_goal_pose.position.x*=scaleFact_mmToTarget;
 	m_goal_pose.position.y=fileRead["goal_position.y"];
+	m_goal_pose.position.y*=scaleFact_mmToTarget;
 	m_goal_pose.position.z=fileRead["goal_position.z"];
+	m_goal_pose.position.z*=scaleFact_mmToTarget;
 	Eigen::Matrix3d goalRotationMatrix = Eigen::AngleAxisd(acos(goal_direction.normalized().dot(Eigen::Vector3d(0,1,0))),
 															 Eigen::Vector3d(0,1,0).cross(goal_direction).normalized()).toRotationMatrix();
-	std::cout << "goalRotationMatrix: " <<std::endl <<goalRotationMatrix <<std::endl;
+
 	T_baseToWorld = Eigen::Matrix4d::Identity();
-	T_baseToWorld(0,3)=fileRead["T_baseToWorld.position.x"];												 
-	T_baseToWorld(1,3)=fileRead["T_baseToWorld.position.y"];												 
-	T_baseToWorld(2,3)=fileRead["T_baseToWorld.position.z"];												 
+	T_baseToWorld(0,3)=fileRead["T_baseToWorld.position.x"];
+	T_baseToWorld(0,3)*=scaleFact_mmToTarget;
+	T_baseToWorld(1,3)=fileRead["T_baseToWorld.position.y"];
+	T_baseToWorld(1,3)*=scaleFact_mmToTarget;
+
+	T_baseToWorld(2,3)=fileRead["T_baseToWorld.position.z"];
+	T_baseToWorld(2,3)*=scaleFact_mmToTarget;
+
 	Eigen::Quaterniond goalQuaternion(goalRotationMatrix);
 	m_goal_pose.orientation.w = goalQuaternion.w();
 	m_goal_pose.orientation.x = goalQuaternion.x();
@@ -93,7 +71,7 @@ mediaNode::mediaNode() : Node("media")
 		"move_cdcr"
 	);
 	slam_sub = this->create_subscription<interface::msg::Slam>("slam", 10, std::bind(&mediaNode::slam_callback, this, std::placeholders::_1));
-	transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
+	transformInitToCur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
 	transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
 	pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
 }
@@ -140,6 +118,7 @@ void mediaNode::initialization()
 		}      
 		timer.sleep();
 	}
+	timer.sleep();
 	getTransformInitToBaseAndInitToWorld();
 	while(!flag_getTransformToBase);
 	{   
@@ -217,15 +196,16 @@ void mediaNode::calSlamToWorldScaleFactor()
 	Eigen::Vector3d temp_start_t,temp_end_t;
 	calTransformMatrixFromPoints(start_frame_points, temp_start_R,temp_start_t);
 	calTransformMatrixFromPoints(end_frame_points, temp_end_R,temp_end_t);
-	Eigen::Matrix4d transformAtStart_toolToBase = Eigen::Matrix4d::Identity();
-	Eigen::Matrix4d transformAtEnd_toolToBase = Eigen::Matrix4d::Identity();
-	transformAtStart_toolToBase.block(0,0,3,3) = temp_start_R;
-	transformAtStart_toolToBase.block(0,3,3,1) = temp_start_t;
-	transformAtEnd_toolToBase.block(0,0,3,3) = temp_end_R;
-	transformAtEnd_toolToBase.block(0,3,3,1) = temp_end_t;
-	//TODO: remember the extrinsic here is using the frame system of camera which means the xyz order is not consistent with world frame.
-	Eigen::Vector3d camera_start_position_real = (transformAtStart_toolToBase*extrinsicMatrix.col(3)).block(0,0,3,1);
-	Eigen::Vector3d camera_end_position_real = (transformAtEnd_toolToBase*extrinsicMatrix.col(3)).block(0,0,3,1);
+
+	Eigen::Matrix4d T_tool_begin = Eigen::Matrix4d::Identity();
+	Eigen::Matrix4d T_tool_end = Eigen::Matrix4d::Identity();
+	T_tool_begin.block(0,0,3,3) = temp_start_R;
+	T_tool_begin.block(0,3,3,1) = temp_start_t;
+	T_tool_end.block(0,0,3,3) = temp_end_R;
+	T_tool_end.block(0,3,3,1) = temp_end_t;
+	//TODO: remember the extrinsic here is using the frame system of camera which means the xyz order is not consistent with world frame.     
+	Eigen::Vector3d camera_start_position_real = (T_tool_begin*T_camera_to_tool.col(3)).block(0,0,3,1);
+	Eigen::Vector3d camera_end_position_real = (T_tool_end*T_camera_to_tool.col(3)).block(0,0,3,1);
 
 	double real_translation = (camera_end_position_real-camera_start_position_real).norm();
 	double slam_translation = (end_camera_position-start_camera_position).norm();
@@ -254,9 +234,9 @@ void mediaNode::resultPose_callback(const GoalHandleMoveAction::WrappedResult & 
 	}
 
 	inputFlagPoints(end_frame_points);
-	end_camera_position=Eigen::Vector3d(transform_cur2init_pub_msg.pose.position.x,
-										transform_cur2init_pub_msg.pose.position.y,
-										transform_cur2init_pub_msg.pose.position.z);
+	end_camera_position=Eigen::Vector3d(transform_cur2init_msg.pose.position.x,
+										transform_cur2init_msg.pose.position.y,
+										transform_cur2init_msg.pose.position.z);
 
 	calSlamToWorldScaleFactor();
 	flag_getScaleFactor=true;
@@ -285,9 +265,9 @@ void mediaNode::getSlamToWorldScaleFact()
 	auto goal = MoveAction::Goal();
 
 	inputFlagPoints(start_frame_points);
-	start_camera_position=Eigen::Vector3d(transform_cur2init_pub_msg.pose.position.x,
-										  transform_cur2init_pub_msg.pose.position.y,
-										  transform_cur2init_pub_msg.pose.position.z);
+	start_camera_position=Eigen::Vector3d(transform_cur2init_msg.pose.position.x,
+										  transform_cur2init_msg.pose.position.y,
+										  transform_cur2init_msg.pose.position.z);
 
 	goal.goal_pose = m_goal_pose;
 	auto send_goal_options = rclcpp_action::Client<MoveAction>::SendGoalOptions();
@@ -302,13 +282,13 @@ void mediaNode::getSlamToWorldScaleFact()
 void mediaNode::getTransformInitToBaseAndInitToWorld()
 {
 	// from the quaternion to rotation matrix 
-	Eigen::Matrix3d R_init_to_cur(transform_init2cur_pub_msg.pose.orientation.x, 
-								  transform_init2cur_pub_msg.pose.orientation.y, 
-								  transform_init2cur_pub_msg.pose.orientation.z, 
-								  transform_init2cur_pub_msg.pose.orientation.w);
-	Eigen::Vector3d t_init_to_cur(transform_init2cur_pub_msg.pose.position.x,
-								  transform_init2cur_pub_msg.pose.position.y,
-								  transform_init2cur_pub_msg.pose.position.z);
+	Eigen::Matrix3d R_init_to_cur(transform_init2cur_msg.pose.orientation.x, 
+								  transform_init2cur_msg.pose.orientation.y, 
+								  transform_init2cur_msg.pose.orientation.z, 
+								  transform_init2cur_msg.pose.orientation.w);
+	Eigen::Vector3d t_init_to_cur(transform_init2cur_msg.pose.position.x,
+								  transform_init2cur_msg.pose.position.y,
+								  transform_init2cur_msg.pose.position.z);
 	Eigen::Matrix4d T_init_to_cur = Eigen::Matrix4d::Identity();
 	T_init_to_cur.block(0,0,3,3) = R_init_to_cur;
 	T_init_to_cur.block(0,3,3,1) = t_init_to_cur;
@@ -326,8 +306,8 @@ void mediaNode::getTransformInitToBaseAndInitToWorld()
 	T_base.block(0,0,3,3) = R_base;
 	T_base.block(0,3,3,1) = t_base;
 	Eigen::Matrix4d T_tool_to_base = T_base.inverse()*T_tool;
-	T_initToBase = T_tool_to_base * extrinsicMatrix * T_init_to_cur;
-	T_initToWorld = T_baseToWorld*T_initToBase;
+	T_initToBase = T_tool_to_base * T_camera_to_tool * T_init_to_cur;
+	T_initToWorld = T_baseToWorld * T_initToBase;
 	flag_getTransformToBase = true;
 	return;
 }
@@ -341,6 +321,7 @@ void mediaNode::inputFlagPoints(Eigen::Matrix3d & input_flag_points)
 		{
 			RCLCPP_INFO(this->get_logger(), " point[%d].%s: ", i, xyz[j].c_str());
 			std::cin >> input_flag_points(i,j);
+			input_flag_points(i,j) *= scaleFact_mmToTarget;
 		}
 	}
 	return;
@@ -371,24 +352,31 @@ void mediaNode::calTransformMatrixFromPoints(const Eigen::Matrix3d points, Eigen
 
 void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 {
-	transform_init2cur_pub_msg = slam_msg->transform_init2cur;
-	transform_init2cur_pub_msg.pose.position.x *= scaleFactor_slamToWorld;
-	transform_init2cur_pub_msg.pose.position.y *= scaleFactor_slamToWorld;
-	transform_init2cur_pub_msg.pose.position.z *= scaleFactor_slamToWorld;
+	transform_init2cur_msg = slam_msg->transform_init2cur;
+	transform_init2cur_msg.pose.position.x *= scaleFactor_slamToWorld;
+	transform_init2cur_msg.pose.position.y *= scaleFactor_slamToWorld;
+	transform_init2cur_msg.pose.position.z *= scaleFactor_slamToWorld;
 
-	Eigen::Quaterniond tempQua(transform_init2cur_pub_msg.pose.orientation.w,
-						transform_init2cur_pub_msg.pose.orientation.x,
-						transform_init2cur_pub_msg.pose.orientation.y,
-						transform_init2cur_pub_msg.pose.orientation.z);
-	Eigen::Quaterniond tempQ(tempQua.inverse());
-	transform_cur2init_pub_msg.header = slam_msg->point_cloud.header;
-	transform_cur2init_pub_msg.pose.orientation.w = tempQ.w();
-	transform_cur2init_pub_msg.pose.orientation.x = tempQ.x();
-	transform_cur2init_pub_msg.pose.orientation.y = tempQ.y();
-	transform_cur2init_pub_msg.pose.orientation.z = tempQ.z();
-	transform_cur2init_pub_msg.pose.position.x = -transform_init2cur_pub_msg.pose.position.x;
-	transform_cur2init_pub_msg.pose.position.y = -transform_init2cur_pub_msg.pose.position.y;
-	transform_cur2init_pub_msg.pose.position.z = -transform_init2cur_pub_msg.pose.position.z;
+	Eigen::Matrix3d R_init_to_cur(transform_init2cur_msg.pose.orientation.x,
+								  transform_init2cur_msg.pose.orientation.y,
+								  transform_init2cur_msg.pose.orientation.z,
+								  transform_init2cur_msg.pose.orientation.w);
+	Eigen::Vector3d t_init_to_cur(transform_init2cur_msg.pose.position.x,
+								  transform_init2cur_msg.pose.position.y,
+								  transform_init2cur_msg.pose.position.z);
+	Eigen::Matrix4d tempT_init_to_cur=Eigen::Matrix4d::Identity();
+	tempT_init_to_cur.block(0,0,3,3) = R_init_to_cur;
+	tempT_init_to_cur.block(0,3,3,1) = t_init_to_cur;
+	Eigen::Matrix4d tempT_cur_to_init=tempT_init_to_cur.inverse();
+	Eigen::Quaterniond temp_q(tempT_cur_to_init.block(0,0,3,3));
+	transform_cur2init_msg.pose.orientation.w = temp_q.w();
+	transform_cur2init_msg.pose.orientation.x = temp_q.x();
+	transform_cur2init_msg.pose.orientation.y = temp_q.y();
+	transform_cur2init_msg.pose.orientation.z = temp_q.z();
+	transform_cur2init_msg.pose.position.x = tempT_cur_to_init(0,3);
+	transform_cur2init_msg.pose.position.y = tempT_cur_to_init(1,3);
+	transform_cur2init_msg.pose.position.z = tempT_cur_to_init(2,3);
+	transform_cur2init_msg.header = slam_msg->point_cloud.header;
 	
 	// 如果初始化获得了到真实世界的尺度因子，将slam尺度下的点云坐标以及相机的位移量乘上尺度因子就获得了真实世界下的点云数据以及相机位移
 	pcl::PointCloud<pcl::PointXYZ> temp_pointCloud;
@@ -403,8 +391,8 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 	
 	// Put the publish operation in here is for the posible delay result of pcl operation, 
 	// that may increase the message filter's load.
-	transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
-	transformCurToInit_pub->publish(transform_cur2init_pub_msg);
+	transformInitToCur_pub->publish(transform_init2cur_msg);
+	transformCurToInit_pub->publish(transform_cur2init_msg);
 	if (!flag_haveInitialized) return;
 	// transform the pointcloud of init frame to base frame and publish;
 

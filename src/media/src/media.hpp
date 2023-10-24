@@ -49,63 +49,35 @@ private:
     bool flag_slamInitialized;
     // the flag of be initialized
     bool flag_haveInitialized;
-    // 用来判断相机是否正视于检测平面的余弦角度阈值
-    double cosValue_thresh;
-    // 尺度因子单个样本好点概率
-    float inlier_probability_;
-    // 相机焦距计算尺度因子时要用
-    double fx_;
-    // 尺度因子随机采样的长度
-    int sample_length;
-    // ransac内点阈值
-    double inlier_thresh_scaleFact;
-    // 尺度因子列表及其长度阈值
-    std::vector<double> scaleFactList_;
-    int scaleFactList_size_thresh;
-    // 平面slam尺度距离
-    std::vector<double> distance_;
+    
     // 针孔相机投影矩阵
     Eigen::Matrix3f m_projectMatrix; 
-    // 相机初始帧到机器人基座标系的转换矩阵
-    Eigen::Matrix4d m_transformToBase;
-    // 腐蚀膨胀操作结构体
-    cv::Mat structure_erode;
-    cv::Mat structure_dilate;
-    // 蓝色平面分割阈值
-    cv::Scalar blueLowerThresh, blueUpperThresh;
-    // 圆形检测函数参数
-    double minDist, dp, cannyUpThresh, circleThresh;
-    int minRadius, maxRadius;
-    // 两帧圆之间的半径差阈值、圆心距离阈值
-    float difference_radius_thresh, distance_center_thresh;
+
     // 是否获得了slam到真实世界的尺度标志,是否获得将世界坐标系转换到机器人基座标系转换矩阵标志
     bool flag_getScaleFactor;
     bool flag_getTransformToBase;
-    // 多次圆形检测记录的圆
-    std::vector<cv::Vec3f> circles_;
-    // 实际入口圆形半径
-    double circleRadius;
-    // 圆形列表长度阈值
-    int circle_size_thresh;
+
     // slam系统初始化之后的尺度到真实尺度的尺度变换因子
     double scaleFactor_slamToWorld;
     // 创建互斥锁变量
     std::mutex mtx;
     // 声明发布器
-    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformInit2Cur_pub;
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformInitToCur_pub;
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformCurToInit_pub;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pointCloud_pub;
     // 声明订阅slam话题的回调函数
     void slam_callback(const interface::msg::Slam::SharedPtr slamMsg);
     rclcpp::Subscription<interface::msg::Slam>::SharedPtr slam_sub;
     // 相机到末端工具坐标系的转换矩阵
-    Eigen::Matrix4d extrinsicMatrix;
+    Eigen::Matrix4d T_camera_to_tool;
     // flag of recieve state relation to initialization process;
     bool flag_trouble;
     // time out value;
     double TimeOut;
     // recieve the msg of slam system that contain the info of current camera pose;
-    geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg;
+    geometry_msgs::msg::PoseStamped transform_init2cur_msg, transform_cur2init_msg;
+    // the scale factor of mm unit to target measurement Unit
+    double scaleFact_mmToTarget;
     // 
     bool flag_timeout;
     // The target pose of process getting the scale factor
