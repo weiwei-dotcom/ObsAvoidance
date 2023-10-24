@@ -175,9 +175,9 @@ goal_position.x: 0.0
 goal_position.y: 1000.0
 goal_position.z: 0.0
 # The translation of base relative to world
-T_baseToWorld.position.x: 1500.0
-T_baseToWorld.position.y: 1000.0
-T_baseToWorld.position.z: 1500.0
+T_base_to_world.position.x: 1500.0
+T_base_to_world.position.y: 1000.0
+T_base_to_world.position.z: 1500.0
 
 # TODO: 
 T_camera_to_tool: 

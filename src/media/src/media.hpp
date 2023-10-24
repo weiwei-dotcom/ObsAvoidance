@@ -21,7 +21,6 @@
 #include "sophus/se3.hpp"
 #include <Eigen/Eigen>
 #include <sophus/so3.hpp>
-#include <sophus/se3.hpp>
 #include <mutex>
 #include <numeric>
 #include <cmath>
@@ -33,25 +32,13 @@ class mediaNode : public rclcpp :: Node
 using MoveAction = interface::action::Move;
 using GoalHandleMoveAction = rclcpp_action::ClientGoalHandle<MoveAction>;
 private:
-    enum ERROR_TYPE
-    {
-        Circle_detection_is_not_stable = 0,
-        Distance_of_circle_is_too_much = 1,
-        Not_found_the_countour = 2,
-        Point_cloud_is_little = 3,
-        OK = 4,
-        Image_recieve_error = 5,
-        The_camera_is_not_straight_on_the_plane = 6
-    };
-    // 错误状态
-    ERROR_TYPE error_type;
     // the flag of slam system been initialized
     bool flag_slamInitialized;
     // the flag of be initialized
     bool flag_haveInitialized;
     
     // 针孔相机投影矩阵
-    Eigen::Matrix3f m_projectMatrix; 
+    Eigen::Matrix3d m_projectMatrix; 
 
     // 是否获得了slam到真实世界的尺度标志,是否获得将世界坐标系转换到机器人基座标系转换矩阵标志
     bool flag_getScaleFactor;
@@ -62,9 +49,9 @@ private:
     // 创建互斥锁变量
     std::mutex mtx;
     // 声明发布器
-    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformInitToCur_pub;
-    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformCurToInit_pub;
-    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pointCloud_pub;
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr pub_T_init_to_cur;
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr pub_T_cur_to_init;
+    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pub_point_cloud;
     // 声明订阅slam话题的回调函数
     void slam_callback(const interface::msg::Slam::SharedPtr slamMsg);
     rclcpp::Subscription<interface::msg::Slam>::SharedPtr slam_sub;
@@ -87,12 +74,12 @@ private:
     // start and end position of camera at process of getting scale factor
     Eigen::Vector3d start_camera_position, end_camera_position;
     // Save the transform matrix from init to cur and init to world
-    Eigen::Matrix4d T_initToBase;
-    Eigen::Matrix4d T_initToWorld;
+    Eigen::Matrix4d T_init_to_base;
+    Eigen::Matrix4d T_init_to_world;
     // Transform matrix of base to world. The rotation matrix is identity matrix,
     // which means direction is same as the base frame, position part will be calculated
     // based on config file value(self set).
-    Eigen::Matrix4d T_baseToWorld;
+    Eigen::Matrix4d T_base_to_world;
 
     // 
     void slamInitialzed_callback(rclcpp::Client<interface::srv::SlamInitialized>::SharedFuture response);
@@ -113,11 +100,9 @@ public:
     // 从运动捕捉数据得到真实世界的尺度转换因子函数
     void getSlamToWorldScaleFact();
     // calculate the transform matrix from three points
-    void calTransformMatrixFromPoints(const Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Matrix<double, 3, 1> &t) ;
+    void calTransformMatrixFromPoints(const Eigen::Matrix3d points, Eigen::Matrix4d &output_T) ;
     // 获取从相机当前坐标系到基座标系下的转换矩阵
     void getTransformInitToBaseAndInitToWorld();
-    // 打印检测错误状态信息
-    void changeErrorType(ERROR_TYPE newError);
     // 初始化slam动作发送程序
     void initializeSlam();
     // The main function of initialization whole system;

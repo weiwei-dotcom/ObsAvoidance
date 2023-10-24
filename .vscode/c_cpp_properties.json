@@ -7,7 +7,6 @@
             },
             "includePath": [
                 "/opt/ros/foxy/include/**",
-                "/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/include/**",
                 "/usr/include/**",
                 "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/**",
                 "${workspaceFolder}/build/interface/rosidl_generator_cpp",
