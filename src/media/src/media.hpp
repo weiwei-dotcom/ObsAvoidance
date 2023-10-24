@@ -79,7 +79,7 @@ private:
     // 两帧圆之间的半径差阈值、圆心距离阈值
     float difference_radius_thresh, distance_center_thresh;
     // 是否获得了slam到真实世界的尺度标志,是否获得将世界坐标系转换到机器人基座标系转换矩阵标志
-    bool flag_getScaleFact;
+    bool flag_getScaleFactor;
     bool flag_getTransformToBase;
     // 多次圆形检测记录的圆
     std::vector<cv::Vec3f> circles_;
@@ -100,8 +100,6 @@ private:
     rclcpp::Subscription<interface::msg::Slam>::SharedPtr slam_sub;
     // 相机到末端工具坐标系的转换矩阵
     Eigen::Matrix4d extrinsicMatrix;
-    // 相机初始帧到基座标系的转换矩阵
-    Eigen::Matrix4d transform_initToBase;
     // flag of recieve state relation to initialization process;
     bool flag_trouble;
     // time out value;
@@ -116,6 +114,14 @@ private:
     Eigen::Matrix3d start_frame_points, end_frame_points;
     // start and end position of camera at process of getting scale factor
     Eigen::Vector3d start_camera_position, end_camera_position;
+    // Save the transform matrix from init to cur and init to world
+    Eigen::Matrix4d T_initToBase;
+    Eigen::Matrix4d T_initToWorld;
+    // Transform matrix of base to world. The rotation matrix is identity matrix,
+    // which means direction is same as the base frame, position part will be calculated
+    // based on config file value(self set).
+    Eigen::Matrix4d T_baseToWorld;
+
     // 
     void slamInitialzed_callback(rclcpp::Client<interface::srv::SlamInitialized>::SharedFuture response);
 
@@ -132,23 +138,12 @@ private:
 public:
     // 构造函数
     mediaNode();
-    // 
     // 从运动捕捉数据得到真实世界的尺度转换因子函数
     void getSlamToWorldScaleFact();
     // calculate the transform matrix from three points
-    void calTransformMatrixFromPoints(Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Matrix<double, 3, 1> &t) ;
+    void calTransformMatrixFromPoints(const Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Matrix<double, 3, 1> &t) ;
     // 获取从相机当前坐标系到基座标系下的转换矩阵
-    void getTransformToBase();
-    // 判断是否正对检测平面函数
-    bool detectPoseCorrect(const cv::Mat img, const interface::msg::Slam::ConstSharedPtr slamMsg, double &distance_plane, const cv::Vec3f tempCircle);
-    // 提取最大连通域轮廓函数
-    bool getMaxAreaContour(const cv::Mat img_bin, std::vector<cv::Point> &contour);
-    // 拟合点云平面获取平面参数函数
-    Eigen::Vector4d calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud);
-    // 对随机采样一致计算尺度因子函数
-    void ransacScaleFact();
-    // 根据好点概率计算ransac迭代次数函数
-    int calRansacIterNum();
+    void getTransformInitToBaseAndInitToWorld();
     // 打印检测错误状态信息
     void changeErrorType(ERROR_TYPE newError);
     // 初始化slam动作发送程序
@@ -157,8 +152,9 @@ public:
     void initialization();
     // calculate the scale factor of transformation the measure value from slam to world
     void calSlamToWorldScaleFactor();
+    // input flag point coordinate from keyboard 
+    void inputFlagPoints(Eigen::Matrix3d & input_flag_points);
 
-    
     // 析构函数
     ~mediaNode();
 };

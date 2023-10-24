@@ -11,7 +11,7 @@ mediaNode::mediaNode() : Node("media")
 	flag_trouble=false;
 	// the flag of finish the process of initialization
 	flag_haveInitialized=false;
-	flag_getScaleFact = false;
+	flag_getScaleFactor = false;
 	flag_getTransformToBase = false;
 	flag_slamInitialized=false;
 	flag_timeout=false;
@@ -24,7 +24,7 @@ mediaNode::mediaNode() : Node("media")
 	//TODO: The measure unit of extrinsicMatrix's translation is unknown, it should be transformed to the target measure unit
 	TimeOut = fileRead["TimeOut"];
 	double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
-	scaleFactor_slamToWorld = 1;
+	scaleFactor_slamToWorld = 1.0;
 	minDist = fileRead["minDist"];
 	dp = fileRead["dp"];
 	cannyUpThresh = fileRead["cannyUpThresh"];
@@ -76,7 +76,10 @@ mediaNode::mediaNode() : Node("media")
 	Eigen::Matrix3d goalRotationMatrix = Eigen::AngleAxisd(acos(goal_direction.normalized().dot(Eigen::Vector3d(0,1,0))),
 															 Eigen::Vector3d(0,1,0).cross(goal_direction).normalized()).toRotationMatrix();
 	std::cout << "goalRotationMatrix: " <<std::endl <<goalRotationMatrix <<std::endl;
-	cv::waitKey(0);															 
+	T_baseToWorld = Eigen::Matrix4d::Identity();
+	T_baseToWorld(0,3)=fileRead["T_baseToWorld.position.x"];												 
+	T_baseToWorld(1,3)=fileRead["T_baseToWorld.position.y"];												 
+	T_baseToWorld(2,3)=fileRead["T_baseToWorld.position.z"];												 
 	Eigen::Quaterniond goalQuaternion(goalRotationMatrix);
 	m_goal_pose.orientation.w = goalQuaternion.w();
 	m_goal_pose.orientation.x = goalQuaternion.x();
@@ -128,7 +131,7 @@ void mediaNode::initialization()
 		timer.sleep();
 	}
 	getSlamToWorldScaleFact();
-	while(!flag_getScaleFact);
+	while(!flag_getScaleFactor);
 	{
 		if(flag_trouble||flag_timeout)
 		{
@@ -137,14 +140,9 @@ void mediaNode::initialization()
 		}      
 		timer.sleep();
 	}
-	getTransformToBase();
+	getTransformInitToBaseAndInitToWorld();
 	while(!flag_getTransformToBase);
-	{
-		if(flag_trouble||flag_timeout)
-		{
-			rclcpp::shutdown();
-			return; 
-		}      
+	{   
 		timer.sleep();
 	}
 	flag_haveInitialized=true;
@@ -212,6 +210,7 @@ void mediaNode::feedbackPose_callback(GoalHandleMoveAction::SharedPtr,
 				feedbackPose.position.x,feedbackPose.position.y,feedbackPose.position.z);
 	return;
 }
+
 void mediaNode::calSlamToWorldScaleFactor()
 {	
 	Eigen::Matrix3d temp_start_R,temp_end_R;
@@ -224,7 +223,7 @@ void mediaNode::calSlamToWorldScaleFactor()
 	transformAtStart_toolToBase.block(0,3,3,1) = temp_start_t;
 	transformAtEnd_toolToBase.block(0,0,3,3) = temp_end_R;
 	transformAtEnd_toolToBase.block(0,3,3,1) = temp_end_t;
-	//TODO: remember the extrinsic here is using the frame system of camera which means the xyz order is not consistent.
+	//TODO: remember the extrinsic here is using the frame system of camera which means the xyz order is not consistent with world frame.
 	Eigen::Vector3d camera_start_position_real = (transformAtStart_toolToBase*extrinsicMatrix.col(3)).block(0,0,3,1);
 	Eigen::Vector3d camera_end_position_real = (transformAtEnd_toolToBase*extrinsicMatrix.col(3)).block(0,0,3,1);
 
@@ -242,38 +241,30 @@ void mediaNode::resultPose_callback(const GoalHandleMoveAction::WrappedResult & 
 		break;
 	case rclcpp_action::ResultCode::ABORTED:
 		RCLCPP_ERROR(this->get_logger(), "Move cdcr action aborted!");
-		rclcpp::shutdown();
+		flag_trouble=true;
 		return;
 	case rclcpp_action::ResultCode::CANCELED:
 		RCLCPP_ERROR(this->get_logger(), "Move cdcr action canceled!");
-		rclcpp::shutdown();
+		flag_trouble=true;
 		return;
 	default:
 		RCLCPP_ERROR(this->get_logger(), "UNKNOWN ERROR !");
-		rclcpp::shutdown();
+		flag_trouble=true;
 		return;
 	}
-	// For record the camera position and the pose of the end tool coordinate.
-	for (int i=0;i<3;i++)
-	{
-		std::vector<std::string> xyz = {"x","y","z"};
-		for(int j=0;j<3;j++)
-		{
-			RCLCPP_INFO(this->get_logger(), " point[%d].%s: ", i, xyz[j].c_str());
-			std::cin >> end_frame_points(i,j);
-		}
-	}
-	end_camera_position=Eigen::Vector3d(transform_cur2init_pub_msg.pose.position.x,
-										  transform_cur2init_pub_msg.pose.position.y,
-										  transform_cur2init_pub_msg.pose.position.z);
 
-	void calSlamToWorldScaleFactor();
+	inputFlagPoints(end_frame_points);
+	end_camera_position=Eigen::Vector3d(transform_cur2init_pub_msg.pose.position.x,
+										transform_cur2init_pub_msg.pose.position.y,
+										transform_cur2init_pub_msg.pose.position.z);
+
+	calSlamToWorldScaleFactor();
+	flag_getScaleFactor=true;
 	return;
 }
 
 void mediaNode::getSlamToWorldScaleFact()
 {
-    //TODO: These function may use a action mechanism to realization
     // 
 	std::chrono::steady_clock::time_point t_start = std::chrono::steady_clock::now();
 	std::chrono::steady_clock::time_point t_now;
@@ -293,16 +284,7 @@ void mediaNode::getSlamToWorldScaleFact()
 	}
 	auto goal = MoveAction::Goal();
 
-	// For record the camera position and the pose of the end tool coordinate.
-	for (int i=0;i<3;i++)
-	{
-		std::vector<char> xyz = {'x','y','z'};
-		for(int j=0;j<3;j++)
-		{
-			std::cout << "point[ " << i << "]. " << xyz[j] << ": " ;
-			std::cin >> start_frame_points(i,j);
-		}
-	}
+	inputFlagPoints(start_frame_points);
 	start_camera_position=Eigen::Vector3d(transform_cur2init_pub_msg.pose.position.x,
 										  transform_cur2init_pub_msg.pose.position.y,
 										  transform_cur2init_pub_msg.pose.position.z);
@@ -317,14 +299,55 @@ void mediaNode::getSlamToWorldScaleFact()
     return;
 }
 
-void mediaNode::getTransformToBase()
+void mediaNode::getTransformInitToBaseAndInitToWorld()
 {
-	//TODO:
-	// 
+	// from the quaternion to rotation matrix 
+	Eigen::Matrix3d R_init_to_cur(transform_init2cur_pub_msg.pose.orientation.x, 
+								  transform_init2cur_pub_msg.pose.orientation.y, 
+								  transform_init2cur_pub_msg.pose.orientation.z, 
+								  transform_init2cur_pub_msg.pose.orientation.w);
+	Eigen::Vector3d t_init_to_cur(transform_init2cur_pub_msg.pose.position.x,
+								  transform_init2cur_pub_msg.pose.position.y,
+								  transform_init2cur_pub_msg.pose.position.z);
+	Eigen::Matrix4d T_init_to_cur = Eigen::Matrix4d::Identity();
+	T_init_to_cur.block(0,0,3,3) = R_init_to_cur;
+	T_init_to_cur.block(0,3,3,1) = t_init_to_cur;
+	Eigen::Matrix3d tool_flag_points, base_flag_points;
+	inputFlagPoints(tool_flag_points);
+	inputFlagPoints(base_flag_points);
+	Eigen::Matrix3d R_tool,R_base;
+	Eigen::Vector3d t_tool,t_base;
+	calTransformMatrixFromPoints(tool_flag_points, R_tool,t_tool);
+	calTransformMatrixFromPoints(base_flag_points, R_base, t_base);
+	Eigen::Matrix4d T_tool = Eigen::Matrix4d::Identity();
+	Eigen::Matrix4d T_base = Eigen::Matrix4d::Identity();
+	T_tool.block(0,0,3,3) = R_tool;
+	T_tool.block(0,3,3,1) = t_tool;
+	T_base.block(0,0,3,3) = R_base;
+	T_base.block(0,3,3,1) = t_base;
+	Eigen::Matrix4d T_tool_to_base = T_base.inverse()*T_tool;
+	T_initToBase = T_tool_to_base * extrinsicMatrix * T_init_to_cur;
+	T_initToWorld = T_baseToWorld*T_initToBase;
+	flag_getTransformToBase = true;
 	return;
 }
+
+void mediaNode::inputFlagPoints(Eigen::Matrix3d & input_flag_points)
+{
+	for (int i=0;i<3;i++)
+	{
+		std::vector<std::string> xyz = {"x","y","z"};
+		for(int j=0;j<3;j++)
+		{
+			RCLCPP_INFO(this->get_logger(), " point[%d].%s: ", i, xyz[j].c_str());
+			std::cin >> input_flag_points(i,j);
+		}
+	}
+	return;
+}
+
 // Calculate the transform matrix from three flag points
-void mediaNode::calTransformMatrixFromPoints(Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Vector3d &t) 
+void mediaNode::calTransformMatrixFromPoints(const Eigen::Matrix3d points, Eigen::Matrix3d &R, Eigen::Vector3d &t) 
 {
     // 由三个坐标点取平均获得坐标原点
     t(0) = (points(0,0) + points(1,0) + points(2,0)) / 3; 
@@ -366,11 +389,6 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 	transform_cur2init_pub_msg.pose.position.x = -transform_init2cur_pub_msg.pose.position.x;
 	transform_cur2init_pub_msg.pose.position.y = -transform_init2cur_pub_msg.pose.position.y;
 	transform_cur2init_pub_msg.pose.position.z = -transform_init2cur_pub_msg.pose.position.z;
-	// //调试代码3
-	// std::cout << "transform_init2cur_pub_msg.pose.position.x: " << transform_init2cur_pub_msg.pose.position.x << std::endl;
-	// std::cout << "transform_init2cur_pub_msg.pose.position.y: " << transform_init2cur_pub_msg.pose.position.y << std::endl;
-	// std::cout << "transform_init2cur_pub_msg.pose.position.z: " << transform_init2cur_pub_msg.pose.position.z << std::endl;
-	// std::cout << "transform_init2cur_pub_msg.header.frame_id: " << transform_init2cur_pub_msg.header.frame_id << std::endl;
 	
 	// 如果初始化获得了到真实世界的尺度因子，将slam尺度下的点云坐标以及相机的位移量乘上尺度因子就获得了真实世界下的点云数据以及相机位移
 	pcl::PointCloud<pcl::PointXYZ> temp_pointCloud;
@@ -382,154 +400,23 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 		temp_pointCloud.points[i].y *= scaleFactor_slamToWorld;
 		temp_pointCloud.points[i].z *= scaleFactor_slamToWorld;
 	}
-	sensor_msgs::msg::PointCloud2 point_cloud_pub_msg;
-	pcl::toROSMsg(temp_pointCloud, point_cloud_pub_msg);
 	
 	// Put the publish operation in here is for the posible delay result of pcl operation, 
 	// that may increase the message filter's load.
 	transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
 	transformCurToInit_pub->publish(transform_cur2init_pub_msg);
 	if (!flag_haveInitialized) return;
+	// transform the pointcloud of init frame to base frame and publish;
 
+	// get the transform of cur to base frame and publish;
+
+	sensor_msgs::msg::PointCloud2 point_cloud_pub_msg;
+	pcl::toROSMsg(temp_pointCloud, point_cloud_pub_msg);
 	point_cloud_pub_msg.header = slam_msg->point_cloud.header;
 	// std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
 	pointCloud_pub->publish(point_cloud_pub_msg);
 
 	return;
-}
-
-bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam::ConstSharedPtr slamMsg, double &distance_plane, const cv::Vec3f tempCircle)
-{
-  // 阈值分割
-  cv::Mat imgHsv, imgBin, img_erode, img_dilate;
-  cv::cvtColor(img, imgHsv, CV_BGR2HSV);
-  cv::inRange(imgHsv, blueLowerThresh, blueUpperThresh, imgBin);
-  // 较小核腐蚀
-  cv::erode(imgBin, img_erode, structure_erode);
-  
-  // // 调试代码
-  // cv::imshow("img_erode", img_erode);
-  // cv::waitKey(20);
-
-  // 最大连通域提取轮廓
-  std::vector<cv::Point> contour;
-  bool flag_getContour = getMaxAreaContour(img_erode, contour);
-  if (!flag_getContour) 
-  {
-    changeErrorType(Not_found_the_countour);
-    return false;
-  }
-  // 较大核膨胀
-  cv::dilate(img_erode, img_dilate, structure_dilate);
-  // 点云变换坐标系至当前帧
-  pcl::PointCloud<pcl::PointXYZ> PointCloud_InitFrame, PointCloud_curFrame;
-  pcl::fromROSMsg(slamMsg->point_cloud, PointCloud_InitFrame);
-  Eigen::Quaterniond q(slamMsg->transform_init2cur.pose.orientation.w,
-                       slamMsg->transform_init2cur.pose.orientation.x,
-                       slamMsg->transform_init2cur.pose.orientation.y,
-                       slamMsg->transform_init2cur.pose.orientation.z);
-  Sophus::Vector3d pos(slamMsg->transform_init2cur.pose.position.x,
-                       slamMsg->transform_init2cur.pose.position.y,
-                       slamMsg->transform_init2cur.pose.position.z);
-  Sophus::SE3d transform_init2cur(q, pos);
-  pcl::transformPointCloud(PointCloud_InitFrame, PointCloud_curFrame, transform_init2cur.matrix());
-  // 逐个点云逆投影至像素平面进行筛选
-  pcl::PointCloud<pcl::PointXYZ> finalPointCloud;
-  for (auto point:PointCloud_curFrame.points) {
-    Eigen::Vector3f tempPixelPoint=m_projectMatrix*point.getVector3fMap();
-    cv::Point2f pixelPoint(tempPixelPoint[0]/tempPixelPoint[2], tempPixelPoint[1]/tempPixelPoint[2]);
-    double polyTestValue=cv::pointPolygonTest(contour, pixelPoint, false);
-    // 特征点轮廓判断    
-    if (polyTestValue<0) 
-      continue;
-    // 特征点掩码判断    
-    if (img_dilate.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255) 
-      continue; 
-    // 半径距离判断，是否在圆孔附近 
-    float tempPixelDistance = std::sqrt(std::pow(pixelPoint.x-tempCircle[0], 2)+std::pow(pixelPoint.y-tempCircle[1],2));
-    if (tempPixelDistance < tempCircle[2]+(double)2)
-      continue;
-    
-    // // 调试代码1
-    // cv::drawMarker(img, cv::Point((int)pixelPoint.x, (int)pixelPoint.y), cv::Scalar(0,255,0), 2, 20, 3);
-
-    finalPointCloud.points.push_back(point);
-  }
-
-  // // 调试代码1
-  // cv::imshow("img", img);
-  // cv::waitKey(10);
-
-  // 用筛选后的点云拟合平面
-  if (finalPointCloud.points.size()<80) {
-    changeErrorType(Point_cloud_is_little);
-    return false;
-  }
-  Eigen::Vector4d param = calParam(finalPointCloud);
-  distance_plane=-param[3];
-  // 将拟合平面后的法向量点乘当前帧坐标系z轴向量
-  Eigen::Vector3d zAxis(0,0,1);
-  double cosValue = param.block(0,0,3,1).dot(zAxis);
-  // 两向量余弦值判断
-  if (cosValue < cosValue_thresh) {
-    changeErrorType(The_camera_is_not_straight_on_the_plane);
-    return false;    
-  }
-  // // 调试代码2
-  // std::cout << "distance_plane: " << distance_plane << std::endl;
-  return true;
-}
-
-bool mediaNode::getMaxAreaContour(cv::Mat img_bin, std::vector<cv::Point> &contour) {
-    cv::Mat labels, stats, centroids;
-    int num_labels = connectedComponentsWithStats(img_bin, labels, stats, centroids, 8, CV_16U);
-    std::vector<std::vector<cv::Point>> temp_contours;
-    std::vector<int> areas;
-    if (num_labels>1)
-    {
-        for (int i = 1; i < num_labels; i++) // 忽略背景标签0
-        {
-            areas.push_back(stats.at<int>(i, cv::CC_STAT_AREA));
-        }
-        int max_area_label = max_element(areas.begin(), areas.end()) - areas.begin() + 1;
-        cv::findContours((labels == max_area_label), temp_contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);            
-        contour = temp_contours[0];
-        return true;
-    }
-    return false;
-}
-
-Eigen::Vector4d mediaNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
-    Eigen::Vector4d param;
-    pcl::PointCloud<pcl::PointXYZ>::Ptr pointCloud_Ptr=pointCloud.makeShared();
-    pcl::SACSegmentation<pcl::PointXYZ> seg;
-    pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
-    // 设置分割系数
-    seg.setOptimizeCoefficients(true);
-    seg.setModelType(pcl::SACMODEL_PLANE);
-    seg.setMethodType(pcl::SAC_RANSAC);
-    seg.setMaxIterations(100);
-    seg.setDistanceThreshold(3);
-    // 从点云中分割最有可能的平面
-    seg.setInputCloud(pointCloud_Ptr);
-    pcl::ModelCoefficients coefficient;
-    seg.segment(*inliers, coefficient);        
-    param(0) = coefficient.values[0];
-    param(1) = coefficient.values[1];
-    param(2) = coefficient.values[2];
-    param(3) = coefficient.values[3];
-    return param;
-}
-
-int mediaNode::calRansacIterNum()
-{
-  float tempFloat = 1.0;
-  for (int i=0;i<sample_length;i++) 
-    tempFloat*=(inlier_probability_ * (float)scaleFactList_size_thresh-(float)i)/(float)(scaleFactList_size_thresh-i);
-  int iterNum = std::ceil((float)1.0/tempFloat);
-  std::cout << "***************************" << std::endl;
-  std::cout<<"Ransac iteration time is: " << iterNum <<std::endl;
-  return iterNum;
 }
 
 // 返回给消息点云和关键点图像坐标信息的消息
