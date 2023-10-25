@@ -1,0 +1,26 @@
+[0.074s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/interface -- -j16 -l16
+[0.089s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.102s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.102s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.209s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.232s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.234s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.325s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.358s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.359s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.446s] -- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[0.515s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.521s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.558s] CMake Error at /opt/ros/foxy/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:93 (message):
+[0.558s]   rosidl_generate_interfaces() the passed file 'srv/T.srv' doesn't exist
+[0.558s]   relative to the CMAKE_CURRENT_SOURCE_DIR
+[0.558s]   '/home/weiwei/Desktop/project/ObsAvoidance/src/interface'
+[0.558s] Call Stack (most recent call first):
+[0.558s]   CMakeLists.txt:40 (rosidl_generate_interfaces)
+[0.558s] 
+[0.558s] 
+[0.559s] -- Configuring incomplete, errors occurred!
+[0.559s] See also "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/CMakeOutput.log".
+[0.559s] See also "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/CMakeError.log".
+[0.564s] make: *** [Makefile:1468：cmake_check_build_system] 错误 1
+[0.567s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/interface -- -j16 -l16

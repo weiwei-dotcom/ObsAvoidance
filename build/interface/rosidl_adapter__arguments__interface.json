@@ -3,6 +3,7 @@
   "non_idl_tuples": [
     "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:msg/Slam.msg",
     "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:action/Move.action",
-    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:srv/SlamInitialized.srv"
+    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:srv/SlamInitialized.srv",
+    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:srv/Transform.srv"
   ]
 }

@@ -154,7 +154,9 @@ adaptiveIncrement_inlier_thresh_dirVec: 0.0015
 distanceThresh_plandAndPoint: 2.80
 
 # time out value(second)
-TimeOut: 60
+TimeOut_initialization: 60
+# time out value of request for getting T_init_to_world, T_init_to_base and T_base_to_world(second)
+TimeOut_Trequest: 300
 
 # 拟合平面时的点云数量阈值
 mapPointNumThresh: 90

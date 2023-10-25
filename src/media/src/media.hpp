@@ -2,6 +2,7 @@
 #include "std_msgs/msg/int32.hpp"
 #include "interface/msg/slam.hpp"
 #include "interface/srv/slam_initialized.hpp"
+#include "interface/srv/transform.hpp"
 #include "interface/action/move.hpp"
 #include "pcl/conversions.h"
 #include "geometry_msgs/msg/pose.hpp"
@@ -35,14 +36,14 @@ private:
     // the flag of slam system been initialized
     bool flag_slamInitialized;
     // the flag of be initialized
-    bool flag_haveInitialized;
+    bool flag_initialized;
     
     // 针孔相机投影矩阵
     Eigen::Matrix3d m_projectMatrix; 
 
     // 是否获得了slam到真实世界的尺度标志,是否获得将世界坐标系转换到机器人基座标系转换矩阵标志
     bool flag_getScaleFactor;
-    bool flag_getTransformToBase;
+    bool flag_getTransformToWorld;
 
     // slam系统初始化之后的尺度到真实尺度的尺度变换因子
     double scaleFactor_slamToWorld;
@@ -60,7 +61,7 @@ private:
     // flag of recieve state relation to initialization process;
     bool flag_trouble;
     // time out value;
-    double TimeOut;
+    double TimeOut_initialization;
     // recieve the msg of slam system that contain the info of current camera pose;
     geometry_msgs::msg::PoseStamped transform_init2cur_msg, transform_cur2init_msg;
     // the scale factor of mm unit to target measurement Unit
@@ -81,6 +82,9 @@ private:
     // based on config file value(self set).
     Eigen::Matrix4d T_base_to_world;
 
+    // Declare the server of request for variant T
+    rclcpp::CallbackGroup::SharedPtr transform_callback_group;
+    rclcpp::Service<interface::srv::Transform>::SharedPtr service_transform;
     // 
     void slamInitialzed_callback(rclcpp::Client<interface::srv::SlamInitialized>::SharedFuture response);
 
@@ -111,6 +115,10 @@ public:
     void calSlamToWorldScaleFactor();
     // input flag point coordinate from keyboard 
     void inputFlagPoints(Eigen::Matrix3d & input_flag_points);
+    // 
+    void transform_callback(const interface::srv::Transform::Request::SharedPtr request,
+                            const interface::srv::Transform::Response::SharedPtr response);
+
 
     // 析构函数
     ~mediaNode();

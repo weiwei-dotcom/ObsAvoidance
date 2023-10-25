@@ -14,7 +14,12 @@ file(REMOVE_RECURSE
   "rosidl_generator_cpp/interface/srv/detail/slam_initialized__struct.hpp"
   "rosidl_generator_cpp/interface/srv/detail/slam_initialized__traits.hpp"
   "rosidl_generator_cpp/interface/srv/detail/slam_initialized__type_support.hpp"
+  "rosidl_generator_cpp/interface/srv/detail/transform__builder.hpp"
+  "rosidl_generator_cpp/interface/srv/detail/transform__struct.hpp"
+  "rosidl_generator_cpp/interface/srv/detail/transform__traits.hpp"
+  "rosidl_generator_cpp/interface/srv/detail/transform__type_support.hpp"
   "rosidl_generator_cpp/interface/srv/slam_initialized.hpp"
+  "rosidl_generator_cpp/interface/srv/transform.hpp"
 )
 
 # Per-language clean rules from dependency scanning.

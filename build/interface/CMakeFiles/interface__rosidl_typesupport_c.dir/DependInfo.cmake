@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/action/move__type_support.cpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/action/move__type_support.cpp.o"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/msg/slam__type_support.cpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.o"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp.o"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/srv/transform__type_support.cpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/transform__type_support.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -28,6 +29,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/action/move__type_support.cpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/msg/slam__type_support.cpp"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/srv/slam_initialized__type_support.cpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/msg/slam__type_support.cpp"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/srv/transform__type_support.cpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_c/interface/msg/slam__type_support.cpp"
   )
 
 

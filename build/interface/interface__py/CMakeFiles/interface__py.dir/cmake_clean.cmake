@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "../rosidl_generator_py/interface/srv/__init__.py"
   "../rosidl_generator_py/interface/srv/_slam_initialized.py"
   "../rosidl_generator_py/interface/srv/_slam_initialized_s.c"
+  "../rosidl_generator_py/interface/srv/_transform.py"
+  "../rosidl_generator_py/interface/srv/_transform_s.c"
   "CMakeFiles/interface__py"
 )
 

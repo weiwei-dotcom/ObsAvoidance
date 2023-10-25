@@ -16,6 +16,8 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/__init__.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_slam_initialized.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_slam_initialized_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_transform.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_transform_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   )
 
 

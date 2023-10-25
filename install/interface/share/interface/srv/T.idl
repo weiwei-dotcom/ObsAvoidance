@@ -1,0 +1,18 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from interface/srv/T.srv
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Pose.idl"
+
+module interface {
+  module srv {
+    struct T_Request {
+      int32 request_flag;
+    };
+    struct T_Response {
+      geometry_msgs::msg::Pose transform_init_to_world;
+
+      geometry_msgs::msg::Pose transform_base_to_world;
+    };
+  };
+};

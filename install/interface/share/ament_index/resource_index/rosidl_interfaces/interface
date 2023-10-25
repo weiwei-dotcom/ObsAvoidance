@@ -6,3 +6,7 @@ srv/SlamInitialized.idl
 srv/SlamInitialized.srv
 srv/SlamInitialized_Request.msg
 srv/SlamInitialized_Response.msg
+srv/Transform.idl
+srv/Transform.srv
+srv/Transform_Request.msg
+srv/Transform_Response.msg

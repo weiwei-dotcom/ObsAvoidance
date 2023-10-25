@@ -116,3 +116,6 @@ CMakeFiles/interface__rosidl_typesupport_introspection_c__pyext.dir/rosidl_gener
  rosidl_generator_c/interface/srv/detail/slam_initialized__functions.h
  rosidl_generator_c/interface/srv/detail/slam_initialized__struct.h
  rosidl_generator_c/interface/srv/detail/slam_initialized__type_support.h
+ rosidl_generator_c/interface/srv/detail/transform__functions.h
+ rosidl_generator_c/interface/srv/detail/transform__struct.h
+ rosidl_generator_c/interface/srv/detail/transform__type_support.h

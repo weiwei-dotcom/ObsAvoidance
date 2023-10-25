@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/action/detail/move__type_support.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/action/detail/move__type_support.c.o"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.o"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/slam_initialized__type_support.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/slam_initialized__type_support.c.o"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/transform__type_support.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/transform__type_support.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -31,6 +32,8 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/slam_initialized__rosidl_typesupport_introspection_c.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/slam_initialized__type_support.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/transform__rosidl_typesupport_introspection_c.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/transform__type_support.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h"
   )
 
 

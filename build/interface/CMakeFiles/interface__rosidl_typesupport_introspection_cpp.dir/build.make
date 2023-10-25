@@ -68,6 +68,7 @@ rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesuppo
 rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp: rosidl_adapter/interface/msg/Slam.idl
 rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp: rosidl_adapter/interface/action/Move.idl
 rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp: rosidl_adapter/interface/srv/SlamInitialized.idl
+rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp: rosidl_adapter/interface/srv/Transform.idl
 rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -171,6 +172,9 @@ rosidl_typesupport_introspection_cpp/interface/action/detail/move__rosidl_typesu
 rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__rosidl_typesupport_introspection_cpp.hpp: rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__rosidl_typesupport_introspection_cpp.hpp
 
+rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__rosidl_typesupport_introspection_cpp.hpp: rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__rosidl_typesupport_introspection_cpp.hpp
+
 rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp: rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp
 
@@ -179,6 +183,9 @@ rosidl_typesupport_introspection_cpp/interface/action/detail/move__type_support.
 
 rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__type_support.cpp: rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__type_support.cpp
+
+rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp: rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp
 
 CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp.o: CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/flags.make
 CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp.o: rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp
@@ -219,11 +226,25 @@ CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesuppor
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__type_support.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__type_support.cpp -o CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__type_support.cpp.s
 
+CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.o: CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/flags.make
+CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.o: rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.o -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp
+
+CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp > CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.i
+
+CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp -o CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.s
+
 # Object files for target interface__rosidl_typesupport_introspection_cpp
 interface__rosidl_typesupport_introspection_cpp_OBJECTS = \
 "CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp.o" \
 "CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/action/detail/move__type_support.cpp.o" \
-"CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__type_support.cpp.o"
+"CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__type_support.cpp.o" \
+"CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.o"
 
 # External object files for target interface__rosidl_typesupport_introspection_cpp
 interface__rosidl_typesupport_introspection_cpp_EXTERNAL_OBJECTS =
@@ -231,6 +252,7 @@ interface__rosidl_typesupport_introspection_cpp_EXTERNAL_OBJECTS =
 libinterface__rosidl_typesupport_introspection_cpp.so: CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp.o
 libinterface__rosidl_typesupport_introspection_cpp.so: CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/action/detail/move__type_support.cpp.o
 libinterface__rosidl_typesupport_introspection_cpp.so: CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__type_support.cpp.o
+libinterface__rosidl_typesupport_introspection_cpp.so: CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp.o
 libinterface__rosidl_typesupport_introspection_cpp.so: CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/build.make
 libinterface__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_c.so
 libinterface__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_c.so
@@ -270,7 +292,7 @@ libinterface__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib/librosi
 libinterface__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib/librcpputils.so
 libinterface__rosidl_typesupport_introspection_cpp.so: /opt/ros/foxy/lib/librcutils.so
 libinterface__rosidl_typesupport_introspection_cpp.so: CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library libinterface__rosidl_typesupport_introspection_cpp.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX shared library libinterface__rosidl_typesupport_introspection_cpp.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -285,9 +307,11 @@ CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/clean:
 CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp
 CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/interface/action/detail/move__rosidl_typesupport_introspection_cpp.hpp
 CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__rosidl_typesupport_introspection_cpp.hpp
+CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__rosidl_typesupport_introspection_cpp.hpp
 CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp
 CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/interface/action/detail/move__type_support.cpp
 CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/interface/srv/detail/slam_initialized__type_support.cpp
+CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/depend: rosidl_typesupport_introspection_cpp/interface/srv/detail/transform__type_support.cpp
 	cd /home/weiwei/Desktop/project/ObsAvoidance/build/interface && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/depend
 

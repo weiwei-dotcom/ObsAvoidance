@@ -9,9 +9,9 @@ mediaNode::mediaNode() : Node("media")
 {
 	flag_trouble=false;
 	// the flag of finish the process of initialization
-	flag_haveInitialized=false;
+	flag_initialized=false;
 	flag_getScaleFactor = false;
-	flag_getTransformToBase = false;
+	flag_getTransformToWorld = false;
 	flag_slamInitialized=false;
 	flag_timeout=false;
 	scaleFactor_slamToWorld = 1.0;
@@ -23,7 +23,7 @@ mediaNode::mediaNode() : Node("media")
 	cv::cv2eigen(Tmat_camera_to_tool, T_camera_to_tool);
 	//TODO: The measure unit of T_camera_to_tool's translation is unknown, it should be transformed to the target measure unit
 	T_camera_to_tool.block(0,3,3,1) = T_camera_to_tool.block(0,3,3,1)*scaleFact_mmToTarget;
-	TimeOut = fileRead["TimeOut"];
+	TimeOut_initialization = fileRead["TimeOut_initialization"];
 	double fx = fileRead["Camera.fx"];
 	double fy = fileRead["Camera.fy"];
 	double cx = fileRead["Camera.cx"];
@@ -66,6 +66,44 @@ mediaNode::mediaNode() : Node("media")
 	pub_T_init_to_cur=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
 	pub_T_cur_to_init=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
 	pub_point_cloud=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
+	transform_callback_group= this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
+	service_transform=this->create_service<interface::srv::Transform>("transform", 
+																	  std::bind(&mediaNode::transform_callback,this,
+																	  			std::placeholders::_1,
+																				std::placeholders::_2),
+																	  rmw_qos_profile_services_default,
+																	  transform_callback_group);
+	
+}
+
+void mediaNode::transform_callback(const interface::srv::Transform::Request::SharedPtr request,
+								   const interface::srv::Transform::Response::SharedPtr response)
+{
+	rclcpp::Rate time(1);
+	while(!this->flag_initialized)
+	{
+		RCLCPP_INFO(this->get_logger(), "Waiting for initialization process finish !");
+		time.sleep();
+	}
+	Sophus::SE3d temp_se3_init_to_world(T_init_to_world);
+	Sophus::SE3d temp_se3_base_to_world(T_base_to_world);
+	
+	response->transform_base_to_world.orientation.w = temp_se3_base_to_world.unit_quaternion().w();
+	response->transform_base_to_world.orientation.x = temp_se3_base_to_world.unit_quaternion().x();
+	response->transform_base_to_world.orientation.y = temp_se3_base_to_world.unit_quaternion().y();
+	response->transform_base_to_world.orientation.z = temp_se3_base_to_world.unit_quaternion().z();
+	response->transform_base_to_world.position.x = T_base_to_world(0,3);
+	response->transform_base_to_world.position.y = T_base_to_world(1,3);
+	response->transform_base_to_world.position.z = T_base_to_world(2,3);
+	response->transform_init_to_world.orientation.w = temp_se3_init_to_world.unit_quaternion().w();
+	response->transform_init_to_world.orientation.x = temp_se3_init_to_world.unit_quaternion().x();
+	response->transform_init_to_world.orientation.y = temp_se3_init_to_world.unit_quaternion().y();
+	response->transform_init_to_world.orientation.z = temp_se3_init_to_world.unit_quaternion().z();
+	response->transform_init_to_world.position.x = T_init_to_world(0,3);
+	response->transform_init_to_world.position.y = T_init_to_world(1,3);
+	response->transform_init_to_world.position.z = T_init_to_world(2,3);
+
+	return;
 }
 
 void mediaNode::initialization()
@@ -93,11 +131,11 @@ void mediaNode::initialization()
 	}
 	timer.sleep();
 	getTransformInitToBaseAndInitToWorld();
-	while(!flag_getTransformToBase);
+	while(!flag_getTransformToWorld);
 	{   
 		timer.sleep();
 	}
-	flag_haveInitialized=true;
+	flag_initialized=true;
 	return;
 }
 
@@ -123,7 +161,7 @@ void mediaNode::initializeSlam()
 	{
 		t_now = std::chrono::steady_clock::now();
 		time_spend = std::chrono::duration_cast<std::chrono::seconds>(t_now-t_start).count();
-		if (time_spend > TimeOut)
+		if (time_spend > TimeOut_initialization)
 		{
 			RCLCPP_ERROR(this->get_logger(), "Waiting slamInitialzation server TIME_OUT!!");
 			flag_timeout=true;
@@ -221,7 +259,7 @@ void mediaNode::getSlamToWorldScaleFact()
 	{
 		t_now = std::chrono::steady_clock::now();
 		t_spend = std::chrono::duration_cast<std::chrono::seconds>(t_now-t_start).count();
-		if (t_spend > TimeOut)
+		if (t_spend > TimeOut_initialization)
 		{
 			RCLCPP_ERROR(this->get_logger(), "Waiting cdcr_movement service TIME_OUT!");
 			flag_timeout=true;
@@ -271,7 +309,7 @@ void mediaNode::getTransformInitToBaseAndInitToWorld()
 	Eigen::Matrix4d T_tool_to_base = T_base.inverse()*T_tool;
 	T_init_to_base = T_tool_to_base * T_camera_to_tool * T_init_to_cur;
 	T_init_to_world = T_base_to_world * T_init_to_base;
-	flag_getTransformToBase = true;
+	flag_getTransformToWorld = true;
 	return;
 }
 
@@ -340,7 +378,7 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 	transform_cur2init_msg.pose.position.x = tempT_cur_to_init(0,3);
 	transform_cur2init_msg.pose.position.y = tempT_cur_to_init(1,3);
 	transform_cur2init_msg.pose.position.z = tempT_cur_to_init(2,3);
-	if (!flag_haveInitialized) return;
+	if (!flag_initialized) return;
 	
 	// 如果初始化获得了到真实世界的尺度因子，将slam尺度下的点云坐标以及相机的位移量乘上尺度因子就获得了真实世界下的点云数据以及相机位移
 	pcl::PointCloud<pcl::PointXYZ> temp_pointCloud;
