@@ -893,7 +893,7 @@ void ModelNode::PubPclObstacleWorld()
         {
             continue;
         }
-        realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
+        realTimePcl.points.push_back(point);
     }
     sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
     pcl::toROSMsg(realTimePcl, pclMsg_obstacle);

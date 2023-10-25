@@ -261,7 +261,7 @@ void mediaNode::getSlamToWorldScaleFact()
 		t_spend = std::chrono::duration_cast<std::chrono::seconds>(t_now-t_start).count();
 		if (t_spend > TimeOut_initialization)
 		{
-			RCLCPP_ERROR(this->get_logger(), "Waiting cdcr_movement service TIME_OUT!");
+			RCLCPP_ERROR(this->get_logger(), "cdcr_movement service TIME_OUT!");
 			flag_timeout=true;
 			return;
 		}
@@ -273,7 +273,6 @@ void mediaNode::getSlamToWorldScaleFact()
 	start_camera_position=Eigen::Vector3d(transform_cur2init_msg.pose.position.x,
 										  transform_cur2init_msg.pose.position.y,
 										  transform_cur2init_msg.pose.position.z);
-
 	goal.goal_pose = m_goal_pose;
 	auto send_goal_options = rclcpp_action::Client<MoveAction>::SendGoalOptions();
 	send_goal_options.goal_response_callback = std::bind(&mediaNode::goalPose_callback,this,std::placeholders::_1);
@@ -405,7 +404,7 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 	// Put the publish operation in here is for the posible delay result of pcl operation, 
 	// that may increase the message filter's load.
 	pub_T_init_to_cur->publish(transform_init2cur_msg);
-	
+
 	//debug: this is just for displaying the pose of camera in the init frame.
 	transform_cur2init_msg.header = slam_msg->point_cloud.header;
 	pub_T_cur_to_init->publish(transform_cur2init_msg);
