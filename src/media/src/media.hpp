@@ -96,6 +96,10 @@ private:
     void goalPose_callback(std::shared_future<GoalHandleMoveAction::SharedPtr> future);
     void feedbackPose_callback(GoalHandleMoveAction::SharedPtr, 
                                const std::shared_ptr<const MoveAction::Feedback> feedback);
+    // 
+    void transform_callback(const interface::srv::Transform::Request::SharedPtr request,
+                            const interface::srv::Transform::Response::SharedPtr response);
+    //
     void resultPose_callback(const GoalHandleMoveAction::WrappedResult & result);
 
 public:
@@ -115,9 +119,6 @@ public:
     void calSlamToWorldScaleFactor();
     // input flag point coordinate from keyboard 
     void inputFlagPoints(Eigen::Matrix3d & input_flag_points);
-    // 
-    void transform_callback(const interface::srv::Transform::Request::SharedPtr request,
-                            const interface::srv::Transform::Response::SharedPtr response);
 
 
     // 析构函数

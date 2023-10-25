@@ -29,11 +29,11 @@ close_blue_kernel_size: 15
 scaleFact_mmToTarget: 1
 
 # 局部可视点云的水平与竖直方向的角度阈值
-horizontalAngleThresh_localPointCloud: 50
-verticalAngleThresh_localPointCloud: 40
+horizontalAngleThresh_localPointCloud: 80
+verticalAngleThresh_localPointCloud: 60
 
 # 实时建图的视野范围
-horizontal: 1000.0
+horizontal: 800.0
 
 # model圆形检测参数值
 model_dp: 2
@@ -105,12 +105,11 @@ cosValue_thresh: 0.988
 model_cosValueThresh_planeNormAndCameraZaxis: 0.96
 
 # 相机平面之间的距离阈值
-distance_thresh: 320.0
+distance_thresh: 250.0
 
 # 大核闭运算核大小
-model_bigCloseStructure_size: 19
-# 连续检测圆形的列表长度阈值
-circle_size_thresh: 5
+model_bigCloseStructure_size: 25
+
 # 腐蚀膨胀核大小
 erodeStructure_size: 7
 dilateStructure_size: 15

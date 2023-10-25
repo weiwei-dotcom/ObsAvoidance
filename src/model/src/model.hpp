@@ -5,8 +5,10 @@
 #include "octomap_msgs/msg/octomap.hpp"
 #include "octomap_msgs/conversions.h"
 #include "octomap/OcTree.h"
+#include "interface/srv/transform.hpp"
 #include "cv_bridge/cv_bridge.h"
 #include "sophus/se3.hpp"
+#include "sophus/so3.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
 #include <Eigen/Eigen>
 #include "yaml-cpp/yaml.h"
@@ -75,14 +77,6 @@ private:
     // 直线检测函数相关参数变量
     int lineThresh;
     double minLineLength,maxLineGap;
-    // 存储连续检测得到的三维圆心位置
-    std::vector<Eigen::Vector3d> centrePositions;
-    // 存储连续检测得到的三维直线方向向量
-    std::vector<Eigen::Vector3d> vecs_direction;
-    // 存储连续检测得到的平面法向量变量
-    std::vector<Eigen::Vector3d> vecs_norm;
-    // 存储连续检测当前帧到初始帧的变换矩阵
-    std::vector<Eigen::Matrix4d> transforms_curToInit;
 
     // 边沿直线最小共线阈值与最大垂直阈值
     double minCosValueThresh_collineation, maxCosValueThresh_vertical;
@@ -121,10 +115,6 @@ private:
     Eigen::Vector3d backLeftUnder; 
     Eigen::Vector3d structureLeftUnder1;
     Eigen::Vector3d structureLeftUnder2;
-
-
-    // 圆形列表长度阈值
-    int circle_size_thresh;
 
     // 圆形检测函数参数
     double minDist, dp, cannyUpThresh, circleThresh;
@@ -208,24 +198,34 @@ private:
 
     // 用来判断相机是否正视于检测平面的余弦角度阈值
     double cosValueThresh_planeNormAndCameraZaxis;
+    // save the transform of init to world 
+    Eigen::Matrix4d m_transform_initToWorld;
 
     // 定义接收服务端 图像、成员变量、相机位姿、点云 的成员变量；
     cv::Mat m_img;
     Eigen::Matrix4d m_transform_curToInit;
     Eigen::Matrix4d m_transform_initToCur;
-    pcl::PointCloud<pcl::PointXYZ> m_pointCloud;
+    pcl::PointCloud<pcl::PointXYZ> pcl_orbslam;
     float fx, fy, cx, cy;
     Eigen::Matrix3f m_projectMatrix;
+    // time out 
+    int TimeOut_Trequest;
+    // the flag of have got the transform of init to world.
+    bool flag_get_init_to_world_transform;
 
     // 存储障碍物点云
-    pcl::PointCloud<pcl::PointXYZ> pcl_obstacle;
+    pcl::PointCloud<pcl::PointXYZ> pcl_obstacle_init;
+    pcl::PointCloud<pcl::PointXYZ> pcl_obstacle_world;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_pub;
+    // declaration for init to world and base tso world transform client 
+    rclcpp::Client<interface::srv::Transform>::SharedPtr cli_transform;
     // 调试代码3
     int successNum;
 
     void mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &pcl_msg,
                         const sensor_msgs::msg::Image::ConstSharedPtr &img_msg,
                         const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg);
+    void transform_callback(rclcpp::Client<interface::srv::Transform>::SharedFuture response);
 
 public:
     class GreaterLength
@@ -247,7 +247,7 @@ public:
     // 障碍物建模主函数
     bool Model();
     // Publish the message of pointcloud of obstacle model;
-    void PubModel();
+    void PubPclObstacleWorld();
     void changeErrorType(ERROR_TYPE newError);
     bool detectPoseCorrect(Eigen::Vector4d &param,const cv::Mat mask,cv::Mat &img_erode);
     Eigen::Vector4d calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud);
@@ -267,7 +267,9 @@ public:
     void buildStructure1();
     void buildStructure2();
     void rasterizationModel();
+    void tranformPointcloudToWorldFrame();
     int coorToIndex(const Eigen::Vector3d inputCoor);
     Eigen::Vector3d indexToCoor(const int index);
+    void send_transform_request();
     ~ModelNode();
 };

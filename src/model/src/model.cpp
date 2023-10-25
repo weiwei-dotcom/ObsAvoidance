@@ -4,8 +4,6 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
                        const sensor_msgs::msg::Image::ConstSharedPtr &img_msg,
                        const geometry_msgs::msg::PoseStamped::ConstSharedPtr &pose_msg)
 {
-    // If have complete publish the pointcloud of model, don't need model again;
-
     // // 调试代码3
     // std::cout << "-----------------------------------------" << std::endl;
     // std::cout << "Start recieving the msg" << std::endl;
@@ -16,7 +14,7 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     // 如果建模完成则开始发布障碍物模型
     if (flag_pubModel)
     {
-        PubModel(); 
+        PubPclObstacleWorld(); 
         return;        
     }
     // Start modeling;
@@ -43,22 +41,59 @@ bool ModelNode::recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &
         RCLCPP_INFO(this->get_logger(), "Recieve pcl_msg failed !");
         return false;
     }
-    pcl::fromROSMsg(*pcl_msg, m_pointCloud);
+    pcl::fromROSMsg(*pcl_msg, pcl_orbslam);
     // 第一帧位姿在当前帧位姿下的变换赋值给成员变量
     Eigen::Quaterniond tempQua(pose_msg->pose.orientation.w,
-                        pose_msg->pose.orientation.x,
-                        pose_msg->pose.orientation.y,
-                        pose_msg->pose.orientation.z);
+                               pose_msg->pose.orientation.x,
+                               pose_msg->pose.orientation.y,
+                               pose_msg->pose.orientation.z);
     Sophus::Vector3d tempTranslattion(pose_msg->pose.position.x,
-                                    pose_msg->pose.position.y,
-                                    pose_msg->pose.position.z);
+                                      pose_msg->pose.position.y,
+                                      pose_msg->pose.position.z);
     Sophus::SE3d temp_transform(tempQua, tempTranslattion);
     m_transform_initToCur = temp_transform.matrix();
     m_transform_curToInit = m_transform_initToCur.inverse();
     m_header_initFrame = pcl_msg->header;
     std::cout << "Msg recieved success !" << std::endl;
     return true;
+}
 
+void ModelNode::send_transform_request()
+{
+    std::chrono::steady_clock::time_point t_start=std::chrono::steady_clock::now();
+    std::chrono::steady_clock::time_point t_now;
+    int t_spend;
+    while (!this->cli_transform->wait_for_service(std::chrono::seconds(1)))
+    {
+        t_now = std::chrono::steady_clock::now();
+        t_spend = std::chrono::duration_cast<std::chrono::seconds>(t_now-t_start).count();
+        if (t_spend>TimeOut_Trequest)
+        {
+            RCLCPP_ERROR(this->get_logger(),"Transform Service Time Out");
+            rclcpp::shutdown();
+            return;
+        }
+        RCLCPP_WARN(this->get_logger(), "Waitting for transform service online!");
+    }  
+    RCLCPP_INFO(this->get_logger(), "Transform service is online");
+    auto request = std::make_shared<interface::srv::Transform_Request>();  
+    this->cli_transform->async_send_request(request,std::bind(&ModelNode::transform_callback,this,std::placeholders::_1));
+}
+void ModelNode::transform_callback(rclcpp::Client<interface::srv::Transform>::SharedFuture response)
+{
+    RCLCPP_INFO(this->get_logger(), "Recieve the response from transform service");
+    auto transform_ptr = response.get();
+    Eigen::Quaterniond q(transform_ptr->transform_init_to_world.orientation.w,
+                         transform_ptr->transform_init_to_world.orientation.x,
+                         transform_ptr->transform_init_to_world.orientation.y,
+                         transform_ptr->transform_init_to_world.orientation.z);
+    Eigen::Vector3d t(transform_ptr->transform_init_to_world.position.x,
+                      transform_ptr->transform_init_to_world.position.y,
+                      transform_ptr->transform_init_to_world.position.z);
+    Sophus::SE3d se3_d(q,t);
+    m_transform_initToWorld=se3_d.matrix();
+    flag_get_init_to_world_transform=true;
+    return;
 }
 
 // 构造函数 init function()
@@ -66,20 +101,22 @@ ModelNode::ModelNode():Node("model")
 {
     // 调试代码3
     successNum = 0;
-
     error_type = OK;
-    pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle_initFrame", 10);
+    pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle_init", 10);
     flag_pubModel = false;
+    flag_get_init_to_world_transform = false;
     // 定义消息订阅者
-    pcl_sub.subscribe(this, "pointCloud_initFrame");
+    pcl_sub.subscribe(this, "pcl_orbslam_init_frame");
     img_sub.subscribe(this, "image_raw");
     pose_sub.subscribe(this, "transform_initToCur");
     // 定义时间同步器
     sync1.reset(new synType1(synMsgType1(10), pcl_sub, img_sub, pose_sub));
     // 时间同步器注册回调函数
     sync1->registerCallback(std::bind(&ModelNode::mapPoint_callback, this, std::placeholders::_1, std::placeholders::_2,std::placeholders::_3));
-
+    // Create the client of request for transform
+    cli_transform = this->create_client<interface::srv::Transform>("transform");
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
+    TimeOut_Trequest=fileRead["TimeOut_Trequest"];
     double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
     // 读取拟合平面最小点云数参数
     int blueLower1 = fileRead["blueLower.1"];
@@ -120,7 +157,6 @@ ModelNode::ModelNode():Node("model")
     maxLineGap=fileRead["maxLineGap"];
     minCosValueThresh_collineation=fileRead["minCosValueThresh_collineation"];
     maxCosValueThresh_vertical=fileRead["maxCosValueThresh_vertical"];
-    circle_size_thresh = fileRead["circle_size_thresh"];
     modelThresh=fileRead["modelThresh"];
     sample_length=fileRead["model_sample_length"];
     inlier_probability=fileRead["model_inlier_probability"];
@@ -188,6 +224,7 @@ ModelNode::ModelNode():Node("model")
     horizontal*=scaleFact_mmToTarget;
     horizontalAngleThresh_localPointCloud=fileRead["horizontalAngleThresh_localPointCloud"];
     verticalAngleThresh_localPointCloud=fileRead["verticalAngleThresh_localPointCloud"];
+
 }
 
 void ModelNode::changeErrorType(ERROR_TYPE newError)
@@ -581,7 +618,7 @@ void ModelNode::buildFront()
             if ((pointPosition-centrePosition).norm() < circleRadius)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
@@ -595,7 +632,7 @@ void ModelNode::buildBack()
         {
             Eigen::Vector3d pointPosition = backLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
@@ -610,7 +647,7 @@ void ModelNode::buildSide()
         {
             Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
     // 从前方左上角开始逐行建模
@@ -620,7 +657,7 @@ void ModelNode::buildSide()
         {
             Eigen::Vector3d pointPosition = frontLeftUp+(frontRightUnder-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
     // 从前方右下角开始逐行建模
@@ -630,7 +667,7 @@ void ModelNode::buildSide()
         {
             Eigen::Vector3d pointPosition = frontRightUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
     // 前方左下角开始逐行建模
@@ -640,7 +677,7 @@ void ModelNode::buildSide()
         {
             Eigen::Vector3d pointPosition = frontLeftUnder+(frontRightUnder-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
@@ -656,7 +693,7 @@ void ModelNode::buildStructure1()
             if ((double)i>(zSize-structureGapSize1)/buildPointStep && (double)j<structureGapSize1/buildPointStep)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
@@ -672,14 +709,14 @@ void ModelNode::buildStructure2()
             if ((double)i<structureGapSize2/buildPointStep && (double)j>(xSize-structureGapSize2)/buildPointStep)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
 
 void ModelNode::rasterizationModel()
 {
-    for (auto point:pcl_obstacle.points)
+    for (auto point:pcl_obstacle_init.points)
     {
         Eigen::Vector3d tempPosition(point.x,point.y,point.z);
         occupancyList.at(coorToIndex(tempPosition)) = true;
@@ -763,20 +800,25 @@ bool ModelNode::Model()
         std::cout<< "global_vecs_norm[" << i<<"]: "<<global_vecs_norm[i].transpose()<< std::endl;
         std::cout<< "-----------------------------------------------------" << std::endl;
     }
-    // cv::waitKey(0);
-
     // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
     ransacModelParam();
-
     // 开始利用结构关系构建目标障碍物点云地图
     buildFront();
     buildBack();
     buildSide();
     buildStructure1();
     buildStructure2();
-    //将地图栅格化并对每个栅格的占据元素进行赋值
-    rasterizationModel();
+    while (!flag_get_init_to_world_transform);
+    tranformPointcloudToWorldFrame();
+    // //将地图栅格化并对每个栅格的占据元素进行赋值
+    // rasterizationModel();
     return true;
+}
+
+void ModelNode::tranformPointcloudToWorldFrame()
+{
+    pcl::transformPointCloud(pcl_obstacle_init, pcl_obstacle_world, m_transform_initToWorld);
+    return ;
 }
 
 int ModelNode::coorToIndex(const Eigen::Vector3d inputCoor)
@@ -802,15 +844,16 @@ Eigen::Vector3d ModelNode::indexToCoor(const int index)
                            (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution+zBoundLow);
 }
 
-void ModelNode::PubModel()
+void ModelNode::PubPclObstacleWorld()
 {
-    std::cout << "PubModel()"<<std::endl;
+    std::cout << "PubPclObstacleWorld()"<<std::endl;
     pcl::PointCloud<pcl::PointXYZ> realTimePcl;
     // 利用相机投影矩阵的投影线进行碰撞检测
-    Eigen::Vector3d tempZaxis = m_transform_curToInit.block(0,2,3,1);
-    Eigen::Vector3d tempYaxis = m_transform_curToInit.block(0,1,3,1);
-    Eigen::Vector3d tempXaxis = m_transform_curToInit.block(0,0,3,1);
-    Eigen::Vector3d tempOrigin = m_transform_curToInit.block(0,3,3,1);
+    Eigen::Matrix4d transform_cur_to_world = m_transform_initToWorld*m_transform_curToInit;
+    Eigen::Vector3d tempZaxis = transform_cur_to_world.block(0,2,3,1);
+    Eigen::Vector3d tempYaxis = transform_cur_to_world.block(0,1,3,1);
+    Eigen::Vector3d tempXaxis = transform_cur_to_world.block(0,0,3,1);
+    Eigen::Vector3d tempOrigin = transform_cur_to_world.block(0,3,3,1);
     // // 利用从当前位置的出发的射线对栅格化的地图进行碰撞检测获得最前端的障碍物点云图像
     // for (int u=-125;u<=125;u++)
     // {
@@ -840,13 +883,13 @@ void ModelNode::PubModel()
     // 遍历障碍物点云，得到在可视空间内的点云
     double horizontalTanThresh_localPointCloud = std::tan(horizontalAngleThresh_localPointCloud/180.0*M_PI/2);
     double verticalTanThresh_localPointCloud = std::tan(verticalAngleThresh_localPointCloud/180.0*M_PI/2);
-    for (auto point:pcl_obstacle.points)
+    for (auto point:pcl_obstacle_world.points)
     {
         Eigen::Vector3d tempPosition(point.x, point.y, point.z);
         
-        if (tempZaxis.dot(tempPosition-tempOrigin)<=1e-4 || 
-            abs(tempXaxis.dot(tempPosition-tempOrigin))/tempZaxis.dot(tempPosition-tempOrigin)>horizontalTanThresh_localPointCloud ||
-            abs(tempYaxis.dot(tempPosition-tempOrigin))/tempZaxis.dot(tempPosition-tempOrigin)>verticalTanThresh_localPointCloud)
+        if (tempYaxis.dot(tempPosition-tempOrigin)<=1e-4 || 
+            abs(tempXaxis.dot(tempPosition-tempOrigin))/tempYaxis.dot(tempPosition-tempOrigin)>horizontalTanThresh_localPointCloud ||
+            abs(tempZaxis.dot(tempPosition-tempOrigin))/tempYaxis.dot(tempPosition-tempOrigin)>verticalTanThresh_localPointCloud)
         {
             continue;
         }
@@ -855,6 +898,7 @@ void ModelNode::PubModel()
     sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
     pcl::toROSMsg(realTimePcl, pclMsg_obstacle);
     pclMsg_obstacle.header = m_header_initFrame;
+    pclMsg_obstacle.header.frame_id = "world";
     pcl_pub->publish(pclMsg_obstacle);
 }
 
@@ -891,7 +935,7 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
     // cv::threshold(temp_imgErode,img_erode,150,255,cv::THRESH_BINARY);
     // 点云变换坐标系至当前帧
     pcl::PointCloud<pcl::PointXYZ> PointCloud_curFrame;
-    pcl::transformPointCloud(m_pointCloud, PointCloud_curFrame, m_transform_initToCur);
+    pcl::transformPointCloud(pcl_orbslam, PointCloud_curFrame, m_transform_initToCur);
     // 逐个点云逆投影至像素平面进行筛选
     pcl::PointCloud<pcl::PointXYZ> finalPointCloud;
     cv::imshow("img_erode", img_erode);

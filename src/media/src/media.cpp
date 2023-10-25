@@ -65,7 +65,7 @@ mediaNode::mediaNode() : Node("media")
 	slam_sub = this->create_subscription<interface::msg::Slam>("slam", 10, std::bind(&mediaNode::slam_callback, this, std::placeholders::_1));
 	pub_T_init_to_cur=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
 	pub_T_cur_to_init=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
-	pub_point_cloud=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
+	pub_point_cloud=this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_orbslam_init_frame", 5);
 	transform_callback_group= this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
 	service_transform=this->create_service<interface::srv::Transform>("transform", 
 																	  std::bind(&mediaNode::transform_callback,this,
@@ -215,14 +215,14 @@ void mediaNode::calSlamToWorldScaleFactor()
 	double real_translation = (camera_end_position_real-camera_start_position_real).norm();
 	double slam_translation = (end_camera_position-start_camera_position).norm();
 	scaleFactor_slamToWorld = real_translation/slam_translation;
-	return ;
+	return;
 }
 void mediaNode::resultPose_callback(const GoalHandleMoveAction::WrappedResult & result)
 {
 	switch (result.code)
 	{
 	case rclcpp_action::ResultCode::SUCCEEDED:
-		RCLCPP_INFO(this->get_logger(), "Move cdcr action succeed!");
+		RCLCPP_INFO(this->get_logger(), "Move cdcr action succeed! Please input the tool flag point coordinate!");
 		break;
 	case rclcpp_action::ResultCode::ABORTED:
 		RCLCPP_ERROR(this->get_logger(), "Move cdcr action aborted!");
@@ -268,7 +268,7 @@ void mediaNode::getSlamToWorldScaleFact()
 		RCLCPP_INFO(this->get_logger(), "Waiting cdcr_movement service online!");
 	}
 	auto goal = MoveAction::Goal();
-
+	RCLCPP_INFO(this->get_logger(),"Please input the tool flag points coordinate!");
 	inputFlagPoints(start_frame_points);
 	start_camera_position=Eigen::Vector3d(transform_cur2init_msg.pose.position.x,
 										  transform_cur2init_msg.pose.position.y,
@@ -298,7 +298,9 @@ void mediaNode::getTransformInitToBaseAndInitToWorld()
 	T_init_to_cur.block(0,0,3,3) = q_init_to_cur.matrix();
 	T_init_to_cur.block(0,3,3,1) = t_init_to_cur;
 	Eigen::Matrix3d tool_flag_points, base_flag_points;
+	RCLCPP_INFO(this->get_logger(), "Please input the tool flag points coordinate!");
 	inputFlagPoints(tool_flag_points);
+	RCLCPP_INFO(this->get_logger(), "Please input the base flag points coordinate!");
 	inputFlagPoints(base_flag_points);
 
 	Eigen::Matrix4d T_tool;
@@ -361,9 +363,9 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 	transform_init2cur_msg.pose.position.z *= scaleFactor_slamToWorld;
 
 	Eigen::Quaterniond q_init_to_cur(transform_init2cur_msg.pose.orientation.w,
-								  	transform_init2cur_msg.pose.orientation.x,
-								  	transform_init2cur_msg.pose.orientation.y,
-								  	transform_init2cur_msg.pose.orientation.z);
+								  	 transform_init2cur_msg.pose.orientation.x,
+								  	 transform_init2cur_msg.pose.orientation.y,
+								  	 transform_init2cur_msg.pose.orientation.z);
 	Eigen::Vector3d t_init_to_cur(transform_init2cur_msg.pose.position.x,
 								  transform_init2cur_msg.pose.position.y,
 								  transform_init2cur_msg.pose.position.z);
@@ -403,6 +405,8 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slam_msg)
 	// Put the publish operation in here is for the posible delay result of pcl operation, 
 	// that may increase the message filter's load.
 	pub_T_init_to_cur->publish(transform_init2cur_msg);
+	
+	//debug: this is just for displaying the pose of camera in the init frame.
 	transform_cur2init_msg.header = slam_msg->point_cloud.header;
 	pub_T_cur_to_init->publish(transform_cur2init_msg);
 
