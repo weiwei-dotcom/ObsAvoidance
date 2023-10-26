@@ -21,7 +21,6 @@
 #include "pcl_conversions/pcl_conversions.h"
 #include "sophus/se3.hpp"
 #include <Eigen/Eigen>
-#include <sophus/so3.hpp>
 #include <mutex>
 #include <numeric>
 #include <cmath>

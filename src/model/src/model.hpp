@@ -8,7 +8,6 @@
 #include "interface/srv/transform.hpp"
 #include "cv_bridge/cv_bridge.h"
 #include "sophus/se3.hpp"
-#include "sophus/so3.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
 #include <Eigen/Eigen>
 #include "yaml-cpp/yaml.h"
