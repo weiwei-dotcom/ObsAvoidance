@@ -137,9 +137,9 @@ inlier_thresh_scaleFact: 60.0
 sample_length: 6
 # 好点概率
 inlier_probability: 0.4
-# 随机采样的长度
+# 随机样本数量
 model_sample_length: 6
-# 单个样本好点概率
+# 单个样本内点概率
 model_inlier_probability: 0.35
 # ransac内点阈值
 inlier_thresh_centre: 3.0
@@ -149,9 +149,21 @@ inlier_thresh_dirVec: 0.9980
 adaptiveIncrement_inlier_thresh_centre: 0.15
 adaptiveIncrement_inlier_thresh_normVec: 0.0015
 adaptiveIncrement_inlier_thresh_dirVec: 0.0015
+
+# 弯曲段长度、刚体段长度 (mm)
+curve_length: 30
+rigid1_length: 15
+rigid2_length: 15
+# 动平台圆盘：厚度、系绳点半径 (mm)
+base_disk_thick: 2
+base_attach_radius: 40
+# 静平台圆盘：厚度、系绳点半径 (mm)
+move_disk_thick: 2
+move_attach_thick: 40
+
+
 # pcl点云拟合平面时内点的距离阈值
 distanceThresh_plandAndPoint: 2.80
-
 # time out value(second)
 TimeOut_initialization: 60
 # time out value of request for getting T_init_to_world, T_init_to_base and T_base_to_world(second)
