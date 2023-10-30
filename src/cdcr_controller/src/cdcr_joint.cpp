@@ -2,13 +2,13 @@
 
 
 cdcr_joint::cdcr_joint(double curve_length = 30,
-            double rigid1_length = 15,
-            double rigid2_length = 15,
-            double base_disk_radius = 45,
-            double move_disk_radius = 45,
-            double base_disk_thick = 4,
-            double move_disk_thick = 4,
-            int holes_number = 24)
+                       double base_rigid_length_ = 15,
+                       double move_rigid_length = 15,
+                       double base_disk_radius = 45,
+                       double move_disk_radius = 45,
+                       double base_disk_thick = 4,
+                       double move_disk_thick = 4,
+                       int holes_number = 24)
 {
     //TODO:
     
@@ -47,10 +47,13 @@ Eigen::VectorXd cdcr_joint::getCablesLength()
 
 }
 
-Eigen::Matrix4d cdcr_joint::getTransform()
+Eigen::Matrix4d cdcr_joint::getTransformMoveToBase()
 {
     //TODO:
-
+}
+Eigen::Matrix4d cdcr_joint::getTransformBaseToWorld()
+{
+    //TODO:
 }
 double cdcr_joint::getDiskRadius()
 {
@@ -70,18 +73,16 @@ double cdcr_joint::getCurveLength()
 
 }
 
-double cdcr_joint::getRigid1Length()
+double cdcr_joint::getBaseRigidLength()
 {
     //TODO:
 
 }
-
-double cdcr_joint::getRigid2Length()
+double cdcr_joint::getMoveRigidLength()
 {
     //TODO:
 
 }
-
 double cdcr_joint::getTheta()
 {
     //TODO:

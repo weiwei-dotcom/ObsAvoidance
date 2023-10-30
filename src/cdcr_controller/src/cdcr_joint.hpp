@@ -15,28 +15,32 @@ public:
                int holes_number);
     double calCableLengthAtIndex(int cable_attach_index);
     // Eigen::VectorXd calCablesLengthFromJointVariables();
+    // calculate all of the disk's cable length from array formulation and return the a set of cable length value contain in the vector
     Eigen::VectorXd calCablesLength();
+    // calculate the transformation from the param of joint
     Eigen::Matrix4d calTransform();
+    // calculate and update the param of joint class(alpha, theta, transform, cable length)
     void updateJoint(double alpha, double theta);
 
     // Method of obtaining the joint param variables from external.
     Eigen::VectorXd getCablesLength();
-    Eigen::Matrix4d getTransform();
+    Eigen::Matrix4d getTransformMoveToBase();
+    Eigen::Matrix4d getTransformBaseToWorld();
     double getDiskRadius();
     double getContinuumLength();
     double getCurveLength();
-    double getRigid1Length();
-    double getRigid2Length();
+    double getBaseRigidLength();
+    double getMoveRigidLength();
     double getTheta();
     double getAlpha();
     double getDiskthick();
 
 private:
-    double base_disk_radius_,move_disk_radius_,base_disk_thick_,move_disk_thick;
+    double base_disk_radius_,move_disk_radius_,base_disk_thick_,move_disk_thick_;
     double continuum_length_;
-    double curve_length_, rigid1_length_, rigid2_length_;
+    double curve_length_, base_rigid_length_, move_rigid_length_;
     double alpha_,theta_;
     Eigen::VectorXd cables_length_;
-    Eigen::Matrix4d transform_;
+    Eigen::Matrix4d transform_move_to_base_,transform_base_to_world_;
     
 };

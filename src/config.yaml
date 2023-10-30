@@ -150,18 +150,6 @@ adaptiveIncrement_inlier_thresh_centre: 0.15
 adaptiveIncrement_inlier_thresh_normVec: 0.0015
 adaptiveIncrement_inlier_thresh_dirVec: 0.0015
 
-# 弯曲段长度、刚体段长度 (mm)
-curve_length: 30
-rigid1_length: 15
-rigid2_length: 15
-# 动平台圆盘：厚度、系绳点半径 (mm)
-base_disk_thick: 2
-base_attach_radius: 40
-# 静平台圆盘：厚度、系绳点半径 (mm)
-move_disk_thick: 2
-move_attach_thick: 40
-
-
 # pcl点云拟合平面时内点的距离阈值
 distanceThresh_plandAndPoint: 2.80
 # time out value(second)
