@@ -1,0 +1,349 @@
+[1.336s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[1.336s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fc9248147c0>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=16, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fc9248147c0>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7fc924375640>)
+[1.399s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.399s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.399s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.399s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.399s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.399s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.399s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/weiwei/Desktop/project/ObsAvoidance'
+[1.399s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.399s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.399s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.399s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.399s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.399s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.399s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.399s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.399s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[1.407s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src/interface) by extensions ['ignore', 'ignore_ament_install']
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src/interface) by extension 'ignore'
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src/interface) by extension 'ignore_ament_install'
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src/interface) by extensions ['colcon_pkg']
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src/interface) by extension 'colcon_pkg'
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src/interface) by extensions ['colcon_meta']
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src/interface) by extension 'colcon_meta'
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src/interface) by extensions ['ros']
+[1.408s] Level 1:colcon.colcon_core.package_identification:_identify(src/interface) by extension 'ros'
+[1.409s] DEBUG:colcon.colcon_core.package_identification:Package 'src/interface' with type 'ros.ament_cmake' and name 'interface'
+[1.409s] Level 1:colcon.colcon_core.package_identification:_identify(src/media) by extensions ['ignore', 'ignore_ament_install']
+[1.410s] Level 1:colcon.colcon_core.package_identification:_identify(src/media) by extension 'ignore'
+[1.410s] Level 1:colcon.colcon_core.package_identification:_identify(src/media) by extension 'ignore_ament_install'
+[1.410s] Level 1:colcon.colcon_core.package_identification:_identify(src/media) by extensions ['colcon_pkg']
+[1.410s] Level 1:colcon.colcon_core.package_identification:_identify(src/media) by extension 'colcon_pkg'
+[1.410s] Level 1:colcon.colcon_core.package_identification:_identify(src/media) by extensions ['colcon_meta']
+[1.410s] Level 1:colcon.colcon_core.package_identification:_identify(src/media) by extension 'colcon_meta'
+[1.410s] Level 1:colcon.colcon_core.package_identification:_identify(src/media) by extensions ['ros']
+[1.410s] Level 1:colcon.colcon_core.package_identification:_identify(src/media) by extension 'ros'
+[1.410s] DEBUG:colcon.colcon_core.package_identification:Package 'src/media' with type 'ros.ament_cmake' and name 'media'
+[1.410s] Level 1:colcon.colcon_core.package_identification:_identify(src/model) by extensions ['ignore', 'ignore_ament_install']
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/model) by extension 'ignore'
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/model) by extension 'ignore_ament_install'
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/model) by extensions ['colcon_pkg']
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/model) by extension 'colcon_pkg'
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/model) by extensions ['colcon_meta']
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/model) by extension 'colcon_meta'
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/model) by extensions ['ros']
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/model) by extension 'ros'
+[1.411s] DEBUG:colcon.colcon_core.package_identification:Package 'src/model' with type 'ros.ament_cmake' and name 'model'
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/orbslam) by extensions ['ignore', 'ignore_ament_install']
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/orbslam) by extension 'ignore'
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/orbslam) by extension 'ignore_ament_install'
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/orbslam) by extensions ['colcon_pkg']
+[1.411s] Level 1:colcon.colcon_core.package_identification:_identify(src/orbslam) by extension 'colcon_pkg'
+[1.412s] Level 1:colcon.colcon_core.package_identification:_identify(src/orbslam) by extensions ['colcon_meta']
+[1.412s] Level 1:colcon.colcon_core.package_identification:_identify(src/orbslam) by extension 'colcon_meta'
+[1.412s] Level 1:colcon.colcon_core.package_identification:_identify(src/orbslam) by extensions ['ros']
+[1.412s] Level 1:colcon.colcon_core.package_identification:_identify(src/orbslam) by extension 'ros'
+[1.412s] DEBUG:colcon.colcon_core.package_identification:Package 'src/orbslam' with type 'ros.ament_cmake' and name 'orbslam'
+[1.412s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[1.412s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[1.412s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[1.412s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[1.412s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[1.536s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[1.536s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[1.580s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 4 installed packages in /home/weiwei/Desktop/project/ObsAvoidance/install
+[1.603s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 307 installed packages in /opt/ros/foxy
+[1.604s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[1.696s] Level 5:colcon.colcon_core.verb:set package 'interface' build argument 'cmake_args' from command line to 'None'
+[1.696s] Level 5:colcon.colcon_core.verb:set package 'interface' build argument 'cmake_target' from command line to 'None'
+[1.696s] Level 5:colcon.colcon_core.verb:set package 'interface' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.696s] Level 5:colcon.colcon_core.verb:set package 'interface' build argument 'cmake_clean_cache' from command line to 'False'
+[1.696s] Level 5:colcon.colcon_core.verb:set package 'interface' build argument 'cmake_clean_first' from command line to 'False'
+[1.696s] Level 5:colcon.colcon_core.verb:set package 'interface' build argument 'cmake_force_configure' from command line to 'False'
+[1.696s] Level 5:colcon.colcon_core.verb:set package 'interface' build argument 'ament_cmake_args' from command line to 'None'
+[1.696s] Level 5:colcon.colcon_core.verb:set package 'interface' build argument 'catkin_cmake_args' from command line to 'None'
+[1.696s] Level 5:colcon.colcon_core.verb:set package 'interface' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.696s] DEBUG:colcon.colcon_core.verb:Building package 'interface' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/weiwei/Desktop/project/ObsAvoidance/build/interface', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/weiwei/Desktop/project/ObsAvoidance/install/interface', 'merge_install': False, 'path': '/home/weiwei/Desktop/project/ObsAvoidance/src/interface', 'symlink_install': False, 'test_result_base': None}
+[1.719s] Level 5:colcon.colcon_core.verb:set package 'media' build argument 'cmake_args' from command line to 'None'
+[1.719s] Level 5:colcon.colcon_core.verb:set package 'media' build argument 'cmake_target' from command line to 'None'
+[1.719s] Level 5:colcon.colcon_core.verb:set package 'media' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.719s] Level 5:colcon.colcon_core.verb:set package 'media' build argument 'cmake_clean_cache' from command line to 'False'
+[1.719s] Level 5:colcon.colcon_core.verb:set package 'media' build argument 'cmake_clean_first' from command line to 'False'
+[1.719s] Level 5:colcon.colcon_core.verb:set package 'media' build argument 'cmake_force_configure' from command line to 'False'
+[1.719s] Level 5:colcon.colcon_core.verb:set package 'media' build argument 'ament_cmake_args' from command line to 'None'
+[1.719s] Level 5:colcon.colcon_core.verb:set package 'media' build argument 'catkin_cmake_args' from command line to 'None'
+[1.719s] Level 5:colcon.colcon_core.verb:set package 'media' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.719s] DEBUG:colcon.colcon_core.verb:Building package 'media' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/weiwei/Desktop/project/ObsAvoidance/build/media', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/weiwei/Desktop/project/ObsAvoidance/install/media', 'merge_install': False, 'path': '/home/weiwei/Desktop/project/ObsAvoidance/src/media', 'symlink_install': False, 'test_result_base': None}
+[1.741s] Level 5:colcon.colcon_core.verb:set package 'model' build argument 'cmake_args' from command line to 'None'
+[1.741s] Level 5:colcon.colcon_core.verb:set package 'model' build argument 'cmake_target' from command line to 'None'
+[1.741s] Level 5:colcon.colcon_core.verb:set package 'model' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.741s] Level 5:colcon.colcon_core.verb:set package 'model' build argument 'cmake_clean_cache' from command line to 'False'
+[1.741s] Level 5:colcon.colcon_core.verb:set package 'model' build argument 'cmake_clean_first' from command line to 'False'
+[1.741s] Level 5:colcon.colcon_core.verb:set package 'model' build argument 'cmake_force_configure' from command line to 'False'
+[1.741s] Level 5:colcon.colcon_core.verb:set package 'model' build argument 'ament_cmake_args' from command line to 'None'
+[1.741s] Level 5:colcon.colcon_core.verb:set package 'model' build argument 'catkin_cmake_args' from command line to 'None'
+[1.741s] Level 5:colcon.colcon_core.verb:set package 'model' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.741s] DEBUG:colcon.colcon_core.verb:Building package 'model' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/weiwei/Desktop/project/ObsAvoidance/build/model', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/weiwei/Desktop/project/ObsAvoidance/install/model', 'merge_install': False, 'path': '/home/weiwei/Desktop/project/ObsAvoidance/src/model', 'symlink_install': False, 'test_result_base': None}
+[1.763s] Level 5:colcon.colcon_core.verb:set package 'orbslam' build argument 'cmake_args' from command line to 'None'
+[1.763s] Level 5:colcon.colcon_core.verb:set package 'orbslam' build argument 'cmake_target' from command line to 'None'
+[1.763s] Level 5:colcon.colcon_core.verb:set package 'orbslam' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.763s] Level 5:colcon.colcon_core.verb:set package 'orbslam' build argument 'cmake_clean_cache' from command line to 'False'
+[1.763s] Level 5:colcon.colcon_core.verb:set package 'orbslam' build argument 'cmake_clean_first' from command line to 'False'
+[1.763s] Level 5:colcon.colcon_core.verb:set package 'orbslam' build argument 'cmake_force_configure' from command line to 'False'
+[1.763s] Level 5:colcon.colcon_core.verb:set package 'orbslam' build argument 'ament_cmake_args' from command line to 'None'
+[1.763s] Level 5:colcon.colcon_core.verb:set package 'orbslam' build argument 'catkin_cmake_args' from command line to 'None'
+[1.763s] Level 5:colcon.colcon_core.verb:set package 'orbslam' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.763s] DEBUG:colcon.colcon_core.verb:Building package 'orbslam' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam', 'merge_install': False, 'path': '/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam', 'symlink_install': False, 'test_result_base': None}
+[1.785s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[1.809s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[1.809s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/weiwei/Desktop/project/ObsAvoidance/src/interface' with build type 'ament_cmake'
+[1.809s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/weiwei/Desktop/project/ObsAvoidance/src/interface'
+[1.834s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[1.834s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.834s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.910s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/interface -- -j16 -l16
+[2.059s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/interface -- -j16 -l16
+[2.097s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/interface
+[2.129s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(interface)
+[2.130s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/interface
+[2.154s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface' for CMake module files
+[2.155s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface' for CMake config files
+[2.155s] Level 1:colcon.colcon_core.shell:create_environment_hook('interface', 'cmake_prefix_path')
+[2.177s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/cmake_prefix_path.ps1'
+[2.177s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/cmake_prefix_path.dsv'
+[2.178s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/cmake_prefix_path.sh'
+[2.178s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib'
+[2.178s] Level 1:colcon.colcon_core.shell:create_environment_hook('interface', 'ld_library_path_lib')
+[2.200s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/ld_library_path_lib.ps1'
+[2.201s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/ld_library_path_lib.dsv'
+[2.201s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/ld_library_path_lib.sh'
+[2.201s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/bin'
+[2.201s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/pkgconfig/interface.pc'
+[2.201s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages'
+[2.201s] Level 1:colcon.colcon_core.shell:create_environment_hook('interface', 'pythonpath')
+[2.223s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/pythonpath.ps1'
+[2.224s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/pythonpath.dsv'
+[2.224s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/pythonpath.sh'
+[2.224s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/bin'
+[2.247s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.ps1'
+[2.247s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.dsv'
+[2.248s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.sh'
+[2.248s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.bash'
+[2.248s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.zsh'
+[2.249s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/colcon-core/packages/interface)
+[2.299s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(interface)
+[2.321s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface' for CMake module files
+[2.321s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface' for CMake config files
+[2.322s] Level 1:colcon.colcon_core.shell:create_environment_hook('interface', 'cmake_prefix_path')
+[2.343s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/cmake_prefix_path.ps1'
+[2.343s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/cmake_prefix_path.dsv'
+[2.344s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/cmake_prefix_path.sh'
+[2.344s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib'
+[2.344s] Level 1:colcon.colcon_core.shell:create_environment_hook('interface', 'ld_library_path_lib')
+[2.365s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/ld_library_path_lib.ps1'
+[2.366s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/ld_library_path_lib.dsv'
+[2.366s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/ld_library_path_lib.sh'
+[2.366s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/bin'
+[2.366s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/pkgconfig/interface.pc'
+[2.366s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages'
+[2.366s] Level 1:colcon.colcon_core.shell:create_environment_hook('interface', 'pythonpath')
+[2.388s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/pythonpath.ps1'
+[2.388s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/pythonpath.dsv'
+[2.388s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/hook/pythonpath.sh'
+[2.389s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/bin'
+[2.411s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.ps1'
+[2.411s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.dsv'
+[2.412s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.sh'
+[2.412s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.bash'
+[2.412s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.zsh'
+[2.412s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/colcon-core/packages/interface)
+[2.413s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/weiwei/Desktop/project/ObsAvoidance/src/media' with build type 'ament_cmake'
+[2.413s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/weiwei/Desktop/project/ObsAvoidance/src/media'
+[2.436s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.436s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.511s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/weiwei/Desktop/project/ObsAvoidance/src/model' with build type 'ament_cmake'
+[2.512s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/weiwei/Desktop/project/ObsAvoidance/src/model'
+[2.534s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.535s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.603s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam' with build type 'ament_cmake'
+[2.603s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam'
+[2.626s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.626s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.699s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16
+[2.704s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16
+[2.706s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam -- -j16 -l16
+[2.766s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam -- -j16 -l16
+[2.771s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16
+[2.783s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam
+[2.787s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/model
+[2.789s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(orbslam)
+[2.790s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam
+[2.815s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam' for CMake module files
+[2.816s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam' for CMake config files
+[2.816s] Level 1:colcon.colcon_core.shell:create_environment_hook('orbslam', 'cmake_prefix_path')
+[2.843s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/hook/cmake_prefix_path.ps1'
+[2.843s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/hook/cmake_prefix_path.dsv'
+[2.843s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/hook/cmake_prefix_path.sh'
+[2.844s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib'
+[2.844s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/bin'
+[2.844s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib/pkgconfig/orbslam.pc'
+[2.844s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib/python3.8/site-packages'
+[2.844s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/bin'
+[2.871s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.ps1'
+[2.871s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.dsv'
+[2.872s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.sh'
+[2.872s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.bash'
+[2.872s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.zsh'
+[2.872s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/colcon-core/packages/orbslam)
+[2.875s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(model)
+[2.876s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/model
+[2.901s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model' for CMake module files
+[2.901s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model' for CMake config files
+[2.902s] Level 1:colcon.colcon_core.shell:create_environment_hook('model', 'cmake_prefix_path')
+[2.925s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/hook/cmake_prefix_path.ps1'
+[2.925s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/hook/cmake_prefix_path.dsv'
+[2.926s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/hook/cmake_prefix_path.sh'
+[2.926s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/lib'
+[2.926s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/bin'
+[2.926s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/pkgconfig/model.pc'
+[2.926s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/python3.8/site-packages'
+[2.926s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/bin'
+[2.952s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.ps1'
+[2.952s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.dsv'
+[2.953s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.sh'
+[2.953s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.bash'
+[2.953s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.zsh'
+[2.953s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/colcon-core/packages/model)
+[2.982s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(orbslam)
+[3.006s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam' for CMake module files
+[3.007s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam' for CMake config files
+[3.007s] Level 1:colcon.colcon_core.shell:create_environment_hook('orbslam', 'cmake_prefix_path')
+[3.030s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/hook/cmake_prefix_path.ps1'
+[3.031s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/hook/cmake_prefix_path.dsv'
+[3.031s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/hook/cmake_prefix_path.sh'
+[3.031s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib'
+[3.031s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/bin'
+[3.031s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib/pkgconfig/orbslam.pc'
+[3.031s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib/python3.8/site-packages'
+[3.032s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/bin'
+[3.054s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.ps1'
+[3.055s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.dsv'
+[3.055s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.sh'
+[3.055s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.bash'
+[3.056s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.zsh'
+[3.056s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/colcon-core/packages/orbslam)
+[3.080s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(model)
+[3.103s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model' for CMake module files
+[3.103s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model' for CMake config files
+[3.103s] Level 1:colcon.colcon_core.shell:create_environment_hook('model', 'cmake_prefix_path')
+[3.126s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/hook/cmake_prefix_path.ps1'
+[3.126s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/hook/cmake_prefix_path.dsv'
+[3.126s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/hook/cmake_prefix_path.sh'
+[3.127s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/lib'
+[3.127s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/bin'
+[3.127s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/pkgconfig/model.pc'
+[3.127s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/lib/python3.8/site-packages'
+[3.127s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/model/bin'
+[3.150s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.ps1'
+[3.150s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.dsv'
+[3.151s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.sh'
+[3.151s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.bash'
+[3.151s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/model/package.zsh'
+[3.151s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/weiwei/Desktop/project/ObsAvoidance/install/model/share/colcon-core/packages/model)
+[16.528s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/media -- -j16 -l16
+[16.545s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/media
+[16.555s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(media)
+[16.556s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/media
+[16.584s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media' for CMake module files
+[16.584s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media' for CMake config files
+[16.584s] Level 1:colcon.colcon_core.shell:create_environment_hook('media', 'cmake_prefix_path')
+[16.606s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/hook/cmake_prefix_path.ps1'
+[16.606s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/hook/cmake_prefix_path.dsv'
+[16.606s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/hook/cmake_prefix_path.sh'
+[16.607s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/lib'
+[16.607s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/bin'
+[16.607s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/pkgconfig/media.pc'
+[16.607s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/python3.8/site-packages'
+[16.607s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/bin'
+[16.629s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.ps1'
+[16.629s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.dsv'
+[16.629s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.sh'
+[16.629s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.bash'
+[16.629s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.zsh'
+[16.630s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/colcon-core/packages/media)
+[16.669s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(media)
+[16.691s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media' for CMake module files
+[16.691s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media' for CMake config files
+[16.692s] Level 1:colcon.colcon_core.shell:create_environment_hook('media', 'cmake_prefix_path')
+[16.721s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/hook/cmake_prefix_path.ps1'
+[16.721s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/hook/cmake_prefix_path.dsv'
+[16.721s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/hook/cmake_prefix_path.sh'
+[16.721s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/lib'
+[16.721s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/bin'
+[16.721s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/pkgconfig/media.pc'
+[16.722s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/python3.8/site-packages'
+[16.722s] Level 1:colcon.colcon_core.environment:checking '/home/weiwei/Desktop/project/ObsAvoidance/install/media/bin'
+[16.743s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.ps1'
+[16.744s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.dsv'
+[16.744s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.sh'
+[16.744s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.bash'
+[16.744s] INFO:colcon.colcon_core.shell:Creating package script '/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.zsh'
+[16.745s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/weiwei/Desktop/project/ObsAvoidance/install/media/share/colcon-core/packages/media)
+[16.745s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[16.745s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[16.745s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[16.745s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[16.771s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[16.772s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[16.772s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[16.781s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[16.806s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/weiwei/Desktop/project/ObsAvoidance/install/local_setup.ps1'
+[16.806s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/weiwei/Desktop/project/ObsAvoidance/install/_local_setup_util_ps1.py'
+[16.807s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/weiwei/Desktop/project/ObsAvoidance/install/setup.ps1'
+[16.829s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/weiwei/Desktop/project/ObsAvoidance/install/local_setup.sh'
+[16.830s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/weiwei/Desktop/project/ObsAvoidance/install/_local_setup_util_sh.py'
+[16.830s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/weiwei/Desktop/project/ObsAvoidance/install/setup.sh'
+[16.852s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/weiwei/Desktop/project/ObsAvoidance/install/local_setup.bash'
+[16.853s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/weiwei/Desktop/project/ObsAvoidance/install/setup.bash'
+[16.875s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/weiwei/Desktop/project/ObsAvoidance/install/local_setup.zsh'
+[16.876s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/weiwei/Desktop/project/ObsAvoidance/install/setup.zsh'

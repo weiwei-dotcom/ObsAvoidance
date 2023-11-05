@@ -407,6 +407,7 @@ CMakeFiles/media.dir/src/main.cpp.o
  /usr/include/opencv4/opencv2/core/cvstd.hpp
  /usr/include/opencv4/opencv2/core/cvstd.inl.hpp
  /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp
+ /usr/include/opencv4/opencv2/core/eigen.hpp
  /usr/include/opencv4/opencv2/core/fast_math.hpp
  /usr/include/opencv4/opencv2/core/hal/interface.h
  /usr/include/opencv4/opencv2/core/hal/msa_macros.h
@@ -1330,6 +1331,7 @@ CMakeFiles/media.dir/src/media.cpp.o
  /usr/include/opencv4/opencv2/core/cvstd.hpp
  /usr/include/opencv4/opencv2/core/cvstd.inl.hpp
  /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp
+ /usr/include/opencv4/opencv2/core/eigen.hpp
  /usr/include/opencv4/opencv2/core/fast_math.hpp
  /usr/include/opencv4/opencv2/core/hal/interface.h
  /usr/include/opencv4/opencv2/core/hal/msa_macros.h

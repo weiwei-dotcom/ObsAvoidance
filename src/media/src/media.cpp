@@ -14,9 +14,15 @@ mediaNode::mediaNode():Node("media")
   sync1->registerCallback(std::bind(&mediaNode::slam_callback, this, std::placeholders::_1, std::placeholders::_2));
   transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
   transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
+  transformCurToWorld_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToWorld", 5);
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
   cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
   double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
+  cv::Mat temp_transform_init_to_world;
+	fileRead["T_init_to_world"] >> temp_transform_init_to_world;
+	cv::cv2eigen(temp_transform_init_to_world, transform_init_to_world);
+	transform_init_to_world.block(0,3,3,1) = scaleFact_mmToTarget*transform_init_to_world.block(0,3,3,1);
+
   minDist = fileRead["minDist"];
   dp = fileRead["dp"];
   cannyUpThresh = fileRead["cannyUpThresh"];
@@ -105,8 +111,10 @@ void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_m
 	point_cloud_pub_msg.header = slam_msg->point_cloud.header;
 	// std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
 	pointCloud_pub->publish(point_cloud_pub_msg);
-	geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg;
+
+	geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg,transform_cur2world_pub_msg;
 	transform_init2cur_pub_msg = slam_msg->transform_init2cur;
+	
 	transform_init2cur_pub_msg.pose.position.x *= scaleFact_slamToWorld;
 	transform_init2cur_pub_msg.pose.position.y *= scaleFact_slamToWorld;
 	transform_init2cur_pub_msg.pose.position.z *= scaleFact_slamToWorld;
@@ -122,6 +130,7 @@ void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_m
 	tempT_init_to_cur.block(0,0,3,3) = q_init_to_cur.matrix();
 	tempT_init_to_cur.block(0,3,3,1) = t_init_to_cur;
 	Eigen::Matrix4d tempT_cur_to_init=tempT_init_to_cur.inverse();
+
 	transform_cur2init_pub_msg.pose.orientation.w = (q_init_to_cur.inverse().w());
 	transform_cur2init_pub_msg.pose.orientation.x = (q_init_to_cur.inverse().x());
 	transform_cur2init_pub_msg.pose.orientation.y = (q_init_to_cur.inverse().y());
@@ -130,9 +139,28 @@ void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_m
 	transform_cur2init_pub_msg.pose.position.y = tempT_cur_to_init(1,3);
 	transform_cur2init_pub_msg.pose.position.z = tempT_cur_to_init(2,3);
 	transform_cur2init_pub_msg.header = slam_msg->point_cloud.header;
-  
+
+	Eigen::Matrix4d T_cur_to_world_eigen=transform_init_to_world*tempT_cur_to_init;
+	Eigen::Matrix3d tempR_cur_to_world = T_cur_to_world_eigen.block(0,0,3,3);
+	Eigen::Quaterniond Q_cur_to_world(tempR_cur_to_world);
+	// // 这里有一个坑，sophus不能直接初始化不满足正交关系的四维矩阵，所以需要对旋转矩阵的每一列进行单位化
+	// Sophus::SE3d temp_sed_cur_to_world(T_cur_to_world_eigen);
+	// RCLCPP_INFO(this->get_logger(), "temp_sed_cur_to_world.unit_quaternion().w():%f", temp_sed_cur_to_world.unit_quaternion().w());
+
+	transform_cur2world_pub_msg.pose.orientation.w = Q_cur_to_world.w();
+	transform_cur2world_pub_msg.pose.orientation.x = Q_cur_to_world.x();
+	transform_cur2world_pub_msg.pose.orientation.y = Q_cur_to_world.y();
+	transform_cur2world_pub_msg.pose.orientation.z = Q_cur_to_world.z();
+	transform_cur2world_pub_msg.pose.position.x = T_cur_to_world_eigen(0,3);
+	transform_cur2world_pub_msg.pose.position.y = T_cur_to_world_eigen(1,3);
+	transform_cur2world_pub_msg.pose.position.z = T_cur_to_world_eigen(2,3);
+	transform_cur2world_pub_msg.header.frame_id = "world";
+	transform_cur2world_pub_msg.header.stamp = slam_msg->point_cloud.header.stamp;
+	
 	transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
 	transformCurToInit_pub->publish(transform_cur2init_pub_msg);
+	transformCurToWorld_pub->publish(transform_cur2world_pub_msg);
+
 	return;
 }
 

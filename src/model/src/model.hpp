@@ -159,6 +159,7 @@ private:
 
     // 消息的header
     std_msgs::msg::Header m_header_initFrame;
+    std_msgs::msg::Header m_header_worldFrame;
 
     //开始改变阈值的循环次数占总迭代次数的比例
     double scale_startLoopCountTochangeInlierThresh;
@@ -198,11 +199,16 @@ private:
 
     // 掩码膨胀结构体
     cv::Mat dilateStructure_mask;
+    // 
+    Eigen::Matrix4d transform_init_to_world;
 
     // 腐蚀膨胀操作结构体
     cv::Mat structure_erode1;
     cv::Mat structure_erode2;
-
+    // flag used in model packages, it's a flag that determine publish the global pcl or realtime local pcl model
+    // 1: global pcl model
+    // 2: local pcl model
+    int flag_pub_global_pcl;
     // 大核闭运算结构体
     cv::Mat kernelBigClose;
 
@@ -212,13 +218,16 @@ private:
     // 定义接收服务端 图像、成员变量、相机位姿、点云 的成员变量；
     cv::Mat m_img;
     Eigen::Matrix4d m_transform_curToInit;
+    Eigen::Matrix4d m_transform_curToWorld;
     Eigen::Matrix4d m_transform_initToCur;
     pcl::PointCloud<pcl::PointXYZ> m_pointCloud;
     float fx, fy, cx, cy;
     Eigen::Matrix3f m_projectMatrix;
 
     // 存储障碍物点云
-    pcl::PointCloud<pcl::PointXYZ> pcl_obstacle;
+    pcl::PointCloud<pcl::PointXYZ> pcl_obstacle_init;
+    pcl::PointCloud<pcl::PointXYZ> pcl_obstacle_world;
+    
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_pub;
     // 调试代码3
     int successNum;
@@ -248,6 +257,7 @@ public:
     bool Model();
     // Publish the message of pointcloud of obstacle model;
     void PubModel();
+    void pubModelGlobal();
     void changeErrorType(ERROR_TYPE newError);
     bool detectPoseCorrect(Eigen::Vector4d &param,const cv::Mat mask,cv::Mat &img_erode);
     Eigen::Vector4d calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud);
@@ -269,5 +279,6 @@ public:
     void rasterizationModel();
     int coorToIndex(const Eigen::Vector3d inputCoor);
     Eigen::Vector3d indexToCoor(const int index);
+    void transformPclObstacleToWorld();
     ~ModelNode();
 };

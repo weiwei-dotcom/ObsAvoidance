@@ -10,12 +10,14 @@
 #include "message_filters/sync_policies/exact_time.h"
 #include "cv_bridge/cv_bridge.h"
 #include "opencv2/opencv.hpp"
+#include "opencv2/core/eigen.hpp"
 #include "pcl/common/transforms.h"
 #include <pcl/point_types.h>
 #include <pcl/filters/extract_indices.h>
 #include <pcl/segmentation/sac_segmentation.h>
 #include "pcl_conversions/pcl_conversions.h"
 #include "sophus/se3.hpp"
+#include "sophus/so3.hpp"
 #include <Eigen/Eigen>
 #include <mutex>
 #include <numeric>
@@ -46,6 +48,7 @@ private:
     double cosValue_thresh;
     // 尺度因子单个样本好点概率
     float inlier_probability_;
+    Eigen::Matrix4d transform_init_to_world;
     // 相机焦距计算尺度因子时要用
     double fx_;
     // 尺度因子随机采样的长度
@@ -87,6 +90,7 @@ private:
     // 声明发布器
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformInit2Cur_pub;
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformCurToInit_pub;
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformCurToWorld_pub;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pointCloud_pub;
     // 声明时间对齐器
     std::shared_ptr<message_filters::Synchronizer<message_filters::sync_policies::ExactTime<interface::msg::Slam, sensor_msgs::msg::Image>>> sync1;

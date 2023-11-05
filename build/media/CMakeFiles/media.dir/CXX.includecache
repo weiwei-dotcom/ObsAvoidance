@@ -103,6 +103,8 @@ cv_bridge/cv_bridge.h
 /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/cv_bridge/cv_bridge.h
 opencv2/opencv.hpp
 /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/opencv2/opencv.hpp
+opencv2/core/eigen.hpp
+/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/opencv2/core/eigen.hpp
 pcl/common/transforms.h
 /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/pcl/common/transforms.h
 pcl/point_types.h
@@ -115,6 +117,8 @@ pcl_conversions/pcl_conversions.h
 /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/pcl_conversions/pcl_conversions.h
 sophus/se3.hpp
 /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/sophus/se3.hpp
+sophus/so3.hpp
+/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/sophus/so3.hpp
 Eigen/Eigen
 -
 mutex
@@ -5397,6 +5401,10 @@ memory
 -
 type_traits
 -
+
+/usr/include/opencv4/opencv2/core/eigen.hpp
+opencv2/core.hpp
+/usr/include/opencv4/opencv2/core/opencv2/core.hpp
 
 /usr/include/opencv4/opencv2/core/fast_math.hpp
 opencv2/core/cvdef.h

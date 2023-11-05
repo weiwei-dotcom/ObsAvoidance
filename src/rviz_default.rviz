@@ -21,7 +21,6 @@ Panels:
   - Class: rviz_common/Views
     Expanded:
       - /Current View1
-      - /Current View1/Focal Point1
     Name: Views
     Splitter Ratio: 0.5
 Visualization Manager:
@@ -48,26 +47,26 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
+        Max Value: 1987.775634765625
+        Min Value: 1246.0244140625
         Value: true
-      Axis: Z
-      Channel Name: z
+      Axis: Y
+      Channel Name: intensity
       Class: rviz_default_plugins/PointCloud2
       Color: 255; 255; 255
-      Color Transformer: Intensity
+      Color Transformer: AxisColor
       Decay Time: 0
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 0.7649999856948853
+      Max Intensity: 4096
       Min Color: 0; 0; 0
-      Min Intensity: 0.3149999976158142
+      Min Intensity: 0
       Name: PointCloud2
       Position Transformer: XYZ
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.00800000037997961
+      Size (m): 20
       Style: Flat Squares
       Topic:
         Depth: 5
@@ -79,8 +78,8 @@ Visualization Manager:
       Use rainbow: true
       Value: true
     - Alpha: 1
-      Axes Length: 0.10000000149011612
-      Axes Radius: 0.02500000037252903
+      Axes Length: 50
+      Axes Radius: 10
       Class: rviz_default_plugins/Pose
       Color: 255; 25; 0
       Enabled: true
@@ -95,12 +94,12 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /transform_curToInit
+        Value: /transform_curToWorld
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: init_frame
+    Fixed Frame: world
     Frame Rate: 30
   Name: root
   Tools:
@@ -140,26 +139,46 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.8867735862731934
+      Distance: 2507.996826171875
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.12668927013874054
-        Y: 0.07649391889572144
-        Z: 0.16463206708431244
+        X: 827.0680541992188
+        Y: 1825.5626220703125
+        Z: 785.1627197265625
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: -0.9747968316078186
+      Pitch: 0.29479753971099854
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.851820945739746
-    Saved: ~
+      Yaw: 4.921839237213135
+    Saved:
+      - Class: rviz_default_plugins/Orbit
+        Distance: 2507.996826171875
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 827.0680541992188
+          Y: 1825.5626220703125
+          Z: 785.1627197265625
+        Focal Shape Fixed Size: false
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.29479753971099854
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 4.921839237213135
 Window Geometry:
   Displays:
     collapsed: false
@@ -174,5 +193,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 513
-  Y: 245
+  X: 545
+  Y: 214

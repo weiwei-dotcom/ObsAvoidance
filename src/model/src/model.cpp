@@ -16,8 +16,19 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     // 如果建模完成则开始发布障碍物模型
     if (flag_pubModel)
     {
-        PubModel(); 
-        return;        
+        if (flag_pub_global_pcl==1)
+        {
+            pubModelGlobal();
+            return;
+        }
+        else if(flag_pub_global_pcl == 2)
+        {
+            PubModel();
+            return;       
+        }
+        RCLCPP_ERROR(this->get_logger(),"unknown flag_pub_global_pcl number !!!");
+        rclcpp::shutdown();
+        return;
     }
     // Start modeling;
     flag_pubModel=Model();
@@ -56,6 +67,8 @@ bool ModelNode::recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &
     m_transform_initToCur = temp_transform.matrix();
     m_transform_curToInit = m_transform_initToCur.inverse();
     m_header_initFrame = pcl_msg->header;
+    m_header_worldFrame = m_header_initFrame;
+    m_header_worldFrame.frame_id = "world";
     std::cout << "Msg recieved success !" << std::endl;
     return true;
 
@@ -66,7 +79,6 @@ ModelNode::ModelNode():Node("model")
 {
     // 调试代码3
     successNum = 0;
-
     error_type = OK;
     pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle", 10);
     flag_pubModel = false;
@@ -81,6 +93,11 @@ ModelNode::ModelNode():Node("model")
 
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
     double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
+    cv::Mat temp_transform_init_to_world;
+    fileRead["T_init_to_world"] >> temp_transform_init_to_world;
+    cv::cv2eigen(temp_transform_init_to_world, transform_init_to_world);
+    transform_init_to_world.block(0,0,3,1) = scaleFact_mmToTarget*transform_init_to_world.block(0,0,3,1);
+    flag_pub_global_pcl = fileRead["flag_pub_global_pcl"];
     // 读取拟合平面最小点云数参数
     int blueLower1 = fileRead["blueLower.1"];
     int blueLower2 = fileRead["blueLower.2"];
@@ -581,7 +598,7 @@ void ModelNode::buildFront()
             if ((pointPosition-centrePosition).norm() < circleRadius)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
@@ -595,7 +612,7 @@ void ModelNode::buildBack()
         {
             Eigen::Vector3d pointPosition = backLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
@@ -610,7 +627,7 @@ void ModelNode::buildSide()
         {
             Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
     // 从前方左上角开始逐行建模
@@ -620,7 +637,7 @@ void ModelNode::buildSide()
         {
             Eigen::Vector3d pointPosition = frontLeftUp+(frontRightUnder-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
     // 从前方右下角开始逐行建模
@@ -630,7 +647,7 @@ void ModelNode::buildSide()
         {
             Eigen::Vector3d pointPosition = frontRightUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
     // 前方左下角开始逐行建模
@@ -640,7 +657,7 @@ void ModelNode::buildSide()
         {
             Eigen::Vector3d pointPosition = frontLeftUnder+(frontRightUnder-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
@@ -656,7 +673,7 @@ void ModelNode::buildStructure1()
             if ((double)i>(zSize-structureGapSize1)/buildPointStep && (double)j<structureGapSize1/buildPointStep)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
@@ -672,14 +689,14 @@ void ModelNode::buildStructure2()
             if ((double)i<structureGapSize2/buildPointStep && (double)j>(xSize-structureGapSize2)/buildPointStep)
                 continue;
             pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle.points.push_back(point);
+            pcl_obstacle_init.points.push_back(point);
         }
     }
 }
 
 void ModelNode::rasterizationModel()
 {
-    for (auto point:pcl_obstacle.points)
+    for (auto point:pcl_obstacle_init.points)
     {
         Eigen::Vector3d tempPosition(point.x,point.y,point.z);
         occupancyList.at(coorToIndex(tempPosition)) = true;
@@ -776,7 +793,13 @@ bool ModelNode::Model()
     buildStructure2();
     //将地图栅格化并对每个栅格的占据元素进行赋值
     rasterizationModel();
+    transformPclObstacleToWorld();
     return true;
+}
+void ModelNode::transformPclObstacleToWorld()
+{
+    pcl::transformPointCloud(pcl_obstacle_init, pcl_obstacle_world, transform_init_to_world);
+    return; 
 }
 
 int ModelNode::coorToIndex(const Eigen::Vector3d inputCoor)
@@ -801,7 +824,15 @@ Eigen::Vector3d ModelNode::indexToCoor(const int index)
                            ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution+yBoundLow, 
                            (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution+zBoundLow);
 }
-
+void ModelNode::pubModelGlobal()
+{
+    std::cout << "pubModelGlobal()"<<std::endl;
+    sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
+    pcl::toROSMsg(pcl_obstacle_world, pclMsg_obstacle);
+    pclMsg_obstacle.header = m_header_worldFrame;
+    pcl_pub->publish(pclMsg_obstacle);
+    return;
+}
 void ModelNode::PubModel()
 {
     std::cout << "PubModel()"<<std::endl;
@@ -840,7 +871,7 @@ void ModelNode::PubModel()
     // 遍历障碍物点云，得到在可视空间内的点云
     double horizontalTanThresh_localPointCloud = std::tan(horizontalAngleThresh_localPointCloud/180.0*M_PI/2);
     double verticalTanThresh_localPointCloud = std::tan(verticalAngleThresh_localPointCloud/180.0*M_PI/2);
-    for (auto point:pcl_obstacle.points)
+    for (auto point:pcl_obstacle_init.points)
     {
         Eigen::Vector3d tempPosition(point.x, point.y, point.z);
         
