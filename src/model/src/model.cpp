@@ -32,7 +32,7 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     }
     // Start modeling;
     flag_pubModel=Model();
-    cv::waitKey(10);
+    // cv::waitKey(10);
     return;
 }
 
@@ -71,16 +71,14 @@ bool ModelNode::recieveMsg(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &
     m_header_worldFrame.frame_id = "world";
     std::cout << "Msg recieved success !" << std::endl;
     return true;
-
 }
 
 // 构造函数 init function()
 ModelNode::ModelNode():Node("model")
 {
-    // 调试代码3
-    successNum = 0;
     error_type = OK;
     pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle", 10);
+    transformObstacleToWorld_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("plane_frame",10);
     flag_pubModel = false;
     // 定义消息订阅者
     pcl_sub.subscribe(this, "pointCloud_initFrame");
@@ -237,7 +235,9 @@ void ModelNode::houghCircleDetect(std::vector<cv::Vec3f> &outputCircles, cv::Mat
     cv::Mat img_gray;
     cv::cvtColor(m_img, img_gray, CV_BGR2GRAY);
     cv::GaussianBlur(img_gray, img_gaussian, cv::Size(7, 7),2,2);
+
     cv::HoughCircles(img_gaussian, outputCircles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
+
 }
 
 bool ModelNode::getMaxArea(cv::Mat &maxArea)
@@ -345,16 +345,15 @@ bool ModelNode::selectLine(const cv::Mat img_erode, std::vector<cv::Vec4i> tempL
             continue;
         }
 
-        // 调试代码3
-        cv::Mat img_copy;
-        m_img.copyTo(img_copy);
-        cv::drawMarker(img_copy, endPoint1, cv::Scalar(0,255,0),2, 10, 2);
-        cv::drawMarker(img_copy, endPoint2, cv::Scalar(0,255,0),2, 10, 2);
-        cv::drawMarker(img_copy, midPoint, cv::Scalar(0,255,0),2, 10, 2);
-        cv::drawMarker(img_copy, flag_point1, cv::Scalar(0,0,255),2, 10, 2);
-        cv::drawMarker(img_copy, flag_point2, cv::Scalar(0,0,255),2, 10, 2);
-
-        cv::imshow("img_endPoint", img_copy);
+        // // 调试代码3
+        // cv::Mat img_copy;
+        // m_img.copyTo(img_copy);
+        // cv::drawMarker(img_copy, endPoint1, cv::Scalar(0,255,0),2, 10, 2);
+        // cv::drawMarker(img_copy, endPoint2, cv::Scalar(0,255,0),2, 10, 2);
+        // cv::drawMarker(img_copy, midPoint, cv::Scalar(0,255,0),2, 10, 2);
+        // cv::drawMarker(img_copy, flag_point1, cv::Scalar(0,0,255),2, 10, 2);
+        // cv::drawMarker(img_copy, flag_point2, cv::Scalar(0,0,255),2, 10, 2);
+        // cv::imshow("img_endPoint", img_copy);
         
         if (img_erode.at<bool>(endPoint1)==255 || img_erode.at<bool>(endPoint2)==255 || img_erode.at<bool>(midPoint)==255)
         {
@@ -586,8 +585,38 @@ void ModelNode::ransacModelParam()
     std::cout << "frontLeftUp: " << frontLeftUp.transpose() << std::endl;
 }
 
+//debug
+void ModelNode::buildFrontPlaneAndShowPose()
+{
+    int buildStepNum_z = ceil(zSize/buildPointStep);
+    int buildStepNum_x = ceil(xSize/buildPointStep);
+    for (int i=1;i<buildStepNum_z;i++)
+    {  
+        for(int j=1;j<buildStepNum_x;j++)
+        {
+            Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
+            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+            pcl_front_plane_init.points.push_back(point);
+        }
+    }
+    Eigen::Matrix4d transform_obstacle_to_world = Eigen::Matrix4d::Identity();
+    transform_obstacle_to_world.block(0,0,3,1) = transform_init_to_world.block(0,0,3,3)*Xaxis;
+    transform_obstacle_to_world.block(0,1,3,1) = transform_init_to_world.block(0,0,3,3)*Yaxis;
+    transform_obstacle_to_world.block(0,2,3,1) = transform_init_to_world.block(0,0,3,3)*Zaxis;
+    transform_obstacle_to_world.block(0,3,3,1) = transform_init_to_world.block(0,0,3,3)*centrePosition + transform_init_to_world.block(0,3,3,1);
+    Sophus::SE3d obstacle_frame(transform_obstacle_to_world);
+    obstacle_frame_msg.pose.orientation.x = obstacle_frame.unit_quaternion().x();
+    obstacle_frame_msg.pose.orientation.y = obstacle_frame.unit_quaternion().y();
+    obstacle_frame_msg.pose.orientation.z = obstacle_frame.unit_quaternion().z();
+    obstacle_frame_msg.pose.orientation.w = obstacle_frame.unit_quaternion().w();
+    obstacle_frame_msg.pose.position.x = obstacle_frame.translation().x();
+    obstacle_frame_msg.pose.position.y = obstacle_frame.translation().y();
+    obstacle_frame_msg.pose.position.z = obstacle_frame.translation().z();
+}
+
 void ModelNode::buildFront()
 {
+    cv::waitKey(0);
     int buildStepNum_z = ceil(zSize/buildPointStep);
     int buildStepNum_x = ceil(xSize/buildPointStep);
     for (int i=1;i<buildStepNum_z;i++)
@@ -707,7 +736,6 @@ void ModelNode::rasterizationModel()
 bool ModelNode::Model()
 {
     std::cout << "Model()" <<std::endl;
-
     // 入口圓形檢測
     std::vector<cv::Vec3f> temp_circles;
     cv::Mat img_gaussian;
@@ -716,21 +744,20 @@ bool ModelNode::Model()
         changeErrorType(Can_not_find_circle);
         return false;
     }
-
-    // 调试代码3
+    //debug
+    cv::imshow("preprocess_img",img_gaussian);
     cv::Mat img_circle;
     m_img.copyTo(img_circle);
-    for (int i =0;i<temp_circles.size();i++)
-    {
-        cv::circle(img_circle, cv::Point(temp_circles[i][0], temp_circles[i][1]), temp_circles[i][2], cv::Scalar(0,255,0), 2);        
-    }
-    cv::imshow("init_circle_img", img_circle);
 
     cv::Vec3f circle;
     cv::Mat mask;    // 这个mask是用来保存最大区域掩码图像
     bool flag_findCircle = selectCircle(circle, temp_circles, mask);
     if (!flag_findCircle)
         return false;
+    //debug
+    cv::circle(img_circle, cv::Point(circle[0], circle[1]), circle[2], cv::Scalar(0,0,255), 2); 
+    cv::drawMarker(img_circle, cv::Point(circle[0],circle[1]), cv::Scalar(0,0,255),2,10,3);
+    cv::imshow("init_circle_img", img_circle);
 
     // 利用稀疏点云拟合平面获得平面距离，并判断当前平面是否足够正对相机
     Eigen::Vector4d param;
@@ -760,30 +787,44 @@ bool ModelNode::Model()
     bool flag_findLine = selectLine(img_erode,tempLines,line,circle);
     if (!flag_findLine) return false;
 
+    //debug
+    cv::Mat temp_line_img;
+    m_img.copyTo(temp_line_img);
+    cv::line(temp_line_img, cv::Point(line[0],line[1]),cv::Point(line[2],line[3]),cv::Scalar(0,255,0),3);
+    cv::imshow("line_img", temp_line_img);
+
     // 计算三维全局参数;
     Eigen::Vector3d planeNormalVec, verticalVec, circleCentre;
     calModelParam(circle, line, param,planeNormalVec, verticalVec, circleCentre);
     global_centrePostions.push_back(circleCentre);
     global_vecs_direction.push_back(verticalVec);
     global_vecs_norm.push_back(planeNormalVec);
+
+    //debug
+    if (successNum==0)
+    {
+        cv::waitKey(0);        
+    }
     successNum++;
     if (global_centrePostions.size() < modelThresh)
     {
         return false;
     }
 
-    // debug
-    for (int i=0;i<global_centrePostions.size();i++)
-    {
-        std::cout<< "global_centrePostions[" << i<<"]: "<<global_centrePostions[i].transpose()<< std::endl;
-        std::cout<< "global_vecs_direction[" << i<<"]: "<<global_vecs_direction[i].transpose()<< std::endl;
-        std::cout<< "global_vecs_norm[" << i<<"]: "<<global_vecs_norm[i].transpose()<< std::endl;
-        std::cout<< "-----------------------------------------------------" << std::endl;
-    }
-    // cv::waitKey(0);
+    // // debug
+    // for (int i=0;i<global_centrePostions.size();i++)
+    // {
+    //     std::cout<< "global_centrePostions[" << i<<"]: "<<global_centrePostions[i].transpose()<< std::endl;
+    //     std::cout<< "global_vecs_direction[" << i<<"]: "<<global_vecs_direction[i].transpose()<< std::endl;
+    //     std::cout<< "global_vecs_norm[" << i<<"]: "<<global_vecs_norm[i].transpose()<< std::endl;
+    //     std::cout<< "-----------------------------------------------------" << std::endl;
+    // }
 
     // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
     ransacModelParam();
+
+    //debug
+    buildFrontPlaneAndShowPose();
 
     // 开始利用结构关系构建目标障碍物点云地图
     buildFront();
@@ -825,7 +866,11 @@ Eigen::Vector3d ModelNode::indexToCoor(const int index)
                            (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution+zBoundLow);
 }
 void ModelNode::pubModelGlobal()
-{
+{   
+    //debug
+    obstacle_frame_msg.header = m_header_worldFrame;
+    transformObstacleToWorld_pub->publish(obstacle_frame_msg);
+
     std::cout << "pubModelGlobal()"<<std::endl;
     sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
     pcl::toROSMsg(pcl_obstacle_world, pclMsg_obstacle);
@@ -835,6 +880,9 @@ void ModelNode::pubModelGlobal()
 }
 void ModelNode::PubModel()
 {
+    //debug
+    obstacle_frame_msg.header = m_header_worldFrame;
+    transformObstacleToWorld_pub->publish(obstacle_frame_msg);
     std::cout << "PubModel()"<<std::endl;
     pcl::PointCloud<pcl::PointXYZ> realTimePcl;
     // 利用相机投影矩阵的投影线进行碰撞检测
@@ -883,9 +931,11 @@ void ModelNode::PubModel()
         }
         realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
     }
+    pcl::PointCloud<pcl::PointXYZ> realTimePlc_world;
+    pcl::transformPointCloud(realTimePcl, realTimePlc_world, transform_init_to_world);
     sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
-    pcl::toROSMsg(realTimePcl, pclMsg_obstacle);
-    pclMsg_obstacle.header = m_header_initFrame;
+    pcl::toROSMsg(realTimePlc_world, pclMsg_obstacle);
+    pclMsg_obstacle.header = m_header_worldFrame;
     pcl_pub->publish(pclMsg_obstacle);
 }
 
@@ -928,7 +978,7 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
     // 逐个点云逆投影至像素平面进行筛选
     pcl::PointCloud<pcl::PointXYZ> finalPointCloud;
     cv::imshow("img_erode", img_erode);
-    // 调试代码3
+    // debug
     cv::Mat temp_img;
     m_img.copyTo(temp_img);
 
@@ -942,12 +992,12 @@ bool ModelNode::detectPoseCorrect(Eigen::Vector4d &param, const cv::Mat mask, cv
             continue;            
         }
 
-        // // 调试代码3
-        // cv::drawMarker(temp_img,cv::Point(pixelPoint), cv::Scalar(0,255,0),2, 5, 1);
+        //debug
+        cv::drawMarker(temp_img,cv::Point(pixelPoint), cv::Scalar(0,255,0),2, 4, 1);
 
         finalPointCloud.points.push_back(point);
     }
-
+    //debug
     cv::imshow("select keypoints", temp_img);
 
     // 用筛选后的点云拟合平面

@@ -226,8 +226,14 @@ private:
 
     // 存储障碍物点云
     pcl::PointCloud<pcl::PointXYZ> pcl_obstacle_init;
-    pcl::PointCloud<pcl::PointXYZ> pcl_obstacle_world;
+    pcl::PointCloud<pcl::PointXYZ> pcl_obstacle_world;    
+    pcl::PointCloud<pcl::PointXYZ> pcl_front_plane_init;
+    pcl::PointCloud<pcl::PointXYZ> pcl_front_plane_world;
     
+    //debug
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformObstacleToWorld_pub;
+    geometry_msgs::msg::PoseStamped obstacle_frame_msg;
+
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_pub;
     // 调试代码3
     int successNum;
@@ -280,5 +286,9 @@ public:
     int coorToIndex(const Eigen::Vector3d inputCoor);
     Eigen::Vector3d indexToCoor(const int index);
     void transformPclObstacleToWorld();
+
+    //debug
+    void buildFrontPlaneAndShowPose();
+
     ~ModelNode();
 };

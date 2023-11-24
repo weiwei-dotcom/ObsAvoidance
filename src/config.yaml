@@ -28,7 +28,7 @@ close_blue_kernel_size: 15
 # flag used in model packages, it's a flag that determine publish the global pcl or realtime local pcl model
 # 1: global pcl model;
 # 2: local pcl model
-flag_pub_global_pcl: 1
+flag_pub_global_pcl: 2
 
 # 判断motionControl功能包程序是否编写完成的标志:
 # 0 未完成
