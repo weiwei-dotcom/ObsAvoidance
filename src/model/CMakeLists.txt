@@ -29,6 +29,7 @@ find_package(PCL REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(Sophus REQUIRED)
 find_package(Ceres REQUIRED)
+find_package(visualization_msgs)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -46,7 +47,7 @@ include_directories(${EIGEN3_INCLUDE_DIR} ${Sophus_DIR} ${PCL_INCLUDE_DIRS} ${CE
 
 add_executable(model src/main.cpp src/model.cpp)
 
-ament_target_dependencies(model rclcpp interface cv_bridge pcl_conversions octomap_msgs octomap sensor_msgs rcutils) 
+ament_target_dependencies(model rclcpp interface cv_bridge pcl_conversions octomap_msgs octomap sensor_msgs rcutils visualization_msgs) 
 
 # target_link_libraries(model ${OpenCV_LIBS} ${EIGEN_LIBS} ${PCL_LIBRARIES} )
 target_link_libraries(model ${OpenCV_LIBS} ${EIGEN_LIBS} ${PCL_LIBRARIES} ${CERES_LIBRARIES})

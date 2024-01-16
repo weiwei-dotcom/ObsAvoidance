@@ -102,6 +102,10 @@ model: /opt/ros/foxy/lib/liboctomap_msgs__rosidl_typesupport_introspection_c.so
 model: /opt/ros/foxy/lib/liboctomap_msgs__rosidl_typesupport_c.so
 model: /opt/ros/foxy/lib/liboctomap_msgs__rosidl_typesupport_introspection_cpp.so
 model: /opt/ros/foxy/lib/liboctomap_msgs__rosidl_typesupport_cpp.so
+model: /opt/ros/foxy/lib/libvisualization_msgs__rosidl_typesupport_introspection_c.so
+model: /opt/ros/foxy/lib/libvisualization_msgs__rosidl_typesupport_c.so
+model: /opt/ros/foxy/lib/libvisualization_msgs__rosidl_typesupport_introspection_cpp.so
+model: /opt/ros/foxy/lib/libvisualization_msgs__rosidl_typesupport_cpp.so
 model: /opt/ros/foxy/lib/libcv_bridge.so
 model: /opt/ros/foxy/lib/libmessage_filters.so
 model: /opt/ros/foxy/lib/librclcpp.so
@@ -229,6 +233,7 @@ model: /opt/ros/foxy/lib/librosgraph_msgs__rosidl_generator_c.so
 model: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_generator_c.so
 model: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_generator_c.so
 model: /opt/ros/foxy/lib/liboctomap_msgs__rosidl_generator_c.so
+model: /opt/ros/foxy/lib/libvisualization_msgs__rosidl_generator_c.so
 model: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.2.0
 model: /usr/lib/x86_64-linux-gnu/libopencv_datasets.so.4.2.0
 model: /usr/lib/x86_64-linux-gnu/libopencv_plot.so.4.2.0

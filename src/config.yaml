@@ -28,7 +28,7 @@ close_blue_kernel_size: 15
 # flag used in model packages, it's a flag that determine publish the global pcl or realtime local pcl model
 # 1: global pcl model;
 # 2: local pcl model
-flag_pub_global_pcl: 2
+flag_pub_global_pcl: 1
 
 # 判断motionControl功能包程序是否编写完成的标志:
 # 0 未完成
@@ -181,7 +181,9 @@ T_camera_to_tool:
          0.0, 0.0, 0.0, 0.0,
          0.0, 0.0, 0.0, 0.0,
          0.0, 0.0, 0.0, 0.0]
-# TODO: 
+# TODO: here have a problem that the transform should be the obstacle structure to the world not the init to world,
+#       this is just for temp visualization.
+
 T_init_to_world: 
   rows: 4
   cols: 4
@@ -190,3 +192,7 @@ T_init_to_world:
          0.0, 0.0, 1.0, 1000.0,
          0.0, -1.0, 0.0, 1000.0,
          0.0, 0.0, 0.0, 1.0]
+
+goal_point_position_x: 1070.0
+goal_point_position_y: 1680.0
+goal_point_position_z: 970.0

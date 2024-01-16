@@ -18,12 +18,16 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     {
         if (flag_pub_global_pcl==1)
         {
+            // TODO: here have a problem that the transform should be the obstacle structure to the world not the init to world,
+            //       this is just for temp visualization.
             pubModelGlobal();
+            visualize_goal_point();
             return;
         }
         else if(flag_pub_global_pcl == 2)
         {
             PubModel();
+            visualize_goal_point();
             return;       
         }
         RCLCPP_ERROR(this->get_logger(),"unknown flag_pub_global_pcl number !!!");
@@ -33,6 +37,35 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     // Start modeling;
     flag_pubModel=Model();
     // cv::waitKey(10);
+    return;
+}
+
+void ModelNode::visualize_goal_point()
+{
+    visualization_msgs::msg::Marker goal_point;
+    goal_point.type = visualization_msgs::msg::Marker::SPHERE;
+    goal_point.header = this->m_header_worldFrame;
+    goal_point.pose.position.x = goal_point_position_x;
+    goal_point.pose.position.y = goal_point_position_y;
+    goal_point.pose.position.z = goal_point_position_z;
+    goal_point.pose.orientation.w = 1.0;
+    goal_point.pose.orientation.x = 0.0;
+    goal_point.pose.orientation.y = 0.0;
+    goal_point.pose.orientation.z = 0.0;
+    goal_point.color.a = 1.0;
+    goal_point.color.r = 1.0;
+    goal_point.color.g = 0.0;
+    goal_point.color.b = 0.0;
+    goal_point.scale.x = 15.0;
+    goal_point.scale.x = 15.0;
+    goal_point.scale.y = 15.0;
+    goal_point.scale.z = 15.0;
+    // geometry_msgs::msg::Point goal_point_position;
+    // goal_point_position.z = 1000.0+220.0;
+    // goal_point_position.y = 1000.0+600.0;
+    // goal_point_position.x = 1000.0+220.0;
+    // goal_point.points.push_back(goal_point_position);
+    this->goal_point_marker_pub->publish(goal_point);
     return;
 }
 
@@ -79,6 +112,7 @@ ModelNode::ModelNode():Node("model")
     error_type = OK;
     pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle", 10);
     transformObstacleToWorld_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("plane_frame",10);
+    goal_point_marker_pub=this->create_publisher<visualization_msgs::msg::Marker>("goal_point_marker",10);
     flag_pubModel = false;
     // 定义消息订阅者
     pcl_sub.subscribe(this, "pointCloud_initFrame");
@@ -96,6 +130,13 @@ ModelNode::ModelNode():Node("model")
     cv::cv2eigen(temp_transform_init_to_world, transform_init_to_world);
     transform_init_to_world.block(0,0,3,1) = scaleFact_mmToTarget*transform_init_to_world.block(0,0,3,1);
     flag_pub_global_pcl = fileRead["flag_pub_global_pcl"];
+    // goal_point_position_x
+    goal_point_position_x = fileRead["goal_point_position_x"];
+    goal_point_position_x*=scaleFact_mmToTarget;
+    goal_point_position_y = fileRead["goal_point_position_y"];
+    goal_point_position_y*=scaleFact_mmToTarget;
+    goal_point_position_z = fileRead["goal_point_position_z"];
+    goal_point_position_z*=scaleFact_mmToTarget;
     // 读取拟合平面最小点云数参数
     int blueLower1 = fileRead["blueLower.1"];
     int blueLower2 = fileRead["blueLower.2"];
@@ -428,7 +469,7 @@ void ModelNode::ransacModelParam()
     std::cout << "global_vecs_norm.size(): " << global_vecs_norm.size()<<std::endl;
     std::cout << "global_centrePostions.size(): "<<global_centrePostions.size() <<std::endl;
     int debugLoopCount=0;
-    for (int i=0;i<iterNum;i++) 
+    for (int i=0;i<iterNum;i++)
     {
         loopCount++;
         debugLoopCount++;
@@ -474,7 +515,7 @@ void ModelNode::ransacModelParam()
         ceres::Solver::Options options;
         options.max_num_iterations = 30;
         options.linear_solver_type = ceres::DENSE_QR;
-        options.minimizer_progress_to_stdout = true;
+        options.minimizer_progress_to_stdout = false;
         options.logging_type = ceres::SILENT;
         ceres::Solver::Summary summary_dirVec;
         ceres::Solver::Summary summary_normVec;
@@ -616,7 +657,9 @@ void ModelNode::buildFrontPlaneAndShowPose()
 
 void ModelNode::buildFront()
 {
-    cv::waitKey(0);
+    // //debug
+    // cv::waitKey(0);
+
     int buildStepNum_z = ceil(zSize/buildPointStep);
     int buildStepNum_x = ceil(xSize/buildPointStep);
     for (int i=1;i<buildStepNum_z;i++)
@@ -669,16 +712,16 @@ void ModelNode::buildSide()
             pcl_obstacle_init.points.push_back(point);
         }
     }
-    // 从前方右下角开始逐行建模
-    for (int i=1;i<buildStepNum_z;i++)
-    {  
-        for(int j=1;j<buildStepNum_y;j++)
-        {
-            Eigen::Vector3d pointPosition = frontRightUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
-            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_obstacle_init.points.push_back(point);
-        }
-    }
+    // // 从前方右下角开始逐行建模
+    // for (int i=1;i<buildStepNum_z;i++)
+    // {  
+    //     for(int j=1;j<buildStepNum_y;j++)
+    //     {
+    //         Eigen::Vector3d pointPosition = frontRightUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
+    //         pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+    //         pcl_obstacle_init.points.push_back(point);
+    //     }
+    // }
     // 前方左下角开始逐行建模
     for (int i=1;i<buildStepNum_z;i++)
     {  
@@ -800,12 +843,12 @@ bool ModelNode::Model()
     global_vecs_direction.push_back(verticalVec);
     global_vecs_norm.push_back(planeNormalVec);
 
-    //debug
-    if (successNum==0)
-    {
-        cv::waitKey(0);        
-    }
-    successNum++;
+    // //debug
+    // if (successNum==0)
+    // {
+    //     cv::waitKey(0);        
+    // }
+    // successNum++;
     if (global_centrePostions.size() < modelThresh)
     {
         return false;
@@ -839,6 +882,8 @@ bool ModelNode::Model()
 }
 void ModelNode::transformPclObstacleToWorld()
 {
+    // TODO: here have a problem that the transform should be the obstacle structure frame to the world not the init to world,
+    //       this is just for temp visualization. wait to modification.
     pcl::transformPointCloud(pcl_obstacle_init, pcl_obstacle_world, transform_init_to_world);
     return; 
 }
@@ -891,9 +936,9 @@ void ModelNode::PubModel()
     Eigen::Vector3d tempXaxis = m_transform_curToInit.block(0,0,3,1);
     Eigen::Vector3d tempOrigin = m_transform_curToInit.block(0,3,3,1);
     // // 利用从当前位置的出发的射线对栅格化的地图进行碰撞检测获得最前端的障碍物点云图像
-    // for (int u=-125;u<=125;u++)
+    // for (int u=-160;u<=160;u++)
     // {
-    //     for (int v=-150;v<=150;v++)
+    //     for (int v=-200;v<=200;v++)
     //     {
     //         Eigen::Vector3d tempDirVec=horizontal*tempZaxis+horizontal*tan(0.23*v/180*CV_PI)*tempXaxis+horizontal*tan(0.23*u/180*CV_PI)*tempYaxis;
     //         tempDirVec.normalize();
@@ -916,6 +961,7 @@ void ModelNode::PubModel()
     //         }
     //     }
     // }
+
     // 遍历障碍物点云，得到在可视空间内的点云
     double horizontalTanThresh_localPointCloud = std::tan(horizontalAngleThresh_localPointCloud/180.0*M_PI/2);
     double verticalTanThresh_localPointCloud = std::tan(verticalAngleThresh_localPointCloud/180.0*M_PI/2);
@@ -931,10 +977,12 @@ void ModelNode::PubModel()
         }
         realTimePcl.points.push_back(pcl::PointXYZ(tempPosition.x(), tempPosition.y(), tempPosition.z()));
     }
-    pcl::PointCloud<pcl::PointXYZ> realTimePlc_world;
-    pcl::transformPointCloud(realTimePcl, realTimePlc_world, transform_init_to_world);
+
+    // transform the point cloud to world frame.
+    pcl::PointCloud<pcl::PointXYZ> realTimePcl_world;       
+    pcl::transformPointCloud(realTimePcl, realTimePcl_world, transform_init_to_world);
     sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
-    pcl::toROSMsg(realTimePlc_world, pclMsg_obstacle);
+    pcl::toROSMsg(realTimePcl_world, pclMsg_obstacle);
     pclMsg_obstacle.header = m_header_worldFrame;
     pcl_pub->publish(pclMsg_obstacle);
 }

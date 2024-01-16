@@ -22,6 +22,7 @@
 #include "message_filters/subscriber.h"
 #include "message_filters/time_synchronizer.h"
 #include "message_filters/sync_policies/exact_time.h"
+#include "visualization_msgs/msg/marker.hpp"
 
 
 class ModelNode : public rclcpp::Node
@@ -229,9 +230,11 @@ private:
     pcl::PointCloud<pcl::PointXYZ> pcl_obstacle_world;    
     pcl::PointCloud<pcl::PointXYZ> pcl_front_plane_init;
     pcl::PointCloud<pcl::PointXYZ> pcl_front_plane_world;
+    double goal_point_position_x,goal_point_position_y,goal_point_position_z;
     
     //debug
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformObstacleToWorld_pub;
+    rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr goal_point_marker_pub;
     geometry_msgs::msg::PoseStamped obstacle_frame_msg;
 
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_pub;
@@ -286,7 +289,7 @@ public:
     int coorToIndex(const Eigen::Vector3d inputCoor);
     Eigen::Vector3d indexToCoor(const int index);
     void transformPclObstacleToWorld();
-
+    void visualize_goal_point();
     //debug
     void buildFrontPlaneAndShowPose();
 

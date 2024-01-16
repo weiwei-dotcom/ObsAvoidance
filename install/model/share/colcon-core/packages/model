@@ -1,1 +1,1 @@
-cv_bridge:interface:octomap_msgs:pcl_conversions:rclcpp
+cv_bridge:interface:octomap_msgs:pcl_conversions:rclcpp:visualization_msgs

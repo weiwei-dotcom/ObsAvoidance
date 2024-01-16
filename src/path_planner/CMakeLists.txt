@@ -41,4 +41,17 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+include_directories(${EIGEN3_INCLUDE_DIR} ${PCL_INCLUDE_DIRS} ${Sophus_DIR} ${CERES_INCLUDE_DIRS})
+
+add_executable(path_planner src/planner.cpp src/main.cpp)
+
+ament_target_dependencies(path_planner rclcpp interface sensor_msgs pcl_conversions octomap octomap_msgs PCL OpenCV Sophus Ceres)
+
+install(
+  TARGETS
+  path_planner
+  DESTINATION
+  lib/${PROJECT_NAME}
+)
+
 ament_package()
