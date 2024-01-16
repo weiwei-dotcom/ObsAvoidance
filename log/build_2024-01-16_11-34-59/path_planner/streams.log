@@ -1,0 +1,69 @@
+[0.103s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16
+[0.121s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.135s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.240s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.261s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.262s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.343s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.372s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.373s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.458s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[0.605s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[0.623s] -- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)
+[0.724s] -- Found octomap_msgs: 2.0.0 (/opt/ros/foxy/share/octomap_msgs/cmake)
+[0.830s] -- Found AMD headers in: /usr/include/suitesparse
+[0.830s] -- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so
+[0.831s] -- Found CAMD headers in: /usr/include/suitesparse
+[0.831s] -- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so
+[0.831s] -- Found CCOLAMD headers in: /usr/include/suitesparse
+[0.831s] -- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so
+[0.831s] -- Found CHOLMOD headers in: /usr/include/suitesparse
+[0.831s] -- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so
+[0.831s] -- Found COLAMD headers in: /usr/include/suitesparse
+[0.831s] -- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so
+[0.831s] -- Found SPQR headers in: /usr/include/suitesparse
+[0.831s] -- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so
+[0.831s] -- Found Config headers in: /usr/include/suitesparse
+[0.831s] -- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+[0.831s] -- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.
+[0.831s] -- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+[0.834s] -- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) 
+[0.836s] -- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake
+[0.837s] -- Found required Ceres dependency: glog
+[0.838s] -- Found required Ceres dependency: gflags
+[0.839s] -- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]
+[0.839s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.898s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.899s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.899s] -- Configured cppcheck include dirs: 
+[0.899s] -- Configured cppcheck exclude dirs and/or files: 
+[0.899s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.899s] -- Configured cpplint exclude dirs and/or files: 
+[0.899s] -- Added test 'lint_cmake' to check CMake code style
+[0.900s] -- Added test 'uncrustify' to check C / C++ code style
+[0.900s] -- Configured uncrustify additional arguments: 
+[0.900s] -- Added test 'xmllint' to check XML markup files
+[0.901s] -- Configuring done
+[0.912s] -- Generating done
+[0.913s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner
+[0.946s] [100%] Built target path_planner
+[0.953s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16
+[0.994s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner
+[1.006s] -- Install configuration: ""
+[1.006s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/lib/path_planner/path_planner
+[1.006s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/ament_index/resource_index/package_run_dependencies/path_planner
+[1.006s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/ament_index/resource_index/parent_prefix_path/path_planner
+[1.006s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/ament_prefix_path.sh
+[1.006s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/ament_prefix_path.dsv
+[1.006s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/path.sh
+[1.007s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/path.dsv
+[1.007s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.bash
+[1.007s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.sh
+[1.007s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.zsh
+[1.007s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.dsv
+[1.007s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/package.dsv
+[1.007s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/ament_index/resource_index/packages/path_planner
+[1.007s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/cmake/path_plannerConfig.cmake
+[1.007s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/cmake/path_plannerConfig-version.cmake
+[1.007s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/package.xml
+[1.009s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner

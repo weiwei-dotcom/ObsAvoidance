@@ -45,7 +45,7 @@ include_directories(${EIGEN3_INCLUDE_DIR} ${PCL_INCLUDE_DIRS} ${Sophus_DIR} ${CE
 
 add_executable(path_planner src/planner.cpp src/main.cpp)
 
-ament_target_dependencies(path_planner rclcpp interface sensor_msgs pcl_conversions octomap octomap_msgs PCL OpenCV Sophus Ceres)
+ament_target_dependencies(path_planner rclcpp interface sensor_msgs pcl_conversions octomap octomap_msgs PCL OpenCV Sophus Ceres Eigen3)
 
 install(
   TARGETS

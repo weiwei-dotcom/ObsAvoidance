@@ -1,0 +1,66 @@
+[0.099s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16
+[0.117s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.131s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.238s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.258s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.260s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.341s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.370s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.371s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.463s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[0.618s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[0.635s] -- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)
+[0.742s] -- Found octomap_msgs: 2.0.0 (/opt/ros/foxy/share/octomap_msgs/cmake)
+[0.860s] -- Found AMD headers in: /usr/include/suitesparse
+[0.860s] -- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so
+[0.860s] -- Found CAMD headers in: /usr/include/suitesparse
+[0.860s] -- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so
+[0.860s] -- Found CCOLAMD headers in: /usr/include/suitesparse
+[0.860s] -- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so
+[0.860s] -- Found CHOLMOD headers in: /usr/include/suitesparse
+[0.860s] -- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so
+[0.860s] -- Found COLAMD headers in: /usr/include/suitesparse
+[0.860s] -- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so
+[0.860s] -- Found SPQR headers in: /usr/include/suitesparse
+[0.861s] -- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so
+[0.861s] -- Found Config headers in: /usr/include/suitesparse
+[0.861s] -- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+[0.861s] -- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.
+[0.861s] -- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+[0.864s] -- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) 
+[0.866s] -- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake
+[0.867s] -- Found required Ceres dependency: glog
+[0.868s] -- Found required Ceres dependency: gflags
+[0.869s] -- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]
+[0.869s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.932s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.932s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.932s] -- Configured cppcheck include dirs: 
+[0.932s] -- Configured cppcheck exclude dirs and/or files: 
+[0.932s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.932s] -- Configured cpplint exclude dirs and/or files: 
+[0.933s] -- Added test 'lint_cmake' to check CMake code style
+[0.933s] -- Added test 'uncrustify' to check C / C++ code style
+[0.933s] -- Configured uncrustify additional arguments: 
+[0.933s] -- Added test 'xmllint' to check XML markup files
+[0.935s] -- Configuring done
+[0.946s] -- Generating done
+[0.947s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner
+[0.975s] [ 33%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/planner.cpp.o[0m
+[0.976s] [ 66%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/main.cpp.o[0m
+[1.123s] In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/main.cpp:1[m[K:
+[1.123s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.hpp:6:10:[m[K [01;31m[Kfatal error: [m[Kopencv2/core/eigen.hpp: 没有那个文件或目录
+[1.123s]     6 | #include [01;31m[K<opencv2/core/eigen.hpp>[m[K
+[1.123s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[1.124s] compilation terminated.
+[1.124s] In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.cpp:1[m[K:
+[1.124s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.hpp:6:10:[m[K [01;31m[Kfatal error: [m[Kopencv2/core/eigen.hpp: 没有那个文件或目录
+[1.124s]     6 | #include [01;31m[K<opencv2/core/eigen.hpp>[m[K
+[1.124s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[1.124s] compilation terminated.
+[1.133s] make[2]: *** [CMakeFiles/path_planner.dir/build.make:63：CMakeFiles/path_planner.dir/src/planner.cpp.o] 错误 1
+[1.133s] make[2]: *** 正在等待未完成的任务....
+[1.133s] make[2]: *** [CMakeFiles/path_planner.dir/build.make:76：CMakeFiles/path_planner.dir/src/main.cpp.o] 错误 1
+[1.133s] make[1]: *** [CMakeFiles/Makefile2:105：CMakeFiles/path_planner.dir/all] 错误 2
+[1.133s] make: *** [Makefile:141：all] 错误 2
+[1.135s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner' returned '2': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16
