@@ -128,6 +128,10 @@ ModelNode::ModelNode():Node("model")
     cv::Mat temp_transform_init_to_world;
     fileRead["T_init_to_world"] >> temp_transform_init_to_world;
     cv::cv2eigen(temp_transform_init_to_world, transform_init_to_world);
+
+    //debug: see the temp branch have been create yet?
+    transform_init_to_world=Eigen::Matrix4d::Identity();
+
     transform_init_to_world.block(0,0,3,1) = scaleFact_mmToTarget*transform_init_to_world.block(0,0,3,1);
     flag_pub_global_pcl = fileRead["flag_pub_global_pcl"];
     // goal_point_position_x
