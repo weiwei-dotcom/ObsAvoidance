@@ -201,7 +201,7 @@ private:
     // 掩码膨胀结构体
     cv::Mat dilateStructure_mask;
     // 
-    Eigen::Matrix4d transform_init_to_world;
+    Eigen::Matrix4d transform_obs_to_world,transform_init_to_world, transform_obs_to_init;
 
     // 腐蚀膨胀操作结构体
     cv::Mat structure_erode1;
@@ -235,6 +235,7 @@ private:
     //debug
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformObstacleToWorld_pub;
     rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr goal_point_marker_pub;
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transform_init_to_world_pub; 
     geometry_msgs::msg::PoseStamped obstacle_frame_msg;
 
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_pub;
@@ -291,7 +292,7 @@ public:
     void transformPclObstacleToWorld();
     void visualize_goal_point();
     //debug
-    void buildFrontPlaneAndShowPose();
-
+    void getTransformInitToWorld();
+    void pubTransformInitToWorld();
     ~ModelNode();
 };

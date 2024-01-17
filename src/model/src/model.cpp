@@ -20,12 +20,14 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
         {
             // TODO: here have a problem that the transform should be the obstacle structure to the world not the init to world,
             //       this is just for temp visualization.
+            pubTransformInitToWorld();
             pubModelGlobal();
             visualize_goal_point();
             return;
         }
         else if(flag_pub_global_pcl == 2)
         {
+            pubTransformInitToWorld();
             PubModel();
             visualize_goal_point();
             return;       
@@ -37,6 +39,22 @@ void ModelNode::mapPoint_callback(const sensor_msgs::msg::PointCloud2::ConstShar
     // Start modeling;
     flag_pubModel=Model();
     // cv::waitKey(10);
+    return;
+}
+
+void ModelNode::pubTransformInitToWorld()
+{
+    geometry_msgs::msg::PoseStamped pose_init_to_world;
+    pose_init_to_world.header.frame_id = "world";
+    Sophus::SE3d se3_init_to_world(transform_init_to_world);
+    pose_init_to_world.pose.orientation.x = se3_init_to_world.unit_quaternion().x();
+    pose_init_to_world.pose.orientation.y = se3_init_to_world.unit_quaternion().y();
+    pose_init_to_world.pose.orientation.z = se3_init_to_world.unit_quaternion().z();
+    pose_init_to_world.pose.orientation.w = se3_init_to_world.unit_quaternion().w();
+    pose_init_to_world.pose.position.x = se3_init_to_world.translation().x();
+    pose_init_to_world.pose.position.y = se3_init_to_world.translation().y();
+    pose_init_to_world.pose.position.z = se3_init_to_world.translation().z();
+    this->transform_init_to_world_pub->publish(pose_init_to_world);
     return;
 }
 
@@ -113,6 +131,8 @@ ModelNode::ModelNode():Node("model")
     pcl_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("pcl_obstacle", 10);
     transformObstacleToWorld_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("plane_frame",10);
     goal_point_marker_pub=this->create_publisher<visualization_msgs::msg::Marker>("goal_point_marker",10);
+    transform_init_to_world_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_init_to_world",10);
+    
     flag_pubModel = false;
     // 定义消息订阅者
     pcl_sub.subscribe(this, "pointCloud_initFrame");
@@ -126,18 +146,12 @@ ModelNode::ModelNode():Node("model")
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
     double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
 
-    //debug: temp display the scene on quasi world coordinate system
-    cv::Mat temp_transform_init_to_world;
-    fileRead["T_init_to_world"] >> temp_transform_init_to_world;
-    cv::cv2eigen(temp_transform_init_to_world, transform_init_to_world);
+    transform_obs_to_world=Eigen::Matrix4d::Identity();
+    double translation_obs_to_world_x = fileRead["translation_obs_to_world_x"];
+    double translation_obs_to_world_y = fileRead["translation_obs_to_world_y"];
+    double translation_obs_to_world_z = fileRead["translation_obs_to_world_z"];
+    transform_obs_to_world.col(3) << translation_obs_to_world_x, translation_obs_to_world_y, translation_obs_to_world_z, 1.0;
 
-    //todo(not here, just for tip): transform the scene in the init coordinate to the coordinate refer to obstacle coordinate
-
-
-    //debug: see the temp branch have been create yet?
-    transform_init_to_world=Eigen::Matrix4d::Identity();
-
-    transform_init_to_world.block(0,0,3,1) = scaleFact_mmToTarget*transform_init_to_world.block(0,0,3,1);
     flag_pub_global_pcl = fileRead["flag_pub_global_pcl"];
     // goal_point_position_x
     goal_point_position_x = fileRead["goal_point_position_x"];
@@ -146,6 +160,7 @@ ModelNode::ModelNode():Node("model")
     goal_point_position_y*=scaleFact_mmToTarget;
     goal_point_position_z = fileRead["goal_point_position_z"];
     goal_point_position_z*=scaleFact_mmToTarget;
+    // the translation of 
     // 读取拟合平面最小点云数参数
     int blueLower1 = fileRead["blueLower.1"];
     int blueLower2 = fileRead["blueLower.2"];
@@ -635,26 +650,14 @@ void ModelNode::ransacModelParam()
     std::cout << "frontLeftUp: " << frontLeftUp.transpose() << std::endl;
 }
 
-//debug
-void ModelNode::buildFrontPlaneAndShowPose()
+//todo:
+void ModelNode::getTransformInitToWorld()
 {
-    int buildStepNum_z = ceil(zSize/buildPointStep);
-    int buildStepNum_x = ceil(xSize/buildPointStep);
-    for (int i=1;i<buildStepNum_z;i++)
-    {  
-        for(int j=1;j<buildStepNum_x;j++)
-        {
-            Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
-            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
-            pcl_front_plane_init.points.push_back(point);
-        }
-    }
-    Eigen::Matrix4d transform_obstacle_to_world = Eigen::Matrix4d::Identity();
-    transform_obstacle_to_world.block(0,0,3,1) = transform_init_to_world.block(0,0,3,3)*Xaxis;
-    transform_obstacle_to_world.block(0,1,3,1) = transform_init_to_world.block(0,0,3,3)*Yaxis;
-    transform_obstacle_to_world.block(0,2,3,1) = transform_init_to_world.block(0,0,3,3)*Zaxis;
-    transform_obstacle_to_world.block(0,3,3,1) = transform_init_to_world.block(0,0,3,3)*centrePosition + transform_init_to_world.block(0,3,3,1);
-    Sophus::SE3d obstacle_frame(transform_obstacle_to_world);
+    transform_obs_to_init = Eigen::Matrix4d::Identity();
+    transform_obs_to_init.block(0,0,3,3) << Xaxis, Yaxis, Zaxis;
+    transform_obs_to_init.block(0,3,3,1) = centrePosition;
+
+    Sophus::SE3d obstacle_frame(transform_obs_to_world);
     obstacle_frame_msg.pose.orientation.x = obstacle_frame.unit_quaternion().x();
     obstacle_frame_msg.pose.orientation.y = obstacle_frame.unit_quaternion().y();
     obstacle_frame_msg.pose.orientation.z = obstacle_frame.unit_quaternion().z();
@@ -662,6 +665,9 @@ void ModelNode::buildFrontPlaneAndShowPose()
     obstacle_frame_msg.pose.position.x = obstacle_frame.translation().x();
     obstacle_frame_msg.pose.position.y = obstacle_frame.translation().y();
     obstacle_frame_msg.pose.position.z = obstacle_frame.translation().z();
+
+    transform_init_to_world = transform_obs_to_world*transform_obs_to_init.inverse();
+    return;
 }
 
 void ModelNode::buildFront()
@@ -875,8 +881,7 @@ bool ModelNode::Model()
     // 开始ransac优化平面法向量、圆心位置以及垂直向上方向参数
     ransacModelParam();
 
-    //debug
-    buildFrontPlaneAndShowPose();
+    getTransformInitToWorld();
 
     // 开始利用结构关系构建目标障碍物点云地图
     buildFront();
@@ -889,6 +894,7 @@ bool ModelNode::Model()
     transformPclObstacleToWorld();
     return true;
 }
+
 void ModelNode::transformPclObstacleToWorld()
 {
     // TODO: here have a problem that the transform should be the obstacle structure frame to the world not the init to world,
@@ -907,6 +913,7 @@ int ModelNode::coorToIndex(const Eigen::Vector3d inputCoor)
     // std::cout<<index<<std::endl;
     return index;
 }
+
 Eigen::Vector3d ModelNode::indexToCoor(const int index)
 {
     // //debug

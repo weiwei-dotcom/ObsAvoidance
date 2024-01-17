@@ -181,18 +181,12 @@ T_camera_to_tool:
          0.0, 0.0, 0.0, 0.0,
          0.0, 0.0, 0.0, 0.0,
          0.0, 0.0, 0.0, 0.0]
-# TODO: here have a problem that the transform should be the obstacle structure to the world not the init to world,
-#       this is just for temp visualization.
-
-T_init_to_world: 
-  rows: 4
-  cols: 4
-  dt: d
-  data: [1.0, 0.0, 0.0, 1000.0,
-         0.0, 0.0, 1.0, 1000.0,
-         0.0, -1.0, 0.0, 1000.0,
-         0.0, 0.0, 0.0, 1.0]
 
 goal_point_position_x: 1070.0
 goal_point_position_y: 1680.0
 goal_point_position_z: 970.0
+
+translation_obs_to_world_x: 1000.0
+translation_obs_to_world_y: 2000.0
+translation_obs_to_world_z: 1000.0
+

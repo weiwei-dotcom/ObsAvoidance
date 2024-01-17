@@ -87,6 +87,7 @@ private:
     // message_filters创建话题消息接收器
     message_filters::Subscriber<interface::msg::Slam> slam_sub;
     message_filters::Subscriber<sensor_msgs::msg::Image> image_sub;
+    rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr pose_init_to_world_sub;
     // 声明发布器
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformInit2Cur_pub;
     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr transformCurToInit_pub;
@@ -114,6 +115,7 @@ public:
     int calRansacIterNum();
     // 打印检测错误状态信息
     void changeErrorType(ERROR_TYPE newError);
+    void transform_init_to_world_callback(const geometry_msgs::msg::PoseStamped::SharedPtr transform_init_to_world);
     // 析构函数
     ~mediaNode();
 };

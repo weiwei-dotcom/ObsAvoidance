@@ -15,12 +15,15 @@ mediaNode::mediaNode():Node("media")
   transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
   transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
   transformCurToWorld_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToWorld", 5);
+  pose_init_to_world_sub=this->create_subscription<geometry_msgs::msg::PoseStamped>("transform_init_to_world",
+                                                                                    5,
+                                                                                    std::bind(&mediaNode::transform_init_to_world_callback,this,std::placeholders::_1));
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
   cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
   double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
-  cv::Mat temp_transform_init_to_world;
-	fileRead["T_init_to_world"] >> temp_transform_init_to_world;
-	cv::cv2eigen(temp_transform_init_to_world, transform_init_to_world);
+
+  transform_init_to_world = Eigen::Matrix4d::Identity();
+  transform_init_to_world.col(3) << 1000.0,2000.0,1000.0,1.0;
 	transform_init_to_world.block(0,3,3,1) = scaleFact_mmToTarget*transform_init_to_world.block(0,3,3,1);
 
   minDist = fileRead["minDist"];
@@ -67,6 +70,20 @@ mediaNode::mediaNode():Node("media")
   if (flag_motionControlProgramHaveDone == 1) {
 
   }
+}
+
+void mediaNode::transform_init_to_world_callback(const geometry_msgs::msg::PoseStamped::SharedPtr transform_init_to_world)
+{
+  Eigen::Quaterniond q_init_to_world(transform_init_to_world->pose.orientation.w, 
+                                    transform_init_to_world->pose.orientation.x, 
+                                    transform_init_to_world->pose.orientation.y, 
+                                    transform_init_to_world->pose.orientation.z);
+  Eigen::Vector3d translation_init_to_world(transform_init_to_world->pose.position.x,
+                                            transform_init_to_world->pose.position.y,
+                                            transform_init_to_world->pose.position.z);
+  Sophus::SE3d se3_init_to_world(q_init_to_world, translation_init_to_world);
+  this->transform_init_to_world = se3_init_to_world.matrix();
+  return;
 }
 
 void mediaNode::changeErrorType(ERROR_TYPE newError)
@@ -139,8 +156,7 @@ void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_m
 	transform_cur2init_pub_msg.pose.position.y = tempT_cur_to_init(1,3);
 	transform_cur2init_pub_msg.pose.position.z = tempT_cur_to_init(2,3);
 	transform_cur2init_pub_msg.header = slam_msg->point_cloud.header;
-
-	Eigen::Matrix4d T_cur_to_world_eigen=transform_init_to_world*tempT_cur_to_init;
+  Eigen::Matrix4d T_cur_to_world_eigen=transform_init_to_world*tempT_cur_to_init;    
 	Eigen::Matrix3d tempR_cur_to_world = T_cur_to_world_eigen.block(0,0,3,3);
 	Eigen::Quaterniond Q_cur_to_world(tempR_cur_to_world);
 	// // 这里有一个坑，sophus不能直接初始化不满足正交关系的四维矩阵，所以需要对旋转矩阵的每一列进行单位化
