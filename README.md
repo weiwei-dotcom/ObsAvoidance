@@ -1,2 +1,3 @@
 # ObsAvoidance
-This scheme using the appearance feature of the experiental flat to compute the point cloud for modeling.
+This branch is used for trying to code the path planning method, this is the derive branch of PreModelScheme
+this branch is used for trying to code the path planning method, this is the derive branch of PreModelScheme

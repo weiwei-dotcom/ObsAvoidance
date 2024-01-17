@@ -125,9 +125,14 @@ ModelNode::ModelNode():Node("model")
 
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
     double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
+
+    //debug: temp display the scene on quasi world coordinate system
     cv::Mat temp_transform_init_to_world;
     fileRead["T_init_to_world"] >> temp_transform_init_to_world;
     cv::cv2eigen(temp_transform_init_to_world, transform_init_to_world);
+
+    //todo(not here, just for tip): transform the scene in the init coordinate to the coordinate refer to obstacle coordinate
+
 
     //debug: see the temp branch have been create yet?
     transform_init_to_world=Eigen::Matrix4d::Identity();
@@ -609,7 +614,7 @@ void ModelNode::ransacModelParam()
     
     Yaxis = final_normVec;
     Zaxis = final_dirVec;
-    Xaxis = Yaxis.cross(Zaxis);
+    Xaxis = Yaxis.cross(Zaxis).normalized();
     centrePosition=final_centrePosition;
     frontLeftUnder = centrePosition-Zaxis*zSize/2.0-Xaxis*xSize/2.0;
     structureLeftUnder1 = frontLeftUnder+Yaxis*frontToStructureSize1;
@@ -914,6 +919,7 @@ Eigen::Vector3d ModelNode::indexToCoor(const int index)
                            ((index%(xAxisGridNum*yAxisGridNum))/xAxisGridNum)*gridResolution+0.5*gridResolution+yBoundLow, 
                            (index/(xAxisGridNum*yAxisGridNum))*gridResolution+0.5*gridResolution+zBoundLow);
 }
+
 void ModelNode::pubModelGlobal()
 {   
     //debug
@@ -927,6 +933,7 @@ void ModelNode::pubModelGlobal()
     pcl_pub->publish(pclMsg_obstacle);
     return;
 }
+
 void ModelNode::PubModel()
 {
     //debug
