@@ -1,0 +1,7 @@
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.cpp:[m[K In member function ‘[01m[Kvoid PathPlanner::pclObsCallback(sensor_msgs::msg::PointCloud2_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.cpp:64:9:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Kthis[m[K’
+   64 |         [01;31m[Kthis[m[K->occupy_status[temp_index_x][temp_index_y][temp_index_z] = true;
+      |         [01;31m[K^~~~[m[K
+make[2]: *** [CMakeFiles/path_planner.dir/build.make:63: CMakeFiles/path_planner.dir/src/planner.cpp.o] 中断
+make[1]: *** [CMakeFiles/Makefile2:105: CMakeFiles/path_planner.dir/all] 中断
+make: *** [Makefile:141: all] 中断

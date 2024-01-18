@@ -16,8 +16,22 @@ class PathPlanner:public rclcpp::Node
 {
 private:
     rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_obs_sub;
+    rclcpp::TimerBase::SharedPtr replan_timer;
     pcl::PointCloud<pcl::PointXYZ> pcl_obs;
+    int grid_map_x_size,grid_map_y_size,grid_map_z_size;
+    std::vector<std::vector<std::vector<bool>>> occupy_status;
+    double resolution;
+    int inflation_radius;
+    bool flag_get_grid_map;
+    Eigen::Vector3d grid_map_origin_point;
+    double replan_period;
+
 public:
     PathPlanner();
     void pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pcl_obs_msg);
+
+    void replanPathCallback();
+    
+    void boundCorrect(int &x, int &y, int &z);
+    
 };
