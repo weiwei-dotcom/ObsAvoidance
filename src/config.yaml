@@ -79,7 +79,7 @@ model_distance_center_thresh: 20
 circleRadius: 100
 
 # 建立点云模型时的步进值(mm)
-buildPointStep: 4.0
+buildPointStep: 5.0
 # 整个模型的xyz轴尺寸(mm)
 xSize: 440.0
 ySize: 735.0
