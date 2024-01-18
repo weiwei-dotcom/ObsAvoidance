@@ -1,0 +1,15 @@
+# grid map origin point
+grid_origin_point_x: 0.0
+grid_origin_point_y: 0.0
+grid_origin_point_z: 0.0
+
+# number of grids of grid map on three axis direction
+grid_map_x_size: 2000
+grid_map_y_size: 4000
+grid_map_z_size: 2000
+
+# inflation number of grids
+inflation_radius: 5
+
+# size of a grid described in mm unit
+resolution: 10.0

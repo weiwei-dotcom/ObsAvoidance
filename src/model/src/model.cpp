@@ -622,10 +622,6 @@ void ModelNode::ransacModelParam()
     }
 
     final_dirVec = final_normVec.cross(final_dirVec).cross(final_normVec).normalized();
-    std::cout << "******************************" << std::endl;
-    std::cout << "The final result of centre position: " << final_centrePosition.transpose() <<std::endl;
-    std::cout << "The final result of direction vector: " << final_dirVec.transpose() <<std::endl;
-    std::cout << "The final result of plane norm vector: " << final_normVec.transpose() <<std::endl;
     
     Yaxis = final_normVec;
     Zaxis = final_dirVec;
@@ -637,17 +633,6 @@ void ModelNode::ransacModelParam()
     backLeftUnder = frontLeftUnder+Yaxis*ySize;
     frontRightUnder=centrePosition+xSize/2.0*Xaxis-zSize/2.0*Zaxis;
     frontLeftUp=centrePosition-xSize/2.0*Xaxis+zSize/2.0*Zaxis;
-
-    std::cout << "Xaxis: " <<Xaxis.transpose() << std::endl;
-    std::cout << "Yaxis: " <<Yaxis.transpose() << std::endl;
-    std::cout << "Zaxis: " <<Zaxis.transpose() << std::endl;
-    std::cout << "centrePosition: " <<centrePosition.transpose() << std::endl;
-    std::cout << "frontLeftUnder: " <<frontLeftUnder.transpose() << std::endl;
-    std::cout << "structureLeftUnder1: " <<structureLeftUnder1.transpose() << std::endl;
-    std::cout << "structureLeftUnder2: " <<structureLeftUnder2.transpose() << std::endl;
-    std::cout << "backLeftUnder: " <<backLeftUnder.transpose() << std::endl;
-    std::cout << "frontRightUnder: " <<frontRightUnder.transpose() << std::endl;
-    std::cout << "frontLeftUp: " << frontLeftUp.transpose() << std::endl;
 }
 
 //todo:
@@ -672,9 +657,6 @@ void ModelNode::getTransformInitToWorld()
 
 void ModelNode::buildFront()
 {
-    // //debug
-    // cv::waitKey(0);
-
     int buildStepNum_z = ceil(zSize/buildPointStep);
     int buildStepNum_x = ceil(xSize/buildPointStep);
     for (int i=1;i<buildStepNum_z;i++)
@@ -929,10 +911,8 @@ Eigen::Vector3d ModelNode::indexToCoor(const int index)
 
 void ModelNode::pubModelGlobal()
 {   
-    //debug
     obstacle_frame_msg.header = m_header_worldFrame;
     transformObstacleToWorld_pub->publish(obstacle_frame_msg);
-
     std::cout << "pubModelGlobal()"<<std::endl;
     sensor_msgs::msg::PointCloud2 pclMsg_obstacle;
     pcl::toROSMsg(pcl_obstacle_world, pclMsg_obstacle);
