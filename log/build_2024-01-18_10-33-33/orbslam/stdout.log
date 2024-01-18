@@ -1,5 +1,0 @@
-[35m[1mScanning dependencies of target orbslam[0m
-[ 33%] [32mBuilding CXX object CMakeFiles/orbslam.dir/src/main.cpp.o[0m
-[ 66%] [32mBuilding CXX object CMakeFiles/orbslam.dir/src/slam.cpp.o[0m
-[100%] [32m[1mLinking CXX executable orbslam[0m
-[100%] Built target orbslam

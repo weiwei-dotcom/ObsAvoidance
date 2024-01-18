@@ -1,8 +1,0 @@
-[0.479s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake /home/weiwei/Desktop/project/ObsAvoidance/src/media -DCMAKE_INSTALL_PREFIX=/home/weiwei/Desktop/project/ObsAvoidance/install/media
-[0.491s] CMake Error at CMakeLists.txt:45:
-[0.491s]   Parse error.  Expected a command name, got unquoted argument with text
-[0.491s]   "<<<<<<<".
-[0.491s] 
-[0.491s] 
-[0.491s] -- Configuring incomplete, errors occurred!
-[0.493s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/media' returned '1': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake /home/weiwei/Desktop/project/ObsAvoidance/src/media -DCMAKE_INSTALL_PREFIX=/home/weiwei/Desktop/project/ObsAvoidance/install/media
