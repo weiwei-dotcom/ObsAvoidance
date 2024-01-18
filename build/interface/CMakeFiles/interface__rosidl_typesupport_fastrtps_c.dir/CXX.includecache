@@ -29,6 +29,7 @@ interface/msg/detail/slam__functions.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_c/interface/msg/detail/interface/msg/detail/slam__functions.h
 fastcdr/Cdr.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_c/interface/msg/detail/fastcdr/Cdr.h
+<<<<<<< HEAD
 geometry_msgs/msg/detail/pose__functions.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_c/interface/msg/detail/geometry_msgs/msg/detail/pose__functions.h
 sensor_msgs/msg/detail/image__functions.h
@@ -103,6 +104,14 @@ rosidl_typesupport_cpp/service_type_support.hpp
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_c/interface/srv/detail/rosidl_typesupport_cpp/service_type_support.hpp
 interface/srv/map_point.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_c/interface/srv/detail/interface/srv/map_point.h
+=======
+geometry_msgs/msg/detail/pose_stamped__functions.h
+/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_c/interface/msg/detail/geometry_msgs/msg/detail/pose_stamped__functions.h
+sensor_msgs/msg/detail/point_cloud2__functions.h
+/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_c/interface/msg/detail/sensor_msgs/msg/detail/point_cloud2__functions.h
+std_msgs/msg/detail/header__functions.h
+/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_c/interface/msg/detail/std_msgs/msg/detail/header__functions.h
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 /opt/ros/foxy/include/builtin_interfaces/msg/detail/time__struct.h
 stdbool.h
@@ -180,6 +189,7 @@ stddef.h
 stdint.h
 -
 
+<<<<<<< HEAD
 /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__functions.h
 stdbool.h
 -
@@ -192,6 +202,8 @@ geometry_msgs/msg/rosidl_generator_c__visibility_control.h
 geometry_msgs/msg/detail/pose__struct.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/pose__struct.h
 
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__struct.h
 stdbool.h
 -
@@ -204,6 +216,7 @@ geometry_msgs/msg/detail/point__struct.h
 geometry_msgs/msg/detail/quaternion__struct.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/quaternion__struct.h
 
+<<<<<<< HEAD
 /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__struct.h
 stdbool.h
 -
@@ -477,12 +490,40 @@ rcutils/types/uint8_array.h
 /opt/ros/foxy/include/rmw/rcutils/types/uint8_array.h
 
 /opt/ros/foxy/include/rmw/types.h
+=======
+/opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__functions.h
+stdbool.h
+-
+stdlib.h
+-
+rosidl_runtime_c/visibility_control.h
+/opt/ros/foxy/include/geometry_msgs/msg/detail/rosidl_runtime_c/visibility_control.h
+geometry_msgs/msg/rosidl_generator_c__visibility_control.h
+/opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/rosidl_generator_c__visibility_control.h
+geometry_msgs/msg/detail/pose_stamped__struct.h
+/opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/pose_stamped__struct.h
+
+/opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__struct.h
 stdbool.h
 -
 stddef.h
 -
 stdint.h
 -
+std_msgs/msg/detail/header__struct.h
+/opt/ros/foxy/include/geometry_msgs/msg/detail/std_msgs/msg/detail/header__struct.h
+geometry_msgs/msg/detail/pose__struct.h
+/opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/pose__struct.h
+
+/opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__struct.h
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
+stdbool.h
+-
+stddef.h
+-
+stdint.h
+-
+<<<<<<< HEAD
 rcutils/logging.h
 -
 rmw/init.h
@@ -499,6 +540,10 @@ rmw/visibility_control.h
 /opt/ros/foxy/include/rmw/rmw/visibility_control.h
 
 /opt/ros/foxy/include/rmw/visibility_control.h
+=======
+
+/opt/ros/foxy/include/geometry_msgs/msg/rosidl_generator_c__visibility_control.h
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 /opt/ros/foxy/include/rosidl_runtime_c/message_type_support_struct.h
 rosidl_runtime_c/visibility_control.h
@@ -514,12 +559,15 @@ stddef.h
 stdint.h
 -
 
+<<<<<<< HEAD
 /opt/ros/foxy/include/rosidl_runtime_c/service_type_support_struct.h
 rosidl_runtime_c/visibility_control.h
 /opt/ros/foxy/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h
 rosidl_typesupport_interface/macros.h
 /opt/ros/foxy/include/rosidl_runtime_c/rosidl_typesupport_interface/macros.h
 
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 /opt/ros/foxy/include/rosidl_runtime_c/string.h
 stddef.h
 -
@@ -534,12 +582,15 @@ rosidl_runtime_c/primitives_sequence.h
 
 /opt/ros/foxy/include/rosidl_runtime_c/visibility_control.h
 
+<<<<<<< HEAD
 /opt/ros/foxy/include/rosidl_typesupport_cpp/service_type_support.hpp
 rosidl_runtime_c/service_type_support_struct.h
 -
 rosidl_runtime_c/visibility_control.h
 -
 
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 /opt/ros/foxy/include/rosidl_typesupport_fastrtps_c/identifier.h
 rosidl_typesupport_fastrtps_c/visibility_control.h
 /opt/ros/foxy/include/rosidl_typesupport_fastrtps_c/rosidl_typesupport_fastrtps_c/visibility_control.h
@@ -560,6 +611,7 @@ rosidl_runtime_c/message_type_support_struct.h
 fastcdr/Cdr.h
 -
 
+<<<<<<< HEAD
 /opt/ros/foxy/include/rosidl_typesupport_fastrtps_cpp/service_type_support.h
 stdint.h
 -
@@ -598,6 +650,10 @@ rosidl_runtime_c/string.h
 rosidl_runtime_c/primitives_sequence.h
 /opt/ros/foxy/include/sensor_msgs/msg/detail/rosidl_runtime_c/primitives_sequence.h
 
+=======
+/opt/ros/foxy/include/rosidl_typesupport_interface/macros.h
+
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 /opt/ros/foxy/include/sensor_msgs/msg/detail/point_cloud2__functions.h
 stdbool.h
 -
@@ -636,6 +692,21 @@ rosidl_runtime_c/string.h
 
 /opt/ros/foxy/include/sensor_msgs/msg/rosidl_generator_c__visibility_control.h
 
+<<<<<<< HEAD
+=======
+/opt/ros/foxy/include/std_msgs/msg/detail/header__functions.h
+stdbool.h
+-
+stdlib.h
+-
+rosidl_runtime_c/visibility_control.h
+/opt/ros/foxy/include/std_msgs/msg/detail/rosidl_runtime_c/visibility_control.h
+std_msgs/msg/rosidl_generator_c__visibility_control.h
+/opt/ros/foxy/include/std_msgs/msg/detail/std_msgs/msg/rosidl_generator_c__visibility_control.h
+std_msgs/msg/detail/header__struct.h
+/opt/ros/foxy/include/std_msgs/msg/detail/std_msgs/msg/detail/header__struct.h
+
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 /opt/ros/foxy/include/std_msgs/msg/detail/header__struct.h
 stdbool.h
 -
@@ -648,6 +719,11 @@ builtin_interfaces/msg/detail/time__struct.h
 rosidl_runtime_c/string.h
 /opt/ros/foxy/include/std_msgs/msg/detail/rosidl_runtime_c/string.h
 
+<<<<<<< HEAD
+=======
+/opt/ros/foxy/include/std_msgs/msg/rosidl_generator_c__visibility_control.h
+
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 rosidl_generator_c/interface/msg/detail/slam__functions.h
 stdbool.h
 -
@@ -667,6 +743,7 @@ stddef.h
 -
 stdint.h
 -
+<<<<<<< HEAD
 sensor_msgs/msg/detail/point_cloud2__struct.h
 rosidl_generator_c/interface/msg/detail/sensor_msgs/msg/detail/point_cloud2__struct.h
 geometry_msgs/msg/detail/pose__struct.h
@@ -760,6 +837,17 @@ rosidl_generator_c/interface/srv/interface/srv/detail/map_point__functions.h
 interface/srv/detail/map_point__type_support.h
 rosidl_generator_c/interface/srv/interface/srv/detail/map_point__type_support.h
 
+=======
+std_msgs/msg/detail/header__struct.h
+rosidl_generator_c/interface/msg/detail/std_msgs/msg/detail/header__struct.h
+sensor_msgs/msg/detail/point_cloud2__struct.h
+rosidl_generator_c/interface/msg/detail/sensor_msgs/msg/detail/point_cloud2__struct.h
+geometry_msgs/msg/detail/pose_stamped__struct.h
+rosidl_generator_c/interface/msg/detail/geometry_msgs/msg/detail/pose_stamped__struct.h
+
+rosidl_generator_c/interface/msg/rosidl_generator_c__visibility_control.h
+
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 rosidl_typesupport_fastrtps_c/interface/msg/detail/slam__rosidl_typesupport_fastrtps_c.h
 stddef.h
 -
@@ -772,6 +860,7 @@ rosidl_typesupport_fastrtps_c/interface/msg/detail/interface/msg/rosidl_typesupp
 
 rosidl_typesupport_fastrtps_c/interface/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
 
+<<<<<<< HEAD
 rosidl_typesupport_fastrtps_c/interface/srv/detail/cam_pose__rosidl_typesupport_fastrtps_c.h
 stddef.h
 -
@@ -796,3 +885,5 @@ rosidl_typesupport_fastrtps_c/interface/srv/detail/interface/msg/rosidl_typesupp
 rosidl_runtime_c/service_type_support_struct.h
 rosidl_typesupport_fastrtps_c/interface/srv/detail/rosidl_runtime_c/service_type_support_struct.h
 
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09

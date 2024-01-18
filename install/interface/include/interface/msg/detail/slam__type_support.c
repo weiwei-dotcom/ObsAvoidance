@@ -13,10 +13,18 @@
 
 
 // Include directives for member types
+<<<<<<< HEAD
+=======
+// Member `header`
+#include "std_msgs/msg/header.h"
+// Member `header`
+#include "std_msgs/msg/detail/header__rosidl_typesupport_introspection_c.h"
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 // Member `point_cloud`
 #include "sensor_msgs/msg/point_cloud2.h"
 // Member `point_cloud`
 #include "sensor_msgs/msg/detail/point_cloud2__rosidl_typesupport_introspection_c.h"
+<<<<<<< HEAD
 // Member `cam_pose`
 // Member `world2cam`
 #include "geometry_msgs/msg/pose.h"
@@ -27,6 +35,12 @@
 #include "sensor_msgs/msg/image.h"
 // Member `img`
 #include "sensor_msgs/msg/detail/image__rosidl_typesupport_introspection_c.h"
+=======
+// Member `transform_init2cur`
+#include "geometry_msgs/msg/pose_stamped.h"
+// Member `transform_init2cur`
+#include "geometry_msgs/msg/detail/pose_stamped__rosidl_typesupport_introspection_c.h"
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 #ifdef __cplusplus
 extern "C"
@@ -47,16 +61,26 @@ void Slam__rosidl_typesupport_introspection_c__Slam_fini_function(void * message
   interface__msg__Slam__fini(message_memory);
 }
 
+<<<<<<< HEAD
 static rosidl_typesupport_introspection_c__MessageMember Slam__rosidl_typesupport_introspection_c__Slam_message_member_array[4] = {
   {
     "point_cloud",  // name
+=======
+static rosidl_typesupport_introspection_c__MessageMember Slam__rosidl_typesupport_introspection_c__Slam_message_member_array[3] = {
+  {
+    "header",  // name
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message (initialized later)
     false,  // is array
     0,  // array size
     false,  // is upper bound
+<<<<<<< HEAD
     offsetof(interface__msg__Slam, point_cloud),  // bytes offset in struct
+=======
+    offsetof(interface__msg__Slam, header),  // bytes offset in struct
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -64,6 +88,7 @@ static rosidl_typesupport_introspection_c__MessageMember Slam__rosidl_typesuppor
     NULL  // resize(index) function pointer
   },
   {
+<<<<<<< HEAD
     "cam_pose",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
@@ -80,13 +105,20 @@ static rosidl_typesupport_introspection_c__MessageMember Slam__rosidl_typesuppor
   },
   {
     "world2cam",  // name
+=======
+    "point_cloud",  // name
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message (initialized later)
     false,  // is array
     0,  // array size
     false,  // is upper bound
+<<<<<<< HEAD
     offsetof(interface__msg__Slam, world2cam),  // bytes offset in struct
+=======
+    offsetof(interface__msg__Slam, point_cloud),  // bytes offset in struct
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -94,14 +126,22 @@ static rosidl_typesupport_introspection_c__MessageMember Slam__rosidl_typesuppor
     NULL  // resize(index) function pointer
   },
   {
+<<<<<<< HEAD
     "img",  // name
+=======
+    "transform_init2cur",  // name
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message (initialized later)
     false,  // is array
     0,  // array size
     false,  // is upper bound
+<<<<<<< HEAD
     offsetof(interface__msg__Slam, img),  // bytes offset in struct
+=======
+    offsetof(interface__msg__Slam, transform_init2cur),  // bytes offset in struct
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -113,7 +153,11 @@ static rosidl_typesupport_introspection_c__MessageMember Slam__rosidl_typesuppor
 static const rosidl_typesupport_introspection_c__MessageMembers Slam__rosidl_typesupport_introspection_c__Slam_message_members = {
   "interface__msg",  // message namespace
   "Slam",  // message name
+<<<<<<< HEAD
   4,  // number of fields
+=======
+  3,  // number of fields
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   sizeof(interface__msg__Slam),
   Slam__rosidl_typesupport_introspection_c__Slam_message_member_array,  // message members
   Slam__rosidl_typesupport_introspection_c__Slam_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -132,6 +176,7 @@ ROSIDL_TYPESUPPORT_INTROSPECTION_C_EXPORT_interface
 const rosidl_message_type_support_t *
 ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, interface, msg, Slam)() {
   Slam__rosidl_typesupport_introspection_c__Slam_message_member_array[0].members_ =
+<<<<<<< HEAD
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sensor_msgs, msg, PointCloud2)();
   Slam__rosidl_typesupport_introspection_c__Slam_message_member_array[1].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, geometry_msgs, msg, Pose)();
@@ -139,6 +184,13 @@ ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspecti
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, geometry_msgs, msg, Pose)();
   Slam__rosidl_typesupport_introspection_c__Slam_message_member_array[3].members_ =
     ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sensor_msgs, msg, Image)();
+=======
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, std_msgs, msg, Header)();
+  Slam__rosidl_typesupport_introspection_c__Slam_message_member_array[1].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sensor_msgs, msg, PointCloud2)();
+  Slam__rosidl_typesupport_introspection_c__Slam_message_member_array[2].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, geometry_msgs, msg, PoseStamped)();
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   if (!Slam__rosidl_typesupport_introspection_c__Slam_message_type_support_handle.typesupport_identifier) {
     Slam__rosidl_typesupport_introspection_c__Slam_message_type_support_handle.typesupport_identifier =
       rosidl_typesupport_introspection_c__identifier;

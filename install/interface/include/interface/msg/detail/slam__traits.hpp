@@ -11,6 +11,7 @@
 #include <type_traits>
 
 // Include directives for member types
+<<<<<<< HEAD
 // Member 'point_cloud'
 #include "sensor_msgs/msg/detail/point_cloud2__traits.hpp"
 // Member 'cam_pose'
@@ -18,6 +19,14 @@
 #include "geometry_msgs/msg/detail/pose__traits.hpp"
 // Member 'img'
 #include "sensor_msgs/msg/detail/image__traits.hpp"
+=======
+// Member 'header'
+#include "std_msgs/msg/detail/header__traits.hpp"
+// Member 'point_cloud'
+#include "sensor_msgs/msg/detail/point_cloud2__traits.hpp"
+// Member 'transform_init2cur'
+#include "geometry_msgs/msg/detail/pose_stamped__traits.hpp"
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 namespace rosidl_generator_traits
 {
@@ -36,11 +45,19 @@ inline const char * name<interface::msg::Slam>()
 
 template<>
 struct has_fixed_size<interface::msg::Slam>
+<<<<<<< HEAD
   : std::integral_constant<bool, has_fixed_size<geometry_msgs::msg::Pose>::value && has_fixed_size<sensor_msgs::msg::Image>::value && has_fixed_size<sensor_msgs::msg::PointCloud2>::value> {};
 
 template<>
 struct has_bounded_size<interface::msg::Slam>
   : std::integral_constant<bool, has_bounded_size<geometry_msgs::msg::Pose>::value && has_bounded_size<sensor_msgs::msg::Image>::value && has_bounded_size<sensor_msgs::msg::PointCloud2>::value> {};
+=======
+  : std::integral_constant<bool, has_fixed_size<geometry_msgs::msg::PoseStamped>::value && has_fixed_size<sensor_msgs::msg::PointCloud2>::value && has_fixed_size<std_msgs::msg::Header>::value> {};
+
+template<>
+struct has_bounded_size<interface::msg::Slam>
+  : std::integral_constant<bool, has_bounded_size<geometry_msgs::msg::PoseStamped>::value && has_bounded_size<sensor_msgs::msg::PointCloud2>::value && has_bounded_size<std_msgs::msg::Header>::value> {};
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 template<>
 struct is_message<interface::msg::Slam>

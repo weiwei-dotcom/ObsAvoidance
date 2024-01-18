@@ -23,8 +23,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/weiwei/Desktop/project/ObsAvoidance/src/interface/CMakeLists.txt"
   "/home/weiwei/Desktop/project/ObsAvoidance/src/interface/msg/Slam.msg"
   "/home/weiwei/Desktop/project/ObsAvoidance/src/interface/package.xml"
+<<<<<<< HEAD
   "/home/weiwei/Desktop/project/ObsAvoidance/src/interface/srv/CamPose.srv"
   "/home/weiwei/Desktop/project/ObsAvoidance/src/interface/srv/MapPoint.srv"
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   "/opt/ros/foxy/cmake/yamlConfig.cmake"
   "/opt/ros/foxy/cmake/yamlConfigVersion.cmake"
   "/opt/ros/foxy/cmake/yamlTargets-none.cmake"
@@ -677,8 +680,11 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "ament_cmake_core/stamps/package.xml.stamp"
   "ament_cmake_core/stamps/package_xml_2_cmake.py.stamp"
   "ament_cmake_core/stamps/Slam.msg.stamp"
+<<<<<<< HEAD
   "ament_cmake_core/stamps/MapPoint.srv.stamp"
   "ament_cmake_core/stamps/CamPose.srv.stamp"
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   "rosidl_generator_c/interface/msg/rosidl_generator_c__visibility_control.h"
   "ament_cmake_core/stamps/library_path.sh.stamp"
   "rosidl_typesupport_fastrtps_c/interface/msg/rosidl_typesupport_fastrtps_c__visibility_control.h"

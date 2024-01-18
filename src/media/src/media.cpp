@@ -1,7 +1,13 @@
+<<<<<<< HEAD
+=======
+
+// TODO: 修改配置文件让获取尺度因子的时间更长一点，精确度更高点;
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 #include "media.hpp"
 
 mediaNode::mediaNode():Node("media")
 {
+<<<<<<< HEAD
     RCLCPP_INFO(this->get_logger(), "initiating the mediaNode");
     mapPointCallbackGroup = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
     slamSub = this->create_subscription<interface::msg::Slam>("slam", 3, std::bind(&mediaNode::slam_callback, this, std::placeholders::_1));
@@ -37,6 +43,427 @@ void mediaNode::slam_callback(const interface::msg::Slam::SharedPtr slamMsg)
     std::unique_lock<std::mutex> lock(mtx);
     camPose_pointCloud_img = slamMsg;
     cv_bridge::CvImagePtr imgPtr = cv_bridge::toCvCopy(camPose_pointCloud_img->img, sensor_msgs::image_encodings::BGR8);
+=======
+  error_type = OK;
+  flag_getScaleFact = false;
+  slam_sub.subscribe(this, "slam");
+  image_sub.subscribe(this, "image_raw");
+  sync1.reset(new message_filters::Synchronizer<message_filters::sync_policies::ExactTime<interface::msg::Slam, sensor_msgs::msg::Image>>(
+      message_filters::sync_policies::ExactTime<interface::msg::Slam, sensor_msgs::msg::Image>(10), slam_sub, image_sub)
+  );
+  sync1->registerCallback(std::bind(&mediaNode::slam_callback, this, std::placeholders::_1, std::placeholders::_2));
+  transformInit2Cur_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_initToCur", 5);
+  transformCurToInit_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToInit", 5);
+  transformCurToWorld_pub=this->create_publisher<geometry_msgs::msg::PoseStamped>("transform_curToWorld", 5);
+  pose_init_to_world_sub=this->create_subscription<geometry_msgs::msg::PoseStamped>("transform_init_to_world",
+                                                                                    5,
+                                                                                    std::bind(&mediaNode::transform_init_to_world_callback,this,std::placeholders::_1));
+  pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
+  cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
+  double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
+
+  transform_init_to_world = Eigen::Matrix4d::Identity();
+  transform_init_to_world.col(3) << 1000.0,2000.0,1000.0,1.0;
+	transform_init_to_world.block(0,3,3,1) = scaleFact_mmToTarget*transform_init_to_world.block(0,3,3,1);
+
+  minDist = fileRead["minDist"];
+  dp = fileRead["dp"];
+  cannyUpThresh = fileRead["cannyUpThresh"];
+  circleThresh = fileRead["circleThresh"];
+  minRadius = fileRead["minRadius"];
+  maxRadius = fileRead["maxRadius"];
+  difference_radius_thresh = fileRead["difference_radius_thresh"];
+  distance_center_thresh = fileRead["distance_center_thresh"];
+  circle_size_thresh = fileRead["circle_size_thresh"];
+  double blueUpperThreshH = fileRead["blueUpper.1"];
+  double blueUpperThreshS = fileRead["blueUpper.2"];
+  double blueUpperThreshV = fileRead["blueUpper.3"];
+  double blueLowerThreshH = fileRead["blueLower.1"];
+  double blueLowerThreshS = fileRead["blueLower.2"];
+  double blueLowerThreshV = fileRead["blueLower.3"];
+  blueLowerThresh = cv::Scalar(blueLowerThreshH,blueLowerThreshS,blueLowerThreshV);
+  blueUpperThresh = cv::Scalar(blueUpperThreshH,blueUpperThreshS,blueUpperThreshV);
+  int erodeStructure_size = fileRead["erodeStructure_size"];
+  int dilateStructure_size = fileRead["dilateStructure_size"];
+  structure_erode=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(erodeStructure_size, erodeStructure_size));
+  structure_dilate=cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(dilateStructure_size, dilateStructure_size));
+  float fx = fileRead["Camera.fx"];
+  float fy = fileRead["Camera.fy"];
+  float cx = fileRead["Camera.cx"];
+  float cy = fileRead["Camera.cy"];
+  m_projectMatrix << fx,  0, cx,
+                      0, fy, cy,
+                      0,  0,  1; 
+  scaleFactList_size_thresh = fileRead["scaleFactList_size_thresh"];
+
+  inlier_thresh_scaleFact = fileRead["inlier_thresh_scaleFact"];
+  inlier_thresh_scaleFact*=scaleFact_mmToTarget;
+  sample_length = fileRead["sample_length"];
+  fx_ = fileRead["Camera.fx"];
+  inlier_probability_=fileRead["inlier_probability"];
+  cosValue_thresh = fileRead["cosValue_thresh"];
+  flag_motionControlProgramHaveDone = fileRead["flag_motionControlProgramHaveDone"];
+  flag_slamInited = false;
+  circleRadius=fileRead["circleRadius"];
+  circleRadius*=scaleFact_mmToTarget;
+  // 在运动控制程序编写完成之前不执行该判断内部的代码
+  if (flag_motionControlProgramHaveDone == 1) {
+
+  }
+}
+
+void mediaNode::transform_init_to_world_callback(const geometry_msgs::msg::PoseStamped::SharedPtr transform_init_to_world)
+{
+  Eigen::Quaterniond q_init_to_world(transform_init_to_world->pose.orientation.w, 
+                                    transform_init_to_world->pose.orientation.x, 
+                                    transform_init_to_world->pose.orientation.y, 
+                                    transform_init_to_world->pose.orientation.z);
+  Eigen::Vector3d translation_init_to_world(transform_init_to_world->pose.position.x,
+                                            transform_init_to_world->pose.position.y,
+                                            transform_init_to_world->pose.position.z);
+  Sophus::SE3d se3_init_to_world(q_init_to_world, translation_init_to_world);
+  this->transform_init_to_world = se3_init_to_world.matrix();
+  return;
+}
+
+void mediaNode::changeErrorType(ERROR_TYPE newError)
+{
+  if (newError != error_type)
+  {
+    static std::string errorTypeString[7] = {
+      "Circle detection is not stable",
+      "Distance of circle is too much",
+      "Not found the countour",
+      "Point cloud is little",
+      "OK",
+      "Image recieve error",
+      "The camera is not straight on the plane"
+    };
+    error_type = newError;
+    RCLCPP_INFO(this->get_logger(), "Error Type: %s", errorTypeString[error_type].c_str());
+  }
+}
+
+void mediaNode::slam_callback(const interface::msg::Slam::ConstSharedPtr &slam_msg, 
+                              const sensor_msgs::msg::Image::ConstSharedPtr &image_msg)
+{
+	// 初始化获得到真实世界的尺度因子
+	if (!flag_getScaleFact) {
+		getScaleSlamToWorld(image_msg, slam_msg);
+		return;
+	}
+	// 
+	// 如果初始化获得了到真实世界的尺度因子，将slam尺度下的点云坐标以及相机的位移量乘上尺度因子就获得了真实世界下的点云数据以及相机位移
+	pcl::PointCloud<pcl::PointXYZ> temp_pointCloud;
+	pcl::fromROSMsg(slam_msg->point_cloud, temp_pointCloud);
+	// 调试代码3
+	// std::cout << "temp_pointCloud.size(): " << temp_pointCloud.points.size() << std::endl;
+	for (size_t i=0;i<temp_pointCloud.points.size();i++) {
+		temp_pointCloud.points[i].x *= scaleFact_slamToWorld;
+		temp_pointCloud.points[i].y *= scaleFact_slamToWorld;
+		temp_pointCloud.points[i].z *= scaleFact_slamToWorld;
+	}
+	sensor_msgs::msg::PointCloud2 point_cloud_pub_msg;
+	pcl::toROSMsg(temp_pointCloud, point_cloud_pub_msg);
+	point_cloud_pub_msg.header = slam_msg->point_cloud.header;
+	// std::cout << "point_cloud_pub_msg.header.frame_id: " << point_cloud_pub_msg.header.frame_id << std::endl;
+	pointCloud_pub->publish(point_cloud_pub_msg);
+
+	geometry_msgs::msg::PoseStamped transform_init2cur_pub_msg, transform_cur2init_pub_msg,transform_cur2world_pub_msg;
+	transform_init2cur_pub_msg = slam_msg->transform_init2cur;
+	
+	transform_init2cur_pub_msg.pose.position.x *= scaleFact_slamToWorld;
+	transform_init2cur_pub_msg.pose.position.y *= scaleFact_slamToWorld;
+	transform_init2cur_pub_msg.pose.position.z *= scaleFact_slamToWorld;
+
+	Eigen::Quaterniond q_init_to_cur(transform_init2cur_pub_msg.pose.orientation.w,
+									 transform_init2cur_pub_msg.pose.orientation.x,
+									 transform_init2cur_pub_msg.pose.orientation.y,
+									 transform_init2cur_pub_msg.pose.orientation.z);
+	Eigen::Vector3d t_init_to_cur(transform_init2cur_pub_msg.pose.position.x,
+								  transform_init2cur_pub_msg.pose.position.y,
+								  transform_init2cur_pub_msg.pose.position.z);
+	Eigen::Matrix4d tempT_init_to_cur=Eigen::Matrix4d::Identity();
+	tempT_init_to_cur.block(0,0,3,3) = q_init_to_cur.matrix();
+	tempT_init_to_cur.block(0,3,3,1) = t_init_to_cur;
+	Eigen::Matrix4d tempT_cur_to_init=tempT_init_to_cur.inverse();
+
+	transform_cur2init_pub_msg.pose.orientation.w = (q_init_to_cur.inverse().w());
+	transform_cur2init_pub_msg.pose.orientation.x = (q_init_to_cur.inverse().x());
+	transform_cur2init_pub_msg.pose.orientation.y = (q_init_to_cur.inverse().y());
+	transform_cur2init_pub_msg.pose.orientation.z = (q_init_to_cur.inverse().z());
+	transform_cur2init_pub_msg.pose.position.x = tempT_cur_to_init(0,3);
+	transform_cur2init_pub_msg.pose.position.y = tempT_cur_to_init(1,3);
+	transform_cur2init_pub_msg.pose.position.z = tempT_cur_to_init(2,3);
+	transform_cur2init_pub_msg.header = slam_msg->point_cloud.header;
+  Eigen::Matrix4d T_cur_to_world_eigen=transform_init_to_world*tempT_cur_to_init;    
+	Eigen::Matrix3d tempR_cur_to_world = T_cur_to_world_eigen.block(0,0,3,3);
+	Eigen::Quaterniond Q_cur_to_world(tempR_cur_to_world);
+	// // 这里有一个坑，sophus不能直接初始化不满足正交关系的四维矩阵，所以需要对旋转矩阵的每一列进行单位化
+	// Sophus::SE3d temp_sed_cur_to_world(T_cur_to_world_eigen);
+	// RCLCPP_INFO(this->get_logger(), "temp_sed_cur_to_world.unit_quaternion().w():%f", temp_sed_cur_to_world.unit_quaternion().w());
+
+	transform_cur2world_pub_msg.pose.orientation.w = Q_cur_to_world.w();
+	transform_cur2world_pub_msg.pose.orientation.x = Q_cur_to_world.x();
+	transform_cur2world_pub_msg.pose.orientation.y = Q_cur_to_world.y();
+	transform_cur2world_pub_msg.pose.orientation.z = Q_cur_to_world.z();
+	transform_cur2world_pub_msg.pose.position.x = T_cur_to_world_eigen(0,3);
+	transform_cur2world_pub_msg.pose.position.y = T_cur_to_world_eigen(1,3);
+	transform_cur2world_pub_msg.pose.position.z = T_cur_to_world_eigen(2,3);
+	transform_cur2world_pub_msg.header.frame_id = "world";
+	transform_cur2world_pub_msg.header.stamp = slam_msg->point_cloud.header.stamp;
+	
+	transformInit2Cur_pub->publish(transform_init2cur_pub_msg);
+	transformCurToInit_pub->publish(transform_cur2init_pub_msg);
+	transformCurToWorld_pub->publish(transform_cur2world_pub_msg);
+
+	return;
+}
+
+void mediaNode::getScaleSlamToWorld(const sensor_msgs::msg::Image::ConstSharedPtr &imageMsg, const interface::msg::Slam::ConstSharedPtr &slamMsg) 
+{
+  cv_bridge::CvImagePtr img_ptr = cv_bridge::toCvCopy(imageMsg, "bgr8");
+  cv::Mat img = img_ptr->image;
+  if (img.empty()){
+    changeErrorType(Image_recieve_error);
+    return;
+  }
+  cv::Mat img_gray;
+  cv::cvtColor(img, img_gray, CV_BGR2GRAY);
+  cv::GaussianBlur(img_gray, img_gray, cv::Size(7, 7),2,2);
+
+  std::vector<cv::Vec3f> temp_circles;
+
+  cv::HoughCircles(img_gray, temp_circles, cv::HOUGH_GRADIENT, dp, minDist, cannyUpThresh, circleThresh, minRadius, maxRadius);
+
+  if (temp_circles.size()>1) {
+    changeErrorType(Circle_detection_is_not_stable);
+    // 调试代码5
+    return;    
+  }
+
+  if (temp_circles.size()==0) {
+    changeErrorType(Circle_detection_is_not_stable);
+    // 调试代码5
+    return;    
+  }
+
+  float distance_center=0.0, difference_radius=0.0;
+  if (circles_.size() != 0) 
+  {
+    distance_center = std::sqrt(std::pow(temp_circles[0][0]-circles_.back()[0], 2) + std::pow(temp_circles[0][1]-circles_.back()[1], 2));
+    difference_radius=std::abs(temp_circles[0][2] - circles_.back()[2]);    
+  }
+
+  if (distance_center > distance_center_thresh || difference_radius > difference_radius_thresh) {
+    changeErrorType(Distance_of_circle_is_too_much);
+    distance_.clear();
+    circles_.clear();
+    return;
+  }
+
+  // 利用稀疏点云拟合平面获得slam尺度的平面距离，并判断当前平面是否足够正对相机
+  double distance;
+  bool flag_poseCorrect = detectPoseCorrect(img,slamMsg,distance,temp_circles[0]);
+  if(!flag_poseCorrect) 
+    return;
+  
+  circles_.push_back(temp_circles[0]);
+  distance_.push_back(distance);
+  // 判断检测圆形的数量是否达到每次输出的上限
+  if (circles_.size() < circle_size_thresh) 
+    return;
+  
+  for (int i=0;i<circles_.size();i++) {
+    double scaleFact= circleRadius *  fx_ / ((double)circles_[i][2] * distance_[i]);
+    scaleFactList_.push_back(scaleFact);
+  }
+
+  circles_.clear();
+  distance_.clear();
+  changeErrorType(OK);
+  if (scaleFactList_.size()<scaleFactList_size_thresh)
+    return;
+
+  ransacScaleFact();
+  flag_getScaleFact = true;
+}
+
+bool mediaNode::detectPoseCorrect(const cv::Mat img, const interface::msg::Slam::ConstSharedPtr slamMsg, double &distance_plane, const cv::Vec3f tempCircle)
+{
+  // 阈值分割
+  cv::Mat imgHsv, imgBin, img_erode, img_dilate;
+  cv::cvtColor(img, imgHsv, CV_BGR2HSV);
+  cv::inRange(imgHsv, blueLowerThresh, blueUpperThresh, imgBin);
+  // 较小核腐蚀
+  cv::erode(imgBin, img_erode, structure_erode);
+  
+  // // 调试代码
+  // cv::imshow("img_erode", img_erode);
+  // cv::waitKey(20);
+
+  // 最大连通域提取轮廓
+  std::vector<cv::Point> contour;
+  bool flag_getContour = getMaxAreaContour(img_erode, contour);
+  if (!flag_getContour) 
+  {
+    changeErrorType(Not_found_the_countour);
+    return false;
+  }
+  // 较大核膨胀
+  cv::dilate(img_erode, img_dilate, structure_dilate);
+  // 点云变换坐标系至当前帧
+  pcl::PointCloud<pcl::PointXYZ> PointCloud_InitFrame, PointCloud_curFrame;
+  pcl::fromROSMsg(slamMsg->point_cloud, PointCloud_InitFrame);
+  Eigen::Quaterniond q(slamMsg->transform_init2cur.pose.orientation.w,
+                       slamMsg->transform_init2cur.pose.orientation.x,
+                       slamMsg->transform_init2cur.pose.orientation.y,
+                       slamMsg->transform_init2cur.pose.orientation.z);
+  Sophus::Vector3d pos(slamMsg->transform_init2cur.pose.position.x,
+                       slamMsg->transform_init2cur.pose.position.y,
+                       slamMsg->transform_init2cur.pose.position.z);
+  Sophus::SE3d transform_init2cur(q, pos);
+  pcl::transformPointCloud(PointCloud_InitFrame, PointCloud_curFrame, transform_init2cur.matrix());
+  // 逐个点云逆投影至像素平面进行筛选
+  pcl::PointCloud<pcl::PointXYZ> finalPointCloud;
+  for (auto point:PointCloud_curFrame.points) {
+    Eigen::Vector3f tempPixelPoint=m_projectMatrix*point.getVector3fMap();
+    cv::Point2f pixelPoint(tempPixelPoint[0]/tempPixelPoint[2], tempPixelPoint[1]/tempPixelPoint[2]);
+    double polyTestValue=cv::pointPolygonTest(contour, pixelPoint, false);
+    // 特征点轮廓判断    
+    if (polyTestValue<0) 
+      continue;
+    // 特征点掩码判断    
+    if (img_dilate.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255) 
+      continue; 
+    // 半径距离判断，是否在圆孔附近 
+    float tempPixelDistance = std::sqrt(std::pow(pixelPoint.x-tempCircle[0], 2)+std::pow(pixelPoint.y-tempCircle[1],2));
+    if (tempPixelDistance < tempCircle[2]+(double)2)
+      continue;
+    
+    // // 调试代码1
+    // cv::drawMarker(img, cv::Point((int)pixelPoint.x, (int)pixelPoint.y), cv::Scalar(0,255,0), 2, 20, 3);
+
+    finalPointCloud.points.push_back(point);
+  }
+
+  // // 调试代码1
+  // cv::imshow("img", img);
+  // cv::waitKey(10);
+
+  // 用筛选后的点云拟合平面
+  if (finalPointCloud.points.size()<80) {
+    changeErrorType(Point_cloud_is_little);
+    return false;
+  }
+  Eigen::Vector4d param = calParam(finalPointCloud);
+  distance_plane=-param[3];
+  // 将拟合平面后的法向量点乘当前帧坐标系z轴向量
+  Eigen::Vector3d zAxis(0,0,1);
+  double cosValue = param.block(0,0,3,1).dot(zAxis);
+  // 两向量余弦值判断
+  if (cosValue < cosValue_thresh) {
+    changeErrorType(The_camera_is_not_straight_on_the_plane);
+    return false;    
+  }
+  // // 调试代码2
+  // std::cout << "distance_plane: " << distance_plane << std::endl;
+  return true;
+}
+
+bool mediaNode::getMaxAreaContour(cv::Mat img_bin, std::vector<cv::Point> &contour) {
+    cv::Mat labels, stats, centroids;
+    int num_labels = connectedComponentsWithStats(img_bin, labels, stats, centroids, 8, CV_16U);
+    std::vector<std::vector<cv::Point>> temp_contours;
+    std::vector<int> areas;
+    if (num_labels>1)
+    {
+        for (int i = 1; i < num_labels; i++) // 忽略背景标签0
+        {
+            areas.push_back(stats.at<int>(i, cv::CC_STAT_AREA));
+        }
+        int max_area_label = max_element(areas.begin(), areas.end()) - areas.begin() + 1;
+        cv::findContours((labels == max_area_label), temp_contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);            
+        contour = temp_contours[0];
+        return true;
+    }
+    return false;
+}
+
+Eigen::Vector4d mediaNode::calParam(pcl::PointCloud<pcl::PointXYZ> pointCloud) {
+    Eigen::Vector4d param;
+    pcl::PointCloud<pcl::PointXYZ>::Ptr pointCloud_Ptr=pointCloud.makeShared();
+    pcl::SACSegmentation<pcl::PointXYZ> seg;
+    pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
+    // 设置分割系数
+    seg.setOptimizeCoefficients(true);
+    seg.setModelType(pcl::SACMODEL_PLANE);
+    seg.setMethodType(pcl::SAC_RANSAC);
+    seg.setMaxIterations(100);
+    seg.setDistanceThreshold(3);
+    // 从点云中分割最有可能的平面
+    seg.setInputCloud(pointCloud_Ptr);
+    pcl::ModelCoefficients coefficient;
+    seg.segment(*inliers, coefficient);        
+    param(0) = coefficient.values[0];
+    param(1) = coefficient.values[1];
+    param(2) = coefficient.values[2];
+    param(3) = coefficient.values[3];
+    return param;
+}
+
+void mediaNode::ransacScaleFact()
+{
+  int iterNum = calRansacIterNum();
+  int maxInlierNum = 0;
+  for (int i=0;i<scaleFactList_.size();i++)
+  {
+    std::cout.precision(12);
+    std::cout << scaleFactList_[i] << std::endl;
+  }
+  for (int i=0;i<iterNum;i++) 
+  {
+    int inlierNum = 0;
+    std::random_shuffle(scaleFactList_.begin(), scaleFactList_.end());
+    // std::vector<double>::const_iterator front = scaleFactList_.begin();
+    // std::vector<double>::const_iterator back = scaleFactList_.begin()+sample_length;
+    // std::vector<double> tempScaleFactList(front, back);
+    // double tempSum = std::accumulate(tempScaleFactList.begin(), tempScaleFactList.end(), 0);
+    double tempSum=0;
+    for (int j=0;j<sample_length;j++)
+    {
+      tempSum+=scaleFactList_[j];
+    }
+    double result = tempSum/(double)sample_length;
+    for (int j = 0;j<scaleFactList_.size();j++)
+    {
+      double value = std::abs(scaleFactList_[j]-result);
+      if (value <= inlier_thresh_scaleFact) {
+        inlierNum++;
+      }
+    }
+    std::cout << "result: " << result <<std::endl;
+    if (inlierNum >= maxInlierNum) 
+    {
+      maxInlierNum = inlierNum;
+      scaleFact_slamToWorld = result;
+    }
+  }
+  std::cout << "******************************" << std::endl;
+  std::cout.precision(12);
+  std::cout << "The final result of scale fact: " << scaleFact_slamToWorld <<std::endl;
+}
+
+int mediaNode::calRansacIterNum()
+{
+  float tempFloat = 1.0;
+  for (int i=0;i<sample_length;i++) 
+    tempFloat*=(inlier_probability_ * (float)scaleFactList_size_thresh-(float)i)/(float)(scaleFactList_size_thresh-i);
+  int iterNum = std::ceil((float)1.0/tempFloat);
+  std::cout << "***************************" << std::endl;
+  std::cout<<"Ransac iteration time is: " << iterNum <<std::endl;
+  return iterNum;
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 }
 
 // 返回给消息点云和关键点图像坐标信息的消息

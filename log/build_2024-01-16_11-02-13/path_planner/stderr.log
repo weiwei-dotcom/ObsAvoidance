@@ -1,0 +1,8 @@
+** WARNING ** io features related to pcap will be disabled
+** WARNING ** io features related to png will be disabled
+** WARNING ** io features related to libusb-1.0 will be disabled
+CMake Error at CMakeLists.txt:50 (install_targets):
+  install_targets Cannot find target: "DESTINATION" to install.
+
+
+make: *** [Makefile:222：cmake_check_build_system] 错误 1

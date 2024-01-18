@@ -16,6 +16,10 @@
   <depend>cv_bridge</depend>
   <depend>std_msgs</depend>
   <depend>message_filters</depend>
+<<<<<<< HEAD
+=======
+  <depend>pcl_conversions</depend>
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

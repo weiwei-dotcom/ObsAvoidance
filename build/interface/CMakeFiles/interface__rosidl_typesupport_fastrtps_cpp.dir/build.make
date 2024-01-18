@@ -66,8 +66,11 @@ rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_sup
 rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp: /opt/ros/foxy/share/rosidl_typesupport_fastrtps_cpp/resource/srv__rosidl_typesupport_fastrtps_cpp.hpp.em
 rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp: /opt/ros/foxy/share/rosidl_typesupport_fastrtps_cpp/resource/srv__type_support.cpp.em
 rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp: rosidl_adapter/interface/msg/Slam.idl
+<<<<<<< HEAD
 rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp: rosidl_adapter/interface/srv/MapPoint.idl
 rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp: rosidl_adapter/interface/srv/CamPose.idl
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -163,6 +166,7 @@ rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_sup
 rosidl_typesupport_fastrtps_cpp/interface/msg/detail/slam__rosidl_typesupport_fastrtps_cpp.hpp: rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_fastrtps_cpp/interface/msg/detail/slam__rosidl_typesupport_fastrtps_cpp.hpp
 
+<<<<<<< HEAD
 rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/map_point__type_support.cpp: rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/map_point__type_support.cpp
 
@@ -175,6 +179,8 @@ rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/cam_pose__type
 rosidl_typesupport_fastrtps_cpp/interface/srv/detail/cam_pose__rosidl_typesupport_fastrtps_cpp.hpp: rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_fastrtps_cpp/interface/srv/detail/cam_pose__rosidl_typesupport_fastrtps_cpp.hpp
 
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.o: CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/flags.make
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.o: rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.o"
@@ -188,6 +194,7 @@ CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fas
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp -o CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.s
 
+<<<<<<< HEAD
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/map_point__type_support.cpp.o: CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/flags.make
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/map_point__type_support.cpp.o: rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/map_point__type_support.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/map_point__type_support.cpp.o"
@@ -219,13 +226,21 @@ interface__rosidl_typesupport_fastrtps_cpp_OBJECTS = \
 "CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.o" \
 "CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/map_point__type_support.cpp.o" \
 "CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/cam_pose__type_support.cpp.o"
+=======
+# Object files for target interface__rosidl_typesupport_fastrtps_cpp
+interface__rosidl_typesupport_fastrtps_cpp_OBJECTS = \
+"CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.o"
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 # External object files for target interface__rosidl_typesupport_fastrtps_cpp
 interface__rosidl_typesupport_fastrtps_cpp_EXTERNAL_OBJECTS =
 
 libinterface__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.o
+<<<<<<< HEAD
 libinterface__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/map_point__type_support.cpp.o
 libinterface__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/cam_pose__type_support.cpp.o
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 libinterface__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/build.make
 libinterface__rosidl_typesupport_fastrtps_cpp.so: /opt/ros/foxy/lib/librmw.so
 libinterface__rosidl_typesupport_fastrtps_cpp.so: /opt/ros/foxy/lib/librosidl_typesupport_fastrtps_cpp.so
@@ -268,7 +283,11 @@ libinterface__rosidl_typesupport_fastrtps_cpp.so: /usr/lib/x86_64-linux-gnu/libt
 libinterface__rosidl_typesupport_fastrtps_cpp.so: /usr/lib/x86_64-linux-gnu/libssl.so
 libinterface__rosidl_typesupport_fastrtps_cpp.so: /usr/lib/x86_64-linux-gnu/libcrypto.so
 libinterface__rosidl_typesupport_fastrtps_cpp.so: CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/link.txt
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library libinterface__rosidl_typesupport_fastrtps_cpp.so"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libinterface__rosidl_typesupport_fastrtps_cpp.so"
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -282,10 +301,13 @@ CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/clean:
 
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/interface/msg/detail/slam__rosidl_typesupport_fastrtps_cpp.hpp
+<<<<<<< HEAD
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/map_point__type_support.cpp
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/interface/srv/detail/map_point__rosidl_typesupport_fastrtps_cpp.hpp
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/cam_pose__type_support.cpp
 CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/depend: rosidl_typesupport_fastrtps_cpp/interface/srv/detail/cam_pose__rosidl_typesupport_fastrtps_cpp.hpp
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 	cd /home/weiwei/Desktop/project/ObsAvoidance/build/interface && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/depend
 

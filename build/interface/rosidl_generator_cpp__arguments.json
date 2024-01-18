@@ -3,9 +3,13 @@
   "output_dir": "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface",
   "template_dir": "/opt/ros/foxy/share/rosidl_generator_cpp/cmake/../resource",
   "idl_tuples": [
+<<<<<<< HEAD
     "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:msg/Slam.idl",
     "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:srv/MapPoint.idl",
     "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:srv/CamPose.idl"
+=======
+    "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:msg/Slam.idl"
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   ],
   "ros_interface_dependencies": [
     "sensor_msgs:/opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl",
@@ -119,8 +123,11 @@
     "/opt/ros/foxy/share/rosidl_generator_cpp/cmake/../resource/srv__traits.hpp.em",
     "/opt/ros/foxy/share/rosidl_generator_cpp/cmake/../resource/srv__type_support.hpp.em",
     "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface/msg/Slam.idl",
+<<<<<<< HEAD
     "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface/srv/MapPoint.idl",
     "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface/srv/CamPose.idl",
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     "/opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl",
     "/opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl",
     "/opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl",

@@ -1,0 +1,58 @@
+[0.100s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16
+[0.141s] [35m[1mScanning dependencies of target model[0m
+[0.194s] [ 33%] [32mBuilding CXX object CMakeFiles/model.dir/src/model.cpp.o[0m
+[5.873s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::selectCircle(cv::Vec3f&, std::vector<cv::Vec<float, 3> >, cv::Mat&)[m[K’:
+[5.873s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:204:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.873s]   204 |     for (int i = 0;[01;35m[Ki<temp_circles.size()[m[K;i++)
+[5.873s]       |                    [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[5.873s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:217:45:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+[5.873s]   217 |             if ([01;35m[Kmask.at<bool>(pointInCircle)==255[m[K||mask.at<bool>(pointOutCircle)!=255)
+[5.873s]       |                 [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[5.874s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:217:81:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[5.874s]   217 | bool>(pointInCircle)==255||[01;35m[Kmask.at<bool>(pointOutCircle)!=255[m[K)
+[5.874s]       |                            [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[5.874s] 
+[5.876s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::selectLine(cv::Mat, std::vector<cv::Vec<int, 4> >, cv::Vec4i&, cv::Vec3f)[m[K’:
+[5.876s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:246:19:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<int, 4> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.877s]   246 |     for (int i=0;[01;35m[Ki<tempLines.size()[m[K;i++)
+[5.877s]       |                  [01;35m[K~^~~~~~~~~~~~~~~~~[m[K
+[5.877s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:271:42:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+[5.878s]   271 |         if ([01;35m[Kimg_erode.at<bool>(endPoint1)==255[m[K || img_erode.at<bool>(endPoint2)==255 || img_erode.at<bool>(midPoint)==255)
+[5.878s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[5.878s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:271:80:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+[5.878s]   271 | t<bool>(endPoint1)==255 || [01;35m[Kimg_erode.at<bool>(endPoint2)==255[m[K || img_erode.at<bool>(midPoint)==255)
+[5.878s]       |                            [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[5.878s] 
+[5.878s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:271:117:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always false [[01;35m[K-Wbool-compare[m[K]
+[5.878s]   271 | at<bool>(endPoint2)==255 || [01;35m[Kimg_erode.at<bool>(midPoint)==255[m[K)
+[5.878s]       |                             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[5.878s] 
+[5.878s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:275:44:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[5.878s]   275 |         if ([01;35m[Kimg_erode.at<bool>(flag_point1)!=255[m[K || img_erode.at<bool>(flag_point2)!=255)
+[5.878s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[5.878s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:275:84:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+[5.878s]   275 | ol>(flag_point1)!=255 || [01;35m[Kimg_erode.at<bool>(flag_point2)!=255[m[K)
+[5.879s]       |                          [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[5.879s] 
+[5.940s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::Model()[m[K’:
+[5.941s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:327:20:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.941s]   327 |     for (int i =0;[01;35m[Ki<temp_circles.size()[m[K;i++)
+[5.941s]       |                   [01;35m[K~^~~~~~~~~~~~~~~~~~~~[m[K
+[5.941s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:375:38:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[5.942s]   375 |     if ([01;35m[Kglobal_centrePostions.size() < modelThresh[m[K)
+[5.942s]       |         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~[m[K
+[5.950s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kvoid ModelNode::ransacModelParam()[m[K’:
+[5.950s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:451:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[5.950s]   451 |     for(int n=0;[01;35m[Kn<global_vecs_direction.size()[m[K;n++) {
+[5.950s]       |                 [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[5.962s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:[m[K In member function ‘[01m[Kbool ModelNode::detectPoseCorrect(Eigen::Vector4d&, cv::Mat, cv::Mat&)[m[K’:
+[5.962s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/model/src/model.cpp:533:88:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Kstd[m[K’
+[5.962s]   533 |             std::cout << "img_erode.channels() : " << img_erode.channels() << std::endl
+[5.962s]       |                                                                                        [01;31m[K^[m[K
+[5.963s]       |                                                                                        [32m[K;[m[K
+[5.963s]   534 |             [32m[Kstd[m[K::cout <<"img_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y): " <<img_erode.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) <<std::endl;
+[5.963s]       |             [32m[K~~~[m[K                                                                         
+[12.661s] make[2]: *** [CMakeFiles/model.dir/build.make:76：CMakeFiles/model.dir/src/model.cpp.o] 错误 1
+[12.661s] make[1]: *** [CMakeFiles/Makefile2:105：CMakeFiles/model.dir/all] 错误 2
+[12.661s] make: *** [Makefile:141：all] 错误 2
+[12.663s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/model' returned '2': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/model -- -j16 -l16

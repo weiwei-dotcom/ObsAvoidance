@@ -22,9 +22,20 @@ find_package(interface REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
+<<<<<<< HEAD
 find_package(OpenCV REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(message_filters REQUIRED)
+=======
+# find_package(OpenCV REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(message_filters REQUIRED)
+find_package(pcl_conversions REQUIRED)
+find_package(PCL REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(Sophus REQUIRED)
+find_package(Ceres REQUIRED)
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -37,11 +48,22 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+<<<<<<< HEAD
 add_executable(media src/main.cpp src/media.cpp)
 
 ament_target_dependencies(media rclcpp interface geometry_msgs sensor_msgs cv_bridge message_filters)
 
 target_link_libraries(media ${OpenCV_LIBS})
+=======
+include_directories(${EIGEN3_INCLUDE_DIR} ${Sophus_DIR} ${PCL_INCLUDE_DIRS} ${CERES_INCLUDE_DIRS})
+
+add_executable(media src/main.cpp src/media.cpp)
+
+ament_target_dependencies(media rclcpp interface geometry_msgs sensor_msgs cv_bridge message_filters pcl_conversions rcutils)
+
+target_link_libraries(media ${PCL_LIBRARIES})
+# target_link_libraries(media ${OpenCV_LIBS} ${PCL_LIBRARIES})
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 install(TARGETS
   media

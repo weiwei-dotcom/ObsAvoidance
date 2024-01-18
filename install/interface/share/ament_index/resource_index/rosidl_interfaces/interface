@@ -1,4 +1,5 @@
 msg/Slam.idl
+<<<<<<< HEAD
 msg/Slam.msg
 srv/CamPose.idl
 srv/CamPose.srv
@@ -8,3 +9,6 @@ srv/MapPoint.idl
 srv/MapPoint.srv
 srv/MapPoint_Request.msg
 srv/MapPoint_Response.msg
+=======
+msg/Slam.msg
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09

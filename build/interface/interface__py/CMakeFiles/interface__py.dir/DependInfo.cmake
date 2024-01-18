@@ -10,11 +10,14 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/msg/__init__.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/msg/_slam.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/msg/_slam_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+<<<<<<< HEAD
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/__init__.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_cam_pose.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_cam_pose_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_map_point.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_map_point_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   )
 
 

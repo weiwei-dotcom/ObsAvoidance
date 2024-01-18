@@ -9,6 +9,7 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/detail/slam__struct.hpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/slam.hpp"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/slam.hpp"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/slam.hpp"
+<<<<<<< HEAD
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/srv/cam_pose.hpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/slam.hpp"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/srv/detail/cam_pose__builder.hpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/slam.hpp"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/srv/detail/cam_pose__struct.hpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/slam.hpp"
@@ -19,6 +20,8 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/srv/detail/map_point__traits.hpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/slam.hpp"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/srv/detail/map_point__type_support.hpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/slam.hpp"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/srv/map_point.hpp" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_cpp/interface/msg/slam.hpp"
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   )
 
 

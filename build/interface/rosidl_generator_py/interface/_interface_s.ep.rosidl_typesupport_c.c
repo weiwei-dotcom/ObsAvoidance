@@ -151,6 +151,7 @@ _register_msg_type__msg__slam(PyObject * pymodule)
   return 0;
 }
 
+<<<<<<< HEAD
 // already included above
 // #include <stdbool.h>
 // already included above
@@ -771,6 +772,8 @@ _register_srv_type__srv__cam_pose(PyObject * pymodule)
   return 0;
 }
 
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 PyMODINIT_FUNC
 PyInit_interface_s__rosidl_typesupport_c(void)
 {
@@ -787,6 +790,7 @@ PyInit_interface_s__rosidl_typesupport_c(void)
     return NULL;
   }
 
+<<<<<<< HEAD
   err = _register_msg_type__srv__map_point__request(pymodule);
   if (err) {
     Py_XDECREF(pymodule);
@@ -823,5 +827,7 @@ PyInit_interface_s__rosidl_typesupport_c(void)
     return NULL;
   }
 
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   return pymodule;
 }

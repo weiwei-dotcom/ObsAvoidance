@@ -58,6 +58,7 @@ CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__build
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__struct.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp
+<<<<<<< HEAD
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/map_point.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/map_point__builder.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/map_point__struct.hpp
@@ -68,6 +69,8 @@ CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/cam_pose__b
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/cam_pose__struct.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/cam_pose__traits.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/cam_pose__type_support.hpp
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/rosidl_generator_cpp__visibility_control.hpp
 
 
@@ -91,8 +94,11 @@ rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/rosidl_generato
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__traits.hpp.em
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__type_support.hpp.em
 rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/msg/Slam.idl
+<<<<<<< HEAD
 rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/srv/MapPoint.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/srv/CamPose.idl
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -197,6 +203,7 @@ rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp: rosidl_generator_cpp
 rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp
 
+<<<<<<< HEAD
 rosidl_generator_cpp/interface/srv/map_point.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/map_point.hpp
 
@@ -227,12 +234,15 @@ rosidl_generator_cpp/interface/srv/detail/cam_pose__traits.hpp: rosidl_generator
 rosidl_generator_cpp/interface/srv/detail/cam_pose__type_support.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/cam_pose__type_support.hpp
 
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 interface__cpp: CMakeFiles/interface__cpp
 interface__cpp: rosidl_generator_cpp/interface/msg/slam.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__builder.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__struct.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp
+<<<<<<< HEAD
 interface__cpp: rosidl_generator_cpp/interface/srv/map_point.hpp
 interface__cpp: rosidl_generator_cpp/interface/srv/detail/map_point__builder.hpp
 interface__cpp: rosidl_generator_cpp/interface/srv/detail/map_point__struct.hpp
@@ -243,6 +253,8 @@ interface__cpp: rosidl_generator_cpp/interface/srv/detail/cam_pose__builder.hpp
 interface__cpp: rosidl_generator_cpp/interface/srv/detail/cam_pose__struct.hpp
 interface__cpp: rosidl_generator_cpp/interface/srv/detail/cam_pose__traits.hpp
 interface__cpp: rosidl_generator_cpp/interface/srv/detail/cam_pose__type_support.hpp
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 interface__cpp: CMakeFiles/interface__cpp.dir/build.make
 
 .PHONY : interface__cpp

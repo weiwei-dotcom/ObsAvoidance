@@ -39,8 +39,11 @@ endif()
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Slam.msg"
+<<<<<<< HEAD
   "srv/MapPoint.srv"
   "srv/CamPose.srv"
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   DEPENDENCIES
   sensor_msgs
   geometry_msgs

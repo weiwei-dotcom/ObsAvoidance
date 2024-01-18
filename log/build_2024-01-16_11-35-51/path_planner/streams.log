@@ -1,0 +1,19 @@
+[0.100s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16
+[0.138s] [ 66%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/planner.cpp.o[0m
+[0.138s] [ 66%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/main.cpp.o[0m
+[0.282s] In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.cpp:1[m[K:
+[0.283s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.hpp:6:10:[m[K [01;31m[Kfatal error: [m[Kopencv2/core/eigen.hpp: 没有那个文件或目录
+[0.283s]     6 | #include [01;31m[K<opencv2/core/eigen.hpp>[m[K
+[0.283s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.283s] compilation terminated.
+[0.288s] In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/main.cpp:1[m[K:
+[0.288s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.hpp:6:10:[m[K [01;31m[Kfatal error: [m[Kopencv2/core/eigen.hpp: 没有那个文件或目录
+[0.288s]     6 | #include [01;31m[K<opencv2/core/eigen.hpp>[m[K
+[0.289s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.289s] compilation terminated.
+[0.292s] make[2]: *** [CMakeFiles/path_planner.dir/build.make:63：CMakeFiles/path_planner.dir/src/planner.cpp.o] 错误 1
+[0.292s] make[2]: *** 正在等待未完成的任务....
+[0.292s] make[2]: *** [CMakeFiles/path_planner.dir/build.make:76：CMakeFiles/path_planner.dir/src/main.cpp.o] 错误 1
+[0.292s] make[1]: *** [CMakeFiles/Makefile2:105：CMakeFiles/path_planner.dir/all] 错误 2
+[0.292s] make: *** [Makefile:141：all] 错误 2
+[0.294s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner' returned '2': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16

@@ -1,3 +1,6 @@
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:msg/Slam.idl
+<<<<<<< HEAD
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:srv/MapPoint.idl
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:srv/CamPose.idl
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09

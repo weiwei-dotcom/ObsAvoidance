@@ -5,8 +5,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/detail/slam__functions.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.o"
+<<<<<<< HEAD
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/cam_pose__functions.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/cam_pose__functions.c.o"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/map_point__functions.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/map_point__functions.c.o"
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -29,6 +32,7 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/detail/slam__functions.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/slam.h"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/detail/slam__struct.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/slam.h"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/detail/slam__type_support.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/slam.h"
+<<<<<<< HEAD
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/cam_pose.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/slam.h"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/cam_pose__functions.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/slam.h"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/cam_pose__functions.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/slam.h"
@@ -39,6 +43,8 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/map_point__struct.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/slam.h"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/map_point__type_support.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/slam.h"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/map_point.h" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/slam.h"
+=======
+>>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   )
 
 

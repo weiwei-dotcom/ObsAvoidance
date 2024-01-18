@@ -1,0 +1,25 @@
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::slam_callback(const ConstSharedPtr&, const ConstSharedPtr&)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:125:18:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[KtempR_cur_to_init[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+  125 |  Eigen::Matrix3d [01;35m[KtempR_cur_to_init[m[K = tempT_cur_to_init.block(0,0,3,3);
+      |                  [01;35m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::getScaleSlamToWorld(const ConstSharedPtr&, const ConstSharedPtr&)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:191:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  191 |   if ([01;35m[Kcircles_.size() < circle_size_thresh[m[K)
+      |       [01;35m[K~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:194:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<cv::Vec<float, 3> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  194 |   for (int i=0;[01;35m[Ki<circles_.size()[m[K;i++) {
+      |                [01;35m[K~^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:202:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+  202 |   if ([01;35m[KscaleFactList_.size()<scaleFactList_size_thresh[m[K)
+      |       [01;35m[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kbool mediaNode::detectPoseCorrect(cv::Mat, interface::msg::Slam_<std::allocator<void> >::ConstSharedPtr, double&, cv::Vec3f)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:254:67:[m[K [01;35m[Kwarning: [m[Kcomparison of constant ‘[01m[K255[m[K’ with boolean expression is always true [[01;35m[K-Wbool-compare[m[K]
+  254 |     if ([01;35m[Kimg_dilate.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255[m[K)
+      |         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:[m[K In member function ‘[01m[Kvoid mediaNode::ransacScaleFact()[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:336:17:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  336 |   for (int i=0;[01;35m[Ki<scaleFactList_.size()[m[K;i++)
+      |                [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:355:21:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  355 |     for (int j = 0;[01;35m[Kj<scaleFactList_.size()[m[K;j++)
+      |                    [01;35m[K~^~~~~~~~~~~~~~~~~~~~~~[m[K
