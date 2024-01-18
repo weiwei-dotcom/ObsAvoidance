@@ -18,36 +18,19 @@ extern "C"
 // Constants defined in the message
 
 // Include directives for member types
-<<<<<<< HEAD
-// Member 'point_cloud'
-#include "sensor_msgs/msg/detail/point_cloud2__struct.h"
-// Member 'cam_pose'
-// Member 'world2cam'
-#include "geometry_msgs/msg/detail/pose__struct.h"
-// Member 'img'
-#include "sensor_msgs/msg/detail/image__struct.h"
-=======
 // Member 'header'
 #include "std_msgs/msg/detail/header__struct.h"
 // Member 'point_cloud'
 #include "sensor_msgs/msg/detail/point_cloud2__struct.h"
 // Member 'transform_init2cur'
 #include "geometry_msgs/msg/detail/pose_stamped__struct.h"
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 // Struct defined in msg/Slam in the package interface.
 typedef struct interface__msg__Slam
 {
-<<<<<<< HEAD
-  sensor_msgs__msg__PointCloud2 point_cloud;
-  geometry_msgs__msg__Pose cam_pose;
-  geometry_msgs__msg__Pose world2cam;
-  sensor_msgs__msg__Image img;
-=======
   std_msgs__msg__Header header;
   sensor_msgs__msg__PointCloud2 point_cloud;
   geometry_msgs__msg__PoseStamped transform_init2cur;
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 } interface__msg__Slam;
 
 // Struct for a sequence of interface__msg__Slam.

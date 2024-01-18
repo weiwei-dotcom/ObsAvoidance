@@ -1,4 +1,0 @@
-make[2]: *** [CMakeFiles/orbslam.dir/build.make:76: CMakeFiles/orbslam.dir/src/slam.cpp.o] 中断
-make[2]: *** [CMakeFiles/orbslam.dir/build.make:63: CMakeFiles/orbslam.dir/src/main.cpp.o] 中断
-make[1]: *** [CMakeFiles/Makefile2:105: CMakeFiles/orbslam.dir/all] 中断
-make: *** [Makefile:141: all] 中断

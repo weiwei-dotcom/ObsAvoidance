@@ -9,11 +9,7 @@
 _colcon_prefix_chain_zsh_source_script() {
   if [ -f "$1" ]; then
     if [ -n "$COLCON_TRACE" ]; then
-<<<<<<< HEAD
-      echo ". \"$1\""
-=======
       echo "# . \"$1\""
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     fi
     . "$1"
   else

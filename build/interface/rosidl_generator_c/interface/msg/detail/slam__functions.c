@@ -12,22 +12,12 @@
 
 
 // Include directives for member types
-<<<<<<< HEAD
-// Member `point_cloud`
-#include "sensor_msgs/msg/detail/point_cloud2__functions.h"
-// Member `cam_pose`
-// Member `world2cam`
-#include "geometry_msgs/msg/detail/pose__functions.h"
-// Member `img`
-#include "sensor_msgs/msg/detail/image__functions.h"
-=======
 // Member `header`
 #include "std_msgs/msg/detail/header__functions.h"
 // Member `point_cloud`
 #include "sensor_msgs/msg/detail/point_cloud2__functions.h"
 // Member `transform_init2cur`
 #include "geometry_msgs/msg/detail/pose_stamped__functions.h"
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 bool
 interface__msg__Slam__init(interface__msg__Slam * msg)
@@ -35,25 +25,6 @@ interface__msg__Slam__init(interface__msg__Slam * msg)
   if (!msg) {
     return false;
   }
-<<<<<<< HEAD
-  // point_cloud
-  if (!sensor_msgs__msg__PointCloud2__init(&msg->point_cloud)) {
-    interface__msg__Slam__fini(msg);
-    return false;
-  }
-  // cam_pose
-  if (!geometry_msgs__msg__Pose__init(&msg->cam_pose)) {
-    interface__msg__Slam__fini(msg);
-    return false;
-  }
-  // world2cam
-  if (!geometry_msgs__msg__Pose__init(&msg->world2cam)) {
-    interface__msg__Slam__fini(msg);
-    return false;
-  }
-  // img
-  if (!sensor_msgs__msg__Image__init(&msg->img)) {
-=======
   // header
   if (!std_msgs__msg__Header__init(&msg->header)) {
     interface__msg__Slam__fini(msg);
@@ -66,7 +37,6 @@ interface__msg__Slam__init(interface__msg__Slam * msg)
   }
   // transform_init2cur
   if (!geometry_msgs__msg__PoseStamped__init(&msg->transform_init2cur)) {
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     interface__msg__Slam__fini(msg);
     return false;
   }
@@ -79,23 +49,12 @@ interface__msg__Slam__fini(interface__msg__Slam * msg)
   if (!msg) {
     return;
   }
-<<<<<<< HEAD
-  // point_cloud
-  sensor_msgs__msg__PointCloud2__fini(&msg->point_cloud);
-  // cam_pose
-  geometry_msgs__msg__Pose__fini(&msg->cam_pose);
-  // world2cam
-  geometry_msgs__msg__Pose__fini(&msg->world2cam);
-  // img
-  sensor_msgs__msg__Image__fini(&msg->img);
-=======
   // header
   std_msgs__msg__Header__fini(&msg->header);
   // point_cloud
   sensor_msgs__msg__PointCloud2__fini(&msg->point_cloud);
   // transform_init2cur
   geometry_msgs__msg__PoseStamped__fini(&msg->transform_init2cur);
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 }
 
 bool
@@ -104,29 +63,6 @@ interface__msg__Slam__are_equal(const interface__msg__Slam * lhs, const interfac
   if (!lhs || !rhs) {
     return false;
   }
-<<<<<<< HEAD
-  // point_cloud
-  if (!sensor_msgs__msg__PointCloud2__are_equal(
-      &(lhs->point_cloud), &(rhs->point_cloud)))
-  {
-    return false;
-  }
-  // cam_pose
-  if (!geometry_msgs__msg__Pose__are_equal(
-      &(lhs->cam_pose), &(rhs->cam_pose)))
-  {
-    return false;
-  }
-  // world2cam
-  if (!geometry_msgs__msg__Pose__are_equal(
-      &(lhs->world2cam), &(rhs->world2cam)))
-  {
-    return false;
-  }
-  // img
-  if (!sensor_msgs__msg__Image__are_equal(
-      &(lhs->img), &(rhs->img)))
-=======
   // header
   if (!std_msgs__msg__Header__are_equal(
       &(lhs->header), &(rhs->header)))
@@ -142,7 +78,6 @@ interface__msg__Slam__are_equal(const interface__msg__Slam * lhs, const interfac
   // transform_init2cur
   if (!geometry_msgs__msg__PoseStamped__are_equal(
       &(lhs->transform_init2cur), &(rhs->transform_init2cur)))
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   {
     return false;
   }
@@ -157,29 +92,6 @@ interface__msg__Slam__copy(
   if (!input || !output) {
     return false;
   }
-<<<<<<< HEAD
-  // point_cloud
-  if (!sensor_msgs__msg__PointCloud2__copy(
-      &(input->point_cloud), &(output->point_cloud)))
-  {
-    return false;
-  }
-  // cam_pose
-  if (!geometry_msgs__msg__Pose__copy(
-      &(input->cam_pose), &(output->cam_pose)))
-  {
-    return false;
-  }
-  // world2cam
-  if (!geometry_msgs__msg__Pose__copy(
-      &(input->world2cam), &(output->world2cam)))
-  {
-    return false;
-  }
-  // img
-  if (!sensor_msgs__msg__Image__copy(
-      &(input->img), &(output->img)))
-=======
   // header
   if (!std_msgs__msg__Header__copy(
       &(input->header), &(output->header)))
@@ -195,7 +107,6 @@ interface__msg__Slam__copy(
   // transform_init2cur
   if (!geometry_msgs__msg__PoseStamped__copy(
       &(input->transform_init2cur), &(output->transform_init2cur)))
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   {
     return false;
   }

@@ -7,19 +7,6 @@ CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/i
 CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/slam.hpp
-<<<<<<< HEAD
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/cam_pose.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/cam_pose__builder.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/cam_pose__struct.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/cam_pose__traits.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/cam_pose__type_support.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/map_point__builder.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/map_point__struct.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/map_point__traits.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/map_point__type_support.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/map_point.hpp
-=======
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/main.cpp
 CMakeFiles/media.dir/src/main.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/builtin_interfaces/msg/detail/duration__builder.hpp
@@ -41,11 +28,6 @@ CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/det
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__struct.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__traits.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__type_support.hpp
-<<<<<<< HEAD
-CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__struct.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__traits.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/pose.hpp
-=======
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__builder.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__struct.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__traits.hpp
@@ -54,7 +36,6 @@ CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/det
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__traits.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/pose.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/pose_stamped.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/libstatistics_collector/collector/collector.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/libstatistics_collector/collector/generate_statistics_message.hpp
@@ -66,8 +47,6 @@ CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/libstatistics_collect
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/libstatistics_collector/topic_statistics_collector/received_message_period.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/libstatistics_collector/topic_statistics_collector/topic_statistics_collector.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/libstatistics_collector/visibility_control.hpp
-<<<<<<< HEAD
-=======
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/message_filters/connection.h
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/message_filters/message_event.h
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/message_filters/message_traits.h
@@ -103,7 +82,6 @@ CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/pcl_msgs/msg/point_in
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/pcl_msgs/msg/polygon_mesh.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/pcl_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/pcl_msgs/msg/vertices.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/rcl/allocator.h
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/rcl/arguments.h
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/rcl/client.h
@@ -380,11 +358,6 @@ CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detai
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_cloud2__struct.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_cloud2__traits.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_cloud2__type_support.hpp
-<<<<<<< HEAD
-CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_field__struct.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/image.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/point_cloud2.hpp
-=======
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_field__builder.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_field__struct.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_field__traits.hpp
@@ -392,7 +365,6 @@ CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detai
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/image.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/point_cloud2.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/point_field.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/detail/metrics_message__builder.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/detail/metrics_message__struct.hpp
@@ -401,23 +373,15 @@ CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/d
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/detail/statistic_data_point__struct.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/metrics_message.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
-<<<<<<< HEAD
-CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__struct.hpp
-CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__traits.hpp
-=======
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__builder.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__struct.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__traits.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__type_support.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/int32__builder.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/int32__struct.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/int32__traits.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/int32__type_support.hpp
-<<<<<<< HEAD
-=======
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/header.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/int32.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /opt/ros/foxy/include/tracetools/config.h
@@ -442,10 +406,7 @@ CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/core/cvdef.h
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/core/cvstd.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/core/cvstd.inl.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp
-<<<<<<< HEAD
-=======
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/core/eigen.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/core/fast_math.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/core/hal/interface.h
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/core/hal/msa_macros.h
@@ -561,8 +522,6 @@ CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/viz/types.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/viz/viz3d.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/viz/vizcore.hpp
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/opencv4/opencv2/viz/widgets.hpp
-<<<<<<< HEAD
-=======
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/pcl-1.10/pcl/ModelCoefficients.h
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/pcl-1.10/pcl/PCLHeader.h
 CMakeFiles/media.dir/src/main.cpp.o: /usr/include/pcl-1.10/pcl/PCLImage.h
@@ -965,7 +924,6 @@ CMakeFiles/media.dir/src/main.cpp.o: /usr/local/include/eigen3/unsupported/Eigen
 CMakeFiles/media.dir/src/main.cpp.o: /usr/local/include/eigen3/unsupported/Eigen/src/NonLinearOptimization/r1updt.h
 CMakeFiles/media.dir/src/main.cpp.o: /usr/local/include/eigen3/unsupported/Eigen/src/NonLinearOptimization/rwupdt.h
 CMakeFiles/media.dir/src/main.cpp.o: /usr/local/include/eigen3/unsupported/Eigen/src/NumericalDiff/NumericalDiff.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__builder.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__struct.hpp
@@ -973,19 +931,6 @@ CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/
 CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/slam.hpp
-<<<<<<< HEAD
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/cam_pose.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/cam_pose__builder.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/cam_pose__struct.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/cam_pose__traits.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/cam_pose__type_support.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/map_point__builder.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/map_point__struct.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/map_point__traits.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/map_point__type_support.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/map_point.hpp
-=======
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp
 CMakeFiles/media.dir/src/media.cpp.o: /home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/builtin_interfaces/msg/detail/duration__builder.hpp
@@ -1007,11 +952,6 @@ CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/de
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__struct.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__traits.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__type_support.hpp
-<<<<<<< HEAD
-CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__struct.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__traits.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/pose.hpp
-=======
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__builder.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__struct.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__traits.hpp
@@ -1020,7 +960,6 @@ CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/de
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__traits.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/pose.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/pose_stamped.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/libstatistics_collector/collector/collector.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/libstatistics_collector/collector/generate_statistics_message.hpp
@@ -1032,8 +971,6 @@ CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/libstatistics_collec
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/libstatistics_collector/topic_statistics_collector/received_message_period.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/libstatistics_collector/topic_statistics_collector/topic_statistics_collector.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/libstatistics_collector/visibility_control.hpp
-<<<<<<< HEAD
-=======
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/message_filters/connection.h
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/message_filters/message_event.h
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/message_filters/message_traits.h
@@ -1069,7 +1006,6 @@ CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/pcl_msgs/msg/point_i
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/pcl_msgs/msg/polygon_mesh.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/pcl_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/pcl_msgs/msg/vertices.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/rcl/allocator.h
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/rcl/arguments.h
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/rcl/client.h
@@ -1346,11 +1282,6 @@ CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/deta
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_cloud2__struct.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_cloud2__traits.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_cloud2__type_support.hpp
-<<<<<<< HEAD
-CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_field__struct.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/image.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/point_cloud2.hpp
-=======
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_field__builder.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_field__struct.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/detail/point_field__traits.hpp
@@ -1358,7 +1289,6 @@ CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/deta
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/image.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/point_cloud2.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/point_field.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/detail/metrics_message__builder.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/detail/metrics_message__struct.hpp
@@ -1367,23 +1297,15 @@ CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/detail/statistic_data_point__struct.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/metrics_message.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/statistics_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
-<<<<<<< HEAD
-CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__struct.hpp
-CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__traits.hpp
-=======
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__builder.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__struct.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__traits.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/header__type_support.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/int32__builder.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/int32__struct.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/int32__traits.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/detail/int32__type_support.hpp
-<<<<<<< HEAD
-=======
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/header.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/int32.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /opt/ros/foxy/include/tracetools/config.h
@@ -1408,10 +1330,7 @@ CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/core/cvdef.h
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/core/cvstd.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/core/cvstd.inl.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp
-<<<<<<< HEAD
-=======
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/core/eigen.hpp
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/core/fast_math.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/core/hal/interface.h
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/core/hal/msa_macros.h
@@ -1527,8 +1446,6 @@ CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/viz/types.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/viz/viz3d.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/viz/vizcore.hpp
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/opencv4/opencv2/viz/widgets.hpp
-<<<<<<< HEAD
-=======
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/pcl-1.10/pcl/ModelCoefficients.h
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/pcl-1.10/pcl/PCLHeader.h
 CMakeFiles/media.dir/src/media.cpp.o: /usr/include/pcl-1.10/pcl/PCLImage.h
@@ -1931,5 +1848,4 @@ CMakeFiles/media.dir/src/media.cpp.o: /usr/local/include/eigen3/unsupported/Eige
 CMakeFiles/media.dir/src/media.cpp.o: /usr/local/include/eigen3/unsupported/Eigen/src/NonLinearOptimization/r1updt.h
 CMakeFiles/media.dir/src/media.cpp.o: /usr/local/include/eigen3/unsupported/Eigen/src/NonLinearOptimization/rwupdt.h
 CMakeFiles/media.dir/src/media.cpp.o: /usr/local/include/eigen3/unsupported/Eigen/src/NumericalDiff/NumericalDiff.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 

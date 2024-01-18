@@ -16,29 +16,13 @@
 
 
 // forward declaration of message dependencies and their conversion functions
-<<<<<<< HEAD
-namespace sensor_msgs
-=======
 namespace std_msgs
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 {
 namespace msg
 {
 namespace typesupport_fastrtps_cpp
 {
 bool cdr_serialize(
-<<<<<<< HEAD
-  const sensor_msgs::msg::PointCloud2 &,
-  eprosima::fastcdr::Cdr &);
-bool cdr_deserialize(
-  eprosima::fastcdr::Cdr &,
-  sensor_msgs::msg::PointCloud2 &);
-size_t get_serialized_size(
-  const sensor_msgs::msg::PointCloud2 &,
-  size_t current_alignment);
-size_t
-max_serialized_size_PointCloud2(
-=======
   const std_msgs::msg::Header &,
   eprosima::fastcdr::Cdr &);
 bool cdr_deserialize(
@@ -49,38 +33,19 @@ size_t get_serialized_size(
   size_t current_alignment);
 size_t
 max_serialized_size_Header(
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   bool & full_bounded,
   size_t current_alignment);
 }  // namespace typesupport_fastrtps_cpp
 }  // namespace msg
-<<<<<<< HEAD
-}  // namespace sensor_msgs
-
-namespace geometry_msgs
-=======
 }  // namespace std_msgs
 
 namespace sensor_msgs
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 {
 namespace msg
 {
 namespace typesupport_fastrtps_cpp
 {
 bool cdr_serialize(
-<<<<<<< HEAD
-  const geometry_msgs::msg::Pose &,
-  eprosima::fastcdr::Cdr &);
-bool cdr_deserialize(
-  eprosima::fastcdr::Cdr &,
-  geometry_msgs::msg::Pose &);
-size_t get_serialized_size(
-  const geometry_msgs::msg::Pose &,
-  size_t current_alignment);
-size_t
-max_serialized_size_Pose(
-=======
   const sensor_msgs::msg::PointCloud2 &,
   eprosima::fastcdr::Cdr &);
 bool cdr_deserialize(
@@ -91,16 +56,11 @@ size_t get_serialized_size(
   size_t current_alignment);
 size_t
 max_serialized_size_PointCloud2(
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   bool & full_bounded,
   size_t current_alignment);
 }  // namespace typesupport_fastrtps_cpp
 }  // namespace msg
-<<<<<<< HEAD
-}  // namespace geometry_msgs
-=======
 }  // namespace sensor_msgs
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 namespace geometry_msgs
 {
@@ -109,18 +69,6 @@ namespace msg
 namespace typesupport_fastrtps_cpp
 {
 bool cdr_serialize(
-<<<<<<< HEAD
-  const geometry_msgs::msg::Pose &,
-  eprosima::fastcdr::Cdr &);
-bool cdr_deserialize(
-  eprosima::fastcdr::Cdr &,
-  geometry_msgs::msg::Pose &);
-size_t get_serialized_size(
-  const geometry_msgs::msg::Pose &,
-  size_t current_alignment);
-size_t
-max_serialized_size_Pose(
-=======
   const geometry_msgs::msg::PoseStamped &,
   eprosima::fastcdr::Cdr &);
 bool cdr_deserialize(
@@ -131,39 +79,12 @@ size_t get_serialized_size(
   size_t current_alignment);
 size_t
 max_serialized_size_PoseStamped(
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   bool & full_bounded,
   size_t current_alignment);
 }  // namespace typesupport_fastrtps_cpp
 }  // namespace msg
 }  // namespace geometry_msgs
 
-<<<<<<< HEAD
-namespace sensor_msgs
-{
-namespace msg
-{
-namespace typesupport_fastrtps_cpp
-{
-bool cdr_serialize(
-  const sensor_msgs::msg::Image &,
-  eprosima::fastcdr::Cdr &);
-bool cdr_deserialize(
-  eprosima::fastcdr::Cdr &,
-  sensor_msgs::msg::Image &);
-size_t get_serialized_size(
-  const sensor_msgs::msg::Image &,
-  size_t current_alignment);
-size_t
-max_serialized_size_Image(
-  bool & full_bounded,
-  size_t current_alignment);
-}  // namespace typesupport_fastrtps_cpp
-}  // namespace msg
-}  // namespace sensor_msgs
-
-=======
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 namespace interface
 {
@@ -180,34 +101,17 @@ cdr_serialize(
   const interface::msg::Slam & ros_message,
   eprosima::fastcdr::Cdr & cdr)
 {
-<<<<<<< HEAD
-=======
   // Member: header
   std_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
     ros_message.header,
     cdr);
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   // Member: point_cloud
   sensor_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
     ros_message.point_cloud,
     cdr);
-<<<<<<< HEAD
-  // Member: cam_pose
-  geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
-    ros_message.cam_pose,
-    cdr);
-  // Member: world2cam
-  geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
-    ros_message.world2cam,
-    cdr);
-  // Member: img
-  sensor_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
-    ros_message.img,
-=======
   // Member: transform_init2cur
   geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
     ros_message.transform_init2cur,
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     cdr);
   return true;
 }
@@ -218,34 +122,17 @@ cdr_deserialize(
   eprosima::fastcdr::Cdr & cdr,
   interface::msg::Slam & ros_message)
 {
-<<<<<<< HEAD
-=======
   // Member: header
   std_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
     cdr, ros_message.header);
 
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   // Member: point_cloud
   sensor_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
     cdr, ros_message.point_cloud);
 
-<<<<<<< HEAD
-  // Member: cam_pose
-  geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
-    cdr, ros_message.cam_pose);
-
-  // Member: world2cam
-  geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
-    cdr, ros_message.world2cam);
-
-  // Member: img
-  sensor_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
-    cdr, ros_message.img);
-=======
   // Member: transform_init2cur
   geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
     cdr, ros_message.transform_init2cur);
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
   return true;
 }
@@ -263,42 +150,21 @@ get_serialized_size(
   (void)padding;
   (void)wchar_size;
 
-<<<<<<< HEAD
-=======
   // Member: header
 
   current_alignment +=
     std_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
     ros_message.header, current_alignment);
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   // Member: point_cloud
 
   current_alignment +=
     sensor_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
     ros_message.point_cloud, current_alignment);
-<<<<<<< HEAD
-  // Member: cam_pose
-
-  current_alignment +=
-    geometry_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
-    ros_message.cam_pose, current_alignment);
-  // Member: world2cam
-
-  current_alignment +=
-    geometry_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
-    ros_message.world2cam, current_alignment);
-  // Member: img
-
-  current_alignment +=
-    sensor_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
-    ros_message.img, current_alignment);
-=======
   // Member: transform_init2cur
 
   current_alignment +=
     geometry_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
     ros_message.transform_init2cur, current_alignment);
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
   return current_alignment - initial_alignment;
 }
@@ -318,74 +184,38 @@ max_serialized_size_Slam(
   (void)full_bounded;
 
 
-<<<<<<< HEAD
-  // Member: point_cloud
-  {
-    size_t array_size = 1;
-
-
-    for (size_t index = 0; index < array_size; ++index) {
-      current_alignment +=
-        sensor_msgs::msg::typesupport_fastrtps_cpp::max_serialized_size_PointCloud2(
-        full_bounded, current_alignment);
-    }
-  }
-
-  // Member: cam_pose
-=======
   // Member: header
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   {
     size_t array_size = 1;
 
 
     for (size_t index = 0; index < array_size; ++index) {
       current_alignment +=
-<<<<<<< HEAD
-        geometry_msgs::msg::typesupport_fastrtps_cpp::max_serialized_size_Pose(
-=======
         std_msgs::msg::typesupport_fastrtps_cpp::max_serialized_size_Header(
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
         full_bounded, current_alignment);
     }
   }
 
-<<<<<<< HEAD
-  // Member: world2cam
-=======
   // Member: point_cloud
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   {
     size_t array_size = 1;
 
 
     for (size_t index = 0; index < array_size; ++index) {
       current_alignment +=
-<<<<<<< HEAD
-        geometry_msgs::msg::typesupport_fastrtps_cpp::max_serialized_size_Pose(
-=======
         sensor_msgs::msg::typesupport_fastrtps_cpp::max_serialized_size_PointCloud2(
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
         full_bounded, current_alignment);
     }
   }
 
-<<<<<<< HEAD
-  // Member: img
-=======
   // Member: transform_init2cur
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   {
     size_t array_size = 1;
 
 
     for (size_t index = 0; index < array_size; ++index) {
       current_alignment +=
-<<<<<<< HEAD
-        sensor_msgs::msg::typesupport_fastrtps_cpp::max_serialized_size_Image(
-=======
         geometry_msgs::msg::typesupport_fastrtps_cpp::max_serialized_size_PoseStamped(
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
         full_bounded, current_alignment);
     }
   }

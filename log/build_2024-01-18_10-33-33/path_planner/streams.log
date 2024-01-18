@@ -1,0 +1,27 @@
+[0.207s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16
+[0.232s] [35m[1mScanning dependencies of target path_planner[0m
+[0.339s] [ 33%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/main.cpp.o[0m
+[0.339s] [ 66%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/planner.cpp.o[0m
+[5.443s] [100%] [32m[1mLinking CXX executable path_planner[0m
+[5.737s] [100%] Built target path_planner
+[5.748s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16
+[5.773s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner
+[5.782s] -- Install configuration: ""
+[5.783s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/lib/path_planner/path_planner
+[5.783s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/lib/path_planner/path_planner" to ""
+[5.783s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/ament_index/resource_index/package_run_dependencies/path_planner
+[5.784s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/ament_index/resource_index/parent_prefix_path/path_planner
+[5.784s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/ament_prefix_path.sh
+[5.784s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/ament_prefix_path.dsv
+[5.784s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/path.sh
+[5.784s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/path.dsv
+[5.784s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.bash
+[5.785s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.sh
+[5.785s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.zsh
+[5.785s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.dsv
+[5.785s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/package.dsv
+[5.785s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/ament_index/resource_index/packages/path_planner
+[5.785s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/cmake/path_plannerConfig.cmake
+[5.786s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/cmake/path_plannerConfig-version.cmake
+[5.786s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/package.xml
+[5.788s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner

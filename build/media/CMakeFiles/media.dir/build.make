@@ -99,15 +99,6 @@ media: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterf
 media: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_introspection_cpp.so
 media: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_cpp.so
 media: /opt/ros/foxy/lib/libmessage_filters.so
-<<<<<<< HEAD
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_generator_c.so
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_c.so
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_c.so
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_cpp.so
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_cpp.so
-media: /opt/ros/foxy/lib/libcv_bridge.so
-=======
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 media: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_aruco.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_bgsegm.so.4.2.0
@@ -137,32 +128,6 @@ media: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_viz.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.2.0
-<<<<<<< HEAD
-media: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_generator_c.so
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_c.so
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_generator_c.so
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_c.so
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_cpp.so
-media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_cpp.so
-media: /opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_introspection_c.so
-media: /opt/ros/foxy/lib/libgeometry_msgs__rosidl_generator_c.so
-media: /opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_c.so
-media: /opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_introspection_cpp.so
-media: /opt/ros/foxy/lib/libgeometry_msgs__rosidl_typesupport_cpp.so
-media: /opt/ros/foxy/lib/librclcpp.so
-media: /opt/ros/foxy/lib/liblibstatistics_collector.so
-media: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_typesupport_introspection_c.so
-media: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_generator_c.so
-media: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_typesupport_c.so
-media: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_typesupport_introspection_cpp.so
-media: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_typesupport_cpp.so
-media: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_introspection_c.so
-media: /opt/ros/foxy/lib/libstd_msgs__rosidl_generator_c.so
-media: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_c.so
-media: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_introspection_cpp.so
-media: /opt/ros/foxy/lib/libstd_msgs__rosidl_typesupport_cpp.so
-media: /opt/ros/foxy/lib/librcl.so
-=======
 media: /opt/ros/foxy/lib/libcv_bridge.so
 media: /opt/ros/foxy/lib/libmessage_filters.so
 media: /opt/ros/foxy/lib/librclcpp.so
@@ -245,7 +210,6 @@ media: /usr/lib/x86_64-linux-gnu/libvtkRenderingContextOpenGL2-7.1.so.7.1p.1
 media: /usr/lib/x86_64-linux-gnu/libflann_cpp.so
 media: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_generator_c.so
 media: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_generator_c.so
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 media: /opt/ros/foxy/lib/librcl_interfaces__rosidl_typesupport_introspection_c.so
 media: /opt/ros/foxy/lib/librcl_interfaces__rosidl_generator_c.so
 media: /opt/ros/foxy/lib/librcl_interfaces__rosidl_typesupport_c.so
@@ -255,37 +219,9 @@ media: /opt/ros/foxy/lib/librmw_implementation.so
 media: /opt/ros/foxy/lib/librmw.so
 media: /opt/ros/foxy/lib/librcl_logging_spdlog.so
 media: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.5.0
-<<<<<<< HEAD
-media: /opt/ros/foxy/lib/librcl_yaml_param_parser.so
-media: /opt/ros/foxy/lib/libyaml.so
-media: /opt/ros/foxy/lib/librosgraph_msgs__rosidl_typesupport_introspection_c.so
-media: /opt/ros/foxy/lib/librosgraph_msgs__rosidl_generator_c.so
-media: /opt/ros/foxy/lib/librosgraph_msgs__rosidl_typesupport_c.so
-media: /opt/ros/foxy/lib/librosgraph_msgs__rosidl_typesupport_introspection_cpp.so
-media: /opt/ros/foxy/lib/librosgraph_msgs__rosidl_typesupport_cpp.so
-media: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_introspection_c.so
-media: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_generator_c.so
-media: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_c.so
-media: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_introspection_cpp.so
-media: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_cpp.so
-media: /opt/ros/foxy/lib/libtracetools.so
-media: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.so
-media: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_generator_c.so
-media: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_c.so
-media: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_cpp.so
-media: /opt/ros/foxy/lib/librosidl_typesupport_introspection_cpp.so
-media: /opt/ros/foxy/lib/librosidl_typesupport_introspection_c.so
-media: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so
-media: /opt/ros/foxy/lib/librosidl_typesupport_cpp.so
-media: /opt/ros/foxy/lib/librosidl_typesupport_c.so
-media: /opt/ros/foxy/lib/librosidl_runtime_c.so
-media: /opt/ros/foxy/lib/librcpputils.so
-media: /opt/ros/foxy/lib/librcutils.so
-=======
 media: /opt/ros/foxy/lib/libyaml.so
 media: /opt/ros/foxy/lib/librosgraph_msgs__rosidl_generator_c.so
 media: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_generator_c.so
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 media: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_datasets.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_plot.so.4.2.0
@@ -305,8 +241,6 @@ media: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.4.2.0
 media: /usr/lib/x86_64-linux-gnu/libopencv_core.so.4.2.0
-<<<<<<< HEAD
-=======
 media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_c.so
 media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_generator_c.so
 media: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_c.so
@@ -398,7 +332,6 @@ media: /usr/lib/x86_64-linux-gnu/libICE.so
 media: /usr/lib/x86_64-linux-gnu/libX11.so
 media: /usr/lib/x86_64-linux-gnu/libXext.so
 media: /usr/lib/x86_64-linux-gnu/libXt.so
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 media: CMakeFiles/media.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable media"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/media.dir/link.txt --verbose=$(VERBOSE)

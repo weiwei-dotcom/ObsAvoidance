@@ -23,89 +23,14 @@ interface/msg/detail/slam__functions.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/interface/msg/detail/slam__functions.h
 interface/msg/detail/slam__struct.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/interface/msg/detail/slam__struct.h
-<<<<<<< HEAD
-=======
 std_msgs/msg/header.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/std_msgs/msg/header.h
 std_msgs/msg/detail/header__rosidl_typesupport_introspection_c.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/std_msgs/msg/detail/header__rosidl_typesupport_introspection_c.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 sensor_msgs/msg/point_cloud2.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/sensor_msgs/msg/point_cloud2.h
 sensor_msgs/msg/detail/point_cloud2__rosidl_typesupport_introspection_c.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/sensor_msgs/msg/detail/point_cloud2__rosidl_typesupport_introspection_c.h
-<<<<<<< HEAD
-geometry_msgs/msg/pose.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/geometry_msgs/msg/pose.h
-geometry_msgs/msg/detail/pose__rosidl_typesupport_introspection_c.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/geometry_msgs/msg/detail/pose__rosidl_typesupport_introspection_c.h
-sensor_msgs/msg/image.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/sensor_msgs/msg/image.h
-sensor_msgs/msg/detail/image__rosidl_typesupport_introspection_c.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/sensor_msgs/msg/detail/image__rosidl_typesupport_introspection_c.h
-
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/cam_pose__type_support.c
-stddef.h
--
-interface/srv/detail/cam_pose__rosidl_typesupport_introspection_c.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/interface/srv/detail/cam_pose__rosidl_typesupport_introspection_c.h
-interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
-rosidl_typesupport_introspection_c/field_types.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_introspection_c/field_types.h
-rosidl_typesupport_introspection_c/identifier.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_introspection_c/identifier.h
-rosidl_typesupport_introspection_c/message_introspection.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_introspection_c/message_introspection.h
-interface/srv/detail/cam_pose__functions.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/interface/srv/detail/cam_pose__functions.h
-interface/srv/detail/cam_pose__struct.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/interface/srv/detail/cam_pose__struct.h
-geometry_msgs/msg/pose.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/geometry_msgs/msg/pose.h
-geometry_msgs/msg/detail/pose__rosidl_typesupport_introspection_c.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/geometry_msgs/msg/detail/pose__rosidl_typesupport_introspection_c.h
-rosidl_runtime_c/service_type_support_struct.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_runtime_c/service_type_support_struct.h
-rosidl_typesupport_introspection_c/service_introspection.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_introspection_c/service_introspection.h
-
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/map_point__type_support.c
-stddef.h
--
-interface/srv/detail/map_point__rosidl_typesupport_introspection_c.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/interface/srv/detail/map_point__rosidl_typesupport_introspection_c.h
-interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
-rosidl_typesupport_introspection_c/field_types.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_introspection_c/field_types.h
-rosidl_typesupport_introspection_c/identifier.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_introspection_c/identifier.h
-rosidl_typesupport_introspection_c/message_introspection.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_introspection_c/message_introspection.h
-interface/srv/detail/map_point__functions.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/interface/srv/detail/map_point__functions.h
-interface/srv/detail/map_point__struct.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/interface/srv/detail/map_point__struct.h
-sensor_msgs/msg/point_cloud2.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/sensor_msgs/msg/point_cloud2.h
-sensor_msgs/msg/detail/point_cloud2__rosidl_typesupport_introspection_c.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/sensor_msgs/msg/detail/point_cloud2__rosidl_typesupport_introspection_c.h
-sensor_msgs/msg/image.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/sensor_msgs/msg/image.h
-sensor_msgs/msg/detail/image__rosidl_typesupport_introspection_c.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/sensor_msgs/msg/detail/image__rosidl_typesupport_introspection_c.h
-geometry_msgs/msg/pose.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/geometry_msgs/msg/pose.h
-geometry_msgs/msg/detail/pose__rosidl_typesupport_introspection_c.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/geometry_msgs/msg/detail/pose__rosidl_typesupport_introspection_c.h
-rosidl_runtime_c/service_type_support_struct.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_runtime_c/service_type_support_struct.h
-rosidl_typesupport_introspection_c/service_introspection.h
-/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_introspection_c/service_introspection.h
-
-/opt/ros/foxy/include/builtin_interfaces/msg/detail/time__struct.h
-=======
 geometry_msgs/msg/pose_stamped.h
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/geometry_msgs/msg/pose_stamped.h
 geometry_msgs/msg/detail/pose_stamped__rosidl_typesupport_introspection_c.h
@@ -120,7 +45,6 @@ stdint.h
 -
 
 /opt/ros/foxy/include/geometry_msgs/msg/detail/point__struct.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 stdbool.h
 -
 stddef.h
@@ -128,28 +52,19 @@ stddef.h
 stdint.h
 -
 
-<<<<<<< HEAD
-/opt/ros/foxy/include/geometry_msgs/msg/detail/point__struct.h
-=======
 /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__struct.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 stdbool.h
 -
 stddef.h
 -
 stdint.h
 -
-<<<<<<< HEAD
-
-/opt/ros/foxy/include/geometry_msgs/msg/detail/pose__functions.h
-=======
 geometry_msgs/msg/detail/point__struct.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/point__struct.h
 geometry_msgs/msg/detail/quaternion__struct.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/quaternion__struct.h
 
 /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__functions.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 stdbool.h
 -
 stdlib.h
@@ -158,17 +73,10 @@ rosidl_runtime_c/visibility_control.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/rosidl_runtime_c/visibility_control.h
 geometry_msgs/msg/rosidl_generator_c__visibility_control.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/rosidl_generator_c__visibility_control.h
-<<<<<<< HEAD
-geometry_msgs/msg/detail/pose__struct.h
-/opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/pose__struct.h
-
-/opt/ros/foxy/include/geometry_msgs/msg/detail/pose__rosidl_typesupport_introspection_c.h
-=======
 geometry_msgs/msg/detail/pose_stamped__struct.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/pose_stamped__struct.h
 
 /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__rosidl_typesupport_introspection_c.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 rosidl_runtime_c/message_type_support_struct.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/rosidl_runtime_c/message_type_support_struct.h
 rosidl_typesupport_interface/macros.h
@@ -176,32 +84,19 @@ rosidl_typesupport_interface/macros.h
 geometry_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
 
-<<<<<<< HEAD
-/opt/ros/foxy/include/geometry_msgs/msg/detail/pose__struct.h
-=======
 /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__struct.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 stdbool.h
 -
 stddef.h
 -
 stdint.h
 -
-<<<<<<< HEAD
-geometry_msgs/msg/detail/point__struct.h
-/opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/point__struct.h
-geometry_msgs/msg/detail/quaternion__struct.h
-/opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/quaternion__struct.h
-
-/opt/ros/foxy/include/geometry_msgs/msg/detail/pose__type_support.h
-=======
 std_msgs/msg/detail/header__struct.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/std_msgs/msg/detail/header__struct.h
 geometry_msgs/msg/detail/pose__struct.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/geometry_msgs/msg/detail/pose__struct.h
 
 /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__type_support.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 rosidl_typesupport_interface/macros.h
 /opt/ros/foxy/include/geometry_msgs/msg/detail/rosidl_typesupport_interface/macros.h
 geometry_msgs/msg/rosidl_generator_c__visibility_control.h
@@ -217,15 +112,6 @@ stddef.h
 stdint.h
 -
 
-<<<<<<< HEAD
-/opt/ros/foxy/include/geometry_msgs/msg/pose.h
-geometry_msgs/msg/detail/pose__struct.h
-/opt/ros/foxy/include/geometry_msgs/msg/geometry_msgs/msg/detail/pose__struct.h
-geometry_msgs/msg/detail/pose__functions.h
-/opt/ros/foxy/include/geometry_msgs/msg/geometry_msgs/msg/detail/pose__functions.h
-geometry_msgs/msg/detail/pose__type_support.h
-/opt/ros/foxy/include/geometry_msgs/msg/geometry_msgs/msg/detail/pose__type_support.h
-=======
 /opt/ros/foxy/include/geometry_msgs/msg/pose_stamped.h
 geometry_msgs/msg/detail/pose_stamped__struct.h
 /opt/ros/foxy/include/geometry_msgs/msg/geometry_msgs/msg/detail/pose_stamped__struct.h
@@ -233,7 +119,6 @@ geometry_msgs/msg/detail/pose_stamped__functions.h
 /opt/ros/foxy/include/geometry_msgs/msg/geometry_msgs/msg/detail/pose_stamped__functions.h
 geometry_msgs/msg/detail/pose_stamped__type_support.h
 /opt/ros/foxy/include/geometry_msgs/msg/geometry_msgs/msg/detail/pose_stamped__type_support.h
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 /opt/ros/foxy/include/geometry_msgs/msg/rosidl_generator_c__visibility_control.h
 
@@ -255,15 +140,6 @@ stddef.h
 stdint.h
 -
 
-<<<<<<< HEAD
-/opt/ros/foxy/include/rosidl_runtime_c/service_type_support_struct.h
-rosidl_runtime_c/visibility_control.h
-/opt/ros/foxy/include/rosidl_runtime_c/rosidl_runtime_c/visibility_control.h
-rosidl_typesupport_interface/macros.h
-/opt/ros/foxy/include/rosidl_runtime_c/rosidl_typesupport_interface/macros.h
-
-=======
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 /opt/ros/foxy/include/rosidl_runtime_c/string.h
 stddef.h
 -
@@ -296,67 +172,8 @@ rosidl_runtime_c/message_type_support_struct.h
 rosidl_typesupport_introspection_c/visibility_control.h
 /opt/ros/foxy/include/rosidl_typesupport_introspection_c/rosidl_typesupport_introspection_c/visibility_control.h
 
-<<<<<<< HEAD
-/opt/ros/foxy/include/rosidl_typesupport_introspection_c/service_introspection.h
-stddef.h
--
-stdint.h
--
-rosidl_runtime_c/service_type_support_struct.h
-/opt/ros/foxy/include/rosidl_typesupport_introspection_c/rosidl_runtime_c/service_type_support_struct.h
-rosidl_runtime_c/visibility_control.h
-/opt/ros/foxy/include/rosidl_typesupport_introspection_c/rosidl_runtime_c/visibility_control.h
-rosidl_typesupport_introspection_c/message_introspection.h
-/opt/ros/foxy/include/rosidl_typesupport_introspection_c/rosidl_typesupport_introspection_c/message_introspection.h
-
 /opt/ros/foxy/include/rosidl_typesupport_introspection_c/visibility_control.h
 
-/opt/ros/foxy/include/sensor_msgs/msg/detail/image__functions.h
-stdbool.h
--
-stdlib.h
--
-rosidl_runtime_c/visibility_control.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/rosidl_runtime_c/visibility_control.h
-sensor_msgs/msg/rosidl_generator_c__visibility_control.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/sensor_msgs/msg/rosidl_generator_c__visibility_control.h
-sensor_msgs/msg/detail/image__struct.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/sensor_msgs/msg/detail/image__struct.h
-
-/opt/ros/foxy/include/sensor_msgs/msg/detail/image__rosidl_typesupport_introspection_c.h
-rosidl_runtime_c/message_type_support_struct.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/rosidl_runtime_c/message_type_support_struct.h
-rosidl_typesupport_interface/macros.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/rosidl_typesupport_interface/macros.h
-sensor_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/sensor_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
-
-/opt/ros/foxy/include/sensor_msgs/msg/detail/image__struct.h
-stdbool.h
--
-stddef.h
--
-stdint.h
--
-std_msgs/msg/detail/header__struct.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/std_msgs/msg/detail/header__struct.h
-rosidl_runtime_c/string.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/rosidl_runtime_c/string.h
-rosidl_runtime_c/primitives_sequence.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/rosidl_runtime_c/primitives_sequence.h
-
-/opt/ros/foxy/include/sensor_msgs/msg/detail/image__type_support.h
-rosidl_typesupport_interface/macros.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/rosidl_typesupport_interface/macros.h
-sensor_msgs/msg/rosidl_generator_c__visibility_control.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/sensor_msgs/msg/rosidl_generator_c__visibility_control.h
-rosidl_runtime_c/message_type_support_struct.h
-/opt/ros/foxy/include/sensor_msgs/msg/detail/rosidl_runtime_c/message_type_support_struct.h
-
-=======
-/opt/ros/foxy/include/rosidl_typesupport_introspection_c/visibility_control.h
-
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 /opt/ros/foxy/include/sensor_msgs/msg/detail/point_cloud2__functions.h
 stdbool.h
 -
@@ -409,17 +226,6 @@ stdint.h
 rosidl_runtime_c/string.h
 /opt/ros/foxy/include/sensor_msgs/msg/detail/rosidl_runtime_c/string.h
 
-<<<<<<< HEAD
-/opt/ros/foxy/include/sensor_msgs/msg/image.h
-sensor_msgs/msg/detail/image__struct.h
-/opt/ros/foxy/include/sensor_msgs/msg/sensor_msgs/msg/detail/image__struct.h
-sensor_msgs/msg/detail/image__functions.h
-/opt/ros/foxy/include/sensor_msgs/msg/sensor_msgs/msg/detail/image__functions.h
-sensor_msgs/msg/detail/image__type_support.h
-/opt/ros/foxy/include/sensor_msgs/msg/sensor_msgs/msg/detail/image__type_support.h
-
-=======
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 /opt/ros/foxy/include/sensor_msgs/msg/point_cloud2.h
 sensor_msgs/msg/detail/point_cloud2__struct.h
 /opt/ros/foxy/include/sensor_msgs/msg/sensor_msgs/msg/detail/point_cloud2__struct.h
@@ -432,8 +238,6 @@ sensor_msgs/msg/detail/point_cloud2__type_support.h
 
 /opt/ros/foxy/include/sensor_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
 
-<<<<<<< HEAD
-=======
 /opt/ros/foxy/include/std_msgs/msg/detail/header__functions.h
 stdbool.h
 -
@@ -454,7 +258,6 @@ rosidl_typesupport_interface/macros.h
 std_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
 /opt/ros/foxy/include/std_msgs/msg/detail/std_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
 
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 /opt/ros/foxy/include/std_msgs/msg/detail/header__struct.h
 stdbool.h
 -
@@ -467,8 +270,6 @@ builtin_interfaces/msg/detail/time__struct.h
 rosidl_runtime_c/string.h
 /opt/ros/foxy/include/std_msgs/msg/detail/rosidl_runtime_c/string.h
 
-<<<<<<< HEAD
-=======
 /opt/ros/foxy/include/std_msgs/msg/detail/header__type_support.h
 rosidl_typesupport_interface/macros.h
 /opt/ros/foxy/include/std_msgs/msg/detail/rosidl_typesupport_interface/macros.h
@@ -489,7 +290,6 @@ std_msgs/msg/detail/header__type_support.h
 
 /opt/ros/foxy/include/std_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
 
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 rosidl_generator_c/interface/msg/detail/slam__functions.h
 stdbool.h
 -
@@ -509,65 +309,6 @@ stddef.h
 -
 stdint.h
 -
-<<<<<<< HEAD
-sensor_msgs/msg/detail/point_cloud2__struct.h
-rosidl_generator_c/interface/msg/detail/sensor_msgs/msg/detail/point_cloud2__struct.h
-geometry_msgs/msg/detail/pose__struct.h
-rosidl_generator_c/interface/msg/detail/geometry_msgs/msg/detail/pose__struct.h
-sensor_msgs/msg/detail/image__struct.h
-rosidl_generator_c/interface/msg/detail/sensor_msgs/msg/detail/image__struct.h
-
-rosidl_generator_c/interface/msg/rosidl_generator_c__visibility_control.h
-
-rosidl_generator_c/interface/srv/detail/cam_pose__functions.h
-stdbool.h
--
-stdlib.h
--
-rosidl_runtime_c/visibility_control.h
-rosidl_generator_c/interface/srv/detail/rosidl_runtime_c/visibility_control.h
-interface/msg/rosidl_generator_c__visibility_control.h
-rosidl_generator_c/interface/srv/detail/interface/msg/rosidl_generator_c__visibility_control.h
-interface/srv/detail/cam_pose__struct.h
-rosidl_generator_c/interface/srv/detail/interface/srv/detail/cam_pose__struct.h
-
-rosidl_generator_c/interface/srv/detail/cam_pose__struct.h
-stdbool.h
--
-stddef.h
--
-stdint.h
--
-geometry_msgs/msg/detail/pose__struct.h
-rosidl_generator_c/interface/srv/detail/geometry_msgs/msg/detail/pose__struct.h
-
-rosidl_generator_c/interface/srv/detail/map_point__functions.h
-stdbool.h
--
-stdlib.h
--
-rosidl_runtime_c/visibility_control.h
-rosidl_generator_c/interface/srv/detail/rosidl_runtime_c/visibility_control.h
-interface/msg/rosidl_generator_c__visibility_control.h
-rosidl_generator_c/interface/srv/detail/interface/msg/rosidl_generator_c__visibility_control.h
-interface/srv/detail/map_point__struct.h
-rosidl_generator_c/interface/srv/detail/interface/srv/detail/map_point__struct.h
-
-rosidl_generator_c/interface/srv/detail/map_point__struct.h
-stdbool.h
--
-stddef.h
--
-stdint.h
--
-sensor_msgs/msg/detail/point_cloud2__struct.h
-rosidl_generator_c/interface/srv/detail/sensor_msgs/msg/detail/point_cloud2__struct.h
-sensor_msgs/msg/detail/image__struct.h
-rosidl_generator_c/interface/srv/detail/sensor_msgs/msg/detail/image__struct.h
-geometry_msgs/msg/detail/pose__struct.h
-rosidl_generator_c/interface/srv/detail/geometry_msgs/msg/detail/pose__struct.h
-
-=======
 std_msgs/msg/detail/header__struct.h
 rosidl_generator_c/interface/msg/detail/std_msgs/msg/detail/header__struct.h
 sensor_msgs/msg/detail/point_cloud2__struct.h
@@ -577,7 +318,6 @@ rosidl_generator_c/interface/msg/detail/geometry_msgs/msg/detail/pose_stamped__s
 
 rosidl_generator_c/interface/msg/rosidl_generator_c__visibility_control.h
 
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
 rosidl_runtime_c/message_type_support_struct.h
 rosidl_typesupport_introspection_c/interface/msg/detail/rosidl_runtime_c/message_type_support_struct.h
@@ -588,26 +328,3 @@ rosidl_typesupport_introspection_c/interface/msg/detail/interface/msg/rosidl_typ
 
 rosidl_typesupport_introspection_c/interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
 
-<<<<<<< HEAD
-rosidl_typesupport_introspection_c/interface/srv/detail/cam_pose__rosidl_typesupport_introspection_c.h
-rosidl_runtime_c/message_type_support_struct.h
-rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_runtime_c/message_type_support_struct.h
-rosidl_typesupport_interface/macros.h
-rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_interface/macros.h
-interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
-rosidl_typesupport_introspection_c/interface/srv/detail/interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
-rosidl_runtime_c/service_type_support_struct.h
-rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_runtime_c/service_type_support_struct.h
-
-rosidl_typesupport_introspection_c/interface/srv/detail/map_point__rosidl_typesupport_introspection_c.h
-rosidl_runtime_c/message_type_support_struct.h
-rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_runtime_c/message_type_support_struct.h
-rosidl_typesupport_interface/macros.h
-rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_typesupport_interface/macros.h
-interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
-rosidl_typesupport_introspection_c/interface/srv/detail/interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
-rosidl_runtime_c/service_type_support_struct.h
-rosidl_typesupport_introspection_c/interface/srv/detail/rosidl_runtime_c/service_type_support_struct.h
-
-=======
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09

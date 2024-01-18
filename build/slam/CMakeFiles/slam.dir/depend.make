@@ -94,6 +94,8 @@ CMakeFiles/slam.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/deta
 CMakeFiles/slam.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/point__traits.hpp
 CMakeFiles/slam.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__struct.hpp
 CMakeFiles/slam.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__traits.hpp
+CMakeFiles/slam.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__struct.hpp
+CMakeFiles/slam.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__traits.hpp
 CMakeFiles/slam.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__struct.hpp
 CMakeFiles/slam.dir/src/main.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__traits.hpp
 CMakeFiles/slam.dir/src/main.cpp.o: /opt/ros/foxy/include/libstatistics_collector/collector/collector.hpp
@@ -951,6 +953,8 @@ CMakeFiles/slam.dir/src/slam.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/deta
 CMakeFiles/slam.dir/src/slam.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/point__traits.hpp
 CMakeFiles/slam.dir/src/slam.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__struct.hpp
 CMakeFiles/slam.dir/src/slam.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose__traits.hpp
+CMakeFiles/slam.dir/src/slam.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__struct.hpp
+CMakeFiles/slam.dir/src/slam.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/pose_stamped__traits.hpp
 CMakeFiles/slam.dir/src/slam.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__struct.hpp
 CMakeFiles/slam.dir/src/slam.cpp.o: /opt/ros/foxy/include/geometry_msgs/msg/detail/quaternion__traits.hpp
 CMakeFiles/slam.dir/src/slam.cpp.o: /opt/ros/foxy/include/libstatistics_collector/collector/collector.hpp

@@ -40,31 +40,18 @@ class Metaclass_Slam(type):
             cls._TYPE_SUPPORT = module.type_support_msg__msg__slam
             cls._DESTROY_ROS_MESSAGE = module.destroy_ros_message_msg__msg__slam
 
-<<<<<<< HEAD
-            from geometry_msgs.msg import Pose
-            if Pose.__class__._TYPE_SUPPORT is None:
-                Pose.__class__.__import_type_support__()
-
-            from sensor_msgs.msg import Image
-            if Image.__class__._TYPE_SUPPORT is None:
-                Image.__class__.__import_type_support__()
-=======
             from geometry_msgs.msg import PoseStamped
             if PoseStamped.__class__._TYPE_SUPPORT is None:
                 PoseStamped.__class__.__import_type_support__()
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
             from sensor_msgs.msg import PointCloud2
             if PointCloud2.__class__._TYPE_SUPPORT is None:
                 PointCloud2.__class__.__import_type_support__()
 
-<<<<<<< HEAD
-=======
             from std_msgs.msg import Header
             if Header.__class__._TYPE_SUPPORT is None:
                 Header.__class__.__import_type_support__()
 
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     @classmethod
     def __prepare__(cls, name, bases, **kwargs):
         # list constant names here so that they appear in the help text of
@@ -78,26 +65,6 @@ class Slam(metaclass=Metaclass_Slam):
     """Message class 'Slam'."""
 
     __slots__ = [
-<<<<<<< HEAD
-        '_point_cloud',
-        '_cam_pose',
-        '_world2cam',
-        '_img',
-    ]
-
-    _fields_and_field_types = {
-        'point_cloud': 'sensor_msgs/PointCloud2',
-        'cam_pose': 'geometry_msgs/Pose',
-        'world2cam': 'geometry_msgs/Pose',
-        'img': 'sensor_msgs/Image',
-    }
-
-    SLOT_TYPES = (
-        rosidl_parser.definition.NamespacedType(['sensor_msgs', 'msg'], 'PointCloud2'),  # noqa: E501
-        rosidl_parser.definition.NamespacedType(['geometry_msgs', 'msg'], 'Pose'),  # noqa: E501
-        rosidl_parser.definition.NamespacedType(['geometry_msgs', 'msg'], 'Pose'),  # noqa: E501
-        rosidl_parser.definition.NamespacedType(['sensor_msgs', 'msg'], 'Image'),  # noqa: E501
-=======
         '_header',
         '_point_cloud',
         '_transform_init2cur',
@@ -113,30 +80,18 @@ class Slam(metaclass=Metaclass_Slam):
         rosidl_parser.definition.NamespacedType(['std_msgs', 'msg'], 'Header'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['sensor_msgs', 'msg'], 'PointCloud2'),  # noqa: E501
         rosidl_parser.definition.NamespacedType(['geometry_msgs', 'msg'], 'PoseStamped'),  # noqa: E501
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-<<<<<<< HEAD
-        from sensor_msgs.msg import PointCloud2
-        self.point_cloud = kwargs.get('point_cloud', PointCloud2())
-        from geometry_msgs.msg import Pose
-        self.cam_pose = kwargs.get('cam_pose', Pose())
-        from geometry_msgs.msg import Pose
-        self.world2cam = kwargs.get('world2cam', Pose())
-        from sensor_msgs.msg import Image
-        self.img = kwargs.get('img', Image())
-=======
         from std_msgs.msg import Header
         self.header = kwargs.get('header', Header())
         from sensor_msgs.msg import PointCloud2
         self.point_cloud = kwargs.get('point_cloud', PointCloud2())
         from geometry_msgs.msg import PoseStamped
         self.transform_init2cur = kwargs.get('transform_init2cur', PoseStamped())
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -167,21 +122,11 @@ class Slam(metaclass=Metaclass_Slam):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-<<<<<<< HEAD
-        if self.point_cloud != other.point_cloud:
-            return False
-        if self.cam_pose != other.cam_pose:
-            return False
-        if self.world2cam != other.world2cam:
-            return False
-        if self.img != other.img:
-=======
         if self.header != other.header:
             return False
         if self.point_cloud != other.point_cloud:
             return False
         if self.transform_init2cur != other.transform_init2cur:
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
             return False
         return True
 
@@ -191,8 +136,6 @@ class Slam(metaclass=Metaclass_Slam):
         return copy(cls._fields_and_field_types)
 
     @property
-<<<<<<< HEAD
-=======
     def header(self):
         """Message field 'header'."""
         return self._header
@@ -207,7 +150,6 @@ class Slam(metaclass=Metaclass_Slam):
         self._header = value
 
     @property
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     def point_cloud(self):
         """Message field 'point_cloud'."""
         return self._point_cloud
@@ -222,48 +164,6 @@ class Slam(metaclass=Metaclass_Slam):
         self._point_cloud = value
 
     @property
-<<<<<<< HEAD
-    def cam_pose(self):
-        """Message field 'cam_pose'."""
-        return self._cam_pose
-
-    @cam_pose.setter
-    def cam_pose(self, value):
-        if __debug__:
-            from geometry_msgs.msg import Pose
-            assert \
-                isinstance(value, Pose), \
-                "The 'cam_pose' field must be a sub message of type 'Pose'"
-        self._cam_pose = value
-
-    @property
-    def world2cam(self):
-        """Message field 'world2cam'."""
-        return self._world2cam
-
-    @world2cam.setter
-    def world2cam(self, value):
-        if __debug__:
-            from geometry_msgs.msg import Pose
-            assert \
-                isinstance(value, Pose), \
-                "The 'world2cam' field must be a sub message of type 'Pose'"
-        self._world2cam = value
-
-    @property
-    def img(self):
-        """Message field 'img'."""
-        return self._img
-
-    @img.setter
-    def img(self, value):
-        if __debug__:
-            from sensor_msgs.msg import Image
-            assert \
-                isinstance(value, Image), \
-                "The 'img' field must be a sub message of type 'Image'"
-        self._img = value
-=======
     def transform_init2cur(self):
         """Message field 'transform_init2cur'."""
         return self._transform_init2cur
@@ -276,4 +176,3 @@ class Slam(metaclass=Metaclass_Slam):
                 isinstance(value, PoseStamped), \
                 "The 'transform_init2cur' field must be a sub message of type 'PoseStamped'"
         self._transform_init2cur = value
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09

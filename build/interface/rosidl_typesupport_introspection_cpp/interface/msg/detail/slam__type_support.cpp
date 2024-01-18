@@ -37,33 +37,6 @@ void Slam_fini_function(void * message_memory)
   typed_message->~Slam();
 }
 
-<<<<<<< HEAD
-static const ::rosidl_typesupport_introspection_cpp::MessageMember Slam_message_member_array[4] = {
-  {
-    "point_cloud",  // name
-    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
-    0,  // upper bound of string
-    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sensor_msgs::msg::PointCloud2>(),  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(interface::msg::Slam, point_cloud),  // bytes offset in struct
-    nullptr,  // default value
-    nullptr,  // size() function pointer
-    nullptr,  // get_const(index) function pointer
-    nullptr,  // get(index) function pointer
-    nullptr  // resize(index) function pointer
-  },
-  {
-    "cam_pose",  // name
-    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
-    0,  // upper bound of string
-    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<geometry_msgs::msg::Pose>(),  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(interface::msg::Slam, cam_pose),  // bytes offset in struct
-=======
 static const ::rosidl_typesupport_introspection_cpp::MessageMember Slam_message_member_array[3] = {
   {
     "header",  // name
@@ -74,7 +47,6 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Slam_message_
     0,  // array size
     false,  // is upper bound
     offsetof(interface::msg::Slam, header),  // bytes offset in struct
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -82,16 +54,6 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Slam_message_
     nullptr  // resize(index) function pointer
   },
   {
-<<<<<<< HEAD
-    "world2cam",  // name
-    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
-    0,  // upper bound of string
-    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<geometry_msgs::msg::Pose>(),  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(interface::msg::Slam, world2cam),  // bytes offset in struct
-=======
     "point_cloud",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
@@ -100,7 +62,6 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Slam_message_
     0,  // array size
     false,  // is upper bound
     offsetof(interface::msg::Slam, point_cloud),  // bytes offset in struct
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -108,16 +69,6 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Slam_message_
     nullptr  // resize(index) function pointer
   },
   {
-<<<<<<< HEAD
-    "img",  // name
-    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
-    0,  // upper bound of string
-    ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sensor_msgs::msg::Image>(),  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(interface::msg::Slam, img),  // bytes offset in struct
-=======
     "transform_init2cur",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
@@ -126,7 +77,6 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Slam_message_
     0,  // array size
     false,  // is upper bound
     offsetof(interface::msg::Slam, transform_init2cur),  // bytes offset in struct
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -138,11 +88,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Slam_message_
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers Slam_message_members = {
   "interface::msg",  // message namespace
   "Slam",  // message name
-<<<<<<< HEAD
-  4,  // number of fields
-=======
   3,  // number of fields
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   sizeof(interface::msg::Slam),
   Slam_message_member_array,  // message members
   Slam_init_function,  // function to initialize message memory (memory has to be allocated)

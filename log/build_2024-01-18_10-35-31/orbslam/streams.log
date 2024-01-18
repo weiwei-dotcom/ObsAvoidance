@@ -1,0 +1,25 @@
+[0.302s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam -- -j16 -l16
+[0.357s] [100%] Built target orbslam
+[0.367s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam -- -j16 -l16
+[0.387s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam
+[0.394s] -- Install configuration: ""
+[0.394s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib/orbslam/orbslam
+[0.394s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/lib/orbslam/orbslam" to ""
+[0.394s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/launch
+[0.394s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/launch/slam.launch.py
+[0.395s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/ament_index/resource_index/package_run_dependencies/orbslam
+[0.395s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/ament_index/resource_index/parent_prefix_path/orbslam
+[0.395s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/ament_prefix_path.sh
+[0.395s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/ament_prefix_path.dsv
+[0.396s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/path.sh
+[0.396s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/environment/path.dsv
+[0.396s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.bash
+[0.396s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.sh
+[0.396s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.zsh
+[0.396s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/local_setup.dsv
+[0.397s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.dsv
+[0.397s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/ament_index/resource_index/packages/orbslam
+[0.397s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/cmake/orbslamConfig.cmake
+[0.397s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/cmake/orbslamConfig-version.cmake
+[0.397s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/orbslam/share/orbslam/package.xml
+[0.488s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/orbslam' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner:/home/weiwei/Desktop/project/ObsAvoidance/install/orbslam:/home/weiwei/Desktop/project/ObsAvoidance/install/model:/home/weiwei/Desktop/project/ObsAvoidance/install/media:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/orbslam

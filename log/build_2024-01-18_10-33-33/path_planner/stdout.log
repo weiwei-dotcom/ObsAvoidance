@@ -1,0 +1,23 @@
+[35m[1mScanning dependencies of target path_planner[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/main.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/planner.cpp.o[0m
+[100%] [32m[1mLinking CXX executable path_planner[0m
+[100%] Built target path_planner
+-- Install configuration: ""
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/lib/path_planner/path_planner
+-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/lib/path_planner/path_planner" to ""
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/ament_index/resource_index/package_run_dependencies/path_planner
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/ament_index/resource_index/parent_prefix_path/path_planner
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/ament_prefix_path.sh
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/ament_prefix_path.dsv
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/path.sh
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/environment/path.dsv
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.bash
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.sh
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.zsh
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/local_setup.dsv
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/package.dsv
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/ament_index/resource_index/packages/path_planner
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/cmake/path_plannerConfig.cmake
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/cmake/path_plannerConfig-version.cmake
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_planner/share/path_planner/package.xml

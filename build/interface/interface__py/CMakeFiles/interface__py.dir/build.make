@@ -57,18 +57,8 @@ interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/_interface
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_introspection_c.c
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_c.c
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/msg/_slam.py
-<<<<<<< HEAD
-interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_map_point.py
-interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_cam_pose.py
-interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/msg/__init__.py
-interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/__init__.py
-interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/msg/_slam_s.c
-interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_map_point_s.c
-interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_cam_pose_s.c
-=======
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/msg/__init__.py
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/msg/_slam_s.c
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 
 
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/lib/rosidl_generator_py/rosidl_generator_py
@@ -85,11 +75,6 @@ rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv_pkg_typesupport_entry_point.c.em
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv.py.em
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/interface/msg/Slam.idl
-<<<<<<< HEAD
-rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/interface/srv/MapPoint.idl
-rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/interface/srv/CamPose.idl
-=======
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -191,53 +176,19 @@ rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_c.c: rosidl_gen
 rosidl_generator_py/interface/msg/_slam.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/msg/_slam.py
 
-<<<<<<< HEAD
-rosidl_generator_py/interface/srv/_map_point.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_map_point.py
-
-rosidl_generator_py/interface/srv/_cam_pose.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_cam_pose.py
-
-rosidl_generator_py/interface/msg/__init__.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/msg/__init__.py
-
-rosidl_generator_py/interface/srv/__init__.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/__init__.py
-
-rosidl_generator_py/interface/msg/_slam_s.c: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/msg/_slam_s.c
-
-rosidl_generator_py/interface/srv/_map_point_s.c: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_map_point_s.c
-
-rosidl_generator_py/interface/srv/_cam_pose_s.c: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
-	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_cam_pose_s.c
-
-=======
 rosidl_generator_py/interface/msg/__init__.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/msg/__init__.py
 
 rosidl_generator_py/interface/msg/_slam_s.c: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/msg/_slam_s.c
 
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 interface__py: interface__py/CMakeFiles/interface__py
 interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_introspection_c.c
 interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_c.c
 interface__py: rosidl_generator_py/interface/msg/_slam.py
-<<<<<<< HEAD
-interface__py: rosidl_generator_py/interface/srv/_map_point.py
-interface__py: rosidl_generator_py/interface/srv/_cam_pose.py
-interface__py: rosidl_generator_py/interface/msg/__init__.py
-interface__py: rosidl_generator_py/interface/srv/__init__.py
-interface__py: rosidl_generator_py/interface/msg/_slam_s.c
-interface__py: rosidl_generator_py/interface/srv/_map_point_s.c
-interface__py: rosidl_generator_py/interface/srv/_cam_pose_s.c
-=======
 interface__py: rosidl_generator_py/interface/msg/__init__.py
 interface__py: rosidl_generator_py/interface/msg/_slam_s.c
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
 interface__py: interface__py/CMakeFiles/interface__py.dir/build.make
 
 .PHONY : interface__py

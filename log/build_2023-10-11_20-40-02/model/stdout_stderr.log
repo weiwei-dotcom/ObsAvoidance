@@ -1,9 +1,0 @@
-[ 33%] [32m[1mLinking CXX executable model[0m
-/usr/bin/ld: CMakeFiles/model.dir/src/model.cpp.o: in function `ModelNode::ModelNode()':
-model.cpp:(.text+0x15ee): undefined reference to `ModelNode::distanceThresh_plandAndPoint'
-/usr/bin/ld: CMakeFiles/model.dir/src/model.cpp.o: in function `ModelNode::calParam(pcl::PointCloud<pcl::PointXYZ>)':
-model.cpp:(.text+0x8458): undefined reference to `ModelNode::distanceThresh_plandAndPoint'
-collect2: error: ld returned 1 exit status
-make[2]: *** [CMakeFiles/model.dir/build.make:356：model] 错误 1
-make[1]: *** [CMakeFiles/Makefile2:105：CMakeFiles/model.dir/all] 错误 2
-make: *** [Makefile:141：all] 错误 2

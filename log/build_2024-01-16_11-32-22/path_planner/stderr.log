@@ -1,7 +1,0 @@
-** WARNING ** io features related to pcap will be disabled
-** WARNING ** io features related to png will be disabled
-** WARNING ** io features related to libusb-1.0 will be disabled
-make[2]: *** [CMakeFiles/path_planner.dir/build.make:63: CMakeFiles/path_planner.dir/src/planner.cpp.o] 中断
-make[2]: *** [CMakeFiles/path_planner.dir/build.make:76: CMakeFiles/path_planner.dir/src/main.cpp.o] 中断
-make[1]: *** [CMakeFiles/Makefile2:105: CMakeFiles/path_planner.dir/all] 中断
-make: *** [Makefile:141: all] 中断

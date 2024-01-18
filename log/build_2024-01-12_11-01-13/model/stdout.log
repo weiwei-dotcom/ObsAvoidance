@@ -1,3 +1,0 @@
-[35m[1mScanning dependencies of target model[0m
-[ 33%] [32mBuilding CXX object CMakeFiles/model.dir/src/model.cpp.o[0m
-[ 66%] [32m[1mLinking CXX executable model[0m

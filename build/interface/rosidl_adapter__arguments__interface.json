@@ -1,12 +1,6 @@
 {
   "package_name": "interface",
   "non_idl_tuples": [
-<<<<<<< HEAD
-    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:msg/Slam.msg",
-    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:srv/MapPoint.srv",
-    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:srv/CamPose.srv"
-=======
     "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:msg/Slam.msg"
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09
   ]
 }
