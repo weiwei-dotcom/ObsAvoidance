@@ -13,3 +13,22 @@ inflation_radius: 5
 
 # size of a grid described in mm unit
 resolution: 10.0
+
+# path plan start position and speed
+start_position_x: 1000.0
+start_position_y: 1900.0
+start_position_z: 1000.0
+start_speed_x: 0.0
+start_speed_y: 20.0
+start_speed_z: 0.0
+
+# step degree of latitude and longitude of init project map
+init_proj_map_lati_step: 1.0
+init_proj_map_longi_step: 2.0
+
+# step degree of latitude and longitude of optimize project map
+opt_proj_map_lati_step: 1.0
+opt_proj_map_longi_step: 2.0
+
+
+
