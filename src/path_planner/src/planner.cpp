@@ -97,6 +97,8 @@ void PathPlanner::replanPathCallback()
     if (!this->flag_get_grid_map || !flag_get_plan_start) return; // this plan start position and velocity is got from the 
                                                                   // decoder of the linear mechanism's motor
     // initializing the straight line path
+    // get the the start point of project map;
+    project_map_start
     // start to project the obstacle to the project map
     for (int i=0; i<this->init_proj_map_lati_size;i++)
 
