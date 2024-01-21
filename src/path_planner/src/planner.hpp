@@ -42,7 +42,8 @@ private:
     int max_num_proj_line, max_num_proj;
 
     // if the project_center_point = [0,0,0], which means the there is no project center point
-    std::vector<std::vector<Eigen::Vector3d>> project_center_points;
+    std::vector<std::vector<Eigen::Vector3d>> init_proj_center_points;
+    std::vector<std::vector<double>> init_proj_start_proj_step;
 
     std::vector<std::vector<Eigen::Vector3d>> control_points_list;
 

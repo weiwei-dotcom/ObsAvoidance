@@ -43,4 +43,7 @@ max_num_proj_line: 3
 # max numbers of the project
 max_num_proj: 2
 
+# project line sample step(mm) of collision check
+proj_step: 10.0
+min_proj_step: 1.0
 
