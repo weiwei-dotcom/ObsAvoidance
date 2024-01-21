@@ -39,21 +39,40 @@ PathPlanner::PathPlanner():Node("path_planner")
     this->declare_parameter<double_t>("start_speed_x", 0.0);
     this->declare_parameter<double_t>("start_speed_y", 20.0);
     this->declare_parameter<double_t>("start_speed_z", 0.0);
+    this->declare_parameter<double_t>("average_speed", 20.0);
+    this->declare_parameter<int16_t>("max_num_proj_line", 3);
+    this->declare_parameter<int16_t>("max_num_proj", 2);
     this->start_position.x() = this->get_parameter("start_position_x").as_double();
     this->start_position.y() = this->get_parameter("start_position_y").as_double();
     this->start_position.z() = this->get_parameter("start_position_z").as_double();
-    this->start_speed.x() = this->get_parameter("start_speed_x").as_double();
-    this->start_speed.y() = this->get_parameter("start_speed_y").as_double();
-    this->start_speed.z() = this->get_parameter("start_speed_z").as_double();
+    this->start_direction.x() = this->get_parameter("start_speed_x").as_double();
+    this->start_direction.y() = this->get_parameter("start_speed_y").as_double();
+    this->start_direction.z() = this->get_parameter("start_speed_z").as_double();
+    this->max_num_proj_line = this->get_parameter("max_num_proj_line").as_int();
+    this->max_num_proj = this->get_parameter("max_num_proj").as_int();
+    this->average_speed = this->get_parameter("average_speed").as_double();
+    Eigen::Vector3d temp_project_center_point = Eigen::Vector3d::Zero();
+    std::vector<Eigen::Vector3d> temp_project_center_points((int)std::pow(max_num_proj_line, max_num_proj),temp_project_center_point);
+    project_center_points.resize(this->max_num_proj+1, temp_project_center_points);
+    project_center_points[0][0] = this->start_position + this->start_direction.normalized()*average_speed;
+
+    // debug
+    RCLCPP_INFO(this->get_logger(), "project_center_points[0][0]: [%f,%f,%f]", project_center_points[0][0].x(),project_center_points[0][0].y(),project_center_points[0][0].z());
+    RCLCPP_INFO(this->get_logger(), "project_center_points[0].size: %d", this->project_center_points[0].size());
+
+    this->declare_parameter<double_t>("init_proj_map_view_angle", 160.0);
+    this->declare_parameter<double_t>("opt_proj_map_view_angle", 160.0);
+    this->init_proj_map_view_angle = this->get_parameter("init_proj_map_view_angle").as_double();
+    this->opt_proj_map_view_angle = this->get_parameter("opt_proj_map_view_angle").as_double();
 
     this->declare_parameter<double_t>("init_proj_map_lati_step", 1.0);
     this->declare_parameter<double_t>("init_proj_map_longi_step", 2.0);
     this->declare_parameter<double_t>("opt_proj_map_lati_step", 1.0);
     this->declare_parameter<double_t>("opt_proj_map_longi_step", 2.0);
-    this->init_proj_map_lati_size = std::ceil(90.0/this->get_parameter("init_proj_map_lati_step").as_double());
-    this->init_proj_map_longi_size = std::ceil(360.0/this->get_parameter("init_proj_map_longi_step").as_double());
-    this->opt_proj_map_lati_size = std::ceil(90.0/this->get_parameter("opt_proj_map_lati_step").as_double());
-    this->opt_proj_map_longi_size = std::ceil(360.0/this->get_parameter("opt_proj_map_longi_step").as_double());
+    this->init_proj_map_lati_step = this->get_parameter("init_proj_map_lati_step").as_double();
+    this->init_proj_map_longi_step = this->get_parameter("init_proj_map_longi_step").as_double();
+    this->opt_proj_map_lati_step = this->get_parameter("opt_proj_map_lati_step").as_double();
+    this->opt_proj_map_longi_step = this->get_parameter("opt_proj_map_longi_step").as_double();
 
     return;
 }
@@ -96,14 +115,19 @@ void PathPlanner::replanPathCallback()
     //TODO: 
     if (!this->flag_get_grid_map || !flag_get_plan_start) return; // this plan start position and velocity is got from the 
                                                                   // decoder of the linear mechanism's motor
-    // initializing the straight line path
-    // get the the start point of project map;
-    project_map_start
-    // start to project the obstacle to the project map
-    for (int i=0; i<this->init_proj_map_lati_size;i++)
+    // # STEP 1 #: initializing the straight line path
+    for (int i=1;i<=this->max_num_proj;i++)
+    {
+        for (int j=0; j<this->init_proj_map_view_angle;j++)
+        {
+            
+        }    
+    }
 
-    // initializing the B spline control point on the straight line according to the preconfigured interval distance 
 
+    // # STEP 2 #: initializing B spline control point on the straight line and optimize.
+
+    // # STEP 3 #: collision check and optimize.
     // use the sample point of B spline to detect collision,
         // if collision
         // record the time knot and position of start & end sample point of the every collision segment 

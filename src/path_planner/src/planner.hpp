@@ -35,12 +35,20 @@ private:
 
     double replan_period;
 
-    Eigen::Vector3d start_position,start_speed;
+    Eigen::Vector3d start_position,start_direction;
+
+    double average_speed;
+
+    int max_num_proj_line, max_num_proj;
+
+    // if the project_center_point = [0,0,0], which means the there is no project center point
+    std::vector<std::vector<Eigen::Vector3d>> project_center_points;
 
     std::vector<std::vector<Eigen::Vector3d>> control_points_list;
 
-    int init_proj_map_lati_size, init_proj_map_longi_size;
-    int opt_proj_map_lati_size, opt_proj_map_longi_size;
+    double init_proj_map_view_angle, opt_proj_map_view_angle;
+    double init_proj_map_lati_step, init_proj_map_longi_step;
+    double opt_proj_map_lati_step, opt_proj_map_longi_step;
 
 public:
     PathPlanner();

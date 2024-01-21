@@ -22,13 +22,25 @@ start_speed_x: 0.0
 start_speed_y: 20.0
 start_speed_z: 0.0
 
+# init project map's angle range
+init_proj_map_view_angle: 160
 # step degree of latitude and longitude of init project map
 init_proj_map_lati_step: 1.0
 init_proj_map_longi_step: 2.0
 
+# optimize project map's angle range
+opt_proj_map_view_angle: 160
 # step degree of latitude and longitude of optimize project map
 opt_proj_map_lati_step: 1.0
 opt_proj_map_longi_step: 2.0
 
+# average speed
+average_speed: 20.0
+
+# max numbers of the project line of one project map
+max_num_proj_line: 3
+
+# max numbers of the project
+max_num_proj: 2
 
 
