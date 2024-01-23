@@ -47,10 +47,6 @@ private:
 
     std::vector<std::vector<Eigen::Vector3d>> control_points_list;
 
-    double init_proj_map_view_angle, opt_proj_map_view_angle;
-    double init_proj_map_lati_step, init_proj_map_longi_step;
-    double opt_proj_map_lati_step, opt_proj_map_longi_step;
-
 public:
     PathPlanner();
     void pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pcl_obs_msg);
