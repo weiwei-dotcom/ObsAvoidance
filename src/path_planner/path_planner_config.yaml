@@ -4,9 +4,9 @@ grid_origin_point_y: 0.0
 grid_origin_point_z: 0.0
 
 # number of grids of grid map on three axis direction
-grid_map_x_size: 2000
-grid_map_y_size: 4000
-grid_map_z_size: 2000
+grid_map_x_size: 200
+grid_map_y_size: 400
+grid_map_z_size: 200
 
 # inflation number of grids
 inflation_radius: 5
@@ -22,28 +22,6 @@ start_speed_x: 0.0
 start_speed_y: 20.0
 start_speed_z: 0.0
 
-# init project map's angle range
-init_proj_map_view_angle: 160
-# step degree of latitude and longitude of init project map
-init_proj_map_lati_step: 1.0
-init_proj_map_longi_step: 2.0
-
-# optimize project map's angle range
-opt_proj_map_view_angle: 160
-# step degree of latitude and longitude of optimize project map
-opt_proj_map_lati_step: 1.0
-opt_proj_map_longi_step: 2.0
-
 # average speed
 average_speed: 20.0
-
-# max numbers of the project line of one project map
-max_num_proj_line: 3
-
-# max numbers of the project
-max_num_proj: 2
-
-# project line sample step(mm) of collision check
-proj_step: 10.0
-min_proj_step: 1.0
 

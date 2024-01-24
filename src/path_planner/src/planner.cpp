@@ -17,15 +17,15 @@ PathPlanner::PathPlanner():Node("path_planner")
     this->grid_map_origin_point.y() = this->get_parameter("grid_map_origin_point_y").as_double();
     this->grid_map_origin_point.z() = this->get_parameter("grid_map_origin_point_z").as_double();
 
-    this->declare_parameter<std::int16_t>("grid_map_x_size", 2000);
-    this->declare_parameter<std::int16_t>("grid_map_y_size", 4000);
-    this->declare_parameter<std::int16_t>("grid_map_z_size", 2000);
+    this->declare_parameter<std::int16_t>("grid_map_x_size", 200);
+    this->declare_parameter<std::int16_t>("grid_map_y_size", 400);
+    this->declare_parameter<std::int16_t>("grid_map_z_size", 200);
     this->grid_map_x_size = this->get_parameter("grid_map_x_size").as_int();
     this->grid_map_y_size = this->get_parameter("grid_map_y_size").as_int();
     this->grid_map_z_size = this->get_parameter("grid_map_z_size").as_int();
     std::vector<bool> temp_occupy(this->grid_map_z_size, false);
     std::vector<std::vector<bool>> temp_occupy_2d(this->grid_map_y_size, temp_occupy);
-    this->occupy_status.resize(this->grid_map_x_size, temp_occupy_2d);
+    this->grid_map.resize(this->grid_map_x_size, temp_occupy_2d);
 
     this->declare_parameter<double_t>("resolution",10.0);
     this->resolution = this->get_parameter("resolution").as_double();
@@ -66,7 +66,7 @@ void PathPlanner::pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr 
         temp_index_x = floor((pcl_obs.points[i].x-this->grid_map_origin_point.x())/this->resolution);
         temp_index_y = floor((pcl_obs.points[i].y-this->grid_map_origin_point.y())/this->resolution);
         temp_index_z = floor((pcl_obs.points[i].z-this->grid_map_origin_point.z())/this->resolution);
-        this->occupy_status[temp_index_x][temp_index_y][temp_index_z] = true;
+        this->grid_map[temp_index_x][temp_index_y][temp_index_z] = true;
         for (int x=temp_index_x-inflation_radius;x<=temp_index_x+inflation_radius;x++)
         {
             for (int y=temp_index_y-inflation_radius;y<=temp_index_y+inflation_radius;y++)
@@ -74,7 +74,7 @@ void PathPlanner::pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr 
                 for (int z=temp_index_z-inflation_radius;z<=temp_index_z+inflation_radius;z++)
                 {
                     boundCorrect(x,y,z);
-                    occupy_status[x][y][z] = true;
+                    grid_map[x][y][z] = true;
                 } 
             }
         }
@@ -96,7 +96,7 @@ void PathPlanner::replanPath()
     if (!this->flag_get_grid_map || !flag_get_plan_start) return; // this plan start position and velocity is got from the 
                                                                   // decoder of the linear mechanism's motor
     // # STEP 1 #: Initializing global polynomial path.
-    
+    // TIP: set distance thresh 200mm, 
     
     // # STEP 2 #: Initializing control point on polynomial path.
 

@@ -42,12 +42,14 @@ if(BUILD_TESTING)
 endif()
 
 include_directories(${EIGEN3_INCLUDE_DIR} ${PCL_INCLUDE_DIRS} ${Sophus_DIR} ${CERES_INCLUDE_DIRS})
+# include_directories(${CERES_INCLUDE_DIRS})
 
 add_executable(path_planner src/main.cpp src/planner.cpp)
 
 ament_target_dependencies(path_planner rclcpp interface sensor_msgs geometry_msgs pcl_conversions octomap octomap_msgs PCL OpenCV Sophus Ceres Eigen3)
-# target_link_libraries(model ${OpenCV_LIBS} ${EIGEN_LIBS} ${PCL_LIBRARIES} )
 target_link_libraries(path_planner ${OpenCV_LIBS} ${EIGEN_LIBS} ${PCL_LIBRARIES} ${CERES_LIBRARIES})
+# target_link_libraries(path_planner ${CERES_LIBRARIES})
+# target_link_libraries(model ${OpenCV_LIBS} ${EIGEN_LIBS} ${PCL_LIBRARIES} )
 
 install(
   TARGETS

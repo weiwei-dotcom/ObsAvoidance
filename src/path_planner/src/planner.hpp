@@ -23,7 +23,7 @@ private:
 
     int grid_map_x_size,grid_map_y_size,grid_map_z_size;
 
-    std::vector<std::vector<std::vector<bool>>> occupy_status;
+    std::vector<std::vector<std::vector<bool>>> grid_map;
 
     double resolution;
 
