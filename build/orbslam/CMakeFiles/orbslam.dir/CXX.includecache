@@ -74,10 +74,6 @@ interface/msg/detail/slam__traits.hpp
 interface/msg/detail/slam__type_support.hpp
 /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/interface/msg/detail/slam__type_support.hpp
 
-/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/main.cpp
-slam.hpp
-/home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp
-
 /home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.cpp
 slam.hpp
 /home/weiwei/Desktop/project/ObsAvoidance/src/orbslam/src/slam.hpp
