@@ -11,7 +11,6 @@
                 "/usr/include/**",
                 "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/**",
                 "${workspaceFolder}/build/interface/rosidl_generator_cpp",
-                "/opt/ros/foxy/include"
             ],
             "name": "ROS",
             "intelliSenseMode": "gcc-x64",
