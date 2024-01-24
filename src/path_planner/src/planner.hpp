@@ -17,7 +17,7 @@ class PathPlanner:public rclcpp::Node
 private:
     rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_obs_sub;
 
-    rclcpp::TimerBase::SharedPtr replan_timer;
+    rclcpp::TimerBase::SharedPtr collision_check_timer;
 
     pcl::PointCloud<pcl::PointXYZ> pcl_obs;
 
@@ -37,13 +37,9 @@ private:
 
     Eigen::Vector3d start_position,start_direction;
 
+    Eigen::Vector3d current_position, current_direction;
+
     double average_speed;
-
-    int max_num_proj_line, max_num_proj;
-
-    // if the project_center_point = [0,0,0], which means the there is no project center point
-    std::vector<std::vector<Eigen::Vector3d>> init_proj_center_points;
-    std::vector<std::vector<double>> init_proj_start_proj_step;
 
     std::vector<std::vector<Eigen::Vector3d>> control_points_list;
 
@@ -51,7 +47,9 @@ public:
     PathPlanner();
     void pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pcl_obs_msg);
 
-    void replanPathCallback();
+    void replanPath();
+
+    void collisionCheckCallback();
     
     void boundCorrect(int &x, int &y, int &z);
     

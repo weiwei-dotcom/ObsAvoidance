@@ -8,7 +8,7 @@ PathPlanner::PathPlanner():Node("path_planner")
 
     this->declare_parameter<std::double_t>("replan_period", 0.5);
     int ms = floor(replan_period * 1000.0);
-    this->replan_timer = this->create_wall_timer(std::chrono::milliseconds(ms), std::bind(&PathPlanner::replanPathCallback,this));
+    this->collision_check_timer = this->create_wall_timer(std::chrono::milliseconds(ms), std::bind(&PathPlanner::collisionCheckCallback,this));
 
     this->declare_parameter<std::double_t>("grid_map_origin_point_x", 0.0);
     this->declare_parameter<std::double_t>("grid_map_origin_point_y", 0.0);
@@ -83,17 +83,26 @@ void PathPlanner::pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr 
     return;
 }
 
+void PathPlanner::collisionCheckCallback()
+{
+    // TODO:
+    return ;
+}
+
 // init the straight line path that for the 
-void PathPlanner::replanPathCallback()
+void PathPlanner::replanPath()
 {
     //TODO: 
     if (!this->flag_get_grid_map || !flag_get_plan_start) return; // this plan start position and velocity is got from the 
                                                                   // decoder of the linear mechanism's motor
     // # STEP 1 #: Initializing global polynomial path.
-
+    
+    
     // # STEP 2 #: Initializing control point on polynomial path.
 
-    // # STEP 3 #: Collision checkout and optimization until the control points set front 2/3 part free with collision.
+
+    // # STEP 3 #: Collision checkout and optimization until the control points set free with collision.
+
 
     return;
 }
@@ -106,3 +115,4 @@ void PathPlanner::boundCorrect(int &x, int &y, int &z)
     z = std::min(std::max(0,z), grid_map_z_size-1);
     return;
 }
+
