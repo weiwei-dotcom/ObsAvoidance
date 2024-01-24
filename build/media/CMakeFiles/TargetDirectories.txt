@@ -1,0 +1,10 @@
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/install/strip.dir
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/install/local.dir
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/install.dir
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/list_install_components.dir
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/rebuild_cache.dir
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/edit_cache.dir
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/test.dir
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/media.dir
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/media_uninstall.dir
+/home/weiwei/Desktop/project/ObsAvoidance/build/media/CMakeFiles/uninstall.dir

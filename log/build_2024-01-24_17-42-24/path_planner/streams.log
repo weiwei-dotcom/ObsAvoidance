@@ -1,0 +1,150 @@
+[0.083s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16
+[0.100s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.115s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.227s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.251s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.254s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.344s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.375s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.376s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.463s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[0.613s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[0.630s] -- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)
+[0.738s] -- Found octomap_msgs: 2.0.0 (/opt/ros/foxy/share/octomap_msgs/cmake)
+[0.787s] -- Eigen found (include: /usr/include/eigen3, version: 3.3.7)
+[0.840s] -- The imported target "vtkParseOGLExt" references the file
+[0.840s]    "/usr/bin/vtkParseOGLExt-7.1"
+[0.840s] but this file does not exist.  Possible reasons include:
+[0.840s] * The file was deleted, renamed, or moved to another location.
+[0.841s] * An install or uninstall procedure did not complete successfully.
+[0.841s] * The installation package was faulty and contained
+[0.841s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.841s] but not all the files it references.
+[0.841s] 
+[0.841s] -- The imported target "vtkRenderingPythonTkWidgets" references the file
+[0.841s]    "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"
+[0.841s] but this file does not exist.  Possible reasons include:
+[0.841s] * The file was deleted, renamed, or moved to another location.
+[0.841s] * An install or uninstall procedure did not complete successfully.
+[0.841s] * The installation package was faulty and contained
+[0.841s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.841s] but not all the files it references.
+[0.841s] 
+[0.841s] -- The imported target "vtk" references the file
+[0.842s]    "/usr/bin/vtk"
+[0.842s] but this file does not exist.  Possible reasons include:
+[0.842s] * The file was deleted, renamed, or moved to another location.
+[0.842s] * An install or uninstall procedure did not complete successfully.
+[0.842s] * The installation package was faulty and contained
+[0.842s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.842s] but not all the files it references.
+[0.842s] 
+[0.842s] -- The imported target "pvtk" references the file
+[0.842s]    "/usr/bin/pvtk"
+[0.842s] but this file does not exist.  Possible reasons include:
+[0.842s] * The file was deleted, renamed, or moved to another location.
+[0.842s] * An install or uninstall procedure did not complete successfully.
+[0.842s] * The installation package was faulty and contained
+[0.842s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[0.842s] but not all the files it references.
+[0.842s] 
+[0.854s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[0.858s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[0.858s] ** WARNING ** io features related to pcap will be disabled
+[0.858s] ** WARNING ** io features related to png will be disabled
+[0.865s] ** WARNING ** io features related to libusb-1.0 will be disabled
+[0.869s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[0.873s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[0.880s] -- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)
+[0.884s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[0.891s] -- looking for PCL_COMMON
+[0.892s] -- looking for PCL_KDTREE
+[0.892s] -- looking for PCL_OCTREE
+[0.892s] -- looking for PCL_SEARCH
+[0.893s] -- looking for PCL_SAMPLE_CONSENSUS
+[0.893s] -- looking for PCL_FILTERS
+[0.893s] -- looking for PCL_2D
+[0.893s] -- looking for PCL_GEOMETRY
+[0.894s] -- looking for PCL_IO
+[0.894s] -- looking for PCL_FEATURES
+[0.894s] -- looking for PCL_ML
+[0.895s] -- looking for PCL_SEGMENTATION
+[0.895s] -- looking for PCL_VISUALIZATION
+[0.896s] -- looking for PCL_SURFACE
+[0.896s] -- looking for PCL_REGISTRATION
+[0.896s] -- looking for PCL_KEYPOINTS
+[0.897s] -- looking for PCL_TRACKING
+[0.897s] -- looking for PCL_RECOGNITION
+[0.898s] -- looking for PCL_STEREO
+[0.898s] -- looking for PCL_APPS
+[0.899s] -- looking for PCL_IN_HAND_SCANNER
+[0.899s] -- looking for PCL_POINT_CLOUD_EDITOR
+[0.899s] -- looking for PCL_OUTOFCORE
+[0.899s] -- looking for PCL_PEOPLE
+[0.974s] -- Found AMD headers in: /usr/include/suitesparse
+[0.974s] -- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so
+[0.974s] -- Found CAMD headers in: /usr/include/suitesparse
+[0.974s] -- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so
+[0.974s] -- Found CCOLAMD headers in: /usr/include/suitesparse
+[0.974s] -- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so
+[0.974s] -- Found CHOLMOD headers in: /usr/include/suitesparse
+[0.974s] -- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so
+[0.974s] -- Found COLAMD headers in: /usr/include/suitesparse
+[0.974s] -- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so
+[0.974s] -- Found SPQR headers in: /usr/include/suitesparse
+[0.974s] -- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so
+[0.974s] -- Found Config headers in: /usr/include/suitesparse
+[0.974s] -- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+[0.975s] -- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.
+[0.975s] -- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+[0.977s] -- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) 
+[0.980s] -- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake
+[0.981s] -- Found required Ceres dependency: glog
+[0.982s] -- Found required Ceres dependency: gflags
+[0.982s] -- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]
+[0.982s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.067s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.068s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.068s] -- Configured cppcheck include dirs: 
+[1.068s] -- Configured cppcheck exclude dirs and/or files: 
+[1.069s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.069s] -- Configured cpplint exclude dirs and/or files: 
+[1.069s] -- Added test 'lint_cmake' to check CMake code style
+[1.069s] -- Added test 'uncrustify' to check C / C++ code style
+[1.070s] -- Configured uncrustify additional arguments: 
+[1.070s] -- Added test 'xmllint' to check XML markup files
+[1.071s] -- Configuring done
+[1.091s] -- Generating done
+[1.092s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner
+[1.135s] [ 66%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/planner.cpp.o[0m
+[1.135s] [ 66%] [32mBuilding CXX object CMakeFiles/path_planner.dir/src/main.cpp.o[0m
+[5.233s] In file included from [01m[K/usr/local/include/ceres/ceres.h:46[m[K,
+[5.233s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.hpp:12[m[K,
+[5.233s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.cpp:1[m[K:
+[5.233s] [01m[K/usr/local/include/ceres/dynamic_autodiff_cost_function.h:280:48:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[K;[m[K’ token
+[5.233s]   280 |     -> DynamicAutoDiffCostFunction<CostFunctor>[01;31m[K;[m[K
+[5.233s]       |                                                [01;31m[K^[m[K
+[5.277s] In file included from [01m[K/usr/local/include/ceres/ceres.h:46[m[K,
+[5.277s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.hpp:12[m[K,
+[5.277s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/main.cpp:1[m[K:
+[5.277s] [01m[K/usr/local/include/ceres/dynamic_autodiff_cost_function.h:280:48:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[K;[m[K’ token
+[5.277s]   280 |     -> DynamicAutoDiffCostFunction<CostFunctor>[01;31m[K;[m[K
+[5.277s]       |                                                [01;31m[K^[m[K
+[5.284s] In file included from [01m[K/usr/local/include/ceres/ceres.h:65[m[K,
+[5.284s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.hpp:12[m[K,
+[5.284s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.cpp:1[m[K:
+[5.284s] [01m[K/usr/local/include/ceres/product_manifold.h:315:59:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[K;[m[K’ token
+[5.285s]   315 |     -> ProductManifold<Manifold0, Manifold1, Manifolds...>[01;31m[K;[m[K
+[5.285s]       |                                                           [01;31m[K^[m[K
+[5.331s] In file included from [01m[K/usr/local/include/ceres/ceres.h:65[m[K,
+[5.331s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/planner.hpp:12[m[K,
+[5.331s]                  from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/src/main.cpp:1[m[K:
+[5.331s] [01m[K/usr/local/include/ceres/product_manifold.h:315:59:[m[K [01;31m[Kerror: [m[Kexpected constructor, destructor, or type conversion before ‘[01m[K;[m[K’ token
+[5.331s]   315 |     -> ProductManifold<Manifold0, Manifold1, Manifolds...>[01;31m[K;[m[K
+[5.332s]       |                                                           [01;31m[K^[m[K
+[8.561s] make[2]: *** [CMakeFiles/path_planner.dir/build.make:63：CMakeFiles/path_planner.dir/src/main.cpp.o] 错误 1
+[8.561s] make[2]: *** 正在等待未完成的任务....
+[9.277s] make[2]: *** [CMakeFiles/path_planner.dir/build.make:76：CMakeFiles/path_planner.dir/src/planner.cpp.o] 错误 1
+[9.277s] make[1]: *** [CMakeFiles/Makefile2:105：CMakeFiles/path_planner.dir/all] 错误 2
+[9.277s] make: *** [Makefile:141：all] 错误 2
+[9.279s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner' returned '2': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_planner -- -j16 -l16

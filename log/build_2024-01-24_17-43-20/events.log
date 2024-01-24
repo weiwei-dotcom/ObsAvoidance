@@ -1,0 +1,137 @@
+[0.000000] (-) TimerEvent: {}
+[0.000130] (-) JobUnselected: {'identifier': 'interface'}
+[0.000218] (-) JobUnselected: {'identifier': 'media'}
+[0.000702] (-) JobUnselected: {'identifier': 'model'}
+[0.000734] (-) JobUnselected: {'identifier': 'orbslam'}
+[0.000747] (path_planner) JobQueued: {'identifier': 'path_planner', 'dependencies': OrderedDict([('interface', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface')])}
+[0.000777] (path_planner) JobStarted: {'identifier': 'path_planner'}
+[0.078027] (path_planner) JobProgress: {'identifier': 'path_planner', 'progress': 'cmake'}
+[0.079180] (path_planner) JobProgress: {'identifier': 'path_planner', 'progress': 'build'}
+[0.079321] (path_planner) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner', '--', '-j16', '-l16'], 'cwd': '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en_US:en'), ('USER', 'weiwei'), ('LC_TIME', 'zh_CN.UTF-8'), ('SSH_AGENT_PID', '1637'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('QT4_IM_MODULE', 'fcitx'), ('HOME', '/home/weiwei'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.85.2'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('MANAGERPID', '1426'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '19773'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'weiwei'), ('JOURNAL_STREAM', '8:39339'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'weiwei'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/weiwei/.local/bin:/opt/ros/foxy/bin:/home/weiwei/Desktop/thirdParty/anaconda3/condabin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/hello-world:@/tmp/.ICE-unix/1683,unix/hello-world:/tmp/.ICE-unix/1683'), ('INVOCATION_ID', 'f263b98a212e4457ba18c3d51f4a5649'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-bbf023cb46.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('CLASSPATH', '.:/home/weiwei/Desktop/application/jdk1.8.0_381/lib:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/lib'), ('QT_IM_MODULE', 'fcitx'), ('JAVA_HOME', '/home/weiwei/Desktop/application/jdk1.8.0_381'), ('PWD', '/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'fcitx'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy')]), 'shell': False}
+[0.099376] (path_planner) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.099833] (-) TimerEvent: {}
+[0.113752] (path_planner) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.199941] (-) TimerEvent: {}
+[0.227733] (path_planner) StdoutLine: {'line': b'-- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[0.250292] (path_planner) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.252720] (path_planner) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.300039] (-) TimerEvent: {}
+[0.339247] (path_planner) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.368795] (path_planner) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[0.369621] (path_planner) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.400153] (-) TimerEvent: {}
+[0.454957] (path_planner) StdoutLine: {'line': b'-- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)\n'}
+[0.500310] (-) TimerEvent: {}
+[0.600144] (path_planner) StdoutLine: {'line': b'-- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)\n'}
+[0.600351] (-) TimerEvent: {}
+[0.616499] (path_planner) StdoutLine: {'line': b'-- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)\n'}
+[0.700520] (-) TimerEvent: {}
+[0.718038] (path_planner) StdoutLine: {'line': b'-- Found octomap_msgs: 2.0.0 (/opt/ros/foxy/share/octomap_msgs/cmake)\n'}
+[0.765012] (path_planner) StdoutLine: {'line': b'-- Eigen found (include: /usr/include/eigen3, version: 3.3.7)\n'}
+[0.800638] (-) TimerEvent: {}
+[0.817753] (path_planner) StdoutLine: {'line': b'-- The imported target "vtkParseOGLExt" references the file\n'}
+[0.817896] (path_planner) StdoutLine: {'line': b'   "/usr/bin/vtkParseOGLExt-7.1"\n'}
+[0.817939] (path_planner) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[0.817975] (path_planner) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[0.818010] (path_planner) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[0.818045] (path_planner) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[0.818079] (path_planner) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[0.818113] (path_planner) StdoutLine: {'line': b'but not all the files it references.\n'}
+[0.818146] (path_planner) StdoutLine: {'line': b'\n'}
+[0.818352] (path_planner) StdoutLine: {'line': b'-- The imported target "vtkRenderingPythonTkWidgets" references the file\n'}
+[0.818426] (path_planner) StdoutLine: {'line': b'   "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"\n'}
+[0.818468] (path_planner) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[0.818505] (path_planner) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[0.818541] (path_planner) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[0.818575] (path_planner) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[0.818609] (path_planner) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[0.818643] (path_planner) StdoutLine: {'line': b'but not all the files it references.\n'}
+[0.818859] (path_planner) StdoutLine: {'line': b'\n'}
+[0.819036] (path_planner) StdoutLine: {'line': b'-- The imported target "vtk" references the file\n'}
+[0.819085] (path_planner) StdoutLine: {'line': b'   "/usr/bin/vtk"\n'}
+[0.819122] (path_planner) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[0.819158] (path_planner) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[0.819192] (path_planner) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[0.819225] (path_planner) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[0.819258] (path_planner) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[0.819292] (path_planner) StdoutLine: {'line': b'but not all the files it references.\n'}
+[0.819325] (path_planner) StdoutLine: {'line': b'\n'}
+[0.819359] (path_planner) StdoutLine: {'line': b'-- The imported target "pvtk" references the file\n'}
+[0.819392] (path_planner) StdoutLine: {'line': b'   "/usr/bin/pvtk"\n'}
+[0.819425] (path_planner) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[0.819459] (path_planner) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[0.819491] (path_planner) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[0.819525] (path_planner) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[0.819559] (path_planner) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[0.819593] (path_planner) StdoutLine: {'line': b'but not all the files it references.\n'}
+[0.819633] (path_planner) StdoutLine: {'line': b'\n'}
+[0.831814] (path_planner) StdoutLine: {'line': b'-- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)\n'}
+[0.835533] (path_planner) StdoutLine: {'line': b'-- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)\n'}
+[0.835640] (path_planner) StderrLine: {'line': b'** WARNING ** io features related to pcap will be disabled\n'}
+[0.835696] (path_planner) StderrLine: {'line': b'** WARNING ** io features related to png will be disabled\n'}
+[0.842955] (path_planner) StderrLine: {'line': b'** WARNING ** io features related to libusb-1.0 will be disabled\n'}
+[0.846650] (path_planner) StdoutLine: {'line': b'-- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)\n'}
+[0.850248] (path_planner) StdoutLine: {'line': b'-- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)\n'}
+[0.858042] (path_planner) StdoutLine: {'line': b'-- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)\n'}
+[0.861615] (path_planner) StdoutLine: {'line': b'-- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)\n'}
+[0.868795] (path_planner) StdoutLine: {'line': b'-- looking for PCL_COMMON\n'}
+[0.869177] (path_planner) StdoutLine: {'line': b'-- looking for PCL_KDTREE\n'}
+[0.869409] (path_planner) StdoutLine: {'line': b'-- looking for PCL_OCTREE\n'}
+[0.869681] (path_planner) StdoutLine: {'line': b'-- looking for PCL_SEARCH\n'}
+[0.870070] (path_planner) StdoutLine: {'line': b'-- looking for PCL_SAMPLE_CONSENSUS\n'}
+[0.870217] (path_planner) StdoutLine: {'line': b'-- looking for PCL_FILTERS\n'}
+[0.870598] (path_planner) StdoutLine: {'line': b'-- looking for PCL_2D\n'}
+[0.870950] (path_planner) StdoutLine: {'line': b'-- looking for PCL_GEOMETRY\n'}
+[0.871224] (path_planner) StdoutLine: {'line': b'-- looking for PCL_IO\n'}
+[0.871661] (path_planner) StdoutLine: {'line': b'-- looking for PCL_FEATURES\n'}
+[0.872033] (path_planner) StdoutLine: {'line': b'-- looking for PCL_ML\n'}
+[0.872212] (path_planner) StdoutLine: {'line': b'-- looking for PCL_SEGMENTATION\n'}
+[0.872657] (path_planner) StdoutLine: {'line': b'-- looking for PCL_VISUALIZATION\n'}
+[0.873045] (path_planner) StdoutLine: {'line': b'-- looking for PCL_SURFACE\n'}
+[0.873425] (path_planner) StdoutLine: {'line': b'-- looking for PCL_REGISTRATION\n'}
+[0.873674] (path_planner) StdoutLine: {'line': b'-- looking for PCL_KEYPOINTS\n'}
+[0.874080] (path_planner) StdoutLine: {'line': b'-- looking for PCL_TRACKING\n'}
+[0.874439] (path_planner) StdoutLine: {'line': b'-- looking for PCL_RECOGNITION\n'}
+[0.874965] (path_planner) StdoutLine: {'line': b'-- looking for PCL_STEREO\n'}
+[0.875335] (path_planner) StdoutLine: {'line': b'-- looking for PCL_APPS\n'}
+[0.875923] (path_planner) StdoutLine: {'line': b'-- looking for PCL_IN_HAND_SCANNER\n'}
+[0.876135] (path_planner) StdoutLine: {'line': b'-- looking for PCL_POINT_CLOUD_EDITOR\n'}
+[0.876416] (path_planner) StdoutLine: {'line': b'-- looking for PCL_OUTOFCORE\n'}
+[0.876810] (path_planner) StdoutLine: {'line': b'-- looking for PCL_PEOPLE\n'}
+[0.900785] (-) TimerEvent: {}
+[0.947253] (path_planner) StdoutLine: {'line': b'-- Found AMD headers in: /usr/include/suitesparse\n'}
+[0.947561] (path_planner) StdoutLine: {'line': b'-- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so\n'}
+[0.947752] (path_planner) StdoutLine: {'line': b'-- Found CAMD headers in: /usr/include/suitesparse\n'}
+[0.947908] (path_planner) StdoutLine: {'line': b'-- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so\n'}
+[0.948130] (path_planner) StdoutLine: {'line': b'-- Found CCOLAMD headers in: /usr/include/suitesparse\n'}
+[0.948188] (path_planner) StdoutLine: {'line': b'-- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so\n'}
+[0.948225] (path_planner) StdoutLine: {'line': b'-- Found CHOLMOD headers in: /usr/include/suitesparse\n'}
+[0.948260] (path_planner) StdoutLine: {'line': b'-- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so\n'}
+[0.948297] (path_planner) StdoutLine: {'line': b'-- Found COLAMD headers in: /usr/include/suitesparse\n'}
+[0.948330] (path_planner) StdoutLine: {'line': b'-- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so\n'}
+[0.948364] (path_planner) StdoutLine: {'line': b'-- Found SPQR headers in: /usr/include/suitesparse\n'}
+[0.948404] (path_planner) StdoutLine: {'line': b'-- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so\n'}
+[0.948440] (path_planner) StdoutLine: {'line': b'-- Found Config headers in: /usr/include/suitesparse\n'}
+[0.948591] (path_planner) StdoutLine: {'line': b'-- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so\n'}
+[0.948642] (path_planner) StdoutLine: {'line': b'-- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.\n'}
+[0.948680] (path_planner) StdoutLine: {'line': b'-- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).\n'}
+[0.951036] (path_planner) StdoutLine: {'line': b'-- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) \n'}
+[0.953188] (path_planner) StdoutLine: {'line': b'-- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake\n'}
+[0.953961] (path_planner) StdoutLine: {'line': b'-- Found required Ceres dependency: glog\n'}
+[0.954974] (path_planner) StdoutLine: {'line': b'-- Found required Ceres dependency: gflags\n'}
+[0.955455] (path_planner) StdoutLine: {'line': b'-- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]\n'}
+[0.955657] (path_planner) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[1.000946] (-) TimerEvent: {}
+[1.048359] (path_planner) StderrLine: {'line': b'CMake Error at CMakeLists.txt:50 (target_link_libraries):\n'}
+[1.048515] (path_planner) StderrLine: {'line': b'  Cannot specify link libraries for target "model" which is not built by this\n'}
+[1.048560] (path_planner) StderrLine: {'line': b'  project.\n'}
+[1.048594] (path_planner) StderrLine: {'line': b'\n'}
+[1.048628] (path_planner) StderrLine: {'line': b'\n'}
+[1.049656] (path_planner) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[1.049730] (path_planner) StdoutLine: {'line': b'See also "/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner/CMakeFiles/CMakeOutput.log".\n'}
+[1.049771] (path_planner) StdoutLine: {'line': b'See also "/home/weiwei/Desktop/project/ObsAvoidance/build/path_planner/CMakeFiles/CMakeError.log".\n'}
+[1.058081] (path_planner) StderrLine: {'line': b'make: *** [Makefile:296\xef\xbc\x9acmake_check_build_system] \xe9\x94\x99\xe8\xaf\xaf 1\n'}
+[1.059919] (path_planner) CommandEnded: {'returncode': 2}
+[1.101285] (-) TimerEvent: {}
+[1.148765] (path_planner) JobEnded: {'identifier': 'path_planner', 'rc': 2}
+[1.159373] (-) EventReactorShutdown: {}
