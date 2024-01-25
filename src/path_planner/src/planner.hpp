@@ -10,7 +10,7 @@
 #include "pcl/common/transforms.h"
 #include <pcl/point_types.h>
 #include <ceres/ceres.h>
-#include "polynomial_traj.h"
+#include "polynomial_traj.hpp"
 
 
 class PathPlanner:public rclcpp::Node
@@ -46,6 +46,8 @@ private:
 
     // init_polynomial path
     PolynomialTraj init_poly_path;
+
+    double interp_dist_thresh;
 
 public:
     PathPlanner();

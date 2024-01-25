@@ -49,6 +49,9 @@ PathPlanner::PathPlanner():Node("path_planner")
     this->average_speed = this->get_parameter("average_speed").as_double();
     this->start_vel = this->start_direction.normalized() * average_speed;
 
+    this->declare_parameter<double_t>("interp_dist_thresh", 200.0);
+    this->interp_dist_thresh = this->get_parameter("interp_dist_thresh").as_double();
+
     return;
 }
 
@@ -106,7 +109,6 @@ void PathPlanner::replanPath()
         rclcpp::shutdown();
     }
     
-    
     // # STEP 2 #: Initializing control point on polynomial path.
 
 
@@ -126,16 +128,15 @@ bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Ve
 
     // insert intermediate points if too far
     vector<Eigen::Vector3d> inter_points;
-    const double dist_thresh = 4.0;
 
     for (size_t i = 0; i < points.size() - 1; ++i)
     {
         inter_points.push_back(points.at(i));
         double dist = (points.at(i + 1) - points.at(i)).norm();
 
-        if (dist > dist_thresh)
+        if (dist > this->interp_dist_thresh)
         {
-            int id_num = floor(dist / dist_thresh) + 1;
+            int id_num = floor(dist / interp_dist_thresh) + 1;
 
             for (int j = 1; j < id_num; ++j)
             {
@@ -159,7 +160,7 @@ bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Ve
     // Allocate time
     for (int i = 0; i < pt_num - 1; ++i)
     {
-        time(i) = (pos.col(i + 1) - pos.col(i)).norm() / (pp_.max_vel_);
+        time(i) = (pos.col(i + 1) - pos.col(i)).norm() / (this->average_speed);
     }
 
     // Assume that the speed of the beginning and end stages needs to be increased and decreased

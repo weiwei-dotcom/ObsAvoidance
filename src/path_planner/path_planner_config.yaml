@@ -28,3 +28,7 @@ end_position_z: 1000.0
 # average speed
 average_speed: 20.0
 
+# distance of polynomial interpolating point
+interp_dist_thresh: 200.0
+
+
