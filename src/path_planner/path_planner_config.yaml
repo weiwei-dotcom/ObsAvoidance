@@ -18,9 +18,12 @@ resolution: 10.0
 start_position_x: 1000.0
 start_position_y: 1900.0
 start_position_z: 1000.0
-start_speed_x: 0.0
-start_speed_y: 20.0
-start_speed_z: 0.0
+start_direction_x: 0.0
+start_direction_y: 1.0
+start_direction_z: 0.0
+end_position_x: 1000.0
+end_position_y: 2550.0
+end_position_z: 1000.0
 
 # average speed
 average_speed: 20.0

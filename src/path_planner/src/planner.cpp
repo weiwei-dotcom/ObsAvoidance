@@ -40,13 +40,14 @@ PathPlanner::PathPlanner():Node("path_planner")
     this->declare_parameter<double_t>("start_speed_y", 20.0);
     this->declare_parameter<double_t>("start_speed_z", 0.0);
     this->declare_parameter<double_t>("average_speed", 20.0);
-    this->start_position.x() = this->get_parameter("start_position_x").as_double();
-    this->start_position.y() = this->get_parameter("start_position_y").as_double();
-    this->start_position.z() = this->get_parameter("start_position_z").as_double();
-    this->start_direction.x() = this->get_parameter("start_speed_x").as_double();
-    this->start_direction.y() = this->get_parameter("start_speed_y").as_double();
-    this->start_direction.z() = this->get_parameter("start_speed_z").as_double();
+    this->start_pos.x() = this->get_parameter("start_position_x").as_double();
+    this->start_pos.y() = this->get_parameter("start_position_y").as_double();
+    this->start_pos.z() = this->get_parameter("start_position_z").as_double();
+    this->start_direction.x() = this->get_parameter("start_direction_x").as_double();
+    this->start_direction.y() = this->get_parameter("start_direction_y").as_double();
+    this->start_direction.z() = this->get_parameter("start_direction_z").as_double();
     this->average_speed = this->get_parameter("average_speed").as_double();
+    this->start_vel = this->start_direction.normalized() * average_speed;
 
     return;
 }
@@ -97,6 +98,13 @@ void PathPlanner::replanPath()
                                                                   // decoder of the linear mechanism's motor
     // # STEP 1 #: Initializing global polynomial path.
     // TIP: set distance thresh 200mm, use end_front_index become the path plan start point.
+    bool succes = planInitTraj(start_pos, start_vel, Eigen::Vector3d::Zero(), end_pos, Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero());
+    if (!succes)
+    {
+        RCLCPP_ERROR(this->get_logger(), "Unable to generate Init Path !");
+
+        rclcpp::shutdown();
+    }
     
     
     // # STEP 2 #: Initializing control point on polynomial path.
@@ -106,6 +114,66 @@ void PathPlanner::replanPath()
 
 
     return;
+}
+
+bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
+                               const Eigen::Vector3d &end_pos, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc)
+{
+    // generate global reference trajectory
+    vector<Eigen::Vector3d> points;
+    points.push_back(start_pos);
+    points.push_back(end_pos);
+
+    // insert intermediate points if too far
+    vector<Eigen::Vector3d> inter_points;
+    const double dist_thresh = 4.0;
+
+    for (size_t i = 0; i < points.size() - 1; ++i)
+    {
+        inter_points.push_back(points.at(i));
+        double dist = (points.at(i + 1) - points.at(i)).norm();
+
+        if (dist > dist_thresh)
+        {
+            int id_num = floor(dist / dist_thresh) + 1;
+
+            for (int j = 1; j < id_num; ++j)
+            {
+            Eigen::Vector3d inter_pt =
+                points.at(i) * (1.0 - double(j) / id_num) + points.at(i + 1) * double(j) / id_num;
+            inter_points.push_back(inter_pt);
+            }
+        }
+    }
+
+    inter_points.push_back(points.back());
+
+    // write position matrix
+    int pt_num = inter_points.size();
+    Eigen::MatrixXd pos(3, pt_num);
+    for (int i = 0; i < pt_num; ++i)
+        pos.col(i) = inter_points[i];
+
+    Eigen::Vector3d zero(0, 0, 0);
+    Eigen::VectorXd time(pt_num - 1);
+    // Allocate time
+    for (int i = 0; i < pt_num - 1; ++i)
+    {
+        time(i) = (pos.col(i + 1) - pos.col(i)).norm() / (pp_.max_vel_);
+    }
+
+    // Assume that the speed of the beginning and end stages needs to be increased and decreased
+    time(0) *= 2.0;
+    time(time.rows() - 1) *= 2.0;
+
+    // Calculate the time span and the coefficients of each poly segment, return to the PolynomialTraj class variant.
+    if (pos.cols() >= 3)
+        this->init_poly_path = PolynomialTraj::minSnapTraj(pos, start_vel, end_vel, start_acc, end_acc, time);
+    else if (pos.cols() == 2)
+        this->init_poly_path = PolynomialTraj::one_segment_traj_gen(start_pos, start_vel, start_acc, end_pos, end_vel, end_acc, time(0));
+    else
+        return false;
+    return true;
 }
 
 // Corrects points outside the boundary

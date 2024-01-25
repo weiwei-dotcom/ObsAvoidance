@@ -10,6 +10,7 @@
 #include "pcl/common/transforms.h"
 #include <pcl/point_types.h>
 #include <ceres/ceres.h>
+#include "polynomial_traj.h"
 
 
 class PathPlanner:public rclcpp::Node
@@ -35,13 +36,16 @@ private:
 
     double replan_period;
 
-    Eigen::Vector3d start_position,start_direction;
+    Eigen::Vector3d start_pos,start_direction,start_vel,end_pos;
 
     Eigen::Vector3d current_position, current_direction;
 
     double average_speed;
 
     std::vector<std::vector<Eigen::Vector3d>> control_points_list;
+
+    // init_polynomial path
+    PolynomialTraj init_poly_path;
 
 public:
     PathPlanner();
@@ -53,4 +57,7 @@ public:
     
     void boundCorrect(int &x, int &y, int &z);
     
+    bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
+                                   const Eigen::Vector3d &end_pos, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc);
+
 };
