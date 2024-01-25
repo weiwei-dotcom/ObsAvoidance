@@ -133,7 +133,8 @@ void PathPlanner::replanPath()
     initControlPoints();
 
     // # STEP 3 #: Collision checkout and optimization until the control points set free with collision.
-
+    getCollisionSegId();
+    /// TODO:
 
     return;
 }
@@ -255,7 +256,6 @@ void PathPlanner::getCollisionSegId()
     // step_size is a ratio value
     double step_size = resolution / ((ctrl_pts.col(0) - ctrl_pts.rightCols(1)).norm() / (ctrl_pts.cols() - 1)) / 2;
     int in_id, out_id;
-    vector<std::pair<int, int>> segment_ids;
     int same_occ_state_times = ENOUGH_INTERVAL + 1;
     bool occ, last_occ = false;
     bool flag_got_start = false, flag_got_end = false, flag_got_end_maybe = false;
@@ -304,7 +304,6 @@ void PathPlanner::getCollisionSegId()
             }
         }
     }
-    
     return;
 }
 

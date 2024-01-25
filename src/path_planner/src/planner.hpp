@@ -61,6 +61,8 @@ private:
 
     int order;
 
+    vector<std::pair<int, int>> segment_ids;
+
 public:
     PathPlanner();
     void pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pcl_obs_msg);
