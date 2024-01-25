@@ -11,6 +11,7 @@
 #include <pcl/point_types.h>
 #include <ceres/ceres.h>
 #include "polynomial_traj.hpp"
+#include "uniform_bspline.hpp"
 
 
 class PathPlanner:public rclcpp::Node
@@ -38,22 +39,27 @@ private:
 
     Eigen::Vector3d start_pos,start_direction,start_vel,end_pos;
 
+    std::vector<Eigen::Vector3d> start_end_derivatives;
+
     Eigen::Vector3d current_position, current_direction;
 
     double average_speed;
 
-    std::vector<Eigen::Vector3d> control_point_list;
+    std::vector<Eigen::Vector3d> bspline_interp_pt;
 
     // init_polynomial path
     PolynomialTraj init_poly_path;
 
     double interp_dist_thresh, control_point_dist;
 
-    std::vector<Eigen::Vector3d> ctrl_pt;
+    // std::vector<Eigen::Vector3d> ctrl_pt;
+    Eigen::MatrixXd ctrl_pts;
 
     double extension_ratio;
 
     double min_plan_dist, max_control_point_dist;
+
+    int order;
 
 public:
     PathPlanner();
@@ -68,6 +74,12 @@ public:
     bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
                                    const Eigen::Vector3d &end_pos, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc);
 
-    void initControlPoint();
+    void initControlPoints();
+
+    void getCollisionSegId();
+
+    bool checkCollision(const Eigen::Vector3d &coor);
+
+    Eigen::Vector3i coorToIndex(const Eigen::Vector3d &coor);
 
 };

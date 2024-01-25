@@ -5,6 +5,9 @@ PathPlanner::PathPlanner():Node("path_planner")
     flag_get_grid_map = false;
     flag_get_plan_start = false;
     flag_finish_planning = false;
+
+    this->order = 3;
+
     this->pcl_obs_sub = this->create_subscription<sensor_msgs::msg::PointCloud2>("pcl_obstacle",10,std::bind(&PathPlanner::pclObsCallback,this,std::placeholders::_1));
 
     this->declare_parameter<std::double_t>("replan_period", 0.5);
@@ -127,7 +130,7 @@ void PathPlanner::replanPath()
     }
     
     // # STEP 2 #: Initializing control point on polynomial path.
-    initControlPoint();
+    initControlPoints();
 
     // # STEP 3 #: Collision checkout and optimization until the control points set free with collision.
 
@@ -201,19 +204,21 @@ bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Ve
     return true;
 }
 
-void PathPlanner::initControlPoint()
+void PathPlanner::initControlPoints()
 {
     double ts = control_point_dist/average_speed/extension_ratio;
     ts*=1.5;
     bool flag_too_far = false;
+    bspline_interp_pt.clear();
+    start_end_derivatives.clear();
     do 
     {
         ts/=1.5;
-        control_point_list.clear();
+        bspline_interp_pt.clear();
         flag_too_far = false;
         double time_sum = init_poly_path.getTimeSum();
         Eigen::Vector3d last_pt = init_poly_path.evaluate(0.0);
-        control_point_list.push_back(last_pt);
+        bspline_interp_pt.push_back(last_pt);
         for (double t=ts;t<time_sum;t+=ts)
         {
             Eigen::Vector3d pt = this->init_poly_path.evaluate(ts);
@@ -222,12 +227,85 @@ void PathPlanner::initControlPoint()
                 flag_too_far = true;
                 break;
             }
-            this->control_point_list.push_back(pt);
+            this->bspline_interp_pt.push_back(pt);
             last_pt = pt;
         }
-    }while(flag_too_far || this->control_point_list.size() < 7);
-    /// TODO: here
+    }while(flag_too_far || this->bspline_interp_pt.size()<7);
 
+    bspline_interp_pt.push_back(end_pos);
+    if ((bspline_interp_pt.back()-bspline_interp_pt[bspline_interp_pt.size()-2]).norm() < 10.0)
+    {
+        bspline_interp_pt[bspline_interp_pt.size()-2] = bspline_interp_pt.back();
+        bspline_interp_pt.pop_back();
+    }
+
+    start_end_derivatives.push_back(this->start_vel);
+    start_end_derivatives.push_back(Eigen::Vector3d(0,0,0));
+    start_end_derivatives.push_back(Eigen::Vector3d(0,0,0));
+    start_end_derivatives.push_back(Eigen::Vector3d(0,0,0));
+    UniformBspline::parameterizeToBspline(ts, bspline_interp_pt, start_end_derivatives, ctrl_pts);
+
+    return;
+}
+
+void PathPlanner::getCollisionSegId()
+{
+    /*** Segment the initial trajectory according to obstacles ***/
+    constexpr int ENOUGH_INTERVAL = 2;
+    // step_size is a ratio value
+    double step_size = resolution / ((ctrl_pts.col(0) - ctrl_pts.rightCols(1)).norm() / (ctrl_pts.cols() - 1)) / 2;
+    int in_id, out_id;
+    vector<std::pair<int, int>> segment_ids;
+    int same_occ_state_times = ENOUGH_INTERVAL + 1;
+    bool occ, last_occ = false;
+    bool flag_got_start = false, flag_got_end = false, flag_got_end_maybe = false;
+    int i_end = (int)ctrl_pts.cols() - order - ((int)ctrl_pts.cols() - 2 * order) / 3; // only check closed 2/3 points.
+    for (int i = order; i <= i_end; ++i)
+    {
+        for (double a = 1.0; a >= 0.0; a -= step_size)
+        {
+            occ = checkCollision(a * ctrl_pts.col(i - 1) + (1 - a) * ctrl_pts.col(i));
+            // cout << setprecision(5);
+            // cout << (a * init_points.col(i-1) + (1-a) * init_points.col(i)).transpose() << " occ1=" << occ << endl;
+
+            if (occ && !last_occ)
+            {
+                if (same_occ_state_times > ENOUGH_INTERVAL || i == order)
+                {
+                    in_id = i - 1;
+                    flag_got_start = true;
+                }
+                same_occ_state_times = 0;
+                flag_got_end_maybe = false; // terminate in advance
+            }
+            else if (!occ && last_occ)
+            {
+                out_id = i;
+                flag_got_end_maybe = true;
+                same_occ_state_times = 0;
+            }
+            else
+            {
+                ++same_occ_state_times;
+            }
+
+            if (flag_got_end_maybe && (same_occ_state_times > ENOUGH_INTERVAL || (i == (int)ctrl_pts.cols() - order)))
+            {
+                flag_got_end_maybe = false;
+                flag_got_end = true;
+            }
+
+            last_occ = occ;
+            if (flag_got_start && flag_got_end)
+            {
+                flag_got_start = false;
+                flag_got_end = false;
+                segment_ids.push_back(std::pair<int, int>(in_id, out_id));
+            }
+        }
+    }
+    
+    return;
 }
 
 // Corrects points outside the boundary
@@ -239,3 +317,17 @@ void PathPlanner::boundCorrect(int &x, int &y, int &z)
     return;
 }
 
+bool PathPlanner::checkCollision(const Eigen::Vector3d &coor)
+{
+    Eigen::Vector3i temp_index = this->coorToIndex(coor);
+    return this->grid_map[temp_index.x()][temp_index.y()][temp_index.z()];
+}
+
+Eigen::Vector3i PathPlanner::coorToIndex(const Eigen::Vector3d &coor)
+{
+    Eigen::Vector3i temp_index;
+    temp_index.x() = std::floor((coor.x()-this->grid_map_origin_point.x())/resolution);
+    temp_index.y() = std::floor((coor.y()-this->grid_map_origin_point.y())/resolution);
+    temp_index.z() = std::floor((coor.z()-this->grid_map_origin_point.z())/resolution);
+    return temp_index;
+}

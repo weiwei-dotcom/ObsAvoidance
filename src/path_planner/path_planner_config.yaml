@@ -22,7 +22,7 @@ start_direction_x: 0.0
 start_direction_y: 1.0
 start_direction_z: 0.0
 end_position_x: 1000.0
-end_position_y: 2550.0
+end_position_y: 2590.0
 end_position_z: 1000.0
 
 # average speed
