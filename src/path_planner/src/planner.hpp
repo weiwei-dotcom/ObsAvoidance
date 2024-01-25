@@ -30,7 +30,7 @@ private:
 
     int inflation_radius;
 
-    bool flag_get_grid_map,flag_get_plan_start;
+    bool flag_get_grid_map,flag_get_plan_start, flag_finish_planning;
 
     Eigen::Vector3d grid_map_origin_point;
 
@@ -42,12 +42,18 @@ private:
 
     double average_speed;
 
-    std::vector<std::vector<Eigen::Vector3d>> control_points_list;
+    std::vector<Eigen::Vector3d> control_point_list;
 
     // init_polynomial path
     PolynomialTraj init_poly_path;
 
-    double interp_dist_thresh;
+    double interp_dist_thresh, control_point_dist;
+
+    std::vector<Eigen::Vector3d> ctrl_pt;
+
+    double extension_ratio;
+
+    double min_plan_dist, max_control_point_dist;
 
 public:
     PathPlanner();
@@ -61,5 +67,7 @@ public:
     
     bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
                                    const Eigen::Vector3d &end_pos, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc);
+
+    void initControlPoint();
 
 };

@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-{}
-=======
 {
     "python.autoComplete.extraPaths": [
         "/opt/ros/foxy/lib/python3.8/site-packages"
@@ -86,4 +83,3 @@
         "numericaldiff": "cpp"
     }
 }
->>>>>>> 9ce6bb423e552849a267afd38d866d6092578e09

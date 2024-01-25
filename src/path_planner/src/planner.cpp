@@ -4,6 +4,7 @@ PathPlanner::PathPlanner():Node("path_planner")
 {
     flag_get_grid_map = false;
     flag_get_plan_start = false;
+    flag_finish_planning = false;
     this->pcl_obs_sub = this->create_subscription<sensor_msgs::msg::PointCloud2>("pcl_obstacle",10,std::bind(&PathPlanner::pclObsCallback,this,std::placeholders::_1));
 
     this->declare_parameter<std::double_t>("replan_period", 0.5);
@@ -51,7 +52,19 @@ PathPlanner::PathPlanner():Node("path_planner")
 
     this->declare_parameter<double_t>("interp_dist_thresh", 200.0);
     this->interp_dist_thresh = this->get_parameter("interp_dist_thresh").as_double();
+    this->declare_parameter<double_t>("control_point_dist", 20.0);
+    this->control_point_dist = this->get_parameter("control_point_dist").as_double();
 
+    this->declare_parameter<double_t>("extension_ratio", 1.4);
+    this->extension_ratio = this->get_parameter("extension_ratio").as_double();
+
+    this->declare_parameter<double_t>("min_plan_dist", 60.0);
+    this->min_plan_dist = this->get_parameter("min_plan_dist").as_double();  
+
+    this->declare_parameter<double_t>("max_control_point_dist", 40.0);
+    this->max_control_point_dist = this->get_parameter("max_control_point_dist").as_double(); 
+      
+    
     return;
 }
 
@@ -95,22 +108,26 @@ void PathPlanner::collisionCheckCallback()
 
 // init the straight line path that for the 
 void PathPlanner::replanPath()
-{
+{   
     //TODO: 
     if (!this->flag_get_grid_map || !flag_get_plan_start) return; // this plan start position and velocity is got from the 
                                                                   // decoder of the linear mechanism's motor
     // # STEP 1 #: Initializing global polynomial path.
     // TIP: set distance thresh 200mm, use end_front_index become the path plan start point.
-    bool succes = planInitTraj(start_pos, start_vel, Eigen::Vector3d::Zero(), end_pos, Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero());
-    if (!succes)
+    bool success = planInitTraj(start_pos, start_vel, Eigen::Vector3d::Zero(), end_pos, Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero());
+    if (!success)
     {
         RCLCPP_ERROR(this->get_logger(), "Unable to generate Init Path !");
 
         rclcpp::shutdown();
     }
+    if (flag_finish_planning)
+    {
+        return;
+    }
     
     // # STEP 2 #: Initializing control point on polynomial path.
-
+    initControlPoint();
 
     // # STEP 3 #: Collision checkout and optimization until the control points set free with collision.
 
@@ -121,6 +138,13 @@ void PathPlanner::replanPath()
 bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
                                const Eigen::Vector3d &end_pos, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc)
 {
+    if ((start_pos - end_pos).norm() < min_plan_dist)
+    {
+        RCLCPP_INFO(this->get_logger(), "the start position is closed to target position, don't need plan !");
+        this->flag_finish_planning = true;
+        return true;
+    }
+    
     // generate global reference trajectory
     vector<Eigen::Vector3d> points;
     points.push_back(start_pos);
@@ -175,6 +199,35 @@ bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Ve
     else
         return false;
     return true;
+}
+
+void PathPlanner::initControlPoint()
+{
+    double ts = control_point_dist/average_speed/extension_ratio;
+    ts*=1.5;
+    bool flag_too_far = false;
+    do 
+    {
+        ts/=1.5;
+        control_point_list.clear();
+        flag_too_far = false;
+        double time_sum = init_poly_path.getTimeSum();
+        Eigen::Vector3d last_pt = init_poly_path.evaluate(0.0);
+        control_point_list.push_back(last_pt);
+        for (double t=ts;t<time_sum;t+=ts)
+        {
+            Eigen::Vector3d pt = this->init_poly_path.evaluate(ts);
+            if ((pt - last_pt).norm() > max_control_point_dist)
+            {
+                flag_too_far = true;
+                break;
+            }
+            this->control_point_list.push_back(pt);
+            last_pt = pt;
+        }
+    }while(flag_too_far || this->control_point_list.size() < 7);
+    /// TODO: here
+
 }
 
 // Corrects points outside the boundary

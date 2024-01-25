@@ -31,4 +31,15 @@ average_speed: 20.0
 # distance of polynomial interpolating point
 interp_dist_thresh: 200.0
 
+# init control point's distance
+control_point_dist: 17.0
+
+# The ratio of the optimized path length to the length of the initialized path
+extension_ratio: 1.4
+
+# If the distance between target and start plan point smaller than this thresh, stop planning. 
+min_plan_dist: 60.0
+
+# the max distance of control point on init polynomial path
+max_control_point_dist: 30.0
 

@@ -177,10 +177,10 @@ T_camera_to_tool:
   rows: 4
   cols: 4
   dt: d
-  data: [0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0, 0.0, 0.0]
+  data: [1.0, 0.0, 0.0, 0.0,
+         0.0, 1.0, 0.0, 0.0,
+         0.0, 0.0, 1.0, 0.0,
+         0.0, 0.0, 0.0, 1.0]
 
 goal_point_position_x: 1070.0
 goal_point_position_y: 1680.0
@@ -189,6 +189,14 @@ goal_point_position_z: 970.0
 translation_obs_to_world_x: 1000.0
 translation_obs_to_world_y: 2000.0
 translation_obs_to_world_z: 1000.0
+
+# TODO:
+base_start_x: 
+base_start_y:
+base_start_z:
+base_end_x:
+base_end_y:
+base_end_z:
 
 
 
