@@ -96,7 +96,8 @@ void PathPlanner::replanPath()
     if (!this->flag_get_grid_map || !flag_get_plan_start) return; // this plan start position and velocity is got from the 
                                                                   // decoder of the linear mechanism's motor
     // # STEP 1 #: Initializing global polynomial path.
-    // TIP: set distance thresh 200mm, 
+    // TIP: set distance thresh 200mm, use end_front_index become the path plan start point.
+    
     
     // # STEP 2 #: Initializing control point on polynomial path.
 
