@@ -134,6 +134,8 @@ void PathPlanner::replanPath()
 
     // # STEP 3 #: Collision checkout and optimization until the control points set free with collision.
     getCollisionSegId();
+
+    
     /// TODO:
 
     return;
@@ -259,14 +261,12 @@ void PathPlanner::getCollisionSegId()
     int same_occ_state_times = ENOUGH_INTERVAL + 1;
     bool occ, last_occ = false;
     bool flag_got_start = false, flag_got_end = false, flag_got_end_maybe = false;
-    int i_end = (int)ctrl_pts.cols() - order - ((int)ctrl_pts.cols() - 2 * order) / 3; // only check closed 2/3 points.
+    int i_end = (int)ctrl_pts.cols() - order;
     for (int i = order; i <= i_end; ++i)
     {
         for (double a = 1.0; a >= 0.0; a -= step_size)
         {
             occ = checkCollision(a * ctrl_pts.col(i - 1) + (1 - a) * ctrl_pts.col(i));
-            // cout << setprecision(5);
-            // cout << (a * init_points.col(i-1) + (1-a) * init_points.col(i)).transpose() << " occ1=" << occ << endl;
 
             if (occ && !last_occ)
             {
