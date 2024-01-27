@@ -13,6 +13,38 @@
 #include "polynomial_traj.hpp"
 #include "uniform_bspline.hpp"
 
+constexpr double inf = 1 >> 20;
+struct GridNode;
+typedef GridNode *GridNodePtr;
+
+struct GridNode
+{
+    enum enum_state
+    {
+        OPENSET = 1,
+        CLOSEDSET = 2,
+        UNDEFINED = 3
+    };
+
+    int rounds{0}; // Distinguish every call
+    enum enum_state state
+    {
+        UNDEFINED
+    };
+    Eigen::Vector3i index;
+
+    double gScore{inf}, fScore{inf};
+    GridNodePtr cameFrom{NULL};
+};
+
+class NodeComparator
+{
+public:
+    bool operator()(GridNodePtr node1, GridNodePtr node2)
+    {
+        return node1->fScore > node2->fScore;
+    }
+};
 
 class PathPlanner:public rclcpp::Node
 {
@@ -61,11 +93,26 @@ private:
 
     int order;
 
+    int rounds_; // distinguish the round of a_star search;
+
     std::vector<std::pair<int, int>> segment_ids;
 
     std::vector<std::vector<Eigen::Vector3d>> base_pts;
     std::vector<std::vector<Eigen::Vector3d>> esc_directions;
     std::vector<bool> temp_flags;
+
+    double tie_breaker_;
+
+    Eigen::Vector3i POOL_SIZE_, CENTER_IDX_;
+
+    GridNodePtr ***GridNodeMap_;
+
+    std::priority_queue<GridNodePtr, std::vector<GridNodePtr>, NodeComparator> openSet_;
+
+    double step_size_, inv_step_size_;
+    Eigen::Vector3d center_;
+
+    std::vector<GridNodePtr> gridPath_;
 
 public:
     PathPlanner();
@@ -82,11 +129,46 @@ public:
 
     void initControlPoints();
 
-    void getCollisionSegId();
+    std::vector<std::vector<Eigen::Vector3d>> getBasePointsAndDirection();
 
     bool checkCollision(const Eigen::Vector3d &coor);
 
     Eigen::Vector3i coorToIndex(const Eigen::Vector3d &coor);
 
-    void reboundSegId();
+    bool coorToIndex(const Eigen::Vector3d &coor, Eigen::Vector3i &index);
+
+    bool AstarSearch(const double step_size, Eigen::Vector3d start_pt, Eigen::Vector3d end_pt);
+
+    std::vector<Eigen::Vector3d> getPath();
+
+    bool ConvertToIndexAndAdjustStartEndPoints(Eigen::Vector3d start_pt, Eigen::Vector3d end_pt, Eigen::Vector3i &start_idx, Eigen::Vector3i &end_idx);
+
+    void initGridMap(/* GridMap::Ptr occ_map, */const Eigen::Vector3i pool_size);
+
+    double getDiagHeu(GridNodePtr node1, GridNodePtr node2);
+
+    vector<GridNodePtr> retrievePath(GridNodePtr current);
+
+    inline Eigen::Vector3d PathPlanner::Index2Coord_a_star(const Eigen::Vector3i &index) const
+    {
+        return ((index - CENTER_IDX_).cast<double>() * step_size_) + center_;
+    };
+
+    inline bool PathPlanner::Coord2Index_a_star(const Eigen::Vector3d &pt, Eigen::Vector3i &idx) const
+    {
+        idx = ((pt - center_) * inv_step_size_ + Eigen::Vector3d(0.5, 0.5, 0.5)).cast<int>() + CENTER_IDX_;
+
+        if (idx(0) < 0 || idx(0) >= POOL_SIZE_(0) || idx(1) < 0 || idx(1) >= POOL_SIZE_(1) || idx(2) < 0 || idx(2) >= POOL_SIZE_(2))
+        {
+            RCLCPP_ERROR(this->get_logger(), "Ran out of pool, index=%d %d %d", idx(0), idx(1), idx(2));
+            return false;
+        }
+        return true;
+    };
+
+    inline double PathPlanner::getHeu(GridNodePtr node1, GridNodePtr node2)
+    {
+        return tie_breaker_ * getDiagHeu(node1, node2);
+    }
+
 };
