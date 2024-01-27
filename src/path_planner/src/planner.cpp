@@ -134,7 +134,6 @@ void PathPlanner::replanPath()
 
     // # STEP 3 #: Collision checkout and optimization until the control points set free with collision.
     getCollisionSegId();
-
     
     /// TODO:
 
@@ -302,6 +301,216 @@ void PathPlanner::getCollisionSegId()
                 flag_got_end = false;
                 segment_ids.push_back(std::pair<int, int>(in_id, out_id));
             }
+        }
+    }
+
+    /*** a star search ***/
+    vector<vector<Eigen::Vector3d>> a_star_pathes;
+    for (size_t i = 0; i < segment_ids.size(); ++i)
+    {
+        //cout << "in=" << in.transpose() << " out=" << out.transpose() << endl;
+        Eigen::Vector3d in(ctrl_pts.col(segment_ids[i].first)), out(ctrl_pts.col(segment_ids[i].second));
+        /// TODO:
+        if (a_star_->AstarSearch(/*(in-out).norm()/10+0.05*/ 0.1, in, out))
+        {
+            a_star_pathes.push_back(a_star_->getPath());
+        }
+        else
+        {
+            ROS_ERROR("a star error, force return!");
+            return a_star_pathes;
+        }
+    }
+
+    /*** calculate bounds ***/
+    int id_low_bound, id_up_bound;
+    vector<std::pair<int, int>> bounds(segment_ids.size());
+    for (size_t i = 0; i < segment_ids.size(); i++)
+    {
+
+        if (i == 0) // first segment
+        {
+            id_low_bound = this->order;
+            if (segment_ids.size() > 1)
+            {
+                id_up_bound = (int)(((segment_ids[0].second + segment_ids[1].first) - 1.0f) / 2); // id_up_bound : -1.0f fix()
+            }
+            else
+            {
+                id_up_bound = ctrl_pts.cols() - this->order - 1;
+            }
+        }
+        else if (i == segment_ids.size() - 1) // last segment, i != 0 here
+        {
+            id_low_bound = (int)(((segment_ids[i].first + segment_ids[i - 1].second) + 1.0f) / 2); // id_low_bound : +1.0f ceil()
+            id_up_bound = ctrl_pts.cols() - order - 1;
+        }
+        else
+        {
+            id_low_bound = (int)(((segment_ids[i].first + segment_ids[i - 1].second) + 1.0f) / 2); // id_low_bound : +1.0f ceil()
+            id_up_bound = (int)(((segment_ids[i].second + segment_ids[i + 1].first) - 1.0f) / 2);  // id_up_bound : -1.0f fix()
+        }
+
+        bounds[i] = std::pair<int, int>(id_low_bound, id_up_bound);
+    }
+
+    // cout << "+++++++++" << endl;
+    // for ( int j=0; j<bounds.size(); ++j )
+    // {
+    //   cout << bounds[j].first << "  " << bounds[j].second << endl;
+    // }
+
+    /*** Adjust segment length ***/
+    vector<std::pair<int, int>> final_segment_ids(segment_ids.size());
+    constexpr double MINIMUM_PERCENT = 0.0; // Each segment is guaranteed to have sufficient points to generate sufficient thrust
+    int minimum_points = round(ctrl_pts.cols() * MINIMUM_PERCENT), num_points;
+    for (size_t i = 0; i < segment_ids.size(); i++)
+    {
+        /*** Adjust segment length ***/
+        num_points = segment_ids[i].second - segment_ids[i].first + 1;
+        //cout << "i = " << i << " first = " << segment_ids[i].first << " second = " << segment_ids[i].second << endl;
+        if (num_points < minimum_points)
+        {
+            double add_points_each_side = (int)(((minimum_points - num_points) + 1.0f) / 2);
+
+            final_segment_ids[i].first = segment_ids[i].first - add_points_each_side >= bounds[i].first ? segment_ids[i].first - add_points_each_side : bounds[i].first;
+
+            final_segment_ids[i].second = segment_ids[i].second + add_points_each_side <= bounds[i].second ? segment_ids[i].second + add_points_each_side : bounds[i].second;
+        }
+        else
+        {
+            final_segment_ids[i].first = segment_ids[i].first;
+            final_segment_ids[i].second = segment_ids[i].second;
+        }
+
+      //cout << "final:" << "i = " << i << " first = " << final_segment_ids[i].first << " second = " << final_segment_ids[i].second << endl;
+    }
+
+    /*** Assign data to each segment ***/
+    for (size_t i = 0; i < segment_ids.size(); i++)
+    {
+        // step 1
+        for (int j = final_segment_ids[i].first; j <= final_segment_ids[i].second; ++j)
+            this->temp_flags[j] = false;
+
+        // step 2
+        int got_intersection_id = -1;
+        for (int j = segment_ids[i].first + 1; j < segment_ids[i].second; ++j)
+        {
+            Eigen::Vector3d ctrl_pts_law(ctrl_pts.col(j + 1) - ctrl_pts.col(j - 1)), intersection_point;
+            int Astar_id = a_star_pathes[i].size() / 2, last_Astar_id; // Let "Astar_id = id_of_the_most_far_away_Astar_point" will be better, but it needs more computation
+            double val = (a_star_pathes[i][Astar_id] - ctrl_pts.col(j)).dot(ctrl_pts_law), last_val = val;
+            while (Astar_id >= 0 && Astar_id < (int)a_star_pathes[i].size())
+            {
+                last_Astar_id = Astar_id;
+
+                if (val >= 0)
+                    --Astar_id;
+                else
+                    ++Astar_id;
+
+                val = (a_star_pathes[i][Astar_id] - ctrl_pts.col(j)).dot(ctrl_pts_law);
+
+                if (val * last_val <= 0 && (abs(val) > 0 || abs(last_val) > 0)) // val = last_val = 0.0 is not allowed
+                {
+                    intersection_point =
+                        a_star_pathes[i][Astar_id] +
+                        ((a_star_pathes[i][Astar_id] - a_star_pathes[i][last_Astar_id]) *
+                        (ctrl_pts_law.dot(ctrl_pts.col(j) - a_star_pathes[i][Astar_id]) / ctrl_pts_law.dot(a_star_pathes[i][Astar_id] - a_star_pathes[i][last_Astar_id])) // = t
+                        );
+
+                    //cout << "i=" << i << " j=" << j << " Astar_id=" << Astar_id << " last_Astar_id=" << last_Astar_id << " intersection_point = " << intersection_point.transpose() << endl;
+
+                    got_intersection_id = j;
+                    break;
+                }
+            }
+
+            if (got_intersection_id >= 0)
+            {
+                this->temp_flags[j] = true;
+                double length = (intersection_point - ctrl_pts.col(j)).norm();
+                if (length > 1e-5)
+                {
+                    for (double a = length; a >= 0.0; a -= resolution)
+                    {
+                        occ = checkCollision((a / length) * intersection_point + (1 - a / length) * ctrl_pts.col(j));
+
+                        if (occ || a < resolution)
+                        {
+                            if (occ)
+                            a += resolution;
+                            this->base_pts[j].push_back((a / length) * intersection_point + (1 - a / length) * ctrl_pts.col(j));
+                            this->esc_directions[j].push_back((intersection_point - ctrl_pts.col(j)).normalized());
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+      /* Corner case: the segment length is too short. Here the control points may outside the A* path, leading to opposite gradient direction. So I have to take special care of it */
+        if (segment_ids[i].second - segment_ids[i].first == 1)
+        {
+            Eigen::Vector3d ctrl_pts_law(ctrl_pts.col(segment_ids[i].second) - ctrl_pts.col(segment_ids[i].first)), intersection_point;
+            Eigen::Vector3d middle_point = (ctrl_pts.col(segment_ids[i].second) + ctrl_pts.col(segment_ids[i].first)) / 2;
+            int Astar_id = a_star_pathes[i].size() / 2, last_Astar_id; // Let "Astar_id = id_of_the_most_far_away_Astar_point" will be better, but it needs more computation
+            double val = (a_star_pathes[i][Astar_id] - middle_point).dot(ctrl_pts_law), last_val = val;
+            while (Astar_id >= 0 && Astar_id < (int)a_star_pathes[i].size())
+            {
+                last_Astar_id = Astar_id;
+
+                if (val >= 0)
+                    --Astar_id;
+                else
+                    ++Astar_id;
+
+                val = (a_star_pathes[i][Astar_id] - middle_point).dot(ctrl_pts_law);
+
+                if (val * last_val <= 0 && (abs(val) > 0 || abs(last_val) > 0)) // val = last_val = 0.0 is not allowed
+                {
+                    intersection_point =
+                        a_star_pathes[i][Astar_id] +
+                        ((a_star_pathes[i][Astar_id] - a_star_pathes[i][last_Astar_id]) *
+                        (ctrl_pts_law.dot(middle_point - a_star_pathes[i][Astar_id]) / ctrl_pts_law.dot(a_star_pathes[i][Astar_id] - a_star_pathes[i][last_Astar_id])) // = t
+                        );
+
+                    if ((intersection_point - middle_point).norm() > 0.01) // 1cm.
+                    {
+
+                        /// FLAG: You should consider if you use the ControlPoint class.
+                        this->temp_flags[segment_ids[i].first] = true;
+                        this->base_pts[segment_ids[i].first].push_back(ctrl_pts.col(segment_ids[i].first));
+                        this->esc_directions[segment_ids[i].first].push_back((intersection_point - middle_point).normalized());
+
+                        got_intersection_id = segment_ids[i].first;
+                    }
+                    break;
+                }
+            }
+        }
+
+        //step 3
+        if (got_intersection_id >= 0)
+        {
+            for (int j = got_intersection_id + 1; j <= final_segment_ids[i].second; ++j)
+            if (!this->temp_flags[j])
+            {
+                this->base_pts[j].push_back(this->base_pts[j - 1].back());
+                this->esc_directions[j].push_back(this->esc_directions[j - 1].back());
+            }
+
+            for (int j = got_intersection_id - 1; j >= final_segment_ids[i].first; --j)
+            if (!this->temp_flags[j])
+            {
+                this->base_pts[j].push_back(this->base_pts[j + 1].back());
+                this->esc_directions[j].push_back(this->esc_directions[j + 1].back());
+            }
+        }
+        else
+        {
+            // Just ignore, it does not matter ^_^.
+            // ROS_ERROR("Failed to generate direction! segment_id=%d", i);
         }
     }
     return;

@@ -61,7 +61,11 @@ private:
 
     int order;
 
-    vector<std::pair<int, int>> segment_ids;
+    std::vector<std::pair<int, int>> segment_ids;
+
+    std::vector<std::vector<Eigen::Vector3d>> base_pts;
+    std::vector<std::vector<Eigen::Vector3d>> esc_directions;
+    std::vector<bool> temp_flags;
 
 public:
     PathPlanner();
@@ -84,4 +88,5 @@ public:
 
     Eigen::Vector3i coorToIndex(const Eigen::Vector3d &coor);
 
+    void reboundSegId();
 };
