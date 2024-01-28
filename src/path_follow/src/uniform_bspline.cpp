@@ -272,22 +272,22 @@ void UniformBspline::parameterizeToBspline(const double &ts, const vector<Eigen:
                                             const vector<Eigen::Vector3d> &start_end_derivative,
                                             Eigen::MatrixXd &ctrl_pts)
 {
-  if (ts <= 0)
-  {
-    cout << "[B-spline]:time step error." << endl;
-    return;
-  }
+    if (ts <= 0)
+    {
+        cout << "[B-spline]:time step error." << endl;
+        return;
+    }
 
-  if (point_set.size() <= 3)
-  {
-    cout << "[B-spline]:point set have only " << point_set.size() << " points." << endl;
-    return;
-  }
+    if (point_set.size() <= 3)
+    {
+        cout << "[B-spline]:point set have only " << point_set.size() << " points." << endl;
+        return;
+    }
 
-  if (start_end_derivative.size() != 4)
-  {
-    cout << "[B-spline]:derivatives error." << endl;
-  }
+    if (start_end_derivative.size() != 4)
+    {
+        cout << "[B-spline]:derivatives error." << endl;
+    }
 
   int K = point_set.size();
 

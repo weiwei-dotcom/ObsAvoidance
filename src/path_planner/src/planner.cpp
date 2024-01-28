@@ -106,7 +106,7 @@ void PathPlanner::pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr 
 void PathPlanner::collisionCheckCallback()
 {
     // TODO:
-    return ;
+    return;
 }
 
 // init the straight line path that for the 
@@ -121,7 +121,6 @@ void PathPlanner::replanPath()
     if (!success)
     {
         RCLCPP_ERROR(this->get_logger(), "Unable to generate Init Path !");
-
         rclcpp::shutdown();
     }
     if (flag_finish_planning)
@@ -135,6 +134,8 @@ void PathPlanner::replanPath()
     // # STEP 3 #: Collision checkout and optimization until the control points set free with collision.
     vector<vector<Eigen::Vector3d>> a_star_pathes;
     a_star_pathes = getBasePointsAndDirection();
+
+    
     
     /// TODO:
 
@@ -144,6 +145,7 @@ void PathPlanner::replanPath()
 bool PathPlanner::planInitTraj(const Eigen::Vector3d &start_pos, const Eigen::Vector3d &start_vel, const Eigen::Vector3d &start_acc,
                                const Eigen::Vector3d &end_pos, const Eigen::Vector3d &end_vel, const Eigen::Vector3d &end_acc)
 {
+    flag_finish_planning = false;
     if ((start_pos - end_pos).norm() < min_plan_dist)
     {
         RCLCPP_INFO(this->get_logger(), "the start position is closed to target position, don't need plan !");
