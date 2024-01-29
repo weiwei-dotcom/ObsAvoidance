@@ -3,7 +3,7 @@
 PathPlanner::PathPlanner():Node("path_planner")
 {
     flag_get_grid_map = false;
-    flag_get_plan_start = false;
+    flag_get_plan_start_end = false;
     flag_finish_planning = false;
 
     this->order = 3;
@@ -77,10 +77,15 @@ void PathPlanner::pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr 
 {
     if (flag_get_grid_map)
     {
-        return;        
+        return;
     }
     pcl::fromROSMsg(*pcl_obs_msg, this->pcl_obs);
     int pcl_obs_size = pcl_obs.points.size();
+    if (pcl_obs_size < 10)
+    {
+        RCLCPP_WARN(this->get_logger(), "Obstacle point cloud get failed !");
+        flag_get_grid_map = false;
+    }
     int temp_index_x,temp_index_y,temp_index_z;
     for (int i=0;i<pcl_obs_size;i++)
     {
@@ -114,7 +119,7 @@ void PathPlanner::collisionCheckCallback()
 void PathPlanner::replanPath()
 {   
     //TODO: 
-    if (!this->flag_get_grid_map || !flag_get_plan_start) return; // this plan start position and velocity is got from the 
+    if (!this->flag_get_grid_map || !flag_get_plan_start_end) return; // this plan start position and velocity is got from the 
                                                                   // decoder of the linear mechanism's motor
     // # STEP 1 #: Initializing global polynomial path.
     // TIP: set distance thresh 200mm, use end_front_index become the path plan start point.
@@ -536,6 +541,192 @@ void PathPlanner::Optimize()
 {
 
     return;
+}
+
+bool PathPlanner::check_collision_and_rebound()
+{
+
+    int end_idx = this->ctrl_pts.size() - order;
+
+    /*** Check and segment the initial trajectory according to obstacles ***/
+    int in_id, out_id;
+    vector<std::pair<int, int>> segment_ids;
+    bool flag_new_obs_valid = false;
+    int i_end = end_idx - (end_idx - order) / 3;
+    for (int i = order - 1; i <= i_end; ++i)
+    {
+
+        bool occ = checkCollision(ctrl_pts.col(i));
+
+        /*** check if the new collision will be valid ***/
+        if (occ)
+        {
+            for (size_t k = 0; k < this->esc_directions[i].size(); ++k)
+            {
+                cout.precision(2);
+                if ((ctrl_pts.col(i) - this->base_pts[i][k]).dot(esc_directions[i][k]) < 1 * resolution) // current point is outside all the collision_points.
+                {
+                    occ = false; // Not really takes effect, just for better hunman understanding.
+                    break;
+                }
+            }
+        }
+
+        if (occ)
+        {
+            flag_new_obs_valid = true;
+
+            int j;
+            for (j = i - 1; j >= 0; --j)
+            {
+                occ = checkCollision(ctrl_pts.col(j));
+                if (!occ)
+                {
+                    in_id = j;
+                    break;
+                }
+            }
+            if (j < 0) // fail to get the obs free point
+            {
+                RCLCPP_ERROR(this->get_logger(), "ERROR! the drone is in obstacle. This should not happen.");
+                in_id = 0;
+            }
+
+            for (j = i + 1; j < ctrl_pts.size(); ++j)
+            {
+                occ = checkCollision(ctrl_pts.col(j));
+
+                if (!occ)
+                {
+                    out_id = j;
+                    break;
+                }
+            }
+            if (j >= ctrl_pts.size()) // fail to get the obs free point
+            {
+                RCLCPP_ERROR(this->get_logger(), "WARN! terminal point of the current trajectory is in obstacle, skip this planning.");
+                force_stop_type_ = STOP_FOR_ERROR;
+                return false;
+            }
+
+            i = j + 1;
+
+            segment_ids.push_back(std::pair<int, int>(in_id, out_id));
+        }
+    }
+
+    if (flag_new_obs_valid)
+    {
+        vector<vector<Eigen::Vector3d>> a_star_pathes;
+        for (size_t i = 0; i < segment_ids.size(); ++i)
+        {
+            /*** a star search ***/
+            Eigen::Vector3d in(ctrl_pts.col(segment_ids[i].first)), out(ctrl_pts.col(segment_ids[i].second));
+            if (this->AstarSearch(/*(in-out).norm()/10+0.05*/ 0.1, in, out))
+            {
+                a_star_pathes.push_back(this->getPath());
+            }
+            else
+            {
+                RCLCPP_ERROR(this->get_logger(), "a star error");
+                segment_ids.erase(segment_ids.begin() + i);
+                i--;
+            }
+        }
+
+        /*** Assign parameters to each segment ***/
+        for (size_t i = 0; i < segment_ids.size(); ++i)
+        {
+            // step 1
+            for (int j = segment_ids[i].first; j <= segment_ids[i].second; ++j)
+                this->temp_flags[j] = false;
+
+            // step 2
+            int got_intersection_id = -1;
+            for (int j = segment_ids[i].first + 1; j < segment_ids[i].second; ++j)
+            {
+                Eigen::Vector3d ctrl_pts_law(ctrl_pts.col(j + 1) - ctrl_pts.col(j - 1)), intersection_point;
+                int Astar_id = a_star_pathes[i].size() / 2, last_Astar_id; // Let "Astar_id = id_of_the_most_far_away_Astar_point" will be better, but it needs more computation
+                double val = (a_star_pathes[i][Astar_id] - ctrl_pts.col(j)).dot(ctrl_pts_law), last_val = val;
+                while (Astar_id >= 0 && Astar_id < (int)a_star_pathes[i].size())
+                {
+                    last_Astar_id = Astar_id;
+
+                    if (val >= 0)
+                        --Astar_id;
+                    else
+                        ++Astar_id;
+
+                    val = (a_star_pathes[i][Astar_id] - ctrl_pts.col(j)).dot(ctrl_pts_law);
+
+                    // cout << val << endl;
+
+                    if (val * last_val <= 0 && (abs(val) > 0 || abs(last_val) > 0)) // val = last_val = 0.0 is not allowed
+                    {
+                        intersection_point =
+                            a_star_pathes[i][Astar_id] +
+                            ((a_star_pathes[i][Astar_id] - a_star_pathes[i][last_Astar_id]) *
+                            (ctrl_pts_law.dot(ctrl_pts.col(j) - a_star_pathes[i][Astar_id]) / ctrl_pts_law.dot(a_star_pathes[i][Astar_id] - a_star_pathes[i][last_Astar_id])) // = t
+                            );
+
+                        got_intersection_id = j;
+                        break;
+                    }
+                }
+
+                if (got_intersection_id >= 0)
+                {
+                    this->temp_flags[j] = true;
+                    double length = (intersection_point - ctrl_pts.col(j)).norm();
+                    if (length > 1e-5)
+                    {
+                        for (double a = length; a >= 0.0; a -= resolution)
+                        {
+                            bool occ = this->checkCollision((a / length) * intersection_point + (1 - a / length) * ctrl_pts.col(j));
+
+                            if (occ || a < resolution)
+                            {
+                                if (occ)
+                                a += resolution;
+                                base_pts[j].push_back((a / length) * intersection_point + (1 - a / length) * ctrl_pts.col(j));
+                                esc_directions[j].push_back((intersection_point - ctrl_pts.col(j)).normalized());
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        got_intersection_id = -1;
+                    }
+                }
+            }
+
+            //step 3
+            if (got_intersection_id >= 0)
+            {
+                for (int j = got_intersection_id + 1; j <= segment_ids[i].second; ++j)
+                    if (!this->temp_flags[j])
+                    {
+                        this->base_pts[j].push_back(this->base_pts[j - 1].back());
+                        this->esc_directions[j].push_back(this->esc_directions[j - 1].back());
+                    }
+
+                for (int j = got_intersection_id - 1; j >= segment_ids[i].first; --j)
+                    if (!this->temp_flags[j])
+                    {
+                        this->base_pts[j].push_back(this->base_pts[j + 1].back());
+                        this->esc_directions[j].push_back(this->esc_directions[j + 1].back());
+                    }
+            }
+            else
+                RCLCPP_ERROR(this->get_logger(), "Failed to generate direction. It doesn't matter.");
+        }
+
+        force_stop_type_ = STOP_FOR_REBOUND;
+        return true;
+    }
+
+    return false;
 }
 
 std::vector<Eigen::Vector3d> PathPlanner::getPath()

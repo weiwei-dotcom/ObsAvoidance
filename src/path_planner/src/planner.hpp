@@ -63,7 +63,7 @@ private:
 
     int inflation_radius;
 
-    bool flag_get_grid_map,flag_get_plan_start, flag_finish_planning;
+    bool flag_get_grid_map,flag_get_plan_start_end, flag_finish_planning;
 
     Eigen::Vector3d grid_map_origin_point;
 
@@ -114,6 +114,13 @@ private:
 
     std::vector<GridNodePtr> gridPath_;
 
+    enum FORCE_STOP_OPTIMIZE_TYPE
+    {
+      DONT_STOP,
+      STOP_FOR_REBOUND,
+      STOP_FOR_ERROR
+    } force_stop_type_;
+
 public:
     PathPlanner();
     void pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pcl_obs_msg);
@@ -154,6 +161,8 @@ public:
     vector<GridNodePtr> retrievePath(GridNodePtr current);
 
     bool optFirstSeg();
+
+    bool check_collision_and_rebound();
 
     inline Eigen::Vector3d PathPlanner::Index2Coord_a_star(const Eigen::Vector3i &index) const
     {
