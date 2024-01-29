@@ -30,6 +30,7 @@ PathPlanner::PathPlanner():Node("path_planner")
     std::vector<bool> temp_occupy(this->grid_map_z_size, false);
     std::vector<std::vector<bool>> temp_occupy_2d(this->grid_map_y_size, temp_occupy);
     this->grid_map.resize(this->grid_map_x_size, temp_occupy_2d);
+    initGridMap(Eigen::Vector3i(grid_map_x_size,grid_map_y_size,grid_map_z_size));
 
     this->declare_parameter<double_t>("resolution",10.0);
     this->resolution = this->get_parameter("resolution").as_double();
@@ -128,16 +129,15 @@ void PathPlanner::replanPath()
         return;
     }
     
-    // # STEP 2 #: Initializing control point on polynomial path.
     initControlPoints();
 
-    // # STEP 3 #: Collision checkout and optimization until the control points set free with collision.
-    vector<vector<Eigen::Vector3d>> a_star_pathes;
-    a_star_pathes = getBasePointsAndDirection();
+    resize(ctrl_pts.size());
+    
+    getBasePointsAndDirection();
 
-    
-    
-    /// TODO:
+    Optimize();
+
+
 
     return;
 }
@@ -253,7 +253,21 @@ void PathPlanner::initControlPoints()
     return;
 }
 
-std::vector<std::vector<Eigen::Vector3d>> PathPlanner::getBasePointsAndDirection()
+void PathPlanner::resize(const int size_set)
+{
+    this->base_pts.clear();
+    this->esc_directions.clear();
+    this->temp_flags.clear();
+    // occupancy.clear();
+
+    this->base_pts.resize(size_set);
+    this->esc_directions.resize(size_set);
+    this->temp_flags.resize(size_set);
+    // occupancy.resize(size);
+    return;
+}
+
+void PathPlanner::getBasePointsAndDirection()
 {
     /*** Segment the initial trajectory according to obstacles ***/
     constexpr int ENOUGH_INTERVAL = 2;
@@ -313,7 +327,6 @@ std::vector<std::vector<Eigen::Vector3d>> PathPlanner::getBasePointsAndDirection
     {
         //cout << "in=" << in.transpose() << " out=" << out.transpose() << endl;
         Eigen::Vector3d in(ctrl_pts.col(segment_ids[i].first)), out(ctrl_pts.col(segment_ids[i].second));
-        /// TODO:
         if (AstarSearch(/*(in-out).norm()/10+0.05*/ 10.0, in, out))
         {
             a_star_pathes.push_back(this->getPath());
@@ -321,7 +334,7 @@ std::vector<std::vector<Eigen::Vector3d>> PathPlanner::getBasePointsAndDirection
         else
         {
             RCLCPP_ERROR(this->get_logger(), "a star error, force return!");
-            return a_star_pathes;
+            return;
         }
     }
 
@@ -519,6 +532,12 @@ std::vector<std::vector<Eigen::Vector3d>> PathPlanner::getBasePointsAndDirection
     return;
 }
 
+void PathPlanner::Optimize()
+{
+
+    return;
+}
+
 std::vector<Eigen::Vector3d> PathPlanner::getPath()
 {
     std::vector<Eigen::Vector3d> path;
@@ -562,7 +581,6 @@ bool PathPlanner::AstarSearch(const double step_size, Eigen::Vector3d start_pt, 
     center_ = (start_pt + end_pt) / 2;
 
     Eigen::Vector3i start_idx, end_idx;
-    /// TODO: Here is wait to fixed to fit our method.
     if (!ConvertToIndexAndAdjustStartEndPoints(start_pt, end_pt, start_idx, end_idx))
     {
         RCLCPP_ERROR(this->get_logger(), "Unable to handle the initial or end point, force return!");
@@ -757,6 +775,13 @@ vector<GridNodePtr> PathPlanner::retrievePath(GridNodePtr current)
     }
 
     return path;
+}
+
+bool PathPlanner::optFirstSeg()
+{
+    ceres::Problem pathOptimizer;
+
+    return;
 }
 
 // Corrects points outside the boundary

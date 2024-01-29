@@ -129,7 +129,11 @@ public:
 
     void initControlPoints();
 
-    std::vector<std::vector<Eigen::Vector3d>> getBasePointsAndDirection();
+    void resize(const int size_set);
+
+    void getBasePointsAndDirection();
+
+    void Optimize();
 
     bool checkCollision(const Eigen::Vector3d &coor);
 
@@ -148,6 +152,8 @@ public:
     double getDiagHeu(GridNodePtr node1, GridNodePtr node2);
 
     vector<GridNodePtr> retrievePath(GridNodePtr current);
+
+    bool optFirstSeg();
 
     inline Eigen::Vector3d PathPlanner::Index2Coord_a_star(const Eigen::Vector3i &index) const
     {
