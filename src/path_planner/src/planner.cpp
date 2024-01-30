@@ -41,9 +41,9 @@ PathPlanner::PathPlanner():Node("path_planner")
     this->declare_parameter<double_t>("start_position_x", 1000.0);
     this->declare_parameter<double_t>("start_position_y", 1900.0);
     this->declare_parameter<double_t>("start_position_z", 1000.0);
-    this->declare_parameter<double_t>("start_speed_x", 0.0);
-    this->declare_parameter<double_t>("start_speed_y", 20.0);
-    this->declare_parameter<double_t>("start_speed_z", 0.0);
+    this->declare_parameter<double_t>("start_direction_x", 0.0);
+    this->declare_parameter<double_t>("start_direction_y", 1.0);
+    this->declare_parameter<double_t>("start_direction_z", 0.0);
     this->declare_parameter<double_t>("average_speed", 20.0);
     this->start_pos.x() = this->get_parameter("start_position_x").as_double();
     this->start_pos.y() = this->get_parameter("start_position_y").as_double();
