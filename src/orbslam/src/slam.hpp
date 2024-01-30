@@ -40,6 +40,7 @@ private:
     pcl::PointCloud<pcl::PointXYZ> pclPointCloud; // 中间变量
     pcl::PointXYZ point;
     int state;
+    double scale_fact; // 尺度因子
 public:
     slamNode(ORB_SLAM3::System* slam);
     // void distortionImg(cv_bridge::CvImagePtr imgPtr, sensor_msgs::msg::Image& img, std::string name);

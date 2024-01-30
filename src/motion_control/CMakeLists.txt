@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(path_planner)
+project(motion_control)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -18,18 +18,15 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(interface REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
-find_package(Eigen3 REQUIRED)
 find_package(cv_bridge REQUIRED)
-find_package(pcl_conversions REQUIRED)
-find_package(octomap REQUIRED)
-find_package(octomap_msgs REQUIRED)
 find_package(PCL REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(Sophus REQUIRED)
 find_package(Ceres REQUIRED)
-find_package(geometry_msgs REQUIRED)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -41,6 +38,7 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
 
 include_directories(${EIGEN3_INCLUDE_DIR} ${PCL_INCLUDE_DIRS} ${Sophus_DIR} ${CERES_INCLUDE_DIRS})
 # include_directories(${CERES_INCLUDE_DIRS})
@@ -54,7 +52,7 @@ target_link_libraries(path_planner ${OpenCV_LIBS} ${EIGEN_LIBS} ${PCL_LIBRARIES}
 
 install(
   TARGETS
-  path_planner
+  motion_control
   DESTINATION
   lib/${PROJECT_NAME}
 )

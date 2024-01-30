@@ -15,6 +15,7 @@ slamNode::slamNode(ORB_SLAM3::System* slam):Node("slam")
     // 实例化相机图像消息订阅者指针
     imgSub = this->create_subscription<sensor_msgs::msg::Image>("image_raw", 10, std::bind(&slamNode::grabImg_pubSlam, this, std::placeholders::_1));
     slamPub = this->create_publisher<interface::msg::Slam>("slam", 10);
+    scale_fact = 1.0;
 }
 
 // 循环计算相机位姿，并发布话题
