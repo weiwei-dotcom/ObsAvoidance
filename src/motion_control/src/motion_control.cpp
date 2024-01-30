@@ -12,6 +12,8 @@ MotionControl::MotionControl():Node("motion_control")
     this->cables_number = this->get_parameter("cables_number").as_int();
     this->segs_number = this->get_parameter("segs_number").as_int();
     this->plat_radius = this->get_parameter("plat_radius").as_double();
+
+    std::vector<Eigen::Vector2d> temp_joint_values;
     for (int i=0;i < this->joints_number;i++)
     {
         this->declare_parameter<std::double_t>(std::string("joint") + std::to_string(i)+std::string("_rigid1_length"), 0.0);
@@ -25,73 +27,58 @@ MotionControl::MotionControl():Node("motion_control")
         this->cable_ids[i][1] = this->cable_ids[i][0] + 8;
         this->cable_ids[i][2] = this->cable_ids[i][1] + 8;
 
-        this->cable_lengths.push_back(Eigen::VectorXd(cables_number));
-        Eigen::Vector2d temp_joint_value(1e-4,1e-4);
-        Eigen::Matrix4d temp_transform = this->getJointTransform(temp_joint_value,this->continuum_lengths[i],
-                                                                this->rigid1_lengths[i],this->rigid2_lengths[i]);
-        // 对从基座穿绳到当前关节动平台上对应id的绳长进行计算
-        for (int j = 0; j<24; j++)
-        {
-            Eigen::Vector4d static_position(
-                cos((double)j/24.0*M_PI) * this->plat_radius,
-                sin((double)j/24.0*M_PI) * this->plat_radius,
-                0.0,1.0
-            );
-            Eigen::Vector4d dynamic_position = temp_transform * static_position;
-            if (i==0)
-                cable_lengths[i][j] = (dynamic_position-static_position).norm();
-            else
-                cable_lengths[i][j] = (dynamic_position-static_position).norm()+cable_lengths[i-1][j];
-        }
+        temp_joint_values.push_back(Eigen::Vector2d(1e-4,1e-4));
     }
+    calRobotCableLength(this->cable_lengths, this->cable_ids, temp_joint_values, this->continuum_lengths
+                        ,this->rigid1_lengths,this->rigid2_lengths);
     
     return;
 }
 
-Eigen::Vector3d MotionControl::calJointCableLength(const int& src_joint_id,const Eigen::Vector3d& src_cable_ids, const std::vector<Eigen::Matrix4d>& src_transforms)
+Eigen::Vector3d MotionControl::calJointCableLength(const int& src_joint_id,const Eigen::Vector3i& src_cable_ids, const std::vector<Eigen::Matrix4d>& src_transforms)
 {
-    Eigen::Vector3d dst_cable_lengths;
-    Eigen::Vector4d 
-    for (int i = 0; i<src_joint_id; i++)
+    Eigen::Vector3d dst_cable_lengths = Eigen::Vector3d::Zero();
+    Eigen::Vector4d position_0(
+        cos((double)src_cable_ids[0]/24.0*M_PI) * this->plat_radius,
+        sin((double)src_cable_ids[0]/24.0*M_PI) * this->plat_radius,
+        0.0,1.0
+    );
+    Eigen::Vector4d position_1(
+        cos((double)src_cable_ids[1]/24.0*M_PI) * this->plat_radius,
+        sin((double)src_cable_ids[1]/24.0*M_PI) * this->plat_radius,
+        0.0,1.0
+    );
+    Eigen::Vector4d position_2(
+        cos((double)src_cable_ids[2]/24.0*M_PI) * this->plat_radius,
+        sin((double)src_cable_ids[2]/24.0*M_PI) * this->plat_radius,
+        0.0,1.0
+    );
+    for (int i = 0; i<=src_joint_id; i++)
     {
-        src_transforms * 
+        dst_cable_lengths[0] += (src_transforms[i] * position_0 - position_0).norm();
+        dst_cable_lengths[1] += (src_transforms[i] * position_1 - position_1).norm();
+        dst_cable_lengths[2] += (src_transforms[i] * position_2 - position_2).norm();
     }
-    return;
+    return dst_cable_lengths;
 }
 
 void MotionControl::calRobotCableLength(std::vector<Eigen::Vector3d> &dst_cable_lengths,
-                                        const int &src_joints_number,const int& src_cables_number,
+                                        const std::vector<Eigen::Vector3i> &src_cable_ids,
                                         const std::vector<Eigen::Vector2d> &src_joint_values,
                                         const std::vector<double> &src_continuum_lengths,
                                         const std::vector<double> &src_rigid1_lengths,
                                         const std::vector<double> &src_rigid2_lengths)
-
-void MotionControl::calCableLength( std::vector<Eigen::VectorXd> &temp_cable_lengths,
-                                    const int &temp_joints_number,const int& temp_cables_number,
-                                    const std::vector<Eigen::Vector2d> &temp_joint_values,
-                                    const std::vector<double> &temp_continuum_lengths,
-                                    const std::vector<double> &temp_rigid1_lengths,
-                                    const std::vector<double> &temp_rigid2_lengths)
 {
-    temp_cable_lengths.clear();
-    temp_cable_lengths.resize(temp_joints_number,Eigen::VectorXd(temp_cables_number));
-    for (int i=0; i<temp_joints_number; i++)
+    dst_cable_lengths.clear();
+    int src_joints_number = src_cable_ids.size();
+    std::vector<Eigen::Matrix4d> temp_transforms;
+    for (int i=0;i<src_joints_number;i++)
     {
-        Eigen::Matrix4d temp_transform = this->getJointTransform(temp_joint_values[i],temp_continuum_lengths[i],
-                                                                temp_rigid1_lengths[i],temp_rigid2_lengths[i]);
-        for (int j=0; j<temp_cables_number; j++)
-        {
-            Eigen::Vector4d static_position(
-                cos((double)j/24.0*M_PI) * this->plat_radius,
-                sin((double)j/24.0*M_PI) * this->plat_radius,
-                0.0,1.0
-            );
-            Eigen::Vector4d dynamic_position = temp_transform * static_position;
-            if (i==0)
-                temp_cable_lengths[i][j] = (dynamic_position-static_position).norm();
-            else
-                temp_cable_lengths[i][j] = (dynamic_position-static_position).norm()+temp_cable_lengths[i-1][j];
-        }
+        temp_transforms.push_back(this->getJointTransform(src_joint_values[i],
+                                                        src_continuum_lengths[i], 
+                                                        src_rigid1_lengths[i],
+                                                        src_rigid2_lengths[i]));
+        dst_cable_lengths.push_back(calJointCableLength(i, this->cable_ids[i], temp_transforms));
     }
     return;
 }
