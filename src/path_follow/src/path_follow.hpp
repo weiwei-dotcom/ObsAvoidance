@@ -17,9 +17,24 @@
 class PathFollow:public rclcpp::Node
 {
 private:
-    // 判断是否已经获取了离散跟跟随路径点标志，判断发起服务后是否响应标志位防止重复发起服务
-    bool flag_get_first_path, flag_called_not_response;
-    // 判断是否靠近目标点标志位
+    /*  判断是否已经获取了离散跟跟随路径点标志变量
+            在初始化函数中置为假；
+            在getNewPathCallback()函数中，每次成功获取新的离散路径点后置为真;
+    */
+    bool flag_get_first_path;
+
+    /*  判断服务已经发起过但是未被响应的标志变量
+            在初始化函数中置为假；
+            在每次发起获取新离散路径点服务请求后置为真;
+            在进入获取新离散路径点响应函数后置为假;
+    */
+    bool flag_called_not_response;
+    
+    /*  判断是否靠近目标点标志位
+            在初始化函数中置为假；
+            计算每次拟合路径后的距离骨架末端点最近离散路径点与离散路径点序列末端点之间路径长度，如果长度小于设定阈值，那么该标志位置为真；
+            如果该标志位为真，那么不用再发起获取新离散路径点服务；
+    */
     bool flag_close_to_target_point;
     // 世界到参考坐标系下的转换
     Eigen::Matrix4d world_to_ref;
@@ -27,10 +42,17 @@ private:
     Eigen::Vector3d stroke_start,stroke_end;
     // 存储路径离散点
     std::vector<Eigen::Vector3d> path_points;
-    // 声明定时器，定时启动获取新的离散路径点服务
+    // 声明获取离散路径点定时器
     rclcpp::TimerBase::SharedPtr get_path_timer;
+    // 声明拟合路径定时器
+    rclcpp::TimerBase::SharedPtr fit_path_timer;
     // 声明客户端
     rclcpp::Client<interface::srv::PathPoints>::SharedPtr get_path_client;
+    // 路径规划点在离散路径点序列上的索引值
+    int replan_start_id;
+    // 路径规划的起点速度值，同样是路径跟随推进速度值
+    double speed_value;
+
 public:
     PathFollow();
     void fitPathCallback();
