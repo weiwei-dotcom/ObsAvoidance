@@ -1,0 +1,5 @@
+
+---
+float64[] joint_motor_poses
+float64 base_motor_pos
+bool arrived_target

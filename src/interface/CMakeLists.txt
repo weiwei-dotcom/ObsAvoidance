@@ -40,6 +40,7 @@ endif()
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Slam.msg"
   "srv/PathPoints.srv"
+  "srv/BaseJointMotorValue.srv"
   DEPENDENCIES
   sensor_msgs
   geometry_msgs

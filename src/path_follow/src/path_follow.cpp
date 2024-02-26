@@ -66,7 +66,7 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
 
 void PathFollow::fitPathCallback()
 {
-    ///TODO: 编写定时拟合路径函数
+    ///TODO: 编写拟合路径服务回调函数函数
     
     return;
 }

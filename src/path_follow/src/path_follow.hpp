@@ -4,6 +4,7 @@
 #include "sophus/se3.hpp"
 #include "sophus/so3.hpp"
 #include "interface/srv/path_points.hpp"
+#include "interface/srv/base_joint_motor_value.hpp"
 #include "visualization_msgs/msg/marker_array.hpp"
 #include <cmath>
 #include <visualization_msgs/msg/marker.hpp>
@@ -44,9 +45,10 @@ private:
     std::vector<Eigen::Vector3d> path_points;
     // 声明获取离散路径点定时器
     rclcpp::TimerBase::SharedPtr get_path_timer;
-    // 声明拟合路径定时器
-    rclcpp::TimerBase::SharedPtr fit_path_timer;
-    // 声明客户端
+    // 声明拟合路径服务端
+    ///TODO: here
+    rclcpp::Service<interface::srv::BaseJointMotorValue>::SharedPtr fit_path_server;
+    // 声明获取新离散路径客户端
     rclcpp::Client<interface::srv::PathPoints>::SharedPtr get_path_client;
     // 路径规划点在离散路径点序列上的索引值
     int replan_start_id;
