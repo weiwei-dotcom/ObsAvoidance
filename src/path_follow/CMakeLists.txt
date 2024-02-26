@@ -18,7 +18,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(nav_msgs REQUIRED)
+# find_package(nav_msgs REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
@@ -27,6 +27,8 @@ find_package(cv_bridge REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Ceres REQUIRED)
 find_package(Sophus REQUIRED)
+find_package(interface REQUIRED)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -43,7 +45,7 @@ include_directories(${EIGEN3_INCLUDE_DIR} ${CERES_INCLUDE_DIRS} ${Sophus_DIR})
 
 add_executable(path_follow src/main.cpp src/path_follow.cpp)
 
-ament_target_dependencies(path_follow rclcpp nav_msgs rclcpp_components geometry_msgs std_msgs visualization_msgs cv_bridge Eigen3 Sophus)
+ament_target_dependencies(path_follow rclcpp rclcpp_components geometry_msgs std_msgs visualization_msgs cv_bridge Eigen3 Sophus interface)
 
 target_link_libraries(path_follow ${EIGEN_LIBS} ${CERES_LIBRARIES})
 

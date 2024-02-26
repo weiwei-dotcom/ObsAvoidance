@@ -30,7 +30,6 @@ Eigen::Matrix4d Joint::getTransform()
                      cos(this->theta),
                      this->length_continuum/this->theta*sin(this->theta)+length_rigid1+length_rigid2*cos(this->theta),
                      0,0,0,1;
-
     this->transform = tempTransform;
     return this->transform;
 }
