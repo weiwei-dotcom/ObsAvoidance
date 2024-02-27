@@ -12,3 +12,4 @@ world_to_ref_orien_y: 0.0
 world_to_ref_orien_z: 0.0
 world_to_ref_orien_w: 1.0
 speed_value: 10.0
+sample_interval: 1.0 

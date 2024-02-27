@@ -5,7 +5,8 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
     // 初始化判断标志变量
     this->flag_get_first_path = false;
     this->flag_called_not_response = false;
-    this->flag_close_to_target_point = false;
+    this->flag_no_need_to_replan = false;
+    this->flag_arrived_target = false;
 
     // 创建读取配置文件对象
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/path_follow_config.yaml", cv::FileStorage::READ);
@@ -51,15 +52,35 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
     this->replan_start_id = path_points.size()-2;
     // 路径跟随的推进速度大小
     speed_value = fileRead["speed_value"];
-
-    // 声明路径规划客户端
-    this->get_path_client = this->create_client<interface::srv::PathPoints>("get_path_points");
     
+    // 通过输入动捕标记坐标，获取基座相对于参考坐标系姿态并计算其在行程上的位置，来确定初始基座初始位姿（注意是在行程上的位置而不是直接位置）
+    std::vector<Eigen::Vector3d> flag_points(3,Eigen::Vector3d(0,0,0));
+    std::cout << "请输入上方标记小球的位置坐标: " << std::endl;
+    std::cin >> flag_points[0].x();
+    std::cin >> flag_points[0].y();
+    std::cin >> flag_points[0].z();
+    std::cout << "请输入右下方标记小球的位置坐标: " << std::endl;
+    std::cin >> flag_points[1].x();
+    std::cin >> flag_points[1].y();
+    std::cin >> flag_points[1].z();
+    std::cout << "请输入左下方标记小球的位置坐标: " << std::endl;
+    std::cin >> flag_points[2].x();
+    std::cin >> flag_points[2].y();
+    std::cin >> flag_points[2].z();
+    this->trans_base_ref = calFrame(flag_points);
+    Eigen::Vector3d temp_base_position = trans_base_ref.block(0,3,3,1);
+    this->init_base_position = getIntervalPoint(temp_base_position, stroke_end,stroke_start);
+    
+    // 创建路径规划客户端
+    this->get_path_client = this->create_client<interface::srv::PathPoints>("get_path_points");
+    // 创建通知enable_follow客户端
+    this->enable_follow_client = this->create_client<interface::srv::EnableFollow>("enable_follow");
     // 创建获取离散路径点定时器后，创建定时器
     this->get_path_timer = this->create_wall_timer(std::chrono::seconds(2), std::bind(&PathFollow::getNewPathCall,this));
-    
-    // 创建路径拟合定时器
-    this->fit_path_timer = this->create_wall_timer(std::chrono::nanoseconds(100000000), std::bind(&PathFollow::fitPathCallback,this));
+    // 创建路径拟合服务端
+    this->fit_path_server = this->create_service<interface::srv::BaseJointMotorValue>("fit_path", std::bind(&PathFollow::fitPathCallback,this));
+
+    // 
 
     return;
 }
@@ -67,22 +88,40 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
 void PathFollow::fitPathCallback()
 {
     ///TODO: 编写拟合路径服务回调函数函数
-    
+    // 未获得第一条离散路径点，直接返回
+    if (!flag_get_first_path)
+    {
+        RCLCPP_INFO(this->get_logger(),"还未得到第一条离散化路径点，不能开始拟合！！");
+        return;
+    }
+    // 已经到达目标终点附近，直接返回
+    if (flag_arrived_target)
+    {
+        RCLCPP_INFO(this->get_logger(), "已经到达目标点，停止拟合！！");
+        return;
+    }
+
     return;
 }
 
 void PathFollow::getNewPathCall()
 {
     // 如果当前末端已接近目标点，不再需要规划新路径，return
-    if (flag_close_to_target_point)
+    if (flag_no_need_to_replan)
     {
-        RCLCPP_INFO(this->get_logger(), "Closed to target point, no need to get new path");
+        RCLCPP_WARN(this->get_logger(), "末端靠近目标点，不需要规划新路径！！");
+        return;
+    }
+    // 如果当前末端已抵达目标点，不在需要规划新路径，return
+    if (flag_arrived_target)
+    {
+        RCLCPP_WARN(this->get_logger(), "已抵达目标点，不需要规划新路径！！");
         return;
     }
     // 如果上一次请求还没有处理完毕，则不需要再次发起，return
     if (flag_called_not_response)
     {
-        RCLCPP_INFO(this->get_logger(), "The response to the last request was not completed");
+        RCLCPP_WARN(this->get_logger(), "上次规划新路径请求未被响应，不能重复发起！！");
         return;
     }
     // 等待服务端上线
@@ -90,7 +129,6 @@ void PathFollow::getNewPathCall()
     {
         RCLCPP_WARN(this->get_logger(), "等待路径规划服务端上线......");
     }
-    RCLCPP_INFO(this->get_logger(), "路径规划服务端已上线！");
     // 发起获取新离散路径点服务
     auto request = std::make_shared<interface::srv::PathPoints_Request>();
     // 根据离散路径点序列对路径规划起始位置以及速度进行赋值
@@ -133,8 +171,31 @@ void PathFollow::getNewPathCallback(rclcpp::Client<interface::srv::PathPoints>::
         Eigen::Vector3d temp_path_point(point.x, point.y, point.z);
         this->path_points.emplace_back(temp_path_point);        
     }
+    if (!flag_get_first_path) 
+    {
+        RCLCPP_INFO(this->get_logger(),"已获取第一条规划路径,通知motor_control节点可以开始请求获取跟随动作了");
+        this->enableFollowCall();
+    }
     // 正确获取了离散路径点后，第一次获取离散路径点判断标志位置为真
     flag_get_first_path = true;
+    return;
+}
+
+void PathFollow::enableFollowCall()
+{
+    while (!this->enable_follow_client->wait_for_service(std::chrono::seconds(1)))
+    {
+        RCLCPP_WARN(this->get_logger(),"等待motor_control的enable_follow服务端上线");
+    }
+    RCLCPP_INFO(this->get_logger(), "enable_follow服务端已上线");
+    auto request = std::make_shared<interface::srv::EnableFollow_Request>();
+    enable_follow_client->async_send_request(request, std::bind(&PathFollow::enableFollowCallback,this,std::placeholders::_1));
+    return;
+}
+
+void PathFollow::enableFollowCallback(rclcpp::Client<interface::srv::EnableFollow>::SharedFuture response)
+{
+    RCLCPP_INFO(this->get_logger(),"motor_control节点已收到通知");
     return;
 }
 

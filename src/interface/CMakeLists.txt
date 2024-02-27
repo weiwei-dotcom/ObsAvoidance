@@ -41,6 +41,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Slam.msg"
   "srv/PathPoints.srv"
   "srv/BaseJointMotorValue.srv"
+  "srv/EnableFollow.srv"
   DEPENDENCIES
   sensor_msgs
   geometry_msgs
