@@ -5,11 +5,14 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
     // 初始化判断标志变量
     this->flag_get_first_path = false;
     this->flag_called_not_response = false;
-    this->flag_no_need_to_replan = false;
-    this->flag_arrived_target = false;
+    this->flag_closed_to_target = false;
+    // this->flag_arrived_target = false;
 
     // 创建读取配置文件对象
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/path_follow_config.yaml", cv::FileStorage::READ);
+
+    // 靠近标志位置为true的阈值
+    this->closed_distance = fileRead["closed_distance"];
     
     // 初始化拟合权重,关节角上下边界
     alpha_lower_bound = fileRead["alpha_lower_bound"];
@@ -26,7 +29,8 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
         double temp_rigid1 = fileRead[std::string("joint")+std::to_string(i)+std::string("_rigid1_length")];
         double temp_rigid2 = fileRead[std::string("joint")+std::to_string(i)+std::string("_rigid2_length")];
         double temp_continuum = fileRead[std::string("joint")+std::to_string(i)+std::string("_continuum_length")];
-        Joint temp_joint(temp_rigid1,temp_rigid2,temp_continuum);
+        int temp_cable_id = fileRead[std::string("joint")+std::to_string(i)+std::string("_cable_id")];
+        Joint temp_joint(temp_rigid1,temp_rigid2,temp_continuum,temp_cable_id);
         joints.emplace_back(temp_joint);
     }
     
@@ -54,21 +58,21 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
     // // 如果在提前预先标定的程序中没将行程位置坐标转换为参考坐标系下，则执行下两句
     // this->stroke_end = (this->world_to_ref * temp_stroke_end).block(0,0,3,1);
     // this->stroke_start = (this->world_to_ref * temp_stroke_start).block(0,0,3,1);
-    int step_num = std::ceil((stroke_end-stroke_start).norm()/1.0);
-    if (step_num == 0)
+    init_path_size = std::ceil((stroke_end-stroke_start).norm()/1.0);
+    if (init_path_size == 0)
     {
         RCLCPP_ERROR(this->get_logger(), "Stroke Error !!!");
         rclcpp::shutdown();
         return;
     }
-    for(int i=0; i<=step_num; i++)
+    for(int i=0; i<=init_path_size; i++)
     {
-        Eigen::Vector3d temp_path_point = stroke_start*((double)step_num-(double)i)/(double)step_num + stroke_end*(double)i/(double)step_num;
+        Eigen::Vector3d temp_path_point = stroke_start*((double)init_path_size-(double)i)/(double)init_path_size + stroke_end*(double)i/(double)init_path_size;
         this->path_points.push_back(temp_path_point);
     } 
 
     // 开始时，将路径规划起点索引置为倒数path_points序列倒数第二
-    this->replan_start_id = path_points.size()-2;
+    this->end_closed_path_id = path_points.size()-2;
     // 路径跟随的推进速度大小
     speed_value = fileRead["speed_value"];
     
@@ -89,76 +93,99 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
     this->trans_base_ref = calFrame(flag_points);
     Eigen::Vector3d temp_base_position = trans_base_ref.block(0,3,3,1);
     this->init_stroke_position = getIntervalPoint(temp_base_position, stroke_end,stroke_start);
+    trans_base_ref.block(0,3,3,1) = this->init_stroke_position;
     // 寻找距离最近的下一个路径跟随点索引，作为跟随起点索引
-    double temp_proj_value = this->calVecProjValue(init_stroke_position,stroke_start,stroke_end);
-    base_position_id = ceil(temp_proj_value/this->sample_interval);
-    Eigen::Vector3d temp_vec1 = path_points[base_position_id]-path_points[base_position_id-1];
-    if (temp_vec1.dot(init_stroke_position-path_points[base_position_id-1]) * temp_vec1.dot(init_stroke_position-path_points[base_position_id]) >= 0)
+    double temp_proj_value = this->calVecProjValue(temp_base_position,stroke_start,stroke_end);
+    base_tar_position_id = ceil(temp_proj_value/this->sample_interval);
+    Eigen::Vector3d temp_vec1 = path_points[base_tar_position_id]-path_points[base_tar_position_id-1];
+    if (temp_vec1.dot(temp_base_position-path_points[base_tar_position_id-1]) * temp_vec1.dot(temp_base_position-path_points[base_tar_position_id]) >= 0)
     {
-        if (temp_vec1.dot(init_stroke_position-path_points[base_position_id-1]) < 0)
+        if (temp_vec1.dot(temp_base_position-path_points[base_tar_position_id-1]) < 0)
         {
-            int i=base_position_id;
+            int i=base_tar_position_id;
             do{
                 i--;
-            }while((path_points[i]-path_points[i-1]).dot(init_stroke_position-path_points[i-1])<0);
-            base_position_id = i;
+            }while((path_points[i]-path_points[i-1]).dot(temp_base_position-path_points[i-1])<0);
+            base_tar_position_id = i;
         }
         else
         {
-            int i=base_position_id;
+            int i=base_tar_position_id;
             do{
                 i++;
-            }while((path_points[i]-path_points[i-1]).dot(init_stroke_position-path_points[i])>0);
-            base_position_id = i;
+            }while((path_points[i]-path_points[i-1]).dot(temp_base_position-path_points[i])>0);
+            base_tar_position_id = i;
         }
     }
-    this->trans_base_ref.block(0,3,3,1) = path_points[base_position_id];
     
     // 创建路径规划客户端
     this->get_path_client = this->create_client<interface::srv::PathPoints>("get_path_points");
     // 创建通知enable_follow客户端
     this->enable_follow_client = this->create_client<interface::srv::EnableFollow>("enable_follow");
+    
     // 创建获取离散路径点定时器后，创建定时器
     this->get_path_timer = this->create_wall_timer(std::chrono::seconds(2), std::bind(&PathFollow::getNewPathCall,this));
     // 创建路径拟合服务端
-    this->fit_path_server = this->create_service<interface::srv::BaseJointMotorValue>("fit_path", std::bind(&PathFollow::fitPathCallback,this));
+    this->fit_path_server = this->create_service<interface::srv::BaseJointMotorValue>("fit_path", 
+                                                                                    std::bind(&PathFollow::fitPathCallback,
+                                                                                                this,
+                                                                                                std::placeholders::_1,
+                                                                                                std::placeholders::_2));
     // 
 
     return;
 }
 
-void PathFollow::fitPathCallback()
+void PathFollow::fitPathCallback(const interface::srv::BaseJointMotorValue::Request::SharedPtr request,
+                                const interface::srv::BaseJointMotorValue::Response::SharedPtr response)
 {
-    ///TODO: 编写拟合路径服务回调函数函数
-    // 未获得第一条离散路径点，直接返回
-    if (!flag_get_first_path)
-    {
-        RCLCPP_INFO(this->get_logger(),"还未得到第一条离散化路径点，不能开始拟合！！");
-        return;
-    }
-    // 已经到达目标终点附近，直接返回
-    if (flag_arrived_target)
-    {
-        RCLCPP_INFO(this->get_logger(), "已经到达目标点，停止拟合！！");
-        return;
-    }
+    // // 未获得第一条离散路径点，直接返回
+    // if (!flag_get_first_path)
+    // {
+    //     RCLCPP_INFO(this->get_logger(),"还未得到第一条离散化路径点，不能开始拟合！！");
+    //     return;
+    // }
+    // // 已经到达目标终点附近，直接返回
+    // if (flag_arrived_target)
+    // {
+    //     RCLCPP_INFO(this->get_logger(), "已经到达目标点，停止拟合！！");
+    //     return;
+    // }
     // 以基座路径跟随点作为目标跟随点，拟合计算目标跟随关节角
-    // 首先以当前索引的跟随点计算新的基座坐标系,即迭代拟合的第一个关节到参考坐标系的转换矩阵，及其逆
-    joints[0].trans_plat1_ref = this->trans_base_ref;
+    // 首先通过目标跟随路径点索引，将基座的基座的变换矩阵平移至目标点位置处
+    if (this->base_tar_position_id >= init_path_size)
+    {
+        RCLCPP_WARN(this->get_logger(),"目标跟随点索引超出行程范围，停止拟合！！");
+        // 置response->flag_base_out_range == true，返回
+        response->flag_base_out_range = true;
+        this->base_tar_position_id = init_path_size-1;
+        return;
+    }
+
+    this->trans_base_ref.block(0,3,3,1) = this->path_points[this->base_tar_position_id];
+    // 以当前索引的跟随点计算新的基座坐标系,即迭代拟合的第一个关节到参考坐标系的转换矩阵，及其逆
+    joints[0].trans_plat1_ref = this->trans_base_ref; 
     joints[0].trans_ref_plat1 = this->trans_base_ref.inverse();
     // 定义每个骨架拟合段的拟合路径起点索引
-    int segment_start_id = this->base_position_id; 
+    int segment_start_id = this->base_tar_position_id; 
 
     // in case the joint variate change extremelly, we use the last fit result as the wrong value.
-    double temp_theta = 0.0, temp_alpha = 0.0;
+    double temp_theta = 1e-4, temp_alpha = 1e-4;
     
     for (int joint_id=0; joint_id<joint_number; joint_id++)
     {
         //debug: find why the fit result change so extremelly
-        temp_theta = this->joints[joint_id].theta;
-        temp_alpha = this->joints[joint_id].alpha;
+        this->joints[joint_id].last_theta = this->joints[joint_id].theta;
+        this->joints[joint_id].last_alpha = this->joints[joint_id].alpha;
 
         int target_path_point_id = segment_start_id+ceil(this->joints[joint_id].length/this->sample_interval);
+        if (target_path_point_id >= path_points.size()-1)
+        {
+            RCLCPP_WARN(this->get_logger(), "关节骨架拟合点索引超过跟随路径离散点序列范围，停止拟合！！");
+            response->flag_arrived_target = true;
+            this->base_tar_position_id-=2;
+            return;
+        }
         Eigen::Vector4d target_position;
         target_position << path_points[target_path_point_id],1.0;
         
@@ -239,8 +266,42 @@ void PathFollow::fitPathCallback()
         joint_end_position = this->joints[joint_id].trans_plat2_ref.block(0,3,3,1);
         find_closed_path_point(target_path_point_id,joint_end_position,segment_start_id);
     }
-    this->replan_start_id=segment_start_id;
-    /// TODO: here: 处理如果接近以及达到目标后需要执行的操作
+    this->end_closed_path_id=segment_start_id;
+    if (end_closed_path_id >= path_points.size()-5)
+    {
+        response->flag_arrived_target = true;
+        return;
+    }
+
+    if ((path_points[path_points.size()-1]-path_points[end_closed_path_id]).norm() <= this->closed_distance)
+    {
+        this->flag_closed_to_target = true;
+    }
+    // 根据关节角逐关节计算绳长，并通过与关节总长度作差计算绳长伸缩量
+    // 根据关节角计算每个关节的总绳长
+    response->cable_expend_value.clear();
+    for (int i=0;i<joint_number;i++)
+    {
+        Eigen::Vector3d target_cable_length = Eigen::Vector3d::Zero();
+        Eigen::Vector3d init_cable_length = Eigen::Vector3d::Zero();
+        for (int j=0;j<=i;j++)
+        {
+            // 计算第i个关节的3个id的在第j个关节上的绳索长度
+            Eigen::Vector3d temp_cable_length = joints[j].calCableLength(joints[i].cable_id_);
+            // 计算完成后加上该绳索长度，直到最后叠加至第i个关节结束
+            target_cable_length=target_cable_length+temp_cable_length;
+            // 根据第j个关节的骨架长度计算第j个关节的绳索初始长度，之前的个关节绳索长度直到第i关节
+            init_cable_length=init_cable_length+Eigen::Vector3d(joints[j].length,joints[j].length,joints[j].length);
+        }
+        Eigen::Vector3d cable_expend_value = target_cable_length-init_cable_length;
+        geometry_msgs::msg::Point cable_expend_value_temp;
+        cable_expend_value_temp.x = cable_expend_value[0];
+        cable_expend_value_temp.y = cable_expend_value[1];
+        cable_expend_value_temp.z = cable_expend_value[2];
+        response->cable_expend_value.push_back(cable_expend_value_temp);
+    }
+    response->base_advance_value = (this->path_points[base_tar_position_id]-init_stroke_position).norm();
+    base_tar_position_id++;
     return;
 }
 
@@ -277,17 +338,17 @@ void PathFollow::find_closed_path_point(const int& start_path_point_id,const Eig
 void PathFollow::getNewPathCall()
 {
     // 如果当前末端已接近目标点，不再需要规划新路径，return
-    if (flag_no_need_to_replan)
+    if (flag_closed_to_target)
     {
         RCLCPP_WARN(this->get_logger(), "末端靠近目标点，不需要规划新路径！！");
         return;
     }
-    // 如果当前末端已抵达目标点，不在需要规划新路径，return
-    if (flag_arrived_target)
-    {
-        RCLCPP_WARN(this->get_logger(), "已抵达目标点，不需要规划新路径！！");
-        return;
-    }
+    // // 如果当前末端已抵达目标点，不在需要规划新路径，return
+    // if (flag_arrived_target)
+    // {
+    //     RCLCPP_WARN(this->get_logger(), "已抵达目标点，不需要规划新路径！！");
+    //     return;
+    // }
     // 如果上一次请求还没有处理完毕，则不需要再次发起，return
     if (flag_called_not_response)
     {
@@ -302,12 +363,12 @@ void PathFollow::getNewPathCall()
     // 发起获取新离散路径点服务
     auto request = std::make_shared<interface::srv::PathPoints_Request>();
     // 根据离散路径点序列对路径规划起始位置以及速度进行赋值
-    request->start_position.x = this->path_points[replan_start_id].x();
-    request->start_position.y = this->path_points[replan_start_id].y();
-    request->start_position.z = this->path_points[replan_start_id].z();
-    request->start_speed.x = (this->path_points[replan_start_id+1]- path_points[replan_start_id-1]).x()*speed_value;
-    request->start_speed.y = (this->path_points[replan_start_id+1]- path_points[replan_start_id-1]).y()*speed_value;
-    request->start_speed.z = (this->path_points[replan_start_id+1]- path_points[replan_start_id-1]).z()*speed_value;
+    request->start_position.x = this->path_points[end_closed_path_id].x();
+    request->start_position.y = this->path_points[end_closed_path_id].y();
+    request->start_position.z = this->path_points[end_closed_path_id].z();
+    request->start_speed.x = (this->path_points[end_closed_path_id+1]- path_points[end_closed_path_id-1]).x()*speed_value;
+    request->start_speed.y = (this->path_points[end_closed_path_id+1]- path_points[end_closed_path_id-1]).y()*speed_value;
+    request->start_speed.z = (this->path_points[end_closed_path_id+1]- path_points[end_closed_path_id-1]).z()*speed_value;
     get_path_client->async_send_request(request, std::bind(&PathFollow::getNewPathCallback, this, std::placeholders::_1));
     // 发起服务未获得响应标志位置为真，待响应回调函数响应且正确获取了离散路径点后复位为假
     this->flag_called_not_response = true;
@@ -327,7 +388,7 @@ void PathFollow::getNewPathCallback(rclcpp::Client<interface::srv::PathPoints>::
     }
     RCLCPP_INFO(this->get_logger(), "成功收到来自路径规划节点的离散路径点数据，插入中......");
     // 根据呼叫服务时的路径点序列索引对path_points进行插入删除
-    this->path_points.erase(path_points.begin()+this->replan_start_id+1, path_points.end());
+    this->path_points.erase(path_points.begin()+this->end_closed_path_id+1, path_points.end());
     // 从path_points中路径规划点索引值开始将收到的离散路径点逐个插入
     
     ///DEBUG:
@@ -355,9 +416,9 @@ void PathFollow::enableFollowCall()
 {
     while (!this->enable_follow_client->wait_for_service(std::chrono::seconds(1)))
     {
-        RCLCPP_WARN(this->get_logger(),"等待motor_control的enable_follow服务端上线");
+        RCLCPP_WARN(this->get_logger(),"等待motor_control的enable_follow服务端上线!");
     }
-    RCLCPP_INFO(this->get_logger(), "enable_follow服务端已上线");
+    RCLCPP_INFO(this->get_logger(), "enable_follow服务端已上线!");
     auto request = std::make_shared<interface::srv::EnableFollow_Request>();
     enable_follow_client->async_send_request(request, std::bind(&PathFollow::enableFollowCallback,this,std::placeholders::_1));
     return;
@@ -365,8 +426,6 @@ void PathFollow::enableFollowCall()
 
 void PathFollow::enableFollowCallback(rclcpp::Client<interface::srv::EnableFollow>::SharedFuture response)
 {
-    RCLCPP_INFO(this->get_logger(),"motor_control节点已收到通知");
+    RCLCPP_INFO(this->get_logger(),"motor_control节点已收到enable_follow通知!");
     return;
 }
-
-

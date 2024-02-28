@@ -37,16 +37,17 @@ private:
             计算每次拟合路径后的距离骨架末端点最近离散路径点与离散路径点序列末端点之间路径长度，如果长度小于设定阈值，那么该标志位置为真；
             如果该标志位为真，那么不用再发起获取新离散路径点服务；
     */
-    bool flag_no_need_to_replan;
+    bool flag_closed_to_target;
 
-    /*  判断是否到达目标终点标志变量
-			在初始化函数中置为假；
-			当拟合后计算末端点距离目标终点之间距离小于一定的阈值时，该标志位置为真；
-			当拟合时机器人末端的拟合点索引靠近目标终点小于一定的阈值，但是没有超过终点索引时，该标志位置为真；
-			当拟合时机器人末端的拟合点索引超过目标终点时，停止拟合，该标志位置为真；
-			如果该标志位为真时，停止拟合服务，并将服务消息中的 response->flag_arrived_target = this->flag_arrived_target;
-    */
-    bool flag_arrived_target;
+    // /*  判断是否到达目标终点标志变量
+	// 		在初始化函数中置为假；
+	// 		当拟合后计算末端点距离目标终点之间距离小于一定的阈值时，该标志位置为真；
+	// 		当拟合时机器人末端的拟合点索引靠近目标终点小于一定的阈值，但是没有超过终点索引时，该标志位置为真；
+	// 		当拟合时机器人末端的拟合点索引超过目标终点时，停止拟合，该标志位置为真；
+	// 		如果该标志位为真时，停止拟合服务，并将服务消息中的 response->flag_arrived_target = this->flag_arrived_target;
+    // */
+    // bool flag_arrived_target;
+
 	// 路径离散采样间隔
 	double sample_interval;
     // 世界到参考坐标系下的转换
@@ -59,12 +60,12 @@ private:
     rclcpp::TimerBase::SharedPtr get_path_timer;
     // 声明拟合路径服务端
     rclcpp::Service<interface::srv::BaseJointMotorValue>::SharedPtr fit_path_server;
-	// 负责通知motor_control节点可以开始进行 path follow 的通知发起客户端
+	// 负责通知motor_control节点可以开始进行 path follow 的通知客户端
 	rclcpp::Client<interface::srv::EnableFollow>::SharedPtr enable_follow_client;
     // 声明获取新离散路径客户端
     rclcpp::Client<interface::srv::PathPoints>::SharedPtr get_path_client;
     // 路径规划点在离散路径点序列上的索引值
-    int replan_start_id;
+    int end_closed_path_id;
     // 路径规划的起点速度值，同样是路径跟随推进速度值
     double speed_value;
 	// 当前基座到参考坐标系变换矩阵
@@ -72,7 +73,7 @@ private:
 	// 基座在行程上的初始位置
 	Eigen::Vector3d init_stroke_position;
 	// 路径跟随时的基座跟随点在离散路径点序列中的索引值
-	int base_position_id;
+	int base_tar_position_id;
 	// 路径跟随关节数量
 	int joint_number;
 	// 路径跟随机器人所有关节对象
@@ -81,6 +82,10 @@ private:
 	double alpha_lower_bound,alpha_upper_bound,theta_lower_bound,theta_upper_bound;
 	// 拟合权重
 	double weight_direction,weight_position;
+	// 初始化直线线段离散点序列大小
+	int init_path_size;
+	// 靠近标志位置为true的阈值
+	double closed_distance;
 
 	// 路径拟合位置误差结构体
 	struct position_residual{
@@ -120,7 +125,7 @@ private:
 						weight_direction_(weight_direction){}
 		template <typename T> bool operator()(const T* const alpha, const T* const theta, T* residual) const {
 			residual[0] void find_closed_path_point(const int& start_path_point_id,const Eigen::Vector3d& joint_end_position, int& segment_start_path_point_id);= weight_direction_*180.0/M_PI*acos(sin(theta[0])*cos(alpha[0])*tangent_vector_(0)
-															+sin(theta[0])*sin(alpha[0])*tangent_vector_(1)
+								fitPathCallback							+sin(theta[0])*sin(alpha[0])*tangent_vector_(1)
 															+cos(theta[0])*tangent_vector_(2));
 			return true;
 		}
@@ -132,12 +137,14 @@ private:
 
 public:
     PathFollow();
-    void fitPathCallback();
+    void fitPathCallback(const interface::srv::BaseJointMotorValue::Request::SharedPtr request,
+                        const interface::srv::BaseJointMotorValue::Response::SharedPtr response);
     void getNewPathCall();
     void getNewPathCallback(rclcpp::Client<interface::srv::PathPoints>::SharedFuture response);
 	
 	void enableFollowCall();
     void enableFollowCallback(rclcpp::Client<interface::srv::EnableFollow>::SharedFuture response);
+
 	void find_closed_path_point(const int& start_path_point_id,const Eigen::Vector3d& joint_end_position, int& segment_start_path_point_id);
 	// 根据三个标记点坐标计算坐标系
 	Eigen::Matrix4d calFrame(const std::vector<Eigen::Vector3d> &flag_points) 
@@ -168,7 +175,7 @@ public:
 	// 获得线段外一点投影到该线段上的点
 	Eigen::Vector3d getIntervalPoint(const Eigen::Vector3d& inter_point,const Eigen::Vector3d& line_end1,const Eigen::Vector3d& line_end2)
 	{
-		double temp_proj_value=calVecProjValue(inter_point, line_end1,line_end2);
+		double temp_proj_value=calVecProjValue(inter_point, line_end1, line_end2);
 		double temp_norm_value = (line_end1-line_end2).norm();
 		return (temp_proj_value/temp_norm_value * line_end2 + (temp_norm_value-temp_proj_value)/temp_norm_value*line_end1);
 	}
