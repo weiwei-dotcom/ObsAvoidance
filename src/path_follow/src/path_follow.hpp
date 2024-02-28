@@ -67,12 +67,21 @@ private:
     int replan_start_id;
     // 路径规划的起点速度值，同样是路径跟随推进速度值
     double speed_value;
-	// 上一次路径拟合角度结果，当前路径拟合角度结果(alpha, theta)
-	std::vector<Eigen::Vector2d> last_joint_value, cur_joint_value;
 	// 当前基座到参考坐标系变换矩阵
 	Eigen::Matrix4d trans_base_ref;
 	// 基座在行程上的初始位置
-	Eigen::Vector3d init_base_position;
+	Eigen::Vector3d init_stroke_position;
+	// 路径跟随时的基座跟随点在离散路径点序列中的索引值
+	int base_position_id;
+	// 路径跟随关节数量
+	int joint_number;
+	// 路径跟随机器人所有关节对象
+	std::vector<Joint> joints;
+	// 拟合关节角上下边界
+	double alpha_lower_bound,alpha_upper_bound,theta_lower_bound,theta_upper_bound;
+	// 拟合权重
+	double weight_direction,weight_position;
+
 	// 路径拟合位置误差结构体
 	struct position_residual{
 		position_residual(double weight_position,
@@ -110,7 +119,7 @@ private:
 						tangent_vector_(tangent_vector),
 						weight_direction_(weight_direction){}
 		template <typename T> bool operator()(const T* const alpha, const T* const theta, T* residual) const {
-			residual[0] = weight_direction_*180.0/M_PI*acos(sin(theta[0])*cos(alpha[0])*tangent_vector_(0)
+			residual[0] void find_closed_path_point(const int& start_path_point_id,const Eigen::Vector3d& joint_end_position, int& segment_start_path_point_id);= weight_direction_*180.0/M_PI*acos(sin(theta[0])*cos(alpha[0])*tangent_vector_(0)
 															+sin(theta[0])*sin(alpha[0])*tangent_vector_(1)
 															+cos(theta[0])*tangent_vector_(2));
 			return true;
@@ -129,9 +138,10 @@ public:
 	
 	void enableFollowCall();
     void enableFollowCallback(rclcpp::Client<interface::srv::EnableFollow>::SharedFuture response);
-
+	void find_closed_path_point(const int& start_path_point_id,const Eigen::Vector3d& joint_end_position, int& segment_start_path_point_id);
 	// 根据三个标记点坐标计算坐标系
-	Eigen::Matrix4d calFrame(const std::vector<Eigen::Vector3d> &flag_points) {
+	Eigen::Matrix4d calFrame(const std::vector<Eigen::Vector3d> &flag_points) 
+	{
 		Eigen::Matrix4d result_frame = Eigen::Matrix4d::Identity();
 		// 由三点计算圆心
 		Eigen::Vector3d centor = calCenter(flag_points[0],flag_points[1],flag_points[2]);
@@ -154,6 +164,7 @@ public:
 		Eigen::Vector3d axisY = axisZ.cross(axisX);
 		result_frame.block(0,0,3,3) << axisX,axisY,axisZ;
 	}
+
 	// 获得线段外一点投影到该线段上的点
 	Eigen::Vector3d getIntervalPoint(const Eigen::Vector3d& inter_point,const Eigen::Vector3d& line_end1,const Eigen::Vector3d& line_end2)
 	{
@@ -161,15 +172,17 @@ public:
 		double temp_norm_value = (line_end1-line_end2).norm();
 		return (temp_proj_value/temp_norm_value * line_end2 + (temp_norm_value-temp_proj_value)/temp_norm_value*line_end1);
 	}
+
 	// 获得media_point指向first_point向量向media_point指向second_point向量投影的长度值
 	double calVecProjValue(const Eigen::Vector3d& first_point, const Eigen::Vector3d& media_point, const Eigen::Vector3d& second_point)
 	{
 		return (first_point-media_point).dot((second_point-media_point).normalized());
 	}
-	// 函数定义：计算圆心
-	Eigen::Vector3d calCenter(const Eigen::Vector3d& p1, const Eigen::Vector3d& p2, const Eigen::Vector3d& p3) {
-		Eigen::Vector3d center;
 
+	// 函数定义：计算圆心
+	Eigen::Vector3d calCenter(const Eigen::Vector3d& p1, const Eigen::Vector3d& p2, const Eigen::Vector3d& p3) 
+	{
+		Eigen::Vector3d center;
 		// 构造系数矩阵
 		Eigen::Vector3d a21 = p2-p1;
 		Eigen::Vector3d a21_2 = (p2+p1)*0.5;
@@ -179,17 +192,13 @@ public:
 		A << a21[0], a21[1], a21[2],
 			a31[0], a31[1], a31[2],
 			a21.cross(a31)[0], a21.cross(a31)[1], a21.cross(a31)[2];
-
 		// 构造常数向量
 		Eigen::Vector3d b;
-
 		b << a21.dot(a21_2),
-			(p3 - p1).dot(p3+p1)*0.5,
+			a31.dot(a31_2),
 			(a21.cross(a31).dot(p1));
-
 		// 解线性方程组
 		center = A.fullPivHouseholderQr().solve(b);
-
 		return center;
 	}
 };

@@ -11,6 +11,25 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
     // 创建读取配置文件对象
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/path_follow_config.yaml", cv::FileStorage::READ);
     
+    // 初始化拟合权重,关节角上下边界
+    alpha_lower_bound = fileRead["alpha_lower_bound"];
+    alpha_upper_bound = fileRead["alpha_upper_bound"];
+    theta_lower_bound = fileRead["theta_lower_bound"];
+    theta_upper_bound = fileRead["theta_upper_bound"];
+    this->weight_direction = fileRead["weight_direction"];
+    this->weight_position = fileRead["weight_position"];
+    
+    // 初始化关节数量以及关节参数
+    this->joint_number = fileRead["joint_number"];
+    for (int i=0;i<joint_number;i++)
+    {
+        double temp_rigid1 = fileRead[std::string("joint")+std::to_string(i)+std::string("_rigid1_length")];
+        double temp_rigid2 = fileRead[std::string("joint")+std::to_string(i)+std::string("_rigid2_length")];
+        double temp_continuum = fileRead[std::string("joint")+std::to_string(i)+std::string("_continuum_length")];
+        Joint temp_joint(temp_rigid1,temp_rigid2,temp_continuum);
+        joints.emplace_back(temp_joint);
+    }
+    
     // 获取运捕坐标系系统转换到障碍物参考坐标系的变换矩阵
     Eigen::Quaterniond temp_q(fileRead["world_to_ref_orien_w"],
                               fileRead["world_to_ref_orien_x"],
@@ -69,7 +88,31 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
     std::cin >> flag_points[2].z();
     this->trans_base_ref = calFrame(flag_points);
     Eigen::Vector3d temp_base_position = trans_base_ref.block(0,3,3,1);
-    this->init_base_position = getIntervalPoint(temp_base_position, stroke_end,stroke_start);
+    this->init_stroke_position = getIntervalPoint(temp_base_position, stroke_end,stroke_start);
+    // 寻找距离最近的下一个路径跟随点索引，作为跟随起点索引
+    double temp_proj_value = this->calVecProjValue(init_stroke_position,stroke_start,stroke_end);
+    base_position_id = ceil(temp_proj_value/this->sample_interval);
+    Eigen::Vector3d temp_vec1 = path_points[base_position_id]-path_points[base_position_id-1];
+    if (temp_vec1.dot(init_stroke_position-path_points[base_position_id-1]) * temp_vec1.dot(init_stroke_position-path_points[base_position_id]) >= 0)
+    {
+        if (temp_vec1.dot(init_stroke_position-path_points[base_position_id-1]) < 0)
+        {
+            int i=base_position_id;
+            do{
+                i--;
+            }while((path_points[i]-path_points[i-1]).dot(init_stroke_position-path_points[i-1])<0);
+            base_position_id = i;
+        }
+        else
+        {
+            int i=base_position_id;
+            do{
+                i++;
+            }while((path_points[i]-path_points[i-1]).dot(init_stroke_position-path_points[i])>0);
+            base_position_id = i;
+        }
+    }
+    this->trans_base_ref.block(0,3,3,1) = path_points[base_position_id];
     
     // 创建路径规划客户端
     this->get_path_client = this->create_client<interface::srv::PathPoints>("get_path_points");
@@ -79,7 +122,6 @@ PathFollow::PathFollow():rclcpp::Node("path_follow")
     this->get_path_timer = this->create_wall_timer(std::chrono::seconds(2), std::bind(&PathFollow::getNewPathCall,this));
     // 创建路径拟合服务端
     this->fit_path_server = this->create_service<interface::srv::BaseJointMotorValue>("fit_path", std::bind(&PathFollow::fitPathCallback,this));
-
     // 
 
     return;
@@ -100,8 +142,136 @@ void PathFollow::fitPathCallback()
         RCLCPP_INFO(this->get_logger(), "已经到达目标点，停止拟合！！");
         return;
     }
+    // 以基座路径跟随点作为目标跟随点，拟合计算目标跟随关节角
+    // 首先以当前索引的跟随点计算新的基座坐标系,即迭代拟合的第一个关节到参考坐标系的转换矩阵，及其逆
+    joints[0].trans_plat1_ref = this->trans_base_ref;
+    joints[0].trans_ref_plat1 = this->trans_base_ref.inverse();
+    // 定义每个骨架拟合段的拟合路径起点索引
+    int segment_start_id = this->base_position_id; 
 
+    // in case the joint variate change extremelly, we use the last fit result as the wrong value.
+    double temp_theta = 0.0, temp_alpha = 0.0;
+    
+    for (int joint_id=0; joint_id<joint_number; joint_id++)
+    {
+        //debug: find why the fit result change so extremelly
+        temp_theta = this->joints[joint_id].theta;
+        temp_alpha = this->joints[joint_id].alpha;
+
+        int target_path_point_id = segment_start_id+ceil(this->joints[joint_id].length/this->sample_interval);
+        Eigen::Vector4d target_position;
+        target_position << path_points[target_path_point_id],1.0;
+        
+        Eigen::Vector3d target_tangent_vec=(path_points[target_path_point_id+1]-path_points[target_path_point_id-1]).normalized();
+        // transform the target_postion and tangent_vec to the frame of joint[joint_id]
+        target_position = joints[joint_id].trans_ref_plat1*target_position;
+        target_tangent_vec = joints[joint_id].trans_ref_plat1.block(0,0,3,3)*target_tangent_vec;
+        ceres::Problem fit_problem;
+        fit_problem.AddResidualBlock(
+            new ceres::AutoDiffCostFunction<position_residual,3,1,1>(
+                new position_residual(
+                    weight_position,
+                    joints[joint_id].length_continuum,
+                    joints[joint_id].length_rigid2,
+                    joints[joint_id].length_rigid1,
+                    target_position.block(0,0,3,1)
+                )
+            ),
+            NULL,
+            &joints[joint_id].alpha,&joints[joint_id].theta
+        );
+        fit_problem.AddResidualBlock(
+            new ceres::AutoDiffCostFunction<angle_residual,1,1,1>(
+                new angle_residual(
+                    weight_direction,
+                    joints[joint_id].length_rigid1,
+                    joints[joint_id].length_continuum,
+                    joints[joint_id].length_rigid2,
+                    target_tangent_vec
+                )
+            ),
+            NULL,
+            &joints[joint_id].alpha,&joints[joint_id].theta
+        );
+        // // here give the range straint of alpha variate will cause the optimal space of alpha is't discontinuous.
+        // fit_problem.SetParameterLowerBound(&joints[joint_id].alpha, 0, this->alpha_lower_bound);
+        fit_problem.SetParameterLowerBound(&joints[joint_id].theta, 0, this->theta_lower_bound);
+        // fit_problem.SetParameterUpperBound(&joints[joint_id].alpha, 0, this->alpha_upper_bound);
+        fit_problem.SetParameterUpperBound(&joints[joint_id].theta, 0, this->theta_upper_bound);
+        ceres::Solver::Options option;
+        option.max_num_iterations=50;
+        option.minimizer_progress_to_stdout = false;
+        option.linear_solver_type=ceres::DENSE_QR;
+        // option.trust_region_strategy_type=ceres::DOGLEG;
+        option.logging_type=ceres::SILENT;
+
+        option.minimizer_progress_to_stdout=false;
+        ceres::Solver::Summary summary;
+        ceres::Solve(option,&fit_problem,&summary);
+
+        // if theta out range, need changing the theta value to the correct range.
+        if (joints[joint_id].theta < 0)
+        {
+            joints[joint_id].theta = std::abs(joints[joint_id].theta);
+            joints[joint_id].alpha = (joints[joint_id].alpha + M_PI) > M_PI ?  (joints[joint_id].alpha-M_PI) : (joints[joint_id].alpha+M_PI);
+        }
+        // if alpha out range, need changing the alpha value to the correct range.
+        do{
+            if (joints[joint_id].alpha < this->alpha_lower_bound)
+            {
+                joints[joint_id].alpha += 2*M_PI;
+            }
+            if (joints[joint_id].alpha > this->alpha_upper_bound)
+            {
+                joints[joint_id].alpha -= 2*M_PI;
+            }
+        }while(joints[joint_id].alpha < this->alpha_lower_bound || joints[joint_id].alpha > this->alpha_upper_bound);
+
+        Eigen::Vector3d joint_end_position;
+        this->joints[joint_id].trans_plat2_ref = this->joints[joint_id].trans_plat1_ref * joints[joint_id].getTransform();
+        this->joints[joint_id].trans_ref_plat2 = this->joints[joint_id].transform.inverse()*this->joints[joint_id].trans_ref_plat1;            
+        if (joint_id<joint_number-1)
+        {
+            this->joints[joint_id+1].trans_plat1_ref = this->joints[joint_id].trans_plat1_ref;
+            this->joints[joint_id+1].trans_ref_plat1 = this->joints[joint_id].trans_plat1_ref;            
+        }
+
+        joint_end_position = this->joints[joint_id].trans_plat2_ref.block(0,3,3,1);
+        find_closed_path_point(target_path_point_id,joint_end_position,segment_start_id);
+    }
+    this->replan_start_id=segment_start_id;
+    /// TODO: here: 处理如果接近以及达到目标后需要执行的操作
     return;
+}
+
+void PathFollow::find_closed_path_point(const int& start_path_point_id,const Eigen::Vector3d& joint_end_position, int& segment_start_id)
+{
+    int temp_path_point_id = start_path_point_id;
+    Eigen::Vector3d temp_path_tangent_vec=this->path_points[temp_path_point_id+1]-this->path_points[temp_path_point_id-1];
+    Eigen::Vector3d temp_direction=joint_end_position-path_points[temp_path_point_id];
+    double temp_dot_value = temp_path_tangent_vec.dot(temp_direction);
+    if (temp_dot_value > 0)
+    {   
+        do
+        {
+            temp_path_point_id++;
+            Eigen::Vector3d temp_path_tangent_vec=this->path_points[temp_path_point_id+1]-this->path_points[temp_path_point_id-1];
+            Eigen::Vector3d temp_direction=joint_end_position-path_points[temp_path_point_id];
+            temp_dot_value = temp_path_tangent_vec.dot(temp_direction);
+        }while(temp_dot_value>0 && temp_path_point_id<path_points.size()-2);        
+    }
+    else 
+    {
+        do
+        {
+            temp_path_point_id--;
+            Eigen::Vector3d temp_path_tangent_vec=this->path_points[temp_path_point_id+1]-this->path_points[temp_path_point_id-1];
+            Eigen::Vector3d temp_direction=joint_end_position-path_points[temp_path_point_id];
+            temp_dot_value = temp_path_tangent_vec.dot(temp_direction);
+        }while(temp_dot_value<0 && temp_path_point_id>1);     
+    }
+    segment_start_id = temp_path_point_id;
+    return; 
 }
 
 void PathFollow::getNewPathCall()
