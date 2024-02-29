@@ -60,8 +60,6 @@ private:
 
     int inflation_radius;
 
-    bool flag_finish_planning;
-
     Eigen::Vector3d grid_map_origin_point;
 
     Eigen::Vector3d start_pos,start_direction,start_vel,end_pos;
