@@ -8,8 +8,8 @@ PathFollow::PathFollow():Node("path_follow")
     this->flag_closed_to_target = false;
     // this->flag_arrived_target = false;
 
-    /// DEBUG:
-    std::cout << "here: 1" << std::endl;
+    // ///DEBUG:
+    // std::cout << "here: 1" << std::endl;
     
     // 创建读取配置文件对象
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/config.yaml", cv::FileStorage::READ);
@@ -17,8 +17,9 @@ PathFollow::PathFollow():Node("path_follow")
         std::cerr << "无法打开配置文件" << std::endl;
         return ;
     }
-    /// DEBUG:
-    std::cout << "here: 5" << std::endl;
+
+    // ///DEBUG:
+    // std::cout << "here: 5" << std::endl;
 
     // 靠近标志位置为true的阈值
     this->closed_distance = fileRead["closed_distance"];
@@ -46,8 +47,8 @@ PathFollow::PathFollow():Node("path_follow")
         joints.emplace_back(temp_joint);
     }
 
-    /// DEBUG:
-    std::cout << "here: 4" << std::endl;
+    // ///DEBUG:
+    // std::cout << "here: 4" << std::endl;
     
     // 获取运捕坐标系系统转换到障碍物参考坐标系的变换矩阵
     Eigen::Quaterniond temp_q(fileRead["world_to_ref_orien_w"],
@@ -91,8 +92,8 @@ PathFollow::PathFollow():Node("path_follow")
     // 路径跟随的推进速度大小
     speed_value = fileRead["speed_value"];
 
-    /// DEBUG:
-    std::cout << "here: 3" << std::endl;
+    // ///DEBUG:
+    // std::cout << "here: 3" << std::endl;
     
     // 通过输入动捕标记坐标，获取基座相对于参考坐标系姿态并计算其在行程上的位置，来确定初始基座初始位姿（注意是在行程上的位置而不是直接位置）
     std::vector<Eigen::Vector3d> flag_points(3,Eigen::Vector3d(0,0,0));
@@ -210,13 +211,10 @@ void PathFollow::fitPathCallback(const interface::srv::BaseJointMotorValue::Requ
     joints[0].trans_ref_plat1 = this->trans_base_ref.inverse();
     // 定义每个骨架拟合段的拟合路径起点索引
     int segment_start_id = this->base_tar_position_id; 
-
-    // in case the joint variate change extremelly, we use the last fit result as the wrong value.
-    double temp_theta = 1e-4, temp_alpha = 1e-4;
     
     for (int joint_id=0; joint_id<joint_number; joint_id++)
     {
-        //debug: find why the fit result change so extremelly
+        ///DEBUG: find why the fit result change so extremelly
         this->joints[joint_id].last_theta = this->joints[joint_id].theta;
         this->joints[joint_id].last_alpha = this->joints[joint_id].alpha;
 
