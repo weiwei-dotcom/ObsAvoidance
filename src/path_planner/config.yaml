@@ -1,3 +1,5 @@
+%YAML:1.0
+---
 # grid map origin point
 grid_origin_point_x: 0.0
 grid_origin_point_y: 0.0
@@ -42,3 +44,6 @@ min_plan_dist: 60.0
 
 # the max distance of control point on init polynomial path
 max_control_point_dist: 30.0
+
+# 重规划时间
+replan_period: 0.01

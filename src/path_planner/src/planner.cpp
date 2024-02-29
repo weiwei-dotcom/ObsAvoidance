@@ -2,96 +2,59 @@
 
 PathPlanner::PathPlanner():Node("path_planner")
 {
-    flag_get_grid_map = false;
-    flag_get_plan_start_end = false;
-    flag_finish_planning = false;
+    cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/config.yaml", cv::FileStorage::READ);
 
+    ///TODO:
     this->order = 3;
 
-    this->pcl_obs_sub = this->create_subscription<sensor_msgs::msg::PointCloud2>("pcl_obstacle",10,std::bind(&PathPlanner::pclObsCallback,this,std::placeholders::_1));
+    this->grid_map_origin_point.x() = fileRead["grid_map_origin_point_x"];
+    this->grid_map_origin_point.y() = fileRead["grid_map_origin_point_y"];
+    this->grid_map_origin_point.z() = fileRead["grid_map_origin_point_z"];
 
-    this->declare_parameter<std::double_t>("replan_period", 0.5);
-    int ms = floor(replan_period * 1000.0);
-    this->collision_check_timer = this->create_wall_timer(std::chrono::milliseconds(ms), std::bind(&PathPlanner::collisionCheckCallback,this));
-
-    this->declare_parameter<std::double_t>("grid_map_origin_point_x", 0.0);
-    this->declare_parameter<std::double_t>("grid_map_origin_point_y", 0.0);
-    this->declare_parameter<std::double_t>("grid_map_origin_point_z", 0.0);
-    this->grid_map_origin_point.x() = this->get_parameter("grid_map_origin_point_x").as_double();
-    this->grid_map_origin_point.y() = this->get_parameter("grid_map_origin_point_y").as_double();
-    this->grid_map_origin_point.z() = this->get_parameter("grid_map_origin_point_z").as_double();
-
-    this->declare_parameter<std::int16_t>("grid_map_x_size", 200);
-    this->declare_parameter<std::int16_t>("grid_map_y_size", 400);
-    this->declare_parameter<std::int16_t>("grid_map_z_size", 200);
-    this->grid_map_x_size = this->get_parameter("grid_map_x_size").as_int();
-    this->grid_map_y_size = this->get_parameter("grid_map_y_size").as_int();
-    this->grid_map_z_size = this->get_parameter("grid_map_z_size").as_int();
+    this->grid_map_x_size = fileRead["grid_map_x_size"];
+    this->grid_map_y_size = fileRead["grid_map_y_size"];
+    this->grid_map_z_size = fileRead["grid_map_z_size"];
     std::vector<bool> temp_occupy(this->grid_map_z_size, false);
     std::vector<std::vector<bool>> temp_occupy_2d(this->grid_map_y_size, temp_occupy);
     this->grid_map.resize(this->grid_map_x_size, temp_occupy_2d);
     initGridMap(Eigen::Vector3i(grid_map_x_size,grid_map_y_size,grid_map_z_size));
 
-    this->declare_parameter<double_t>("resolution",10.0);
-    this->resolution = this->get_parameter("resolution").as_double();
+    this->resolution = fileRead["resolution"];
 
-    this->declare_parameter<int16_t>("inflation_radius",5);
-    this->inflation_radius = this->get_parameter("inflation_radius").as_int();
+    this->inflation_radius = fileRead["inflation_radius"];
 
-    this->declare_parameter<double_t>("start_position_x", 1000.0);
-    this->declare_parameter<double_t>("start_position_y", 1900.0);
-    this->declare_parameter<double_t>("start_position_z", 1000.0);
-    this->declare_parameter<double_t>("start_direction_x", 0.0);
-    this->declare_parameter<double_t>("start_direction_y", 1.0);
-    this->declare_parameter<double_t>("start_direction_z", 0.0);
-    this->declare_parameter<double_t>("average_speed", 20.0);
-    this->start_pos.x() = this->get_parameter("start_position_x").as_double();
-    this->start_pos.y() = this->get_parameter("start_position_y").as_double();
-    this->start_pos.z() = this->get_parameter("start_position_z").as_double();
-    this->start_direction.x() = this->get_parameter("start_direction_x").as_double();
-    this->start_direction.y() = this->get_parameter("start_direction_y").as_double();
-    this->start_direction.z() = this->get_parameter("start_direction_z").as_double();
-    this->average_speed = this->get_parameter("average_speed").as_double();
+    this->start_pos.x() = fileRead["start_position_x"];
+    this->start_pos.y() = fileRead["start_position_y"];
+    this->start_pos.z() = fileRead["start_position_z"];
+    this->start_direction.x() = fileRead["start_direction_x"];
+    this->start_direction.y() = fileRead["start_direction_y"];
+    this->start_direction.z() = fileRead["start_direction_z"];
+    this->average_speed = fileRead["average_speed"];
     this->start_vel = this->start_direction.normalized() * average_speed;
 
-    this->declare_parameter<double_t>("interp_dist_thresh", 200.0);
-    this->interp_dist_thresh = this->get_parameter("interp_dist_thresh").as_double();
-    this->declare_parameter<double_t>("control_point_dist", 20.0);
-    this->control_point_dist = this->get_parameter("control_point_dist").as_double();
+    this->interp_dist_thresh = fileRead["interp_dist_thresh"];
+    this->control_point_dist = fileRead["control_point_dist"];
 
-    this->declare_parameter<double_t>("extension_ratio", 1.4);
-    this->extension_ratio = this->get_parameter("extension_ratio").as_double();
+    this->extension_ratio = fileRead["extension_ratio"];
 
-    this->declare_parameter<double_t>("min_plan_dist", 60.0);
-    this->min_plan_dist = this->get_parameter("min_plan_dist").as_double();  
+    this->min_plan_dist = fileRead["min_plan_dist"];  
 
-    this->declare_parameter<double_t>("max_control_point_dist", 40.0);
-    this->max_control_point_dist = this->get_parameter("max_control_point_dist").as_double(); 
+    this->max_control_point_dist = fileRead["max_control_point_dist"]; 
       
     
     return;
 }
 
 // This function will get the pcl of obstacle and change to the 3d grid map that used in collision detection.
-void PathPlanner::pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pcl_obs_msg)
+void PathPlanner::pclToGridMap(const pcl::PointCloud<pcl::PointXYZ> &obs_pcl)
 {
-    if (flag_get_grid_map)
-    {
-        return;
-    }
-    pcl::fromROSMsg(*pcl_obs_msg, this->pcl_obs);
-    int pcl_obs_size = pcl_obs.points.size();
-    if (pcl_obs_size < 10)
-    {
-        RCLCPP_WARN(this->get_logger(), "Obstacle point cloud get failed !");
-        flag_get_grid_map = false;
-    }
+    int pcl_obs_size = obs_pcl.points.size();
     int temp_index_x,temp_index_y,temp_index_z;
     for (int i=0;i<pcl_obs_size;i++)
     {
-        temp_index_x = floor((pcl_obs.points[i].x-this->grid_map_origin_point.x())/this->resolution);
-        temp_index_y = floor((pcl_obs.points[i].y-this->grid_map_origin_point.y())/this->resolution);
-        temp_index_z = floor((pcl_obs.points[i].z-this->grid_map_origin_point.z())/this->resolution);
+        temp_index_x = floor((obs_pcl.points[i].x-this->grid_map_origin_point.x())/this->resolution);
+        temp_index_y = floor((obs_pcl.points[i].y-this->grid_map_origin_point.y())/this->resolution);
+        temp_index_z = floor((obs_pcl.points[i].z-this->grid_map_origin_point.z())/this->resolution);
         this->grid_map[temp_index_x][temp_index_y][temp_index_z] = true;
         for (int x=temp_index_x-inflation_radius;x<=temp_index_x+inflation_radius;x++)
         {
@@ -105,7 +68,6 @@ void PathPlanner::pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr 
             }
         }
     }
-    flag_get_grid_map = true;
     return;
 }
 
@@ -118,9 +80,6 @@ void PathPlanner::collisionCheckCallback()
 // init the straight line path that for the 
 void PathPlanner::replanPath()
 {   
-    //TODO: 
-    if (!this->flag_get_grid_map || !flag_get_plan_start_end) return; // this plan start position and velocity is got from the 
-                                                                  // decoder of the linear mechanism's motor
     // # STEP 1 #: Initializing global polynomial path.
     // TIP: set distance thresh 200mm, use end_front_index become the path plan start point.
     bool success = planInitTraj(start_pos, start_vel, Eigen::Vector3d::Zero(), end_pos, Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero());

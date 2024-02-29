@@ -6,6 +6,7 @@
 #include "pcl/point_cloud.h"
 #include <opencv2/core/eigen.hpp>
 #include <opencv2/opencv.hpp>
+#include "cv_bridge/cv_bridge.h"
 #include "pcl_conversions/pcl_conversions.h"
 #include "pcl/common/transforms.h"
 #include <pcl/point_types.h>
@@ -49,10 +50,6 @@ public:
 class PathPlanner:public rclcpp::Node
 {
 private:
-    rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr pcl_obs_sub;
-
-    rclcpp::TimerBase::SharedPtr collision_check_timer;
-
     pcl::PointCloud<pcl::PointXYZ> pcl_obs;
 
     int grid_map_x_size,grid_map_y_size,grid_map_z_size;
@@ -63,11 +60,9 @@ private:
 
     int inflation_radius;
 
-    bool flag_get_grid_map,flag_get_plan_start_end, flag_finish_planning;
+    bool flag_finish_planning;
 
     Eigen::Vector3d grid_map_origin_point;
-
-    double replan_period;
 
     Eigen::Vector3d start_pos,start_direction,start_vel,end_pos;
 
@@ -123,7 +118,7 @@ private:
 
 public:
     PathPlanner();
-    void pclObsCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pcl_obs_msg);
+    void pclToGridMap(const pcl::PointCloud<pcl::PointXYZ> &obs_pcl);
 
     void replanPath();
 
