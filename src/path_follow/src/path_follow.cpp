@@ -8,8 +8,17 @@ PathFollow::PathFollow():Node("path_follow")
     this->flag_closed_to_target = false;
     // this->flag_arrived_target = false;
 
+    /// DEBUG:
+    std::cout << "here: 1" << std::endl;
+    
     // 创建读取配置文件对象
-    cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/path_follow_config.yaml", cv::FileStorage::READ);
+    cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/config.yaml", cv::FileStorage::READ);
+    if (!fileRead.isOpened()) {
+        std::cerr << "无法打开配置文件" << std::endl;
+        return ;
+    }
+    /// DEBUG:
+    std::cout << "here: 5" << std::endl;
 
     // 靠近标志位置为true的阈值
     this->closed_distance = fileRead["closed_distance"];
@@ -33,6 +42,9 @@ PathFollow::PathFollow():Node("path_follow")
         Joint temp_joint(temp_rigid1,temp_rigid2,temp_continuum,temp_cable_id);
         joints.emplace_back(temp_joint);
     }
+
+    /// DEBUG:
+    std::cout << "here: 4" << std::endl;
     
     // 获取运捕坐标系系统转换到障碍物参考坐标系的变换矩阵
     Eigen::Quaterniond temp_q(fileRead["world_to_ref_orien_w"],
@@ -75,6 +87,9 @@ PathFollow::PathFollow():Node("path_follow")
     this->end_closed_path_id = path_points.size()-2;
     // 路径跟随的推进速度大小
     speed_value = fileRead["speed_value"];
+
+    /// DEBUG:
+    std::cout << "here: 3" << std::endl;
     
     // 通过输入动捕标记坐标，获取基座相对于参考坐标系姿态并计算其在行程上的位置，来确定初始基座初始位姿（注意是在行程上的位置而不是直接位置）
     std::vector<Eigen::Vector3d> flag_points(3,Eigen::Vector3d(0,0,0));
@@ -132,7 +147,8 @@ PathFollow::PathFollow():Node("path_follow")
                                                                                                 std::placeholders::_1,
                                                                                                 std::placeholders::_2));
     // 
-
+    /// DEBUG:
+    std::cout << "here: 2" << std::endl;
     return;
 }
 

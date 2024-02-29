@@ -1,6 +1,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "joint.hpp"
 #include "Eigen/Eigen"
+#include "Eigen/Dense"
 #include "sophus/se3.hpp"
 #include "sophus/so3.hpp"
 #include "interface/srv/path_points.hpp"

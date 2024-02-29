@@ -19,8 +19,13 @@ mediaNode::mediaNode():Node("media")
                                                                                     5,
                                                                                     std::bind(&mediaNode::transform_init_to_world_callback,this,std::placeholders::_1));
   pointCloud_pub=this->create_publisher<sensor_msgs::msg::PointCloud2>("pointCloud_initFrame", 5);
+
+  std::cout << "here: 1" << std::endl;
+
   cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/config.yaml", cv::FileStorage::READ);
   double scaleFact_mmToTarget = fileRead["scaleFact_mmToTarget"];
+
+  std::cout << "here: 2" << std::endl;
 
   transform_init_to_world = Eigen::Matrix4d::Identity();
   transform_init_to_world.col(3) << 1000.0,2000.0,1000.0,1.0;

@@ -189,14 +189,3 @@ goal_point_position_z: 970.0
 translation_obs_to_world_x: 1000.0
 translation_obs_to_world_y: 2000.0
 translation_obs_to_world_z: 1000.0
-
-# TODO:
-base_start_x: 
-base_start_y:
-base_start_z:
-base_end_x:
-base_end_y:
-base_end_z:
-
-
-

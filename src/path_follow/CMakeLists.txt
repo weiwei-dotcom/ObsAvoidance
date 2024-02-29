@@ -28,6 +28,7 @@ find_package(Eigen3 REQUIRED)
 find_package(Ceres REQUIRED)
 find_package(Sophus REQUIRED)
 find_package(interface REQUIRED)
+find_package(OpenCV REQUIRED)
 
 
 if(BUILD_TESTING)
@@ -41,13 +42,13 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-include_directories(${EIGEN3_INCLUDE_DIR} ${CERES_INCLUDE_DIRS} ${Sophus_DIR})
+include_directories(${EIGEN3_INCLUDE_DIR} ${CERES_INCLUDE_DIRS} ${Sophus_DIR} ${OpenCV_INCLUDE_DIRS})
 
-add_executable(path_follow src/main.cpp src/path_follow.cpp src/joint.cpp )
+add_executable(path_follow src/main.cpp src/path_follow.cpp src/joint.cpp)
 
 ament_target_dependencies(path_follow rclcpp rclcpp_components geometry_msgs std_msgs visualization_msgs cv_bridge Eigen3 Sophus interface)
 
-target_link_libraries(path_follow ${EIGEN_LIBS} ${CERES_LIBRARIES})
+target_link_libraries(path_follow ${EIGEN_LIBS} ${CERES_LIBRARIES} ${OpenCV_LIBS})
 
 install(TARGETS
   path_follow

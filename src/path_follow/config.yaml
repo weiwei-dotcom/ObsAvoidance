@@ -1,3 +1,5 @@
+%YAML:1.0
+---
 joint_number: 6
 joint0_rigid1_length: 0.0
 joint0_rigid2_length: 0.0
@@ -60,5 +62,3 @@ alpha_lower_bound: -180.0
 alpha_upper_bound: 180.0
 theta_lower_bound: -90.0
 theta_upper_bound: 90.0
-
-
