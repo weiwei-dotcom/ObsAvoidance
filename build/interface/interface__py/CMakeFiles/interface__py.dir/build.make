@@ -57,8 +57,15 @@ interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/_interface
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_introspection_c.c
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_c.c
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/msg/_slam.py
+interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_path_points.py
+interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_base_joint_motor_value.py
+interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_enable_follow.py
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/msg/__init__.py
+interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/__init__.py
 interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/msg/_slam_s.c
+interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_path_points_s.c
+interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_base_joint_motor_value_s.c
+interface__py/CMakeFiles/interface__py: rosidl_generator_py/interface/srv/_enable_follow_s.c
 
 
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/lib/rosidl_generator_py/rosidl_generator_py
@@ -75,6 +82,9 @@ rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv_pkg_typesupport_entry_point.c.em
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv.py.em
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/interface/msg/Slam.idl
+rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/interface/srv/PathPoints.idl
+rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/interface/srv/BaseJointMotorValue.idl
+rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/interface/srv/EnableFollow.idl
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -176,19 +186,47 @@ rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_c.c: rosidl_gen
 rosidl_generator_py/interface/msg/_slam.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/msg/_slam.py
 
+rosidl_generator_py/interface/srv/_path_points.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_path_points.py
+
+rosidl_generator_py/interface/srv/_base_joint_motor_value.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_base_joint_motor_value.py
+
+rosidl_generator_py/interface/srv/_enable_follow.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_enable_follow.py
+
 rosidl_generator_py/interface/msg/__init__.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/msg/__init__.py
 
+rosidl_generator_py/interface/srv/__init__.py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/__init__.py
+
 rosidl_generator_py/interface/msg/_slam_s.c: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/msg/_slam_s.c
+
+rosidl_generator_py/interface/srv/_path_points_s.c: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_path_points_s.c
+
+rosidl_generator_py/interface/srv/_base_joint_motor_value_s.c: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_base_joint_motor_value_s.c
+
+rosidl_generator_py/interface/srv/_enable_follow_s.c: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interface/srv/_enable_follow_s.c
 
 interface__py: interface__py/CMakeFiles/interface__py
 interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c
 interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_introspection_c.c
 interface__py: rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_c.c
 interface__py: rosidl_generator_py/interface/msg/_slam.py
+interface__py: rosidl_generator_py/interface/srv/_path_points.py
+interface__py: rosidl_generator_py/interface/srv/_base_joint_motor_value.py
+interface__py: rosidl_generator_py/interface/srv/_enable_follow.py
 interface__py: rosidl_generator_py/interface/msg/__init__.py
+interface__py: rosidl_generator_py/interface/srv/__init__.py
 interface__py: rosidl_generator_py/interface/msg/_slam_s.c
+interface__py: rosidl_generator_py/interface/srv/_path_points_s.c
+interface__py: rosidl_generator_py/interface/srv/_base_joint_motor_value_s.c
+interface__py: rosidl_generator_py/interface/srv/_enable_follow_s.c
 interface__py: interface__py/CMakeFiles/interface__py.dir/build.make
 
 .PHONY : interface__py

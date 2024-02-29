@@ -5,6 +5,13 @@ file(REMOVE_RECURSE
   "../rosidl_generator_py/interface/msg/__init__.py"
   "../rosidl_generator_py/interface/msg/_slam.py"
   "../rosidl_generator_py/interface/msg/_slam_s.c"
+  "../rosidl_generator_py/interface/srv/__init__.py"
+  "../rosidl_generator_py/interface/srv/_base_joint_motor_value.py"
+  "../rosidl_generator_py/interface/srv/_base_joint_motor_value_s.c"
+  "../rosidl_generator_py/interface/srv/_enable_follow.py"
+  "../rosidl_generator_py/interface/srv/_enable_follow_s.c"
+  "../rosidl_generator_py/interface/srv/_path_points.py"
+  "../rosidl_generator_py/interface/srv/_path_points_s.c"
   "CMakeFiles/interface__py"
 )
 

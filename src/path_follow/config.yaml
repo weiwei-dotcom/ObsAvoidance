@@ -1,0 +1,64 @@
+%YAML:1.0
+---
+joint_number: 6
+joint0_rigid1_length: 0.0
+joint0_rigid2_length: 0.0
+joint1_rigid1_length: 0.0
+joint1_rigid2_length: 0.0
+joint2_rigid1_length: 0.0
+joint2_rigid2_length: 0.0
+joint3_rigid1_length: 0.0
+joint3_rigid2_length: 0.0
+joint4_rigid1_length: 0.0
+joint4_rigid2_length: 0.0
+joint5_rigid1_length: 0.0
+joint5_rigid2_length: 0.0
+joint6_rigid1_length: 0.0
+joint6_rigid2_length: 0.0
+joint7_rigid1_length: 0.0
+joint7_rigid2_length: 0.0
+
+joint0_continuum_length: 100.0
+joint1_continuum_length: 100.0
+joint2_continuum_length: 100.0
+joint3_continuum_length: 100.0
+joint4_continuum_length: 100.0
+joint5_continuum_length: 100.0
+joint6_continuum_length: 100.0
+joint7_continuum_length: 100.0
+
+joint0_cable_id: 0
+joint1_cable_id: 1
+joint2_cable_id: 2
+joint3_cable_id: 3
+joint4_cable_id: 4
+joint5_cable_id: 5
+joint6_cable_id: 6
+joint7_cable_id: 7
+
+
+stroke_start_x: 0.0
+stroke_start_y: 0.0
+stroke_start_z: 0.0
+stroke_end_x: 0.0
+stroke_end_y: 0.0
+stroke_end_z: 0.0
+world_to_ref_pos_x: 0.0
+world_to_ref_pos_y: 0.0
+world_to_ref_pos_z: 0.0
+world_to_ref_orien_x: 0.0
+world_to_ref_orien_y: 0.0
+world_to_ref_orien_z: 0.0
+world_to_ref_orien_w: 1.0
+speed_value: 10.0
+sample_interval: 1.0 
+# 用来判断是否接近目标点的距离值
+closed_distance: 200.0
+# 权重
+weight_position: 0.6345
+weight_direction: 0.3655
+# 关节角上下边界
+alpha_lower_bound: -180.0
+alpha_upper_bound: 180.0
+theta_lower_bound: -90.0
+theta_upper_bound: 90.0

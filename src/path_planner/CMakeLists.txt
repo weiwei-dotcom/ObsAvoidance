@@ -29,6 +29,7 @@ find_package(PCL REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(Sophus REQUIRED)
 find_package(Ceres REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -44,7 +45,7 @@ endif()
 include_directories(${EIGEN3_INCLUDE_DIR} ${PCL_INCLUDE_DIRS} ${Sophus_DIR} ${CERES_INCLUDE_DIRS})
 # include_directories(${CERES_INCLUDE_DIRS})
 
-add_executable(path_planner src/main.cpp src/planner.cpp)
+add_executable(path_planner src/main.cpp src/planner.cpp src/polynomial_traj.cpp src/uniform_bspline.cpp src/dyn_a_star.cpp)
 
 ament_target_dependencies(path_planner rclcpp interface sensor_msgs geometry_msgs pcl_conversions octomap octomap_msgs PCL OpenCV Sophus Ceres Eigen3)
 target_link_libraries(path_planner ${OpenCV_LIBS} ${EIGEN_LIBS} ${PCL_LIBRARIES} ${CERES_LIBRARIES})

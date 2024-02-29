@@ -54,6 +54,15 @@ CMAKE_BINARY_DIR = /home/weiwei/Desktop/project/ObsAvoidance/build/interface
 include CMakeFiles/interface.dir/progress.make
 
 CMakeFiles/interface: /home/weiwei/Desktop/project/ObsAvoidance/src/interface/msg/Slam.msg
+CMakeFiles/interface: /home/weiwei/Desktop/project/ObsAvoidance/src/interface/srv/PathPoints.srv
+CMakeFiles/interface: rosidl_cmake/srv/PathPoints_Request.msg
+CMakeFiles/interface: rosidl_cmake/srv/PathPoints_Response.msg
+CMakeFiles/interface: /home/weiwei/Desktop/project/ObsAvoidance/src/interface/srv/BaseJointMotorValue.srv
+CMakeFiles/interface: rosidl_cmake/srv/BaseJointMotorValue_Request.msg
+CMakeFiles/interface: rosidl_cmake/srv/BaseJointMotorValue_Response.msg
+CMakeFiles/interface: /home/weiwei/Desktop/project/ObsAvoidance/src/interface/srv/EnableFollow.srv
+CMakeFiles/interface: rosidl_cmake/srv/EnableFollow_Request.msg
+CMakeFiles/interface: rosidl_cmake/srv/EnableFollow_Response.msg
 CMakeFiles/interface: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 CMakeFiles/interface: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 CMakeFiles/interface: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl

@@ -71,6 +71,9 @@ rosidl_generator_c/interface/msg/slam.h: /opt/ros/foxy/share/rosidl_generator_c/
 rosidl_generator_c/interface/msg/slam.h: /opt/ros/foxy/share/rosidl_generator_c/resource/msg__type_support.h.em
 rosidl_generator_c/interface/msg/slam.h: /opt/ros/foxy/share/rosidl_generator_c/resource/srv__type_support.h.em
 rosidl_generator_c/interface/msg/slam.h: rosidl_adapter/interface/msg/Slam.idl
+rosidl_generator_c/interface/msg/slam.h: rosidl_adapter/interface/srv/PathPoints.idl
+rosidl_generator_c/interface/msg/slam.h: rosidl_adapter/interface/srv/BaseJointMotorValue.idl
+rosidl_generator_c/interface/msg/slam.h: rosidl_adapter/interface/srv/EnableFollow.idl
 rosidl_generator_c/interface/msg/slam.h: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_generator_c/interface/msg/slam.h: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_generator_c/interface/msg/slam.h: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -172,8 +175,53 @@ rosidl_generator_c/interface/msg/detail/slam__struct.h: rosidl_generator_c/inter
 rosidl_generator_c/interface/msg/detail/slam__type_support.h: rosidl_generator_c/interface/msg/slam.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/msg/detail/slam__type_support.h
 
+rosidl_generator_c/interface/srv/path_points.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/path_points.h
+
+rosidl_generator_c/interface/srv/detail/path_points__functions.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/path_points__functions.h
+
+rosidl_generator_c/interface/srv/detail/path_points__struct.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/path_points__struct.h
+
+rosidl_generator_c/interface/srv/detail/path_points__type_support.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/path_points__type_support.h
+
+rosidl_generator_c/interface/srv/base_joint_motor_value.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/base_joint_motor_value.h
+
+rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.h
+
+rosidl_generator_c/interface/srv/detail/base_joint_motor_value__struct.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/base_joint_motor_value__struct.h
+
+rosidl_generator_c/interface/srv/detail/base_joint_motor_value__type_support.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/base_joint_motor_value__type_support.h
+
+rosidl_generator_c/interface/srv/enable_follow.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/enable_follow.h
+
+rosidl_generator_c/interface/srv/detail/enable_follow__functions.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/enable_follow__functions.h
+
+rosidl_generator_c/interface/srv/detail/enable_follow__struct.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/enable_follow__struct.h
+
+rosidl_generator_c/interface/srv/detail/enable_follow__type_support.h: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/enable_follow__type_support.h
+
 rosidl_generator_c/interface/msg/detail/slam__functions.c: rosidl_generator_c/interface/msg/slam.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/msg/detail/slam__functions.c
+
+rosidl_generator_c/interface/srv/detail/path_points__functions.c: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/path_points__functions.c
+
+rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c
+
+rosidl_generator_c/interface/srv/detail/enable_follow__functions.c: rosidl_generator_c/interface/msg/slam.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_c/interface/srv/detail/enable_follow__functions.c
 
 CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.o: CMakeFiles/interface__rosidl_generator_c.dir/flags.make
 CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.o: rosidl_generator_c/interface/msg/detail/slam__functions.c
@@ -188,14 +236,59 @@ CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/de
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/msg/detail/slam__functions.c -o CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.s
 
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.o: CMakeFiles/interface__rosidl_generator_c.dir/flags.make
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.o: rosidl_generator_c/interface/srv/detail/path_points__functions.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/path_points__functions.c
+
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/path_points__functions.c > CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.i
+
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/path_points__functions.c -o CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.s
+
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.o: CMakeFiles/interface__rosidl_generator_c.dir/flags.make
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.o: rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c
+
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c > CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.i
+
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c -o CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.s
+
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.o: CMakeFiles/interface__rosidl_generator_c.dir/flags.make
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.o: rosidl_generator_c/interface/srv/detail/enable_follow__functions.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c
+
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c > CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.i
+
+CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c -o CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.s
+
 # Object files for target interface__rosidl_generator_c
 interface__rosidl_generator_c_OBJECTS = \
-"CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.o"
+"CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.o" \
+"CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.o" \
+"CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.o" \
+"CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.o"
 
 # External object files for target interface__rosidl_generator_c
 interface__rosidl_generator_c_EXTERNAL_OBJECTS =
 
 libinterface__rosidl_generator_c.so: CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.o
+libinterface__rosidl_generator_c.so: CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.o
+libinterface__rosidl_generator_c.so: CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.o
+libinterface__rosidl_generator_c.so: CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.o
 libinterface__rosidl_generator_c.so: CMakeFiles/interface__rosidl_generator_c.dir/build.make
 libinterface__rosidl_generator_c.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_introspection_c.so
 libinterface__rosidl_generator_c.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_c.so
@@ -225,7 +318,7 @@ libinterface__rosidl_generator_c.so: /opt/ros/foxy/lib/librosidl_runtime_c.so
 libinterface__rosidl_generator_c.so: /opt/ros/foxy/lib/librcpputils.so
 libinterface__rosidl_generator_c.so: /opt/ros/foxy/lib/librcutils.so
 libinterface__rosidl_generator_c.so: CMakeFiles/interface__rosidl_generator_c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C shared library libinterface__rosidl_generator_c.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C shared library libinterface__rosidl_generator_c.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/interface__rosidl_generator_c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -241,7 +334,22 @@ CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interfac
 CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/msg/detail/slam__functions.h
 CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/msg/detail/slam__struct.h
 CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/msg/detail/slam__type_support.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/path_points.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/path_points__functions.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/path_points__struct.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/path_points__type_support.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/base_joint_motor_value.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/base_joint_motor_value__struct.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/base_joint_motor_value__type_support.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/enable_follow.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/enable_follow__functions.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/enable_follow__struct.h
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/enable_follow__type_support.h
 CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/msg/detail/slam__functions.c
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/path_points__functions.c
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c
+CMakeFiles/interface__rosidl_generator_c.dir/depend: rosidl_generator_c/interface/srv/detail/enable_follow__functions.c
 	cd /home/weiwei/Desktop/project/ObsAvoidance/build/interface && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_generator_c.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/interface__rosidl_generator_c.dir/depend
 

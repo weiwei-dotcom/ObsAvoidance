@@ -1,2 +1,14 @@
 msg/Slam.idl
 msg/Slam.msg
+srv/BaseJointMotorValue.idl
+srv/BaseJointMotorValue.srv
+srv/BaseJointMotorValue_Request.msg
+srv/BaseJointMotorValue_Response.msg
+srv/EnableFollow.idl
+srv/EnableFollow.srv
+srv/EnableFollow_Request.msg
+srv/EnableFollow_Response.msg
+srv/PathPoints.idl
+srv/PathPoints.srv
+srv/PathPoints_Request.msg
+srv/PathPoints_Response.msg

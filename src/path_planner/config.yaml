@@ -1,0 +1,46 @@
+%YAML:1.0
+---
+# grid map origin point
+grid_origin_point_x: 0.0
+grid_origin_point_y: 0.0
+grid_origin_point_z: 0.0
+
+# number of grids of grid map on three axis direction
+grid_map_x_size: 200
+grid_map_y_size: 400
+grid_map_z_size: 200
+
+# inflation number of grids
+inflation_radius: 5
+
+# size of a grid described in mm unit
+resolution: 10.0
+
+# path plan start position and speed
+start_position_x: 1000.0
+start_position_y: 1900.0
+start_position_z: 1000.0
+start_direction_x: 0.0
+start_direction_y: 1.0
+start_direction_z: 0.0
+end_position_x: 1000.0
+end_position_y: 2590.0
+end_position_z: 1000.0
+
+# average speed
+average_speed: 20.0
+
+# distance of polynomial interpolating point
+interp_dist_thresh: 200.0
+
+# init control point's distance
+control_point_dist: 17.0
+
+# The ratio of the optimized path length to the length of the initialized path
+extension_ratio: 1.4
+
+# If the distance between target and start plan point smaller than this thresh, stop planning. 
+min_plan_dist: 60.0
+
+# the max distance of control point on init polynomial path
+max_control_point_dist: 30.0
