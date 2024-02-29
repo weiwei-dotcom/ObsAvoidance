@@ -58,6 +58,21 @@ CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__build
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__struct.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/path_points.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/path_points__builder.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/path_points__struct.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/path_points__traits.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/path_points__type_support.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/base_joint_motor_value.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__builder.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__struct.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__traits.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__type_support.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/enable_follow.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/enable_follow__builder.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/enable_follow__struct.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/enable_follow__traits.hpp
+CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/srv/detail/enable_follow__type_support.hpp
 CMakeFiles/interface__cpp: rosidl_generator_cpp/interface/msg/rosidl_generator_cpp__visibility_control.hpp
 
 
@@ -81,6 +96,9 @@ rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/rosidl_generato
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__traits.hpp.em
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__type_support.hpp.em
 rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/msg/Slam.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/srv/PathPoints.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/srv/BaseJointMotorValue.idl
+rosidl_generator_cpp/interface/msg/slam.hpp: rosidl_adapter/interface/srv/EnableFollow.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_generator_cpp/interface/msg/slam.hpp: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -185,12 +203,72 @@ rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp: rosidl_generator_cpp
 rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp
 
+rosidl_generator_cpp/interface/srv/path_points.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/path_points.hpp
+
+rosidl_generator_cpp/interface/srv/detail/path_points__builder.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/path_points__builder.hpp
+
+rosidl_generator_cpp/interface/srv/detail/path_points__struct.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/path_points__struct.hpp
+
+rosidl_generator_cpp/interface/srv/detail/path_points__traits.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/path_points__traits.hpp
+
+rosidl_generator_cpp/interface/srv/detail/path_points__type_support.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/path_points__type_support.hpp
+
+rosidl_generator_cpp/interface/srv/base_joint_motor_value.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/base_joint_motor_value.hpp
+
+rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__builder.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__builder.hpp
+
+rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__struct.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__struct.hpp
+
+rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__traits.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__traits.hpp
+
+rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__type_support.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__type_support.hpp
+
+rosidl_generator_cpp/interface/srv/enable_follow.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/enable_follow.hpp
+
+rosidl_generator_cpp/interface/srv/detail/enable_follow__builder.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/enable_follow__builder.hpp
+
+rosidl_generator_cpp/interface/srv/detail/enable_follow__struct.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/enable_follow__struct.hpp
+
+rosidl_generator_cpp/interface/srv/detail/enable_follow__traits.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/enable_follow__traits.hpp
+
+rosidl_generator_cpp/interface/srv/detail/enable_follow__type_support.hpp: rosidl_generator_cpp/interface/msg/slam.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interface/srv/detail/enable_follow__type_support.hpp
+
 interface__cpp: CMakeFiles/interface__cpp
 interface__cpp: rosidl_generator_cpp/interface/msg/slam.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__builder.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__struct.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__traits.hpp
 interface__cpp: rosidl_generator_cpp/interface/msg/detail/slam__type_support.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/path_points.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/path_points__builder.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/path_points__struct.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/path_points__traits.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/path_points__type_support.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/base_joint_motor_value.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__builder.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__struct.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__traits.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/base_joint_motor_value__type_support.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/enable_follow.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/enable_follow__builder.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/enable_follow__struct.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/enable_follow__traits.hpp
+interface__cpp: rosidl_generator_cpp/interface/srv/detail/enable_follow__type_support.hpp
 interface__cpp: CMakeFiles/interface__cpp.dir/build.make
 
 .PHONY : interface__cpp

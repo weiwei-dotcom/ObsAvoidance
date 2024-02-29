@@ -1,0 +1,67 @@
+[35m[1mScanning dependencies of target path_follow[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/path_follow.dir/src/path_follow.cpp.o[0m
+In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:1[m[K:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:[m[K In constructor ‘[01m[KPathFollow::position_residual::position_residual(double, double, double, double, Eigen::Vector3d)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:113:25:[m[K [01;35m[Kwarning: [m[K‘[01m[KPathFollow::position_residual::position_[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+  113 |   const Eigen::Vector3d [01;35m[Kposition_[m[K;
+      |                         [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:111:16:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kconst double PathFollow::position_residual::weight_position_[m[K’ [[01;35m[K-Wreorder[m[K]
+  111 |   const double [01;35m[Kweight_position_[m[K;
+      |                [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:93:3:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+   93 |   [01;35m[Kposition_residual[m[K(double weight_position,
+      |   [01;35m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:[m[K In constructor ‘[01m[KPathFollow::angle_residual::angle_residual(double, double, double, double, Eigen::Vector3d)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:136:25:[m[K [01;35m[Kwarning: [m[K‘[01m[KPathFollow::angle_residual::tangent_vector_[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+  136 |   const Eigen::Vector3d [01;35m[Ktangent_vector_[m[K;
+      |                         [01;35m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:134:16:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kconst double PathFollow::angle_residual::weight_direction_[m[K’ [[01;35m[K-Wreorder[m[K]
+  134 |   const double [01;35m[Kweight_direction_[m[K;
+      |                [01;35m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:117:3:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+  117 |   [01;35m[Kangle_residual[m[K(double weight_direction,
+      |   [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:[m[K In member function ‘[01m[KEigen::Matrix4d PathFollow::calFrame(const std::vector<Eigen::Matrix<double, 3, 1> >&)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:174:2:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+  174 |  [01;35m[K}[m[K
+      |  [01;35m[K^[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:[m[K In member function ‘[01m[Kvoid PathFollow::fitPathCallback(interface::srv::BaseJointMotorValue_Request_<std::allocator<void> >::SharedPtr, interface::srv::BaseJointMotorValue_Response_<std::allocator<void> >::SharedPtr)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:224:34:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  224 |         if ([01;35m[Ktarget_path_point_id >= path_points.size()-1[m[K)
+      |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:312:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  312 |     if ([01;35m[Kend_closed_path_id >= path_points.size()-5[m[K)
+      |         [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:215:12:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ktemp_theta[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  215 |     double [01;35m[Ktemp_theta[m[K = 1e-4, temp_alpha = 1e-4;
+      |            [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:215:31:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ktemp_alpha[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  215 |     double temp_theta = 1e-4, [01;35m[Ktemp_alpha[m[K = 1e-4;
+      |                               [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:181:96:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krequest[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  181 | void PathFollow::fitPathCallback([01;35m[Kconst interface::srv::BaseJointMotorValue::Request::SharedPtr request[m[K,
+      |                                  [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:[m[K In member function ‘[01m[Kvoid PathFollow::find_closed_path_point(const int&, const Vector3d&, int&)[m[K’:
+[01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:363:54:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  363 |         }while(temp_dot_value>0 && [01;35m[Ktemp_path_point_id<path_points.size()-2[m[K);
+      |                                    [01;35m[K~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+[ 50%] [32m[1mLinking CXX executable path_follow[0m
+[100%] Built target path_follow
+-- Install configuration: ""
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/lib/path_follow/path_follow
+-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/lib/path_follow/path_follow" to ""
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/ament_index/resource_index/package_run_dependencies/path_follow
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/ament_index/resource_index/parent_prefix_path/path_follow
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/ament_prefix_path.sh
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/path.sh
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/path.dsv
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.bash
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.sh
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.zsh
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.dsv
+-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/package.dsv
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/ament_index/resource_index/packages/path_follow
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/cmake/path_followConfig.cmake
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/cmake/path_followConfig-version.cmake
+-- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/package.xml

@@ -1,0 +1,425 @@
+[0.000000] (-) TimerEvent: {}
+[0.000096] (-) JobUnselected: {'identifier': 'interface'}
+[0.000114] (-) JobUnselected: {'identifier': 'model'}
+[0.000125] (-) JobUnselected: {'identifier': 'motion_control'}
+[0.000134] (-) JobUnselected: {'identifier': 'orbslam'}
+[0.000146] (-) JobUnselected: {'identifier': 'path_follow'}
+[0.000160] (-) JobUnselected: {'identifier': 'path_planner'}
+[0.000173] (media) JobQueued: {'identifier': 'media', 'dependencies': OrderedDict([('interface', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface')])}
+[0.000186] (media) JobStarted: {'identifier': 'media'}
+[0.099984] (-) TimerEvent: {}
+[0.201193] (-) TimerEvent: {}
+[0.234562] (media) JobProgress: {'identifier': 'media', 'progress': 'cmake'}
+[0.234769] (media) Command: {'cmd': ['/usr/bin/cmake', '/home/weiwei/Desktop/project/ObsAvoidance/src/media', '-DCMAKE_INSTALL_PREFIX=/home/weiwei/Desktop/project/ObsAvoidance/install/media'], 'cwd': '/home/weiwei/Desktop/project/ObsAvoidance/build/media', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en_US:en'), ('USER', 'weiwei'), ('LC_TIME', 'zh_CN.UTF-8'), ('SSH_AGENT_PID', '1851'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('QT4_IM_MODULE', 'fcitx'), ('HOME', '/home/weiwei'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.87.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('MANAGERPID', '1638'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '16520'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install'), ('ROS_DISTRO', 'foxy'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'weiwei'), ('JOURNAL_STREAM', '8:43433'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'weiwei'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/weiwei/.local/bin:/opt/ros/foxy/bin:/home/weiwei/Desktop/thirdParty/anaconda3/condabin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/hello-world:@/tmp/.ICE-unix/1897,unix/hello-world:/tmp/.ICE-unix/1897'), ('INVOCATION_ID', 'dccc4b0ea5404a6abe3a6cf15aae0e33'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-1ba76149be.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('CLASSPATH', '.:/home/weiwei/Desktop/application/jdk1.8.0_381/lib:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/lib'), ('QT_IM_MODULE', 'fcitx'), ('JAVA_HOME', '/home/weiwei/Desktop/application/jdk1.8.0_381'), ('PWD', '/home/weiwei/Desktop/project/ObsAvoidance/build/media'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'fcitx'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy')]), 'shell': False}
+[0.301340] (-) TimerEvent: {}
+[0.322332] (media) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.359527] (media) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.371072] (media) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.401505] (-) TimerEvent: {}
+[0.467219] (media) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.468487] (media) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.501652] (-) TimerEvent: {}
+[0.538665] (media) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.546550] (media) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.547016] (media) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.549298] (media) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[0.601848] (-) TimerEvent: {}
+[0.624772] (media) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[0.625403] (media) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.693511] (media) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.700451] (media) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.700823] (media) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.701911] (-) TimerEvent: {}
+[0.703591] (media) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.720736] (media) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.720883] (media) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.802002] (-) TimerEvent: {}
+[0.845204] (media) StdoutLine: {'line': b'-- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[0.873633] (media) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.878515] (media) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.902189] (-) TimerEvent: {}
+[0.935126] (media) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[0.954793] (media) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[1.002278] (-) TimerEvent: {}
+[1.003850] (media) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.038342] (media) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[1.039150] (media) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.039854] (media) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.096098] (media) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.096338] (media) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.102386] (-) TimerEvent: {}
+[1.167926] (media) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[1.168166] (media) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[1.202534] (-) TimerEvent: {}
+[1.221130] (media) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[1.221298] (media) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[1.266814] (media) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[1.267553] (media) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.302646] (-) TimerEvent: {}
+[1.362204] (media) StdoutLine: {'line': b'-- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)\n'}
+[1.402805] (-) TimerEvent: {}
+[1.503107] (-) TimerEvent: {}
+[1.510304] (media) StdoutLine: {'line': b'-- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)\n'}
+[1.536357] (media) StdoutLine: {'line': b'-- Found message_filters: 3.2.7 (/opt/ros/foxy/share/message_filters/cmake)\n'}
+[1.539431] (media) StdoutLine: {'line': b'-- Found pcl_conversions: 2.2.1 (/opt/ros/foxy/share/pcl_conversions/cmake)\n'}
+[1.603240] (-) TimerEvent: {}
+[1.649405] (media) StdoutLine: {'line': b"-- Checking for module 'eigen3'\n"}
+[1.658905] (media) StdoutLine: {'line': b'--   Found eigen3, version 3.3.9\n'}
+[1.686802] (media) StdoutLine: {'line': b'-- Found Eigen: /usr/include/eigen3 (Required is at least version "3.1") \n'}
+[1.687025] (media) StdoutLine: {'line': b'-- Eigen found (include: /usr/include/eigen3, version: 3.3.7)\n'}
+[1.703336] (-) TimerEvent: {}
+[1.720875] (media) StdoutLine: {'line': b'-- Found Boost: /usr/include (found suitable version "1.71.0", minimum required is "1.55.0") found components: system filesystem date_time iostreams regex \n'}
+[1.732494] (media) StdoutLine: {'line': b"-- Checking for module 'flann'\n"}
+[1.742500] (media) StdoutLine: {'line': b'--   Found flann, version 1.9.1\n'}
+[1.776174] (media) StdoutLine: {'line': b'-- Found FLANN: /usr/lib/x86_64-linux-gnu/libflann_cpp.so  \n'}
+[1.803420] (-) TimerEvent: {}
+[1.813119] (media) StdoutLine: {'line': b'-- The imported target "vtkParseOGLExt" references the file\n'}
+[1.813227] (media) StdoutLine: {'line': b'   "/usr/bin/vtkParseOGLExt-7.1"\n'}
+[1.813270] (media) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.813308] (media) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.813344] (media) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.813379] (media) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.813413] (media) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.813447] (media) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.813481] (media) StdoutLine: {'line': b'\n'}
+[1.813725] (media) StdoutLine: {'line': b'-- The imported target "vtkRenderingPythonTkWidgets" references the file\n'}
+[1.813816] (media) StdoutLine: {'line': b'   "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"\n'}
+[1.813860] (media) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.813907] (media) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.813956] (media) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.814007] (media) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.814058] (media) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.814142] (media) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.814221] (media) StdoutLine: {'line': b'\n'}
+[1.814262] (media) StdoutLine: {'line': b'-- The imported target "vtk" references the file\n'}
+[1.814310] (media) StdoutLine: {'line': b'   "/usr/bin/vtk"\n'}
+[1.814350] (media) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.814387] (media) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.814424] (media) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.814483] (media) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.814519] (media) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.814560] (media) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.814609] (media) StdoutLine: {'line': b'\n'}
+[1.814655] (media) StdoutLine: {'line': b'-- The imported target "pvtk" references the file\n'}
+[1.814704] (media) StdoutLine: {'line': b'   "/usr/bin/pvtk"\n'}
+[1.814740] (media) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.814780] (media) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.814814] (media) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.814855] (media) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.814896] (media) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.814937] (media) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.814974] (media) StdoutLine: {'line': b'\n'}
+[1.832733] (media) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.842504] (media) StdoutLine: {'line': b'--   Found libusb-1.0, version 1.0.23\n'}
+[1.867107] (media) StdoutLine: {'line': b'-- Found USB_10: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  \n'}
+[1.903565] (-) TimerEvent: {}
+[1.913625] (media) StdoutLine: {'line': b'-- Found OpenNI: /usr/lib/libOpenNI.so  \n'}
+[1.913927] (media) StdoutLine: {'line': b'-- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)\n'}
+[1.999745] (media) StdoutLine: {'line': b'-- Found OpenNI2: /usr/lib/libOpenNI2.so  \n'}
+[2.000260] (media) StdoutLine: {'line': b'-- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)\n'}
+[2.000387] (media) StderrLine: {'line': b'** WARNING ** io features related to pcap will be disabled\n'}
+[2.000488] (media) StderrLine: {'line': b'** WARNING ** io features related to png will be disabled\n'}
+[2.003649] (-) TimerEvent: {}
+[2.012202] (media) StdoutLine: {'line': b'-- Found libusb-1.0: /usr/include  \n'}
+[2.012307] (media) StderrLine: {'line': b'** WARNING ** io features related to libusb-1.0 will be disabled\n'}
+[2.016453] (media) StdoutLine: {'line': b'-- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)\n'}
+[2.021045] (media) StdoutLine: {'line': b'-- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)\n'}
+[2.039679] (media) StdoutLine: {'line': b'-- Found Qhull: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so  \n'}
+[2.039782] (media) StdoutLine: {'line': b'-- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)\n'}
+[2.043829] (media) StdoutLine: {'line': b'-- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)\n'}
+[2.051095] (media) StdoutLine: {'line': b'-- looking for PCL_COMMON\n'}
+[2.051760] (media) StdoutLine: {'line': b'-- Found PCL_COMMON: /usr/lib/x86_64-linux-gnu/libpcl_common.so  \n'}
+[2.051964] (media) StdoutLine: {'line': b'-- looking for PCL_KDTREE\n'}
+[2.052679] (media) StdoutLine: {'line': b'-- Found PCL_KDTREE: /usr/lib/x86_64-linux-gnu/libpcl_kdtree.so  \n'}
+[2.052850] (media) StdoutLine: {'line': b'-- looking for PCL_OCTREE\n'}
+[2.053481] (media) StdoutLine: {'line': b'-- Found PCL_OCTREE: /usr/lib/x86_64-linux-gnu/libpcl_octree.so  \n'}
+[2.053638] (media) StdoutLine: {'line': b'-- looking for PCL_SEARCH\n'}
+[2.054161] (media) StdoutLine: {'line': b'-- Found PCL_SEARCH: /usr/lib/x86_64-linux-gnu/libpcl_search.so  \n'}
+[2.054247] (media) StdoutLine: {'line': b'-- looking for PCL_SAMPLE_CONSENSUS\n'}
+[2.055088] (media) StdoutLine: {'line': b'-- Found PCL_SAMPLE_CONSENSUS: /usr/lib/x86_64-linux-gnu/libpcl_sample_consensus.so  \n'}
+[2.055236] (media) StdoutLine: {'line': b'-- looking for PCL_FILTERS\n'}
+[2.055926] (media) StdoutLine: {'line': b'-- Found PCL_FILTERS: /usr/lib/x86_64-linux-gnu/libpcl_filters.so  \n'}
+[2.056090] (media) StdoutLine: {'line': b'-- looking for PCL_2D\n'}
+[2.056233] (media) StdoutLine: {'line': b'-- Found PCL_2D: /usr/include/pcl-1.10  \n'}
+[2.056325] (media) StdoutLine: {'line': b'-- looking for PCL_GEOMETRY\n'}
+[2.056499] (media) StdoutLine: {'line': b'-- Found PCL_GEOMETRY: /usr/include/pcl-1.10  \n'}
+[2.056574] (media) StdoutLine: {'line': b'-- looking for PCL_IO\n'}
+[2.057288] (media) StdoutLine: {'line': b'-- Found PCL_IO: /usr/lib/x86_64-linux-gnu/libpcl_io.so  \n'}
+[2.057462] (media) StdoutLine: {'line': b'-- looking for PCL_FEATURES\n'}
+[2.058217] (media) StdoutLine: {'line': b'-- Found PCL_FEATURES: /usr/lib/x86_64-linux-gnu/libpcl_features.so  \n'}
+[2.058396] (media) StdoutLine: {'line': b'-- looking for PCL_ML\n'}
+[2.059111] (media) StdoutLine: {'line': b'-- Found PCL_ML: /usr/lib/x86_64-linux-gnu/libpcl_ml.so  \n'}
+[2.059291] (media) StdoutLine: {'line': b'-- looking for PCL_SEGMENTATION\n'}
+[2.059987] (media) StdoutLine: {'line': b'-- Found PCL_SEGMENTATION: /usr/lib/x86_64-linux-gnu/libpcl_segmentation.so  \n'}
+[2.060205] (media) StdoutLine: {'line': b'-- looking for PCL_VISUALIZATION\n'}
+[2.060931] (media) StdoutLine: {'line': b'-- Found PCL_VISUALIZATION: /usr/lib/x86_64-linux-gnu/libpcl_visualization.so  \n'}
+[2.061141] (media) StdoutLine: {'line': b'-- looking for PCL_SURFACE\n'}
+[2.061897] (media) StdoutLine: {'line': b'-- Found PCL_SURFACE: /usr/lib/x86_64-linux-gnu/libpcl_surface.so  \n'}
+[2.062062] (media) StdoutLine: {'line': b'-- looking for PCL_REGISTRATION\n'}
+[2.062804] (media) StdoutLine: {'line': b'-- Found PCL_REGISTRATION: /usr/lib/x86_64-linux-gnu/libpcl_registration.so  \n'}
+[2.063094] (media) StdoutLine: {'line': b'-- looking for PCL_KEYPOINTS\n'}
+[2.063828] (media) StdoutLine: {'line': b'-- Found PCL_KEYPOINTS: /usr/lib/x86_64-linux-gnu/libpcl_keypoints.so  \n'}
+[2.064018] (media) StdoutLine: {'line': b'-- looking for PCL_TRACKING\n'}
+[2.064739] (media) StdoutLine: {'line': b'-- Found PCL_TRACKING: /usr/lib/x86_64-linux-gnu/libpcl_tracking.so  \n'}
+[2.064919] (media) StdoutLine: {'line': b'-- looking for PCL_RECOGNITION\n'}
+[2.065636] (media) StdoutLine: {'line': b'-- Found PCL_RECOGNITION: /usr/lib/x86_64-linux-gnu/libpcl_recognition.so  \n'}
+[2.065897] (media) StdoutLine: {'line': b'-- looking for PCL_STEREO\n'}
+[2.066672] (media) StdoutLine: {'line': b'-- Found PCL_STEREO: /usr/lib/x86_64-linux-gnu/libpcl_stereo.so  \n'}
+[2.066818] (media) StdoutLine: {'line': b'-- looking for PCL_APPS\n'}
+[2.067573] (media) StdoutLine: {'line': b'-- Found PCL_APPS: /usr/lib/x86_64-linux-gnu/libpcl_apps.so  \n'}
+[2.068067] (media) StdoutLine: {'line': b'-- looking for PCL_IN_HAND_SCANNER\n'}
+[2.068251] (media) StdoutLine: {'line': b'-- Found PCL_IN_HAND_SCANNER: /usr/include/pcl-1.10  \n'}
+[2.068377] (media) StdoutLine: {'line': b'-- looking for PCL_POINT_CLOUD_EDITOR\n'}
+[2.068693] (media) StdoutLine: {'line': b'-- Found PCL_POINT_CLOUD_EDITOR: /usr/include/pcl-1.10  \n'}
+[2.068778] (media) StdoutLine: {'line': b'-- looking for PCL_OUTOFCORE\n'}
+[2.069532] (media) StdoutLine: {'line': b'-- Found PCL_OUTOFCORE: /usr/lib/x86_64-linux-gnu/libpcl_outofcore.so  \n'}
+[2.069718] (media) StdoutLine: {'line': b'-- looking for PCL_PEOPLE\n'}
+[2.070438] (media) StdoutLine: {'line': b'-- Found PCL_PEOPLE: /usr/lib/x86_64-linux-gnu/libpcl_people.so  \n'}
+[2.071208] (media) StdoutLine: {'line': b'-- Found PCL: pcl_common;pcl_kdtree;pcl_octree;pcl_search;pcl_sample_consensus;pcl_filters;pcl_io;pcl_features;pcl_ml;pcl_segmentation;pcl_visualization;pcl_surface;pcl_registration;pcl_keypoints;pcl_tracking;pcl_recognition;pcl_stereo;pcl_apps;pcl_outofcore;pcl_people;/usr/lib/x86_64-linux-gnu/libboost_system.so;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;/usr/lib/x86_64-linux-gnu/libboost_regex.so;optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so;/usr/lib/libOpenNI.so;/usr/lib/libOpenNI2.so;vtkChartsCore;vtkCommonColor;vtkCommonCore;vtksys;vtkCommonDataModel;vtkCommonMath;vtkCommonMisc;vtkCommonSystem;vtkCommonTransforms;vtkCommonExecutionModel;vtkFiltersGeneral;vtkCommonComputationalGeometry;vtkFiltersCore;vtkInfovisCore;vtkFiltersExtraction;vtkFiltersStatistics;vtkImagingFourier;vtkImagingCore;vtkalglib;vtkRenderingContext2D;vtkRenderingCore;vtkFiltersGeometry;vtkFiltersSources;vtkRenderingFreeType;/usr/lib/x86_64-linux-gnu/libfreetype.so;/usr/lib/x86_64-linux-gnu/libz.so;vtkFiltersModeling;vtkImagingSources;vtkInteractionStyle;vtkInteractionWidgets;vtkFiltersHybrid;vtkImagingColor;vtkImagingGeneral;vtkImagingHybrid;vtkIOImage;vtkDICOMParser;vtkmetaio;/usr/lib/x86_64-linux-gnu/libjpeg.so;/usr/lib/x86_64-linux-gnu/libpng.so;/usr/lib/x86_64-linux-gnu/libtiff.so;vtkRenderingAnnotation;vtkRenderingVolume;vtkIOXML;vtkIOCore;vtkIOXMLParser;/usr/lib/x86_64-linux-gnu/libexpat.so;vtkIOGeometry;vtkIOLegacy;vtkIOPLY;vtkRenderingLOD;vtkViewsContext2D;vtkViewsCore;vtkRenderingContextOpenGL2;vtkRenderingOpenGL2;FLANN::FLANN  \n'}
+[2.103770] (-) TimerEvent: {}
+[2.204102] (-) TimerEvent: {}
+[2.269860] (media) StdoutLine: {'line': b'-- Found BLAS: /usr/lib/x86_64-linux-gnu/libblas.so  \n'}
+[2.304299] (-) TimerEvent: {}
+[2.404785] (-) TimerEvent: {}
+[2.433637] (media) StdoutLine: {'line': b'-- Found AMD headers in: /usr/include/suitesparse\n'}
+[2.434762] (media) StdoutLine: {'line': b'-- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so\n'}
+[2.435145] (media) StdoutLine: {'line': b'-- Found CAMD headers in: /usr/include/suitesparse\n'}
+[2.436012] (media) StdoutLine: {'line': b'-- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so\n'}
+[2.436201] (media) StdoutLine: {'line': b'-- Found CCOLAMD headers in: /usr/include/suitesparse\n'}
+[2.436704] (media) StdoutLine: {'line': b'-- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so\n'}
+[2.436957] (media) StdoutLine: {'line': b'-- Found CHOLMOD headers in: /usr/include/suitesparse\n'}
+[2.437484] (media) StdoutLine: {'line': b'-- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so\n'}
+[2.437722] (media) StdoutLine: {'line': b'-- Found COLAMD headers in: /usr/include/suitesparse\n'}
+[2.438281] (media) StdoutLine: {'line': b'-- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so\n'}
+[2.438529] (media) StdoutLine: {'line': b'-- Found SPQR headers in: /usr/include/suitesparse\n'}
+[2.439194] (media) StdoutLine: {'line': b'-- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so\n'}
+[2.439462] (media) StdoutLine: {'line': b'-- Found Config headers in: /usr/include/suitesparse\n'}
+[2.440044] (media) StdoutLine: {'line': b'-- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so\n'}
+[2.441472] (media) StdoutLine: {'line': b'-- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.\n'}
+[2.441525] (media) StdoutLine: {'line': b'-- Looking for shm_open in rt\n'}
+[2.499102] (media) StdoutLine: {'line': b'-- Looking for shm_open in rt - found\n'}
+[2.499348] (media) StdoutLine: {'line': b'-- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).\n'}
+[2.503524] (media) StdoutLine: {'line': b'-- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) \n'}
+[2.504266] (media) StdoutLine: {'line': b'-- Found SuiteSparse: /usr/include/suitesparse (found suitable version "5.7.1", minimum required is "5.7.1") found components: AMD CAMD CCOLAMD CHOLMOD COLAMD SPQR Config \n'}
+[2.504829] (-) TimerEvent: {}
+[2.506270] (media) StdoutLine: {'line': b'-- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake\n'}
+[2.508356] (media) StdoutLine: {'line': b'-- Found required Ceres dependency: glog\n'}
+[2.510979] (media) StdoutLine: {'line': b'-- Found required Ceres dependency: gflags\n'}
+[2.511524] (media) StdoutLine: {'line': b'-- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]\n'}
+[2.512633] (media) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[2.595806] (media) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[2.596260] (media) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[2.596735] (media) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[2.596808] (media) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[2.597213] (media) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[2.597285] (media) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[2.597821] (media) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.598243] (media) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[2.598314] (media) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[2.598452] (media) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.600549] (media) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.604982] (-) TimerEvent: {}
+[2.650047] (media) StdoutLine: {'line': b'-- Generating done\n'}
+[2.651297] (media) StdoutLine: {'line': b'-- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/media\n'}
+[2.660472] (media) CommandEnded: {'returncode': 0}
+[2.662887] (media) JobProgress: {'identifier': 'media', 'progress': 'build'}
+[2.662930] (media) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/weiwei/Desktop/project/ObsAvoidance/build/media', '--', '-j16', '-l16'], 'cwd': '/home/weiwei/Desktop/project/ObsAvoidance/build/media', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en_US:en'), ('USER', 'weiwei'), ('LC_TIME', 'zh_CN.UTF-8'), ('SSH_AGENT_PID', '1851'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('QT4_IM_MODULE', 'fcitx'), ('HOME', '/home/weiwei'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.87.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('MANAGERPID', '1638'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '16520'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install'), ('ROS_DISTRO', 'foxy'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'weiwei'), ('JOURNAL_STREAM', '8:43433'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'weiwei'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/weiwei/.local/bin:/opt/ros/foxy/bin:/home/weiwei/Desktop/thirdParty/anaconda3/condabin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/hello-world:@/tmp/.ICE-unix/1897,unix/hello-world:/tmp/.ICE-unix/1897'), ('INVOCATION_ID', 'dccc4b0ea5404a6abe3a6cf15aae0e33'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-1ba76149be.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('CLASSPATH', '.:/home/weiwei/Desktop/application/jdk1.8.0_381/lib:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/lib'), ('QT_IM_MODULE', 'fcitx'), ('JAVA_HOME', '/home/weiwei/Desktop/application/jdk1.8.0_381'), ('PWD', '/home/weiwei/Desktop/project/ObsAvoidance/build/media'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'fcitx'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy')]), 'shell': False}
+[2.687718] (media) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target media\x1b[0m\n'}
+[2.705131] (-) TimerEvent: {}
+[2.785260] (media) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/media.dir/src/main.cpp.o\x1b[0m\n'}
+[2.785487] (media) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/media.dir/src/media.cpp.o\x1b[0m\n'}
+[2.805304] (-) TimerEvent: {}
+[2.905637] (-) TimerEvent: {}
+[3.005962] (-) TimerEvent: {}
+[3.106216] (-) TimerEvent: {}
+[3.206560] (-) TimerEvent: {}
+[3.306827] (-) TimerEvent: {}
+[3.407197] (-) TimerEvent: {}
+[3.507509] (-) TimerEvent: {}
+[3.607772] (-) TimerEvent: {}
+[3.708083] (-) TimerEvent: {}
+[3.808350] (-) TimerEvent: {}
+[3.908664] (-) TimerEvent: {}
+[4.008986] (-) TimerEvent: {}
+[4.109299] (-) TimerEvent: {}
+[4.209626] (-) TimerEvent: {}
+[4.309959] (-) TimerEvent: {}
+[4.410280] (-) TimerEvent: {}
+[4.510606] (-) TimerEvent: {}
+[4.610976] (-) TimerEvent: {}
+[4.711240] (-) TimerEvent: {}
+[4.811560] (-) TimerEvent: {}
+[4.911874] (-) TimerEvent: {}
+[5.012198] (-) TimerEvent: {}
+[5.112515] (-) TimerEvent: {}
+[5.212818] (-) TimerEvent: {}
+[5.313127] (-) TimerEvent: {}
+[5.413447] (-) TimerEvent: {}
+[5.513776] (-) TimerEvent: {}
+[5.614123] (-) TimerEvent: {}
+[5.714475] (-) TimerEvent: {}
+[5.814818] (-) TimerEvent: {}
+[5.915186] (-) TimerEvent: {}
+[6.015524] (-) TimerEvent: {}
+[6.115857] (-) TimerEvent: {}
+[6.216165] (-) TimerEvent: {}
+[6.316498] (-) TimerEvent: {}
+[6.416816] (-) TimerEvent: {}
+[6.517139] (-) TimerEvent: {}
+[6.617456] (-) TimerEvent: {}
+[6.717798] (-) TimerEvent: {}
+[6.818107] (-) TimerEvent: {}
+[6.918445] (-) TimerEvent: {}
+[7.018757] (-) TimerEvent: {}
+[7.110316] (media) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid mediaNode::getScaleSlamToWorld(const ConstSharedPtr&, const ConstSharedPtr&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.110492] (media) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:234:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<cv::Vec<float, 3> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[7.110546] (media) StderrLine: {'line': b'  234 |   if (\x1b[01;35m\x1b[Kcircles_.size() < circle_size_thresh\x1b[m\x1b[K)\n'}
+[7.110584] (media) StderrLine: {'line': b'      |       \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.110619] (media) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:237:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<cv::Vec<float, 3> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[7.110656] (media) StderrLine: {'line': b'  237 |   for (int i=0;\x1b[01;35m\x1b[Ki<circles_.size()\x1b[m\x1b[K;i++) {\n'}
+[7.110691] (media) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.110726] (media) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:245:28:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[7.110763] (media) StderrLine: {'line': b'  245 |   if (\x1b[01;35m\x1b[KscaleFactList_.size()<scaleFactList_size_thresh\x1b[m\x1b[K)\n'}
+[7.110797] (media) StderrLine: {'line': b'      |       \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.118856] (-) TimerEvent: {}
+[7.119299] (media) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kbool mediaNode::detectPoseCorrect(cv::Mat, interface::msg::Slam_<std::allocator<void> >::ConstSharedPtr, double&, cv::Vec3f)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.119494] (media) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:297:67:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of constant \xe2\x80\x98\x1b[01m\x1b[K255\x1b[m\x1b[K\xe2\x80\x99 with boolean expression is always true [\x1b[01;35m\x1b[K-Wbool-compare\x1b[m\x1b[K]\n'}
+[7.119546] (media) StderrLine: {'line': b'  297 |     if (\x1b[01;35m\x1b[Kimg_dilate.at<bool>((int)pixelPoint.x, (int)pixelPoint.y) != 255\x1b[m\x1b[K)\n'}
+[7.119583] (media) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[7.133851] (media) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid mediaNode::ransacScaleFact()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.134044] (media) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:379:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[7.134093] (media) StderrLine: {'line': b'  379 |   for (int i=0;\x1b[01;35m\x1b[Ki<scaleFactList_.size()\x1b[m\x1b[K;i++)\n'}
+[7.134132] (media) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.134300] (media) StderrLine: {'line': b'\x1b[01m\x1b[K/home/weiwei/Desktop/project/ObsAvoidance/src/media/src/media.cpp:398:21:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[7.134379] (media) StderrLine: {'line': b'  398 |     for (int j = 0;\x1b[01;35m\x1b[Kj<scaleFactList_.size()\x1b[m\x1b[K;j++)\n'}
+[7.134418] (media) StderrLine: {'line': b'      |                    \x1b[01;35m\x1b[K~^~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.219030] (-) TimerEvent: {}
+[7.319275] (-) TimerEvent: {}
+[7.419543] (-) TimerEvent: {}
+[7.519856] (-) TimerEvent: {}
+[7.620166] (-) TimerEvent: {}
+[7.720478] (-) TimerEvent: {}
+[7.820792] (-) TimerEvent: {}
+[7.921103] (-) TimerEvent: {}
+[8.021435] (-) TimerEvent: {}
+[8.121758] (-) TimerEvent: {}
+[8.222069] (-) TimerEvent: {}
+[8.322379] (-) TimerEvent: {}
+[8.422698] (-) TimerEvent: {}
+[8.523085] (-) TimerEvent: {}
+[8.623400] (-) TimerEvent: {}
+[8.723711] (-) TimerEvent: {}
+[8.824048] (-) TimerEvent: {}
+[8.924414] (-) TimerEvent: {}
+[9.024732] (-) TimerEvent: {}
+[9.125001] (-) TimerEvent: {}
+[9.225286] (-) TimerEvent: {}
+[9.325662] (-) TimerEvent: {}
+[9.425943] (-) TimerEvent: {}
+[9.526275] (-) TimerEvent: {}
+[9.626538] (-) TimerEvent: {}
+[9.726887] (-) TimerEvent: {}
+[9.827204] (-) TimerEvent: {}
+[9.927477] (-) TimerEvent: {}
+[10.027840] (-) TimerEvent: {}
+[10.128194] (-) TimerEvent: {}
+[10.228532] (-) TimerEvent: {}
+[10.328864] (-) TimerEvent: {}
+[10.429238] (-) TimerEvent: {}
+[10.529605] (-) TimerEvent: {}
+[10.629928] (-) TimerEvent: {}
+[10.730254] (-) TimerEvent: {}
+[10.830619] (-) TimerEvent: {}
+[10.930971] (-) TimerEvent: {}
+[11.031311] (-) TimerEvent: {}
+[11.131574] (-) TimerEvent: {}
+[11.231922] (-) TimerEvent: {}
+[11.332286] (-) TimerEvent: {}
+[11.432606] (-) TimerEvent: {}
+[11.532929] (-) TimerEvent: {}
+[11.633253] (-) TimerEvent: {}
+[11.733594] (-) TimerEvent: {}
+[11.833912] (-) TimerEvent: {}
+[11.934238] (-) TimerEvent: {}
+[12.034564] (-) TimerEvent: {}
+[12.134919] (-) TimerEvent: {}
+[12.235182] (-) TimerEvent: {}
+[12.335450] (-) TimerEvent: {}
+[12.435722] (-) TimerEvent: {}
+[12.536064] (-) TimerEvent: {}
+[12.636360] (-) TimerEvent: {}
+[12.736672] (-) TimerEvent: {}
+[12.836972] (-) TimerEvent: {}
+[12.937318] (-) TimerEvent: {}
+[13.037623] (-) TimerEvent: {}
+[13.137923] (-) TimerEvent: {}
+[13.238230] (-) TimerEvent: {}
+[13.338574] (-) TimerEvent: {}
+[13.438890] (-) TimerEvent: {}
+[13.539251] (-) TimerEvent: {}
+[13.639506] (-) TimerEvent: {}
+[13.739828] (-) TimerEvent: {}
+[13.840134] (-) TimerEvent: {}
+[13.940449] (-) TimerEvent: {}
+[14.040751] (-) TimerEvent: {}
+[14.141052] (-) TimerEvent: {}
+[14.241353] (-) TimerEvent: {}
+[14.341677] (-) TimerEvent: {}
+[14.441985] (-) TimerEvent: {}
+[14.542334] (-) TimerEvent: {}
+[14.642640] (-) TimerEvent: {}
+[14.742968] (-) TimerEvent: {}
+[14.843209] (-) TimerEvent: {}
+[14.943582] (-) TimerEvent: {}
+[15.043842] (-) TimerEvent: {}
+[15.144182] (-) TimerEvent: {}
+[15.244486] (-) TimerEvent: {}
+[15.344844] (-) TimerEvent: {}
+[15.445169] (-) TimerEvent: {}
+[15.545520] (-) TimerEvent: {}
+[15.645839] (-) TimerEvent: {}
+[15.746202] (-) TimerEvent: {}
+[15.846528] (-) TimerEvent: {}
+[15.889007] (media) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable media\x1b[0m\n'}
+[15.946707] (-) TimerEvent: {}
+[16.047001] (-) TimerEvent: {}
+[16.147322] (-) TimerEvent: {}
+[16.247588] (-) TimerEvent: {}
+[16.347853] (-) TimerEvent: {}
+[16.448164] (-) TimerEvent: {}
+[16.548541] (-) TimerEvent: {}
+[16.648883] (-) TimerEvent: {}
+[16.749293] (-) TimerEvent: {}
+[16.849604] (-) TimerEvent: {}
+[16.949991] (-) TimerEvent: {}
+[17.050353] (-) TimerEvent: {}
+[17.147325] (media) StdoutLine: {'line': b'[100%] Built target media\n'}
+[17.150478] (-) TimerEvent: {}
+[17.157185] (media) CommandEnded: {'returncode': 0}
+[17.175451] (media) JobProgress: {'identifier': 'media', 'progress': 'install'}
+[17.181928] (media) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/weiwei/Desktop/project/ObsAvoidance/build/media'], 'cwd': '/home/weiwei/Desktop/project/ObsAvoidance/build/media', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:en_US:en'), ('USER', 'weiwei'), ('LC_TIME', 'zh_CN.UTF-8'), ('SSH_AGENT_PID', '1851'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('QT4_IM_MODULE', 'fcitx'), ('HOME', '/home/weiwei'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('TERM_PROGRAM_VERSION', '1.87.0'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'zh_CN.UTF-8'), ('MANAGERPID', '1638'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '16520'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install'), ('ROS_DISTRO', 'foxy'), ('GTK_IM_MODULE', 'fcitx'), ('LOGNAME', 'weiwei'), ('JOURNAL_STREAM', '8:43433'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'weiwei'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/weiwei/.local/bin:/opt/ros/foxy/bin:/home/weiwei/Desktop/thirdParty/anaconda3/condabin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/home/weiwei/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/bin:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/hello-world:@/tmp/.ICE-unix/1897,unix/hello-world:/tmp/.ICE-unix/1897'), ('INVOCATION_ID', 'dccc4b0ea5404a6abe3a6cf15aae0e33'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'zh_CN.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('LC_TELEPHONE', 'zh_CN.UTF-8'), ('XMODIFIERS', '@im=fcitx'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-1ba76149be.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy'), ('CONDA_PYTHON_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'zh_CN.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'zh_CN.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'zh_CN.UTF-8'), ('CLASSPATH', '.:/home/weiwei/Desktop/application/jdk1.8.0_381/lib:/home/weiwei/Desktop/application/jdk1.8.0_381/jre/lib'), ('QT_IM_MODULE', 'fcitx'), ('JAVA_HOME', '/home/weiwei/Desktop/application/jdk1.8.0_381'), ('PWD', '/home/weiwei/Desktop/project/ObsAvoidance/build/media'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/weiwei/Desktop/thirdParty/anaconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'fcitx'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'zh_CN.UTF-8'), ('LC_PAPER', 'zh_CN.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy')]), 'shell': False}
+[17.187815] (media) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[17.187971] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/media/media\n'}
+[17.190523] (media) StdoutLine: {'line': b'-- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/media/lib/media/media" to ""\n'}
+[17.190589] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/ament_index/resource_index/package_run_dependencies/media\n'}
+[17.190626] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/ament_index/resource_index/parent_prefix_path/media\n'}
+[17.190675] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/ament_prefix_path.sh\n'}
+[17.190723] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/ament_prefix_path.dsv\n'}
+[17.190773] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/path.sh\n'}
+[17.190824] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/environment/path.dsv\n'}
+[17.190882] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.bash\n'}
+[17.190943] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.sh\n'}
+[17.190995] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.zsh\n'}
+[17.191060] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/local_setup.dsv\n'}
+[17.191115] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.dsv\n'}
+[17.191192] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/ament_index/resource_index/packages/media\n'}
+[17.191261] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/cmake/mediaConfig.cmake\n'}
+[17.191304] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/cmake/mediaConfig-version.cmake\n'}
+[17.191351] (media) StdoutLine: {'line': b'-- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/media/share/media/package.xml\n'}
+[17.192398] (media) CommandEnded: {'returncode': 0}
+[17.250682] (-) TimerEvent: {}
+[17.351764] (-) TimerEvent: {}
+[17.452528] (-) TimerEvent: {}
+[17.553095] (-) TimerEvent: {}
+[17.626676] (media) JobEnded: {'identifier': 'media', 'rc': 0}
+[17.627165] (-) EventReactorShutdown: {}

@@ -10,6 +10,13 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/msg/__init__.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/msg/_slam.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/msg/_slam_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/__init__.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_base_joint_motor_value.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_base_joint_motor_value_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_enable_follow.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_enable_follow_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_path_points.py" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_path_points_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c"
   )
 
 

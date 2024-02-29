@@ -1,0 +1,133 @@
+[0.201s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow -- -j16 -l16
+[0.219s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.233s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.353s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.376s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.378s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.472s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.506s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.508s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.606s] -- Found rclcpp_components: 2.4.3 (/opt/ros/foxy/share/rclcpp_components/cmake)
+[0.644s] -- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)
+[0.669s] -- Found visualization_msgs: 2.0.5 (/opt/ros/foxy/share/visualization_msgs/cmake)
+[0.719s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[0.872s] -- Found AMD headers in: /usr/include/suitesparse
+[0.872s] -- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so
+[0.872s] -- Found CAMD headers in: /usr/include/suitesparse
+[0.872s] -- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so
+[0.872s] -- Found CCOLAMD headers in: /usr/include/suitesparse
+[0.872s] -- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so
+[0.872s] -- Found CHOLMOD headers in: /usr/include/suitesparse
+[0.872s] -- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so
+[0.872s] -- Found COLAMD headers in: /usr/include/suitesparse
+[0.872s] -- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so
+[0.872s] -- Found SPQR headers in: /usr/include/suitesparse
+[0.872s] -- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so
+[0.872s] -- Found Config headers in: /usr/include/suitesparse
+[0.872s] -- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+[0.881s] -- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.
+[0.881s] -- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+[0.886s] -- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) 
+[0.888s] -- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake
+[0.889s] -- Found required Ceres dependency: glog
+[0.890s] -- Found required Ceres dependency: gflags
+[0.891s] -- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]
+[0.892s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[0.969s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.019s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.019s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.020s] -- Configured cppcheck include dirs: 
+[1.020s] -- Configured cppcheck exclude dirs and/or files: 
+[1.020s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.020s] -- Configured cpplint exclude dirs and/or files: 
+[1.020s] -- Added test 'lint_cmake' to check CMake code style
+[1.021s] -- Added test 'uncrustify' to check C / C++ code style
+[1.021s] -- Configured uncrustify additional arguments: 
+[1.021s] -- Added test 'xmllint' to check XML markup files
+[1.023s] -- Configuring done
+[1.042s] -- Generating done
+[1.043s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow
+[1.068s] [35m[1mScanning dependencies of target path_follow[0m
+[1.104s] [ 66%] [32mBuilding CXX object CMakeFiles/path_follow.dir/src/main.cpp.o[0m
+[1.104s] [ 66%] [32mBuilding CXX object CMakeFiles/path_follow.dir/src/path_follow.cpp.o[0m
+[3.875s] In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:1[m[K:
+[3.875s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:[m[K In constructor ‘[01m[KPathFollow::position_residual::position_residual(double, double, double, double, Eigen::Vector3d)[m[K’:
+[3.875s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:112:25:[m[K [01;35m[Kwarning: [m[K‘[01m[KPathFollow::position_residual::position_[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[3.875s]   112 |   const Eigen::Vector3d [01;35m[Kposition_[m[K;
+[3.875s]       |                         [01;35m[K^~~~~~~~~[m[K
+[3.875s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:110:16:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kconst double PathFollow::position_residual::weight_position_[m[K’ [[01;35m[K-Wreorder[m[K]
+[3.875s]   110 |   const double [01;35m[Kweight_position_[m[K;
+[3.875s]       |                [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[3.875s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:92:3:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[3.875s]    92 |   [01;35m[Kposition_residual[m[K(double weight_position,
+[3.875s]       |   [01;35m[K^~~~~~~~~~~~~~~~~[m[K
+[3.875s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:[m[K In constructor ‘[01m[KPathFollow::angle_residual::angle_residual(double, double, double, double, Eigen::Vector3d)[m[K’:
+[3.875s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:135:25:[m[K [01;35m[Kwarning: [m[K‘[01m[KPathFollow::angle_residual::tangent_vector_[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[3.875s]   135 |   const Eigen::Vector3d [01;35m[Ktangent_vector_[m[K;
+[3.875s]       |                         [01;35m[K^~~~~~~~~~~~~~~[m[K
+[3.875s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:133:16:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kconst double PathFollow::angle_residual::weight_direction_[m[K’ [[01;35m[K-Wreorder[m[K]
+[3.875s]   133 |   const double [01;35m[Kweight_direction_[m[K;
+[3.875s]       |                [01;35m[K^~~~~~~~~~~~~~~~~[m[K
+[3.875s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:116:3:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[3.875s]   116 |   [01;35m[Kangle_residual[m[K(double weight_direction,
+[3.875s]       |   [01;35m[K^~~~~~~~~~~~~~[m[K
+[3.887s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:[m[K In member function ‘[01m[KEigen::Matrix4d PathFollow::calFrame(const std::vector<Eigen::Matrix<double, 3, 1> >&)[m[K’:
+[3.887s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:173:2:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+[3.887s]   173 |  [01;35m[K}[m[K
+[3.887s]       |  [01;35m[K^[m[K
+[3.901s] In file included from [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/main.cpp:1[m[K:
+[3.901s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:[m[K In constructor ‘[01m[KPathFollow::position_residual::position_residual(double, double, double, double, Eigen::Vector3d)[m[K’:
+[3.901s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:112:25:[m[K [01;35m[Kwarning: [m[K‘[01m[KPathFollow::position_residual::position_[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[3.901s]   112 |   const Eigen::Vector3d [01;35m[Kposition_[m[K;
+[3.901s]       |                         [01;35m[K^~~~~~~~~[m[K
+[3.901s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:110:16:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kconst double PathFollow::position_residual::weight_position_[m[K’ [[01;35m[K-Wreorder[m[K]
+[3.901s]   110 |   const double [01;35m[Kweight_position_[m[K;
+[3.901s]       |                [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[3.901s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:92:3:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[3.901s]    92 |   [01;35m[Kposition_residual[m[K(double weight_position,
+[3.901s]       |   [01;35m[K^~~~~~~~~~~~~~~~~[m[K
+[3.901s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:[m[K In constructor ‘[01m[KPathFollow::angle_residual::angle_residual(double, double, double, double, Eigen::Vector3d)[m[K’:
+[3.901s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:135:25:[m[K [01;35m[Kwarning: [m[K‘[01m[KPathFollow::angle_residual::tangent_vector_[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[3.901s]   135 |   const Eigen::Vector3d [01;35m[Ktangent_vector_[m[K;
+[3.901s]       |                         [01;35m[K^~~~~~~~~~~~~~~[m[K
+[3.901s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:133:16:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kconst double PathFollow::angle_residual::weight_direction_[m[K’ [[01;35m[K-Wreorder[m[K]
+[3.901s]   133 |   const double [01;35m[Kweight_direction_[m[K;
+[3.901s]       |                [01;35m[K^~~~~~~~~~~~~~~~~[m[K
+[3.901s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:116:3:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[3.901s]   116 |   [01;35m[Kangle_residual[m[K(double weight_direction,
+[3.901s]       |   [01;35m[K^~~~~~~~~~~~~~[m[K
+[3.913s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:[m[K In member function ‘[01m[KEigen::Matrix4d PathFollow::calFrame(const std::vector<Eigen::Matrix<double, 3, 1> >&)[m[K’:
+[3.913s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.hpp:173:2:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+[3.913s]   173 |  [01;35m[K}[m[K
+[3.913s]       |  [01;35m[K^[m[K
+[4.003s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:[m[K In member function ‘[01m[Kvoid PathFollow::fitPathCallback(interface::srv::BaseJointMotorValue_Request_<std::allocator<void> >::SharedPtr, interface::srv::BaseJointMotorValue_Response_<std::allocator<void> >::SharedPtr)[m[K’:
+[4.003s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:182:34:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[4.003s]   182 |         if ([01;35m[Ktarget_path_point_id >= path_points.size()-1[m[K)
+[4.003s]       |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.049s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:270:28:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[4.050s]   270 |     if ([01;35m[Kend_closed_path_id >= path_points.size()-5[m[K)
+[4.050s]       |         [01;35m[K~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[4.055s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:173:12:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ktemp_theta[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[4.055s]   173 |     double [01;35m[Ktemp_theta[m[K = 1e-4, temp_alpha = 1e-4;
+[4.055s]       |            [01;35m[K^~~~~~~~~~[m[K
+[4.055s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:173:31:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ktemp_alpha[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[4.055s]   173 |     double temp_theta = 1e-4, [01;35m[Ktemp_alpha[m[K = 1e-4;
+[4.055s]       |                               [01;35m[K^~~~~~~~~~[m[K
+[4.055s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:139:96:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krequest[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[4.055s]   139 | void PathFollow::fitPathCallback([01;35m[Kconst interface::srv::BaseJointMotorValue::Request::SharedPtr request[m[K,
+[4.055s]       |                                  [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[4.055s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:[m[K In member function ‘[01m[Kvoid PathFollow::find_closed_path_point(const int&, const Vector3d&, int&)[m[K’:
+[4.055s] [01m[K/home/weiwei/Desktop/project/ObsAvoidance/src/path_follow/src/path_follow.cpp:321:54:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<Eigen::Matrix<double, 3, 1> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[4.055s]   321 |         }while(temp_dot_value>0 && [01;35m[Ktemp_path_point_id<path_points.size()-2[m[K);
+[4.055s]       |                                    [01;35m[K~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~[m[K
+[9.426s] [100%] [32m[1mLinking CXX executable path_follow[0m
+[9.916s] /usr/bin/ld: CMakeFiles/path_follow.dir/src/path_follow.cpp.o: in function `PathFollow::PathFollow()':
+[9.916s] path_follow.cpp:(.text+0xa51): undefined reference to `Joint::Joint(double const&, double const&, double const&, int const&)'
+[9.916s] /usr/bin/ld: CMakeFiles/path_follow.dir/src/path_follow.cpp.o: in function `PathFollow::fitPathCallback(std::shared_ptr<interface::srv::BaseJointMotorValue_Request_<std::allocator<void> > >, std::shared_ptr<interface::srv::BaseJointMotorValue_Response_<std::allocator<void> > >)':
+[9.916s] path_follow.cpp:(.text+0x34b3): undefined reference to `Joint::getTransform()'
+[9.916s] /usr/bin/ld: path_follow.cpp:(.text+0x3977): undefined reference to `Joint::calCableLength(int const&)'
+[9.924s] collect2: error: ld returned 1 exit status
+[9.925s] make[2]: *** [CMakeFiles/path_follow.dir/build.make:264：path_follow] 错误 1
+[9.925s] make[1]: *** [CMakeFiles/Makefile2:78：CMakeFiles/path_follow.dir/all] 错误 2
+[9.925s] make: *** [Makefile:141：all] 错误 2
+[9.927s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow' returned '2': AMENT_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/opt/ros/foxy LD_LIBRARY_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow -- -j16 -l16

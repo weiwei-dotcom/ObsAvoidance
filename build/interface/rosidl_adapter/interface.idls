@@ -1,1 +1,4 @@
 /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:msg/Slam.idl
+/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:srv/PathPoints.idl
+/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:srv/BaseJointMotorValue.idl
+/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_adapter/interface:srv/EnableFollow.idl

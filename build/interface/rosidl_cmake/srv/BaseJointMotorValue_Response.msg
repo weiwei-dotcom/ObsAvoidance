@@ -1,0 +1,5 @@
+
+geometry_msgs/Point[] cable_expend_value
+float64 base_advance_value
+bool flag_base_out_range
+bool flag_arrived_target

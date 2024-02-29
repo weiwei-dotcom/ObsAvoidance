@@ -1,0 +1,51 @@
+[0.239s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow -- -j16 -l16
+[0.255s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.268s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.374s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.394s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.396s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.476s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.505s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.506s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.592s] -- Found rclcpp_components: 2.4.3 (/opt/ros/foxy/share/rclcpp_components/cmake)
+[0.625s] -- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)
+[0.645s] -- Found visualization_msgs: 2.0.5 (/opt/ros/foxy/share/visualization_msgs/cmake)
+[0.697s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[0.830s] -- Found AMD headers in: /usr/include/suitesparse
+[0.830s] -- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so
+[0.830s] -- Found CAMD headers in: /usr/include/suitesparse
+[0.830s] -- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so
+[0.830s] -- Found CCOLAMD headers in: /usr/include/suitesparse
+[0.830s] -- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so
+[0.830s] -- Found CHOLMOD headers in: /usr/include/suitesparse
+[0.830s] -- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so
+[0.830s] -- Found COLAMD headers in: /usr/include/suitesparse
+[0.831s] -- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so
+[0.831s] -- Found SPQR headers in: /usr/include/suitesparse
+[0.831s] -- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so
+[0.831s] -- Found Config headers in: /usr/include/suitesparse
+[0.831s] -- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+[0.831s] -- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.
+[0.831s] -- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+[0.833s] -- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) 
+[0.836s] -- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake
+[0.836s] -- Found required Ceres dependency: glog
+[0.837s] -- Found required Ceres dependency: gflags
+[0.838s] -- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]
+[0.839s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[0.920s] CMake Error at CMakeLists.txt:31 (find_package):
+[0.920s]   Could not find a configuration file for package "OpenCV" that is compatible
+[0.920s]   with requested version "4.4".
+[0.920s] 
+[0.920s]   The following configuration files were considered but not accepted:
+[0.920s] 
+[0.920s]     /usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig.cmake, version: 4.2.0
+[0.920s]     /lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig.cmake, version: 4.2.0
+[0.920s] 
+[0.920s] 
+[0.920s] 
+[0.921s] -- Configuring incomplete, errors occurred!
+[0.921s] See also "/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow/CMakeFiles/CMakeOutput.log".
+[0.921s] See also "/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow/CMakeFiles/CMakeError.log".
+[0.926s] make: *** [Makefile:326：cmake_check_build_system] 错误 1
+[0.928s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow' returned '2': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow -- -j16 -l16

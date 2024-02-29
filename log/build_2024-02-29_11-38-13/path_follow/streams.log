@@ -1,0 +1,22 @@
+[0.267s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow -- -j16 -l16
+[0.334s] [100%] Built target path_follow
+[0.342s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow -- -j16 -l16
+[0.370s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow
+[0.377s] -- Install configuration: ""
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/lib/path_follow/path_follow
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/ament_index/resource_index/package_run_dependencies/path_follow
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/ament_index/resource_index/parent_prefix_path/path_follow
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/ament_prefix_path.sh
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/ament_prefix_path.dsv
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/path.sh
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/path.dsv
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.bash
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.sh
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.zsh
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.dsv
+[0.378s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/package.dsv
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/ament_index/resource_index/packages/path_follow
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/cmake/path_followConfig.cmake
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/cmake/path_followConfig-version.cmake
+[0.378s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/package.xml
+[0.380s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow

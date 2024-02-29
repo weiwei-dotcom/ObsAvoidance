@@ -5,6 +5,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/msg/_slam_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__python.dir/rosidl_generator_py/interface/msg/_slam_s.c.o"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_base_joint_motor_value_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_base_joint_motor_value_s.c.o"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_enable_follow_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_enable_follow_s.c.o"
+  "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_generator_py/interface/srv/_path_points_s.c" "/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_path_points_s.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

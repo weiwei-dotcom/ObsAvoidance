@@ -1,6 +1,9 @@
 {
   "package_name": "interface",
   "non_idl_tuples": [
-    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:msg/Slam.msg"
+    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:msg/Slam.msg",
+    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:srv/PathPoints.srv",
+    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:srv/BaseJointMotorValue.srv",
+    "/home/weiwei/Desktop/project/ObsAvoidance/src/interface:srv/EnableFollow.srv"
   ]
 }

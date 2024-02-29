@@ -1,0 +1,70 @@
+[0.240s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow -- -j16 -l16
+[0.256s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.270s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.374s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.395s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.397s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.479s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.507s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.508s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.593s] -- Found rclcpp_components: 2.4.3 (/opt/ros/foxy/share/rclcpp_components/cmake)
+[0.625s] -- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)
+[0.645s] -- Found visualization_msgs: 2.0.5 (/opt/ros/foxy/share/visualization_msgs/cmake)
+[0.687s] -- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+[0.811s] -- Found AMD headers in: /usr/include/suitesparse
+[0.811s] -- Found AMD library: /usr/lib/x86_64-linux-gnu/libamd.so
+[0.811s] -- Found CAMD headers in: /usr/include/suitesparse
+[0.811s] -- Found CAMD library: /usr/lib/x86_64-linux-gnu/libcamd.so
+[0.811s] -- Found CCOLAMD headers in: /usr/include/suitesparse
+[0.812s] -- Found CCOLAMD library: /usr/lib/x86_64-linux-gnu/libccolamd.so
+[0.812s] -- Found CHOLMOD headers in: /usr/include/suitesparse
+[0.812s] -- Found CHOLMOD library: /usr/lib/x86_64-linux-gnu/libcholmod.so
+[0.812s] -- Found COLAMD headers in: /usr/include/suitesparse
+[0.812s] -- Found COLAMD library: /usr/lib/x86_64-linux-gnu/libcolamd.so
+[0.812s] -- Found SPQR headers in: /usr/include/suitesparse
+[0.812s] -- Found SPQR library: /usr/lib/x86_64-linux-gnu/libspqr.so
+[0.812s] -- Found Config headers in: /usr/include/suitesparse
+[0.812s] -- Found Config library: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+[0.812s] -- Found Intel Thread Building Blocks (TBB) library (2020.1 / 11101) include location: . Assuming SuiteSparseQR was compiled with TBB.
+[0.812s] -- Adding librt to SuiteSparse_config libraries (required on Linux & Unix [not OSX] if SuiteSparse is compiled with timing).
+[0.815s] -- Could NOT find METIS (missing: METIS_INCLUDE_DIR METIS_LIBRARY) 
+[0.817s] -- Found required Ceres dependency: Eigen version 3.3.9 in /usr/local/share/eigen3/cmake
+[0.818s] -- Found required Ceres dependency: glog
+[0.819s] -- Found required Ceres dependency: gflags
+[0.820s] -- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SuiteSparse, SchurSpecializations]
+[0.821s] -- Found interface: 0.0.0 (/home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake)
+[0.889s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.933s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.933s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.933s] -- Configured cppcheck include dirs: 
+[0.933s] -- Configured cppcheck exclude dirs and/or files: 
+[0.934s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.934s] -- Configured cpplint exclude dirs and/or files: 
+[0.934s] -- Added test 'lint_cmake' to check CMake code style
+[0.934s] -- Added test 'uncrustify' to check C / C++ code style
+[0.934s] -- Configured uncrustify additional arguments: 
+[0.934s] -- Added test 'xmllint' to check XML markup files
+[0.936s] -- Configuring done
+[0.954s] -- Generating done
+[0.955s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow
+[0.996s] [100%] Built target path_follow
+[1.004s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow -- -j16 -l16
+[1.035s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow
+[1.042s] -- Install configuration: ""
+[1.042s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/lib/path_follow/path_follow
+[1.042s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/ament_index/resource_index/package_run_dependencies/path_follow
+[1.042s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/ament_index/resource_index/parent_prefix_path/path_follow
+[1.042s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/ament_prefix_path.sh
+[1.042s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/ament_prefix_path.dsv
+[1.043s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/path.sh
+[1.043s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/environment/path.dsv
+[1.043s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.bash
+[1.043s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.sh
+[1.043s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.zsh
+[1.043s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/local_setup.dsv
+[1.043s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/package.dsv
+[1.043s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/ament_index/resource_index/packages/path_follow
+[1.043s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/cmake/path_followConfig.cmake
+[1.043s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/cmake/path_followConfig-version.cmake
+[1.043s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/path_follow/share/path_follow/package.xml
+[1.045s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/path_follow' returned '0': CMAKE_PREFIX_PATH=/home/weiwei/Desktop/project/ObsAvoidance/install/interface:/home/weiwei/Desktop/project/ObsAvoidance/install/path_follow:/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/path_follow

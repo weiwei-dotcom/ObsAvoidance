@@ -1,0 +1,11 @@
+CMake Error at /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake:146 (message):
+  Could NOT find OpenCV (missing: PATH
+  /home/weiwei/Desktop/thirdParty/opencv/opencv-4.7.0/build/installed) (found
+  version "4.2.0")
+Call Stack (most recent call first):
+  /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake:393 (_FPHSA_FAILURE_MESSAGE)
+  /usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig.cmake:328 (find_package_handle_standard_args)
+  CMakeLists.txt:31 (find_package)
+
+
+make: *** [Makefile:326：cmake_check_build_system] 错误 1

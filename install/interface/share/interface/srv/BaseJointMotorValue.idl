@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from interface/srv/BaseJointMotorValue.srv
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Point.idl"
+
+module interface {
+  module srv {
+    struct BaseJointMotorValue_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct BaseJointMotorValue_Response {
+      sequence<geometry_msgs::msg::Point> cable_expend_value;
+
+      double base_advance_value;
+
+      boolean flag_base_out_range;
+
+      boolean flag_arrived_target;
+    };
+  };
+};

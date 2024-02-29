@@ -1,0 +1,14 @@
+[0.000000] (-) TimerEvent: {}
+[0.000091] (-) JobUnselected: {'identifier': 'interface'}
+[0.000110] (-) JobUnselected: {'identifier': 'media'}
+[0.000120] (-) JobUnselected: {'identifier': 'model'}
+[0.000129] (-) JobUnselected: {'identifier': 'motion_control'}
+[0.000137] (-) JobUnselected: {'identifier': 'orbslam'}
+[0.000146] (-) JobUnselected: {'identifier': 'path_planner'}
+[0.000159] (path_follow) JobQueued: {'identifier': 'path_follow', 'dependencies': OrderedDict([('interface', '/home/weiwei/Desktop/project/ObsAvoidance/install/interface')])}
+[0.000175] (path_follow) JobStarted: {'identifier': 'path_follow'}
+[0.100271] (-) TimerEvent: {}
+[0.200693] (-) TimerEvent: {}
+[0.298650] (path_follow) JobEnded: {'identifier': 'path_follow', 'rc': 1}
+[0.300826] (-) TimerEvent: {}
+[0.309031] (-) EventReactorShutdown: {}

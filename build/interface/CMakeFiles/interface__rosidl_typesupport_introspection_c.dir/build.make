@@ -66,6 +66,9 @@ rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport
 rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/rosidl_typesupport_introspection_c/resource/srv__rosidl_typesupport_introspection_c.h.em
 rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/rosidl_typesupport_introspection_c/resource/srv__type_support.c.em
 rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h: rosidl_adapter/interface/msg/Slam.idl
+rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h: rosidl_adapter/interface/srv/PathPoints.idl
+rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h: rosidl_adapter/interface/srv/BaseJointMotorValue.idl
+rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h: rosidl_adapter/interface/srv/EnableFollow.idl
 rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/sensor_msgs/msg/BatteryState.idl
 rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/sensor_msgs/msg/CameraInfo.idl
 rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h: /opt/ros/foxy/share/sensor_msgs/msg/ChannelFloat32.idl
@@ -158,8 +161,26 @@ rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C introspection for ROS interfaces"
 	/usr/bin/python3 /opt/ros/foxy/lib/rosidl_typesupport_introspection_c/rosidl_typesupport_introspection_c --generator-arguments-file /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c__arguments.json
 
+rosidl_typesupport_introspection_c/interface/srv/detail/path_points__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/interface/srv/detail/path_points__rosidl_typesupport_introspection_c.h
+
+rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__rosidl_typesupport_introspection_c.h
+
+rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__rosidl_typesupport_introspection_c.h: rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__rosidl_typesupport_introspection_c.h
+
 rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c: rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c
+
+rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c: rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c
+
+rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c: rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c
+
+rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c: rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c
 
 CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.o: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/flags.make
 CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.o: rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c
@@ -174,14 +195,59 @@ CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c -o CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.s
 
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.o: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/flags.make
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.o: rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c
+
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c > CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.i
+
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c -o CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.s
+
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.o: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/flags.make
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.o: rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c
+
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c > CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.i
+
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c -o CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.s
+
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.o: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/flags.make
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.o: rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.o   -c /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c
+
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c > CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.i
+
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/weiwei/Desktop/project/ObsAvoidance/build/interface/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c -o CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.s
+
 # Object files for target interface__rosidl_typesupport_introspection_c
 interface__rosidl_typesupport_introspection_c_OBJECTS = \
-"CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.o"
+"CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.o" \
+"CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.o" \
+"CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.o" \
+"CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.o"
 
 # External object files for target interface__rosidl_typesupport_introspection_c
 interface__rosidl_typesupport_introspection_c_EXTERNAL_OBJECTS =
 
 libinterface__rosidl_typesupport_introspection_c.so: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.o
+libinterface__rosidl_typesupport_introspection_c.so: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.o
+libinterface__rosidl_typesupport_introspection_c.so: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.o
+libinterface__rosidl_typesupport_introspection_c.so: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.o
 libinterface__rosidl_typesupport_introspection_c.so: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/build.make
 libinterface__rosidl_typesupport_introspection_c.so: libinterface__rosidl_generator_c.so
 libinterface__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/libsensor_msgs__rosidl_typesupport_c.so
@@ -212,7 +278,7 @@ libinterface__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/librcpput
 libinterface__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/librosidl_runtime_c.so
 libinterface__rosidl_typesupport_introspection_c.so: /opt/ros/foxy/lib/librcutils.so
 libinterface__rosidl_typesupport_introspection_c.so: CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C shared library libinterface__rosidl_typesupport_introspection_c.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C shared library libinterface__rosidl_typesupport_introspection_c.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -225,7 +291,13 @@ CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/clean:
 .PHONY : CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/clean
 
 CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/interface/srv/detail/path_points__rosidl_typesupport_introspection_c.h
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__rosidl_typesupport_introspection_c.h
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__rosidl_typesupport_introspection_c.h
 CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c
+CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/depend: rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c
 	cd /home/weiwei/Desktop/project/ObsAvoidance/build/interface && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/src/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface /home/weiwei/Desktop/project/ObsAvoidance/build/interface/CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/depend
 

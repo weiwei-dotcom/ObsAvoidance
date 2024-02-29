@@ -1,0 +1,301 @@
+[0.189s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/interface -- -j16 -l16
+[0.207s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.225s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.225s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.333s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.354s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.356s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.441s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.471s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.472s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.557s] -- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[0.624s] -- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)
+[0.630s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.678s] -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+[0.781s] -- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)
+[0.963s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.056s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.074s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") 
+[1.074s] -- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)
+[1.087s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.087s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8
+[1.088s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.8.so
+[1.129s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.130s] -- Added test 'lint_cmake' to check CMake code style
+[1.130s] -- Added test 'xmllint' to check XML markup files
+[1.133s] -- Configuring done
+[1.173s] -- Generating done
+[1.175s] -- Build files have been written to: /home/weiwei/Desktop/project/ObsAvoidance/build/interface
+[1.192s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[1.198s] [  3%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[1.459s] [  3%] Built target interface__cpp
+[1.470s] [  7%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[1.470s] [  7%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[1.473s] [  9%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[1.480s] [35m[1mScanning dependencies of target interface__rosidl_generator_c[0m
+[1.492s] [ 14%] [32mBuilding C object CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/path_points__functions.c.o[0m
+[1.492s] [ 14%] [32mBuilding C object CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/enable_follow__functions.c.o[0m
+[1.492s] [ 16%] [32mBuilding C object CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/msg/detail/slam__functions.c.o[0m
+[1.492s] [ 16%] [32mBuilding C object CMakeFiles/interface__rosidl_generator_c.dir/rosidl_generator_c/interface/srv/detail/base_joint_motor_value__functions.c.o[0m
+[1.534s] [ 18%] [32m[1mLinking C shared library libinterface__rosidl_generator_c.so[0m
+[1.562s] [ 18%] Built target interface__rosidl_generator_c
+[1.570s] [ 21%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[1.570s] [ 21%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[1.685s] [35m[1mScanning dependencies of target interface__rosidl_typesupport_cpp[0m
+[1.697s] [ 27%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interface/srv/enable_follow__type_support.cpp.o[0m
+[1.697s] [ 27%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interface/msg/slam__type_support.cpp.o[0m
+[1.697s] [ 27%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interface/srv/path_points__type_support.cpp.o[0m
+[1.698s] [ 29%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interface/srv/base_joint_motor_value__type_support.cpp.o[0m
+[1.729s] [35m[1mScanning dependencies of target interface__rosidl_typesupport_introspection_cpp[0m
+[1.742s] [ 30%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/enable_follow__type_support.cpp.o[0m
+[1.743s] [ 32%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/msg/detail/slam__type_support.cpp.o[0m
+[1.743s] [ 34%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/path_points__type_support.cpp.o[0m
+[1.743s] [ 36%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interface/srv/detail/base_joint_motor_value__type_support.cpp.o[0m
+[1.789s] [35m[1mScanning dependencies of target interface__rosidl_typesupport_fastrtps_cpp[0m
+[1.805s] [ 38%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/path_points__type_support.cpp.o[0m
+[1.805s] [ 40%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/msg/detail/dds_fastrtps/slam__type_support.cpp.o[0m
+[1.809s] [35m[1mScanning dependencies of target interface__rosidl_typesupport_c[0m
+[1.810s] [ 41%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/base_joint_motor_value__type_support.cpp.o[0m
+[1.814s] [ 43%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interface/srv/detail/dds_fastrtps/enable_follow__type_support.cpp.o[0m
+[1.823s] [ 45%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/msg/slam__type_support.cpp.o[0m
+[1.830s] [ 47%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/base_joint_motor_value__type_support.cpp.o[0m
+[1.839s] [ 49%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/path_points__type_support.cpp.o[0m
+[1.873s] [ 50%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_c.dir/rosidl_typesupport_c/interface/srv/enable_follow__type_support.cpp.o[0m
+[1.895s] [35m[1mScanning dependencies of target interface__rosidl_typesupport_introspection_c[0m
+[1.913s] [ 52%] [32mBuilding C object CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/base_joint_motor_value__type_support.c.o[0m
+[1.914s] [ 54%] [32m[1mLinking CXX shared library libinterface__rosidl_typesupport_c.so[0m
+[1.915s] [ 56%] [32mBuilding C object CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/msg/detail/slam__type_support.c.o[0m
+[1.917s] [ 58%] [32mBuilding C object CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/path_points__type_support.c.o[0m
+[1.954s] [ 60%] [32mBuilding C object CMakeFiles/interface__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interface/srv/detail/enable_follow__type_support.c.o[0m
+[1.968s] [ 60%] Built target interface__rosidl_typesupport_c
+[1.983s] [ 61%] [32m[1mLinking C shared library libinterface__rosidl_typesupport_introspection_c.so[0m
+[1.993s] [ 63%] [32m[1mLinking CXX shared library libinterface__rosidl_typesupport_cpp.so[0m
+[2.009s] [ 63%] Built target interface__rosidl_typesupport_introspection_c
+[2.037s] [ 63%] Built target interface__rosidl_typesupport_cpp
+[2.084s] [ 65%] [32m[1mLinking CXX shared library libinterface__rosidl_typesupport_introspection_cpp.so[0m
+[2.139s] [ 65%] Built target interface__rosidl_typesupport_introspection_cpp
+[2.196s] [ 67%] [32m[1mLinking CXX shared library libinterface__rosidl_typesupport_fastrtps_cpp.so[0m
+[2.261s] [ 67%] Built target interface__rosidl_typesupport_fastrtps_cpp
+[2.269s] [ 69%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[2.515s] [35m[1mScanning dependencies of target interface__rosidl_typesupport_fastrtps_c[0m
+[2.530s] [ 76%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interface/srv/detail/path_points__type_support_c.cpp.o[0m
+[2.530s] [ 76%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interface/srv/detail/base_joint_motor_value__type_support_c.cpp.o[0m
+[2.530s] [ 76%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interface/msg/detail/slam__type_support_c.cpp.o[0m
+[2.530s] [ 76%] [32mBuilding CXX object CMakeFiles/interface__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interface/srv/detail/enable_follow__type_support_c.cpp.o[0m
+[2.753s] [ 78%] [32m[1mLinking CXX shared library libinterface__rosidl_typesupport_fastrtps_c.so[0m
+[2.810s] [ 78%] Built target interface__rosidl_typesupport_fastrtps_c
+[2.823s] [ 78%] Built target interface
+[2.837s] [ 80%] [34m[1mGenerating Python code for ROS interfaces[0m
+[3.367s] [ 80%] Built target interface__py
+[3.373s] [35m[1mScanning dependencies of target interface__python[0m
+[3.385s] [ 81%] [32mBuilding C object CMakeFiles/interface__python.dir/rosidl_generator_py/interface/msg/_slam_s.c.o[0m
+[3.385s] [ 83%] [32mBuilding C object CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_path_points_s.c.o[0m
+[3.385s] [ 85%] [32mBuilding C object CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_base_joint_motor_value_s.c.o[0m
+[3.385s] [ 87%] [32mBuilding C object CMakeFiles/interface__python.dir/rosidl_generator_py/interface/srv/_enable_follow_s.c.o[0m
+[3.445s] [ 89%] [32m[1mLinking C shared library rosidl_generator_py/interface/libinterface__python.so[0m
+[3.474s] [ 89%] Built target interface__python
+[3.482s] [35m[1mScanning dependencies of target interface__rosidl_typesupport_c__pyext[0m
+[3.482s] [35m[1mScanning dependencies of target interface__rosidl_typesupport_introspection_c__pyext[0m
+[3.482s] [35m[1mScanning dependencies of target interface__rosidl_typesupport_fastrtps_c__pyext[0m
+[3.493s] [ 92%] [32mBuilding C object CMakeFiles/interface__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[3.493s] [ 92%] [32mBuilding C object CMakeFiles/interface__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_c.c.o[0m
+[3.494s] [ 94%] [32mBuilding C object CMakeFiles/interface__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/interface/_interface_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[3.558s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/interface/interface_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so[0m
+[3.558s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/interface/interface_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so[0m
+[3.558s] [100%] [32m[1mLinking CXX shared library rosidl_generator_py/interface/interface_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so[0m
+[3.584s] [100%] Built target interface__rosidl_typesupport_introspection_c__pyext
+[3.584s] [100%] Built target interface__rosidl_typesupport_c__pyext
+[3.602s] [100%] Built target interface__rosidl_typesupport_fastrtps_c__pyext
+[3.610s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/weiwei/Desktop/project/ObsAvoidance/build/interface -- -j16 -l16
+[3.678s] Invoking command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/interface
+[3.684s] -- Install configuration: ""
+[3.684s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/ament_index/resource_index/rosidl_interfaces/interface
+[3.684s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface
+[3.685s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv
+[3.685s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__type_support.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__functions.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__functions.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__functions.c
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__type_support.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__functions.c
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__functions.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__type_support.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__functions.c
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__struct.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__struct.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__struct.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/path_points.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/enable_follow.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/base_joint_motor_value.h
+[3.685s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg
+[3.685s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__struct.h
+[3.685s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.h
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__functions.c
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__functions.h
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/slam.h
+[3.686s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_generator_c__visibility_control.h
+[3.686s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/library_path.sh
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/library_path.dsv
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_generator_c.so
+[3.686s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_generator_c.so" to ""
+[3.686s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface
+[3.686s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv
+[3.686s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__rosidl_typesupport_fastrtps_c.h
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__rosidl_typesupport_fastrtps_c.h
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__rosidl_typesupport_fastrtps_c.h
+[3.686s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg
+[3.686s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__rosidl_typesupport_fastrtps_c.h
+[3.686s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[3.686s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_fastrtps_c.so
+[3.687s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_fastrtps_c.so" to ""
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail
+[3.687s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__rosidl_typesupport_fastrtps_cpp.hpp
+[3.687s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__rosidl_typesupport_fastrtps_cpp.hpp
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/dds_fastrtps
+[3.687s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__rosidl_typesupport_fastrtps_cpp.hpp
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail
+[3.687s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__rosidl_typesupport_fastrtps_cpp.hpp
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/dds_fastrtps
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[3.687s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_fastrtps_cpp.so
+[3.687s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_fastrtps_cpp.so" to ""
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv
+[3.687s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__type_support.c
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__rosidl_typesupport_introspection_c.h
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__type_support.c
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__rosidl_typesupport_introspection_c.h
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__rosidl_typesupport_introspection_c.h
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__type_support.c
+[3.688s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg
+[3.688s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.c
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__rosidl_typesupport_introspection_c.h
+[3.688s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_introspection_c.so
+[3.688s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_introspection_c.so" to ""
+[3.688s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_c.so
+[3.688s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_c.so" to ""
+[3.689s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface
+[3.689s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv
+[3.689s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__traits.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__struct.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__traits.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__builder.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__builder.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__type_support.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__struct.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__type_support.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__type_support.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__traits.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__builder.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__struct.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/base_joint_motor_value.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/enable_follow.hpp
+[3.689s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/path_points.hpp
+[3.689s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg
+[3.689s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__traits.hpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.hpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__builder.hpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__struct.hpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/slam.hpp
+[3.690s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/rosidl_generator_cpp__visibility_control.hpp
+[3.690s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface
+[3.690s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv
+[3.690s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__type_support.cpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/enable_follow__rosidl_typesupport_introspection_cpp.hpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__rosidl_typesupport_introspection_cpp.hpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__type_support.cpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/base_joint_motor_value__rosidl_typesupport_introspection_cpp.hpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/srv/detail/path_points__type_support.cpp
+[3.690s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg
+[3.690s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__type_support.cpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/include/interface/msg/detail/slam__rosidl_typesupport_introspection_cpp.hpp
+[3.690s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_introspection_cpp.so
+[3.691s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_introspection_cpp.so" to ""
+[3.691s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_cpp.so
+[3.691s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__rosidl_typesupport_cpp.so" to ""
+[3.691s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/pythonpath.sh
+[3.691s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/pythonpath.dsv
+[3.691s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/__init__.py
+[3.712s] Compiling '/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/__init__.py'...
+[3.715s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/msg
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/msg/_slam.py
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/msg/_slam_s.c
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/msg/__init__.py
+[3.715s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/srv
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/srv/_path_points_s.c
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/srv/_enable_follow.py
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/srv/_path_points.py
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/srv/_enable_follow_s.c
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/srv/_base_joint_motor_value.py
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/srv/_base_joint_motor_value_s.c
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/srv/__init__.py
+[3.715s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+[3.716s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so" to ""
+[3.716s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+[3.716s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so" to ""
+[3.716s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+[3.717s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/python3.8/site-packages/interface/interface_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so" to ""
+[3.717s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__python.so
+[3.717s] -- Set runtime path of "/home/weiwei/Desktop/project/ObsAvoidance/install/interface/lib/libinterface__python.so" to ""
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/msg/Slam.idl
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/PathPoints.idl
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/BaseJointMotorValue.idl
+[3.717s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/EnableFollow.idl
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/msg/Slam.msg
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/PathPoints.srv
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/PathPoints_Request.msg
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/PathPoints_Response.msg
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/BaseJointMotorValue.srv
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/BaseJointMotorValue_Request.msg
+[3.717s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/BaseJointMotorValue_Response.msg
+[3.718s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/EnableFollow.srv
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/EnableFollow_Request.msg
+[3.718s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/srv/EnableFollow_Response.msg
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/ament_index/resource_index/package_run_dependencies/interface
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/ament_index/resource_index/parent_prefix_path/interface
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/ament_prefix_path.sh
+[3.718s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/ament_prefix_path.dsv
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/path.sh
+[3.718s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/environment/path.dsv
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/local_setup.bash
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/local_setup.sh
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/local_setup.zsh
+[3.718s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/local_setup.dsv
+[3.718s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.dsv
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/ament_index/resource_index/packages/interface
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_generator_cExport.cmake
+[3.718s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_generator_cExport-noconfig.cmake
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_introspection_cExport.cmake
+[3.718s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[3.718s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_cExport.cmake
+[3.718s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_cExport-noconfig.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_generator_cppExport.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_introspection_cppExport.cmake
+[3.719s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_cppExport.cmake
+[3.719s] -- Installing: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interface__rosidl_typesupport_cppExport-noconfig.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/rosidl_cmake-extras.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/ament_cmake_export_dependencies-extras.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/ament_cmake_export_libraries-extras.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/ament_cmake_export_targets-extras.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/ament_cmake_export_include_directories-extras.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interfaceConfig.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/cmake/interfaceConfig-version.cmake
+[3.719s] -- Up-to-date: /home/weiwei/Desktop/project/ObsAvoidance/install/interface/share/interface/package.xml
+[3.721s] Invoked command in '/home/weiwei/Desktop/project/ObsAvoidance/build/interface' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/weiwei/Desktop/project/ObsAvoidance/build/interface
