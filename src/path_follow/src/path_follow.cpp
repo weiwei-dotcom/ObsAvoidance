@@ -1,6 +1,6 @@
 #include "path_follow.hpp"
 
-PathFollow::PathFollow():rclcpp::Node("path_follow")
+PathFollow::PathFollow():Node("path_follow")
 {
     // 初始化判断标志变量
     this->flag_get_first_path = false;
@@ -279,7 +279,6 @@ void PathFollow::fitPathCallback(const interface::srv::BaseJointMotorValue::Requ
     }
     // 根据关节角逐关节计算绳长，并通过与关节总长度作差计算绳长伸缩量
     // 根据关节角计算每个关节的总绳长
-    response->cable_expend_value.clear();
     for (int i=0;i<joint_number;i++)
     {
         Eigen::Vector3d target_cable_length = Eigen::Vector3d::Zero();
@@ -426,6 +425,7 @@ void PathFollow::enableFollowCall()
 
 void PathFollow::enableFollowCallback(rclcpp::Client<interface::srv::EnableFollow>::SharedFuture response)
 {
+    auto result = response.get();
     RCLCPP_INFO(this->get_logger(),"motor_control节点已收到enable_follow通知!");
     return;
 }

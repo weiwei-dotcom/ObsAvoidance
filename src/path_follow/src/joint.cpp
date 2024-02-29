@@ -1,14 +1,14 @@
 #include "joint.hpp"
 
 Joint::Joint(){}
-Joint::Joint(const double &length_rigid1,const double &length_rigid2,const double &length_continuum, const int &cable_id)
+Joint::Joint(const double &length_rigid1_temp,const double &length_rigid2_temp,const double &length_continuum_temp, const int &cable_id)
 {
     this->cable_id_ = cable_id;
     this->alpha = 1e-4;
     this->theta = 1e-4;
-    this->length_rigid1 = length_rigid1;
-    this->length_rigid2 = length_rigid2;
-    this->length_continuum = length_continuum;
+    this->length_rigid1 = length_rigid1_temp;
+    this->length_rigid2 = length_rigid2_temp;
+    this->length_continuum = length_continuum_temp;
     this->length = length_continuum+length_rigid1+length_rigid2;
     this->transform = Eigen::Matrix4d::Identity();
     this->transform(2,3) = this->length_rigid1+this->length_rigid2+this->length_continuum;
@@ -41,7 +41,7 @@ Eigen::Vector3d Joint::calCableLength(const int &cable_id)
     for (int i=0;i<3;i++)
     {
         Eigen::Vector4d point_plat_1 = Eigen::Vector4d::Ones();
-        Eigen::Vector4d point_plat_2 = Eigen::Vector4d::Ones();
+        Eigen::Vector4d point_plat_2;
         
         point_plat_1[0] = cos(((double)cable_id+(double)i*8.0)/24.0*M_PI*2);
         point_plat_1[1] = sin(((double)cable_id+(double)i*8.0)/24.0*M_PI*2);

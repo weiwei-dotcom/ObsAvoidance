@@ -43,7 +43,7 @@ endif()
 
 include_directories(${EIGEN3_INCLUDE_DIR} ${CERES_INCLUDE_DIRS} ${Sophus_DIR})
 
-add_executable(path_follow src/main.cpp src/path_follow.cpp)
+add_executable(path_follow src/main.cpp src/path_follow.cpp src/joint.cpp )
 
 ament_target_dependencies(path_follow rclcpp rclcpp_components geometry_msgs std_msgs visualization_msgs cv_bridge Eigen3 Sophus interface)
 
