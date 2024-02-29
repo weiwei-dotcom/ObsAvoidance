@@ -22,6 +22,9 @@ PathFollow::PathFollow():Node("path_follow")
 
     // 靠近标志位置为true的阈值
     this->closed_distance = fileRead["closed_distance"];
+
+    // 离散采样点采样间隔
+    sample_interval = fileRead["sample_interval"];
     
     // 初始化拟合权重,关节角上下边界
     alpha_lower_bound = fileRead["alpha_lower_bound"];
@@ -71,12 +74,12 @@ PathFollow::PathFollow():Node("path_follow")
     // this->stroke_end = (this->world_to_ref * temp_stroke_end).block(0,0,3,1);
     // this->stroke_start = (this->world_to_ref * temp_stroke_start).block(0,0,3,1);
     init_path_size = std::ceil((stroke_end-stroke_start).norm()/1.0);
-    if (init_path_size == 0)
-    {
-        RCLCPP_ERROR(this->get_logger(), "Stroke Error !!!");
-        rclcpp::shutdown();
-        return;
-    }
+    // if (init_path_size == 0)
+    // {
+    //     RCLCPP_ERROR(this->get_logger(), "Stroke Error !!!");
+    //     rclcpp::shutdown();
+    //     return;
+    // }
     for(int i=0; i<=init_path_size; i++)
     {
         Eigen::Vector3d temp_path_point = stroke_start*((double)init_path_size-(double)i)/(double)init_path_size + stroke_end*(double)i/(double)init_path_size;
@@ -106,13 +109,33 @@ PathFollow::PathFollow():Node("path_follow")
     std::cin >> flag_points[2].y();
     std::cin >> flag_points[2].z();
     this->trans_base_ref = calFrame(flag_points);
+
+    // ///DEBUG:
+    // std::cout << "here: 6" << std::endl;
+    
     Eigen::Vector3d temp_base_position = trans_base_ref.block(0,3,3,1);
     this->init_stroke_position = getIntervalPoint(temp_base_position, stroke_end,stroke_start);
     trans_base_ref.block(0,3,3,1) = this->init_stroke_position;
+
+    // ///DEBUG:
+    // std::cout << "here: 9" << std::endl;
+    
     // 寻找距离最近的下一个路径跟随点索引，作为跟随起点索引
     double temp_proj_value = this->calVecProjValue(temp_base_position,stroke_start,stroke_end);
+
+    // ///DEBUG:
+    // std::cout << "temp_proj_value: " << temp_proj_value <<std::endl;
+    
     base_tar_position_id = ceil(temp_proj_value/this->sample_interval);
+
+    // ///DEBUG:
+    // std::cout << "base_tar_position_id: " << base_tar_position_id <<std::endl;
+ 
     Eigen::Vector3d temp_vec1 = path_points[base_tar_position_id]-path_points[base_tar_position_id-1];
+
+    // ///DEBUG:
+    // std::cout << "here: 7" << std::endl;
+ 
     if (temp_vec1.dot(temp_base_position-path_points[base_tar_position_id-1]) * temp_vec1.dot(temp_base_position-path_points[base_tar_position_id]) >= 0)
     {
         if (temp_vec1.dot(temp_base_position-path_points[base_tar_position_id-1]) < 0)
@@ -132,7 +155,10 @@ PathFollow::PathFollow():Node("path_follow")
             base_tar_position_id = i;
         }
     }
-    
+
+    // ///DEBUG:
+    // std::cout << "here: 8" << std::endl;
+ 
     // 创建路径规划客户端
     this->get_path_client = this->create_client<interface::srv::PathPoints>("get_path_points");
     // 创建通知enable_follow客户端
@@ -146,9 +172,9 @@ PathFollow::PathFollow():Node("path_follow")
                                                                                                 this,
                                                                                                 std::placeholders::_1,
                                                                                                 std::placeholders::_2));
-    // 
-    /// DEBUG:
-    std::cout << "here: 2" << std::endl;
+
+    // /// DEBUG:
+    // std::cout << "here: 2" << std::endl;
     return;
 }
 
