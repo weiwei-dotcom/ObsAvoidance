@@ -121,8 +121,6 @@ public:
     void pclToGridMap(const pcl::PointCloud<pcl::PointXYZ> &obs_pcl);
 
     void replanPath();
-
-    void collisionCheckCallback();
     
     void boundCorrect(int &x, int &y, int &z);
     
@@ -138,8 +136,6 @@ public:
     void Optimize();
 
     bool checkCollision(const Eigen::Vector3d &coor);
-
-    Eigen::Vector3i coorToIndex(const Eigen::Vector3d &coor);
 
     bool coorToIndex(const Eigen::Vector3d &coor, Eigen::Vector3i &index);
 

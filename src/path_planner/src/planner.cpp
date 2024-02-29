@@ -40,7 +40,6 @@ PathPlanner::PathPlanner():Node("path_planner")
     this->min_plan_dist = fileRead["min_plan_dist"];  
 
     this->max_control_point_dist = fileRead["max_control_point_dist"]; 
-      
     
     return;
 }
@@ -68,12 +67,6 @@ void PathPlanner::pclToGridMap(const pcl::PointCloud<pcl::PointXYZ> &obs_pcl)
             }
         }
     }
-    return;
-}
-
-void PathPlanner::collisionCheckCallback()
-{
-    // TODO:
     return;
 }
 
@@ -333,12 +326,6 @@ void PathPlanner::getBasePointsAndDirection()
 
         bounds[i] = std::pair<int, int>(id_low_bound, id_up_bound);
     }
-
-    // cout << "+++++++++" << endl;
-    // for ( int j=0; j<bounds.size(); ++j )
-    // {
-    //   cout << bounds[j].first << "  " << bounds[j].second << endl;
-    // }
 
     /*** Adjust segment length ***/
     vector<std::pair<int, int>> final_segment_ids(segment_ids.size());
@@ -930,7 +917,7 @@ vector<GridNodePtr> PathPlanner::retrievePath(GridNodePtr current)
 bool PathPlanner::optFirstSeg()
 {
     ceres::Problem pathOptimizer;
-
+    ///TODO:
     return;
 }
 
