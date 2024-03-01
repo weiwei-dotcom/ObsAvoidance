@@ -1,17 +1,17 @@
 %YAML:1.0
 ---
 # grid map origin point
-grid_origin_point_x: 0.0
-grid_origin_point_y: 0.0
-grid_origin_point_z: 0.0
+grid_origin_point_x: -5.0
+grid_origin_point_y: -5.0
+grid_origin_point_z: -5.0
 
 # number of grids of grid map on three axis direction
-grid_map_x_size: 200
-grid_map_y_size: 400
-grid_map_z_size: 200
+grid_map_x_size: 201
+grid_map_y_size: 401
+grid_map_z_size: 201
 
 # inflation number of grids
-inflation_radius: 5
+inflation_radius: 6
 
 # size of a grid described in mm unit
 resolution: 10.0
@@ -47,3 +47,11 @@ max_control_point_dist: 30.0
 
 # 重规划时间
 replan_period: 0.01
+
+# 障碍物前板圆心
+obs_centre_x: 1000.0
+obs_centre_y: 2000.0
+obs_centre_z: 1000.0
+
+# 构建障碍物点云的步进值
+build_step: 3.0

@@ -50,6 +50,12 @@ public:
 class PathPlanner:public rclcpp::Node
 {
 private:
+    // 障碍物前板中心坐标，用来指导障碍物的生成
+    Eigen::Vector3d obs_centre;
+
+    // 构建障碍物点云的步进值
+    double build_step;
+    
     pcl::PointCloud<pcl::PointXYZ> pcl_obs;
 
     int grid_map_x_size,grid_map_y_size,grid_map_z_size;
@@ -118,7 +124,9 @@ private:
 
 public:
     PathPlanner();
-    void pclToGridMap(const pcl::PointCloud<pcl::PointXYZ> &obs_pcl);
+    // 初始化构建障碍物点云坐标
+    void buildStructure();
+    void pclToGridMap();
 
     void replanPath();
     

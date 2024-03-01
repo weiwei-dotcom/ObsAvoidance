@@ -5,23 +5,31 @@ PathPlanner::PathPlanner():Node("path_planner")
     cv::FileStorage fileRead("/home/weiwei/Desktop/project/ObsAvoidance/src/path_planner/config.yaml", cv::FileStorage::READ);
 
     ///TODO:
+    this->build_step = fileRead["build_step"];
+    this->obs_centre.x() = fileRead["obs_centre_x"];
+    this->obs_centre.y() = fileRead["obs_centre_y"];
+    this->obs_centre.z() = fileRead["obs_centre_z"];
+
     this->order = 3;
 
+    // 初始化障碍物结构点云
+    buildStructure();
+    // 初始化栅格地图的原点坐标，尺寸大小，并初始化栅格地图
     this->grid_map_origin_point.x() = fileRead["grid_map_origin_point_x"];
     this->grid_map_origin_point.y() = fileRead["grid_map_origin_point_y"];
     this->grid_map_origin_point.z() = fileRead["grid_map_origin_point_z"];
-
     this->grid_map_x_size = fileRead["grid_map_x_size"];
     this->grid_map_y_size = fileRead["grid_map_y_size"];
     this->grid_map_z_size = fileRead["grid_map_z_size"];
     std::vector<bool> temp_occupy(this->grid_map_z_size, false);
     std::vector<std::vector<bool>> temp_occupy_2d(this->grid_map_y_size, temp_occupy);
     this->grid_map.resize(this->grid_map_x_size, temp_occupy_2d);
+    // 该地图GridNodeMap_用来寻找astar路径
     initGridMap(Eigen::Vector3i(grid_map_x_size,grid_map_y_size,grid_map_z_size));
-
     this->resolution = fileRead["resolution"];
-
     this->inflation_radius = fileRead["inflation_radius"];
+    // 初始化栅格地图，该地图用于碰撞检测
+    pclToGridMap();
 
     this->start_pos.x() = fileRead["start_position_x"];
     this->start_pos.y() = fileRead["start_position_y"];
@@ -44,16 +52,138 @@ PathPlanner::PathPlanner():Node("path_planner")
     return;
 }
 
-// This function will get the pcl of obstacle and change to the 3d grid map that used in collision detection.
-void PathPlanner::pclToGridMap(const pcl::PointCloud<pcl::PointXYZ> &obs_pcl)
+// This build obstacle pcl
+void PathPlanner::buildStructure()
 {
-    int pcl_obs_size = obs_pcl.points.size();
+    // 开始构建障碍物结构
+    RCLCPP_INFO(this->get_logger(), "开始构建障碍物结构件点云");
+    // 赋值特殊结构尺寸，例如中间障碍物板子的通道宽度
+    double zSize = 440.0,xSize = 440.0,ySize = 735.0;
+    double circle_radius = 100.0, structureGapSize1 = 260.0, structureGapSize2 = 250.0;
+    double frontToStructureSize1 = 185.0, frontToStructureSize2 = 410.0;
+    // 首先根据障碍物圆心点以及结构尺寸确定各个结构点位置坐标
+    Eigen::Vector3d frontLeftUnder,frontLeftUp,frontRightUnder,backLeftUnder,structureLeftUnder1,structureLeftUnder2;
+    frontLeftUnder.x() = obs_centre.x()-xSize*0.5;
+    frontLeftUnder.z() = obs_centre.z()-ySize*0.5;
+    frontLeftUnder.y() = obs_centre.y();
+    frontLeftUp.x() = obs_centre.x()-xSize*0.5;
+    frontLeftUp.z() = obs_centre.z()+zSize*0.5;
+    frontLeftUp.y() = obs_centre.y();
+    frontRightUnder.x() = obs_centre.x()+xSize*0.5;
+    frontRightUnder.z() = obs_centre.z()-ySize*0.5;
+    frontRightUnder.y() = obs_centre.y();
+    backLeftUnder.x() = obs_centre.x()-xSize*0.5;
+    backLeftUnder.z() = obs_centre.z()-zSize*0.5;
+    backLeftUnder.y() = obs_centre.y()+ySize;
+    structureLeftUnder1.x() = obs_centre.x()-xSize*0.5;
+    structureLeftUnder1.z() = obs_centre.z()-ySize*0.5;
+    structureLeftUnder1.y() = obs_centre.y()+frontToStructureSize1;
+    structureLeftUnder2.x() = obs_centre.x()-xSize*0.5;
+    structureLeftUnder2.z() = obs_centre.z()-ySize*0.5;
+    structureLeftUnder2.y() = obs_centre.y()+frontToStructureSize2;
+    // 计算构建结构点云时的步进数量
+    int buildStepNum_x = ceil(xSize/build_step);
+    int buildStepNum_z = ceil(zSize/build_step);
+    int buildStepNum_y = ceil(ySize/build_step);
+    // 构建前面板结构
+    for (int i=1;i<buildStepNum_z;i++)
+    {  
+        for(int j=1;j<buildStepNum_x;j++)
+        {
+            Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
+            if ((pointPosition-obs_centre).norm() < circle_radius)
+                continue;
+            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+            pcl_obs.points.push_back(point);
+        }
+    }
+    // 构建后板结构
+    for (int i=1;i<buildStepNum_z;i++)
+    {  
+        for(int j=1;j<buildStepNum_x;j++)
+        {
+            Eigen::Vector3d pointPosition = backLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
+            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+            pcl_obs.points.push_back(point);
+        }
+    }
+    // 构建左边板子结构
+    for (int i=1;i<buildStepNum_z;i++)
+    {  
+        for(int j=1;j<buildStepNum_y;j++)
+        {
+            Eigen::Vector3d pointPosition = frontLeftUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
+            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+            pcl_obs.points.push_back(point);
+        }
+    }
+    // 构建上板
+    for (int i=1;i<buildStepNum_x;i++)
+    {  
+        for(int j=1;j<buildStepNum_y;j++)
+        {
+            Eigen::Vector3d pointPosition = frontLeftUp+(frontRightUnder-frontLeftUnder)*((double)i/(double)buildStepNum_x)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
+            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+            pcl_obs.points.push_back(point);
+        }
+    }
+    // 构建右板
+    for (int i=1;i<buildStepNum_z;i++)
+    {  
+        for(int j=1;j<buildStepNum_y;j++)
+        {
+            Eigen::Vector3d pointPosition = frontRightUnder+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
+            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+            pcl_obs.points.push_back(point);
+        }
+    }
+    // 构建下板pclToGridMap
+    for (int i=1;i<buildStepNum_x;i++)
+    {  
+        for(int j=1;j<buildStepNum_y;j++)
+        {
+            Eigen::Vector3d pointPosition = frontLeftUnder+(frontRightUnder-frontLeftUnder)*((double)i/(double)buildStepNum_x)+(backLeftUnder-frontLeftUnder)*((double)j/(double)buildStepNum_y);
+            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+            pcl_obs.points.push_back(point);
+        }
+    }
+    // 构建障碍物中间前板
+    for (int i=1;i<buildStepNum_z;i++)
+    {  
+        for(int j=1;j<buildStepNum_x;j++)
+        {
+            Eigen::Vector3d pointPosition = structureLeftUnder1+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
+            if ((double)i>(zSize-structureGapSize1)/build_step && (double)j<structureGapSize1/build_step)
+                continue;
+            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+            pcl_obs.points.push_back(point);
+        }
+    }
+    // 构建障碍物中间后板
+    for (int i=1;i<buildStepNum_z;i++)
+    {  
+        for(int j=1;j<buildStepNum_x;j++)
+        {
+            Eigen::Vector3d pointPosition = structureLeftUnder2+(frontLeftUp-frontLeftUnder)*((double)i/(double)buildStepNum_z)+(frontRightUnder-frontLeftUnder)*((double)j/(double)buildStepNum_x);
+            if ((double)i<structureGapSize2/build_step && (double)j>(xSize-structureGapSize2)/build_step)
+                continue;
+            pcl::PointXYZ point((float)pointPosition.x(),(float)pointPosition.y(),(float)pointPosition.z());
+            pcl_obs.points.push_back(point);
+        }
+    }
+    return;
+}
+
+// This function will get the pcl of obstacle and change to the 3d grid map that used in collision detection.
+void PathPlanner::pclToGridMap()
+{
+    int pcl_obs_size = pcl_obs.points.size();
     int temp_index_x,temp_index_y,temp_index_z;
     for (int i=0;i<pcl_obs_size;i++)
     {
-        temp_index_x = floor((obs_pcl.points[i].x-this->grid_map_origin_point.x())/this->resolution);
-        temp_index_y = floor((obs_pcl.points[i].y-this->grid_map_origin_point.y())/this->resolution);
-        temp_index_z = floor((obs_pcl.points[i].z-this->grid_map_origin_point.z())/this->resolution);
+        temp_index_x = floor((pcl_obs.points[i].x-this->grid_map_origin_point.x())/this->resolution);
+        temp_index_y = floor((pcl_obs.points[i].y-this->grid_map_origin_point.y())/this->resolution);
+        temp_index_z = floor((pcl_obs.points[i].z-this->grid_map_origin_point.z())/this->resolution);
         this->grid_map[temp_index_x][temp_index_y][temp_index_z] = true;
         for (int x=temp_index_x-inflation_radius;x<=temp_index_x+inflation_radius;x++)
         {
