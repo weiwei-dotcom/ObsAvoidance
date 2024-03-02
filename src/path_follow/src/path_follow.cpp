@@ -161,7 +161,7 @@ PathFollow::PathFollow():Node("path_follow")
     // std::cout << "here: 8" << std::endl;
  
     // 创建路径规划客户端
-    this->get_path_client = this->create_client<interface::srv::PathPoints>("get_path_points");
+    this->get_path_client = this->create_client<interface::srv::PathPoints>("path_plan");
     // 创建通知enable_follow客户端
     this->enable_follow_client = this->create_client<interface::srv::EnableFollow>("enable_follow");
     
@@ -405,9 +405,9 @@ void PathFollow::getNewPathCall()
     request->start_position.x = this->path_points[end_closed_path_id].x();
     request->start_position.y = this->path_points[end_closed_path_id].y();
     request->start_position.z = this->path_points[end_closed_path_id].z();
-    request->start_speed.x = (this->path_points[end_closed_path_id+1]- path_points[end_closed_path_id-1]).x()*speed_value;
-    request->start_speed.y = (this->path_points[end_closed_path_id+1]- path_points[end_closed_path_id-1]).y()*speed_value;
-    request->start_speed.z = (this->path_points[end_closed_path_id+1]- path_points[end_closed_path_id-1]).z()*speed_value;
+    request->start_velocity.x = (this->path_points[end_closed_path_id+1]- path_points[end_closed_path_id-1]).x()*speed_value;
+    request->start_velocity.y = (this->path_points[end_closed_path_id+1]- path_points[end_closed_path_id-1]).y()*speed_value;
+    request->start_velocity.z = (this->path_points[end_closed_path_id+1]- path_points[end_closed_path_id-1]).z()*speed_value;
     get_path_client->async_send_request(request, std::bind(&PathFollow::getNewPathCallback, this, std::placeholders::_1));
     // 发起服务未获得响应标志位置为真，待响应回调函数响应且正确获取了离散路径点后复位为假
     this->flag_called_not_response = true;

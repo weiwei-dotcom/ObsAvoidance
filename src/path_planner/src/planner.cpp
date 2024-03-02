@@ -18,36 +18,45 @@ PathPlanner::PathPlanner():Node("path_planner")
     this->grid_map_origin_point.x() = fileRead["grid_map_origin_point_x"];
     this->grid_map_origin_point.y() = fileRead["grid_map_origin_point_y"];
     this->grid_map_origin_point.z() = fileRead["grid_map_origin_point_z"];
-    this->grid_map_x_size = fileRead["grid_map_x_size"];
-    this->grid_map_y_size = fileRead["grid_map_y_size"];
-    this->grid_map_z_size = fileRead["grid_map_z_size"];
+    this->grid_map_end_point.x() = fileRead["grid_map_end_point_x"];
+    this->grid_map_end_point.y() = fileRead["grid_map_end_point_y"];
+    this->grid_map_end_point.z() = fileRead["grid_map_end_point_z"];
+    this->resolution = fileRead["resolution"];
+    this->grid_map_x_size = ceil(this->grid_map_end_point.x() - this->grid_map_origin_point.x()+0.5*resolution);
+    this->grid_map_y_size = ceil(this->grid_map_end_point.y() - this->grid_map_origin_point.y()+0.5*resolution);
+    this->grid_map_z_size = ceil(this->grid_map_end_point.z() - this->grid_map_origin_point.z()+0.5*resolution);
+
+    ///DEBUG:
+    RCLCPP_INFO(this->get_logger(), "grid_map_x_size: %d", this->grid_map_x_size);
+    RCLCPP_INFO(this->get_logger(), "grid_map_y_size: %d", this->grid_map_y_size);
+    RCLCPP_INFO(this->get_logger(), "grid_map_z_size: %d", this->grid_map_z_size);
+    
+    this->inflation_radius = fileRead["inflation_radius"];
     std::vector<bool> temp_occupy(this->grid_map_z_size, false);
     std::vector<std::vector<bool>> temp_occupy_2d(this->grid_map_y_size, temp_occupy);
     this->grid_map.resize(this->grid_map_x_size, temp_occupy_2d);
-    // 该地图GridNodeMap_用来寻找astar路径
-    initGridMap(Eigen::Vector3i(grid_map_x_size,grid_map_y_size,grid_map_z_size));
-    this->resolution = fileRead["resolution"];
-    this->inflation_radius = fileRead["inflation_radius"];
     // 初始化栅格地图，该地图用于碰撞检测
     pclToGridMap();
-
-    this->start_pos.x() = fileRead["start_position_x"];
-    this->start_pos.y() = fileRead["start_position_y"];
-    this->start_pos.z() = fileRead["start_position_z"];
-    this->start_direction.x() = fileRead["start_direction_x"];
-    this->start_direction.y() = fileRead["start_direction_y"];
-    this->start_direction.z() = fileRead["start_direction_z"];
-    this->average_speed = fileRead["average_speed"];
-    this->start_vel = this->start_direction.normalized() * average_speed;
+    // 该地图GridNodeMap_用来寻找astar路径
+    initGridMap(Eigen::Vector3i(grid_map_x_size,grid_map_y_size,grid_map_z_size));
 
     this->interp_dist_thresh = fileRead["interp_dist_thresh"];
     this->control_point_dist = fileRead["control_point_dist"];
 
+    this->average_speed = fileRead["average_speed"];
     this->extension_ratio = fileRead["extension_ratio"];
-
     this->min_plan_dist = fileRead["min_plan_dist"];  
-
     this->max_control_point_dist = fileRead["max_control_point_dist"]; 
+
+    this->target_position.x() = fileRead["target_position_x"];
+    this->target_position.y() = fileRead["target_position_y"];
+    this->target_position.z() = fileRead["target_position_z"];
+
+    // 创建路径跟随客户端
+    this->path_plan_service = this->create_service<interface::srv::PathPoints>("path_plan", std::bind(&PathPlanner::planPathCallback,
+                                                                                                      this,   
+                                                                                                      std::placeholders::_1,
+                                                                                                      std::placeholders::_2));
     
     return;
 }
@@ -181,9 +190,9 @@ void PathPlanner::pclToGridMap()
     int temp_index_x,temp_index_y,temp_index_z;
     for (int i=0;i<pcl_obs_size;i++)
     {
-        temp_index_x = floor((pcl_obs.points[i].x-this->grid_map_origin_point.x())/this->resolution);
-        temp_index_y = floor((pcl_obs.points[i].y-this->grid_map_origin_point.y())/this->resolution);
-        temp_index_z = floor((pcl_obs.points[i].z-this->grid_map_origin_point.z())/this->resolution);
+        temp_index_x = floor((pcl_obs.points[i].x-this->grid_map_origin_point.x()+0.5)/this->resolution);
+        temp_index_y = floor((pcl_obs.points[i].y-this->grid_map_origin_point.y()+0.5)/this->resolution);
+        temp_index_z = floor((pcl_obs.points[i].z-this->grid_map_origin_point.z()+0.5)/this->resolution);
         this->grid_map[temp_index_x][temp_index_y][temp_index_z] = true;
         for (int x=temp_index_x-inflation_radius;x<=temp_index_x+inflation_radius;x++)
         {
@@ -201,11 +210,24 @@ void PathPlanner::pclToGridMap()
 }
 
 // init the straight line path that for the 
-void PathPlanner::replanPath()
-{   
+void PathPlanner::planPathCallback(const interface::srv::PathPoints::Request::SharedPtr request,
+                                    const interface::srv::PathPoints::Response::SharedPtr response)
+
+{      
+    // 1. 首先接收数据: 将得到的起始位置、速度赋值给全局变量
+    this->start_position.x() = request->start_position.x;
+    this->start_position.y() = request->start_position.y;
+    this->start_position.z() = request->start_position.z;
+    this->start_velocity.x() = request->start_velocity.x;
+    this->start_velocity.y() = request->start_velocity.y;
+    this->start_velocity.z() = request->start_velocity.z;
+    // 2. 初始化全局路径: 使用最小化jerk的五次多项式轨迹初始化全局路径的多段五次多项式系数矩阵
+    
+    // 3. 根据
+
     // # STEP 1 #: Initializing global polynomial path.
     // TIP: set distance thresh 200mm, use end_front_index become the path plan start point.
-    bool success = planInitTraj(start_pos, start_vel, Eigen::Vector3d::Zero(), end_pos, Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero());
+    bool success = planInitTraj(start_position, start_velocity, Eigen::Vector3d::Zero(), target_position, Eigen::Vector3d::Zero(), Eigen::Vector3d::Zero());
     if (!success)
     {
         RCLCPP_ERROR(this->get_logger(), "Unable to generate Init Path !");
@@ -223,8 +245,6 @@ void PathPlanner::replanPath()
     getBasePointsAndDirection();
 
     Optimize();
-
-
 
     return;
 }
@@ -324,14 +344,14 @@ void PathPlanner::initControlPoints()
         }
     }while(flag_too_far || this->bspline_interp_pt.size()<7);
 
-    bspline_interp_pt.push_back(end_pos);
+    bspline_interp_pt.push_back(target_position);
     if ((bspline_interp_pt.back()-bspline_interp_pt[bspline_interp_pt.size()-2]).norm() < 10.0)
     {
         bspline_interp_pt[bspline_interp_pt.size()-2] = bspline_interp_pt.back();
         bspline_interp_pt.pop_back();
     }
 
-    start_end_derivatives.push_back(this->start_vel);
+    start_end_derivatives.push_back(this->start_velocity);
     start_end_derivatives.push_back(Eigen::Vector3d(0,0,0));
     start_end_derivatives.push_back(Eigen::Vector3d(0,0,0));
     start_end_derivatives.push_back(Eigen::Vector3d(0,0,0));

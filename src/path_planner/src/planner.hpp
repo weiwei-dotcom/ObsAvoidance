@@ -13,6 +13,9 @@
 #include <ceres/ceres.h>
 #include "polynomial_traj.hpp"
 #include "uniform_bspline.hpp"
+#include "interface/srv/path_points.hpp"
+
+using namespace std::placeholders;
 
 constexpr double inf = 1 >> 20;
 struct GridNode;
@@ -68,9 +71,9 @@ private:
 
     bool flag_finish_planning;
 
-    Eigen::Vector3d grid_map_origin_point;
+    Eigen::Vector3d grid_map_origin_point, grid_map_end_point;
 
-    Eigen::Vector3d start_pos,start_direction,start_vel,end_pos;
+    Eigen::Vector3d start_position,start_velocity,target_position;
 
     std::vector<Eigen::Vector3d> start_end_derivatives;
 
@@ -114,6 +117,8 @@ private:
     Eigen::Vector3d center_;
 
     std::vector<GridNodePtr> gridPath_;
+    // 声明路径规划服务端
+    rclcpp::Service<interface::srv::PathPoints>::SharedPtr path_plan_service;
 
     enum FORCE_STOP_OPTIMIZE_TYPE
     {
@@ -128,7 +133,8 @@ public:
     void buildStructure();
     void pclToGridMap();
 
-    void replanPath();
+    void planPathCallback(const interface::srv::PathPoints::Request::SharedPtr request,
+                        const interface::srv::PathPoints::Response::SharedPtr response);
     
     void boundCorrect(int &x, int &y, int &z);
     
