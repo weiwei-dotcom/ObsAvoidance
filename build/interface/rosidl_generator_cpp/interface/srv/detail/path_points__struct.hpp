@@ -17,7 +17,7 @@
 // Include directives for member types
 // Member 'start_position'
 #include "geometry_msgs/msg/detail/point__struct.hpp"
-// Member 'start_speed'
+// Member 'start_velocity'
 #include "geometry_msgs/msg/detail/vector3__struct.hpp"
 
 #ifndef _WIN32
@@ -40,14 +40,14 @@ struct PathPoints_Request_
 
   explicit PathPoints_Request_(rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   : start_position(_init),
-    start_speed(_init)
+    start_velocity(_init)
   {
     (void)_init;
   }
 
   explicit PathPoints_Request_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   : start_position(_alloc, _init),
-    start_speed(_alloc, _init)
+    start_velocity(_alloc, _init)
   {
     (void)_init;
   }
@@ -56,9 +56,9 @@ struct PathPoints_Request_
   using _start_position_type =
     geometry_msgs::msg::Point_<ContainerAllocator>;
   _start_position_type start_position;
-  using _start_speed_type =
+  using _start_velocity_type =
     geometry_msgs::msg::Vector3_<ContainerAllocator>;
-  _start_speed_type start_speed;
+  _start_velocity_type start_velocity;
 
   // setters for named parameter idiom
   Type & set__start_position(
@@ -67,10 +67,10 @@ struct PathPoints_Request_
     this->start_position = _arg;
     return *this;
   }
-  Type & set__start_speed(
+  Type & set__start_velocity(
     const geometry_msgs::msg::Vector3_<ContainerAllocator> & _arg)
   {
-    this->start_speed = _arg;
+    this->start_velocity = _arg;
     return *this;
   }
 
@@ -119,7 +119,7 @@ struct PathPoints_Request_
     if (this->start_position != other.start_position) {
       return false;
     }
-    if (this->start_speed != other.start_speed) {
+    if (this->start_velocity != other.start_velocity) {
       return false;
     }
     return true;

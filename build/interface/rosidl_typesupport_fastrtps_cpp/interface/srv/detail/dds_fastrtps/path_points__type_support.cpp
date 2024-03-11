@@ -82,9 +82,9 @@ cdr_serialize(
   geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
     ros_message.start_position,
     cdr);
-  // Member: start_speed
+  // Member: start_velocity
   geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_serialize(
-    ros_message.start_speed,
+    ros_message.start_velocity,
     cdr);
   return true;
 }
@@ -99,9 +99,9 @@ cdr_deserialize(
   geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
     cdr, ros_message.start_position);
 
-  // Member: start_speed
+  // Member: start_velocity
   geometry_msgs::msg::typesupport_fastrtps_cpp::cdr_deserialize(
-    cdr, ros_message.start_speed);
+    cdr, ros_message.start_velocity);
 
   return true;
 }
@@ -124,11 +124,11 @@ get_serialized_size(
   current_alignment +=
     geometry_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
     ros_message.start_position, current_alignment);
-  // Member: start_speed
+  // Member: start_velocity
 
   current_alignment +=
     geometry_msgs::msg::typesupport_fastrtps_cpp::get_serialized_size(
-    ros_message.start_speed, current_alignment);
+    ros_message.start_velocity, current_alignment);
 
   return current_alignment - initial_alignment;
 }
@@ -160,7 +160,7 @@ max_serialized_size_PathPoints_Request(
     }
   }
 
-  // Member: start_speed
+  // Member: start_velocity
   {
     size_t array_size = 1;
 

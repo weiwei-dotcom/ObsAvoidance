@@ -1,2 +1,2 @@
 geometry_msgs/Point start_position
-geometry_msgs/Vector3 start_speed
+geometry_msgs/Vector3 start_velocity

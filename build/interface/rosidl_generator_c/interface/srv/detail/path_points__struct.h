@@ -20,14 +20,14 @@ extern "C"
 // Include directives for member types
 // Member 'start_position'
 #include "geometry_msgs/msg/detail/point__struct.h"
-// Member 'start_speed'
+// Member 'start_velocity'
 #include "geometry_msgs/msg/detail/vector3__struct.h"
 
 // Struct defined in srv/PathPoints in the package interface.
 typedef struct interface__srv__PathPoints_Request
 {
   geometry_msgs__msg__Point start_position;
-  geometry_msgs__msg__Vector3 start_speed;
+  geometry_msgs__msg__Vector3 start_velocity;
 } interface__srv__PathPoints_Request;
 
 // Struct for a sequence of interface__srv__PathPoints_Request.

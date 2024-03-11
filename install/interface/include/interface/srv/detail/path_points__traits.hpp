@@ -13,7 +13,7 @@
 // Include directives for member types
 // Member 'start_position'
 #include "geometry_msgs/msg/detail/point__traits.hpp"
-// Member 'start_speed'
+// Member 'start_velocity'
 #include "geometry_msgs/msg/detail/vector3__traits.hpp"
 
 namespace rosidl_generator_traits

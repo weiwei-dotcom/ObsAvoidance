@@ -13,7 +13,7 @@
 // Include directives for member types
 // Member `start_position`
 #include "geometry_msgs/msg/detail/point__functions.h"
-// Member `start_speed`
+// Member `start_velocity`
 #include "geometry_msgs/msg/detail/vector3__functions.h"
 
 bool
@@ -27,8 +27,8 @@ interface__srv__PathPoints_Request__init(interface__srv__PathPoints_Request * ms
     interface__srv__PathPoints_Request__fini(msg);
     return false;
   }
-  // start_speed
-  if (!geometry_msgs__msg__Vector3__init(&msg->start_speed)) {
+  // start_velocity
+  if (!geometry_msgs__msg__Vector3__init(&msg->start_velocity)) {
     interface__srv__PathPoints_Request__fini(msg);
     return false;
   }
@@ -43,8 +43,8 @@ interface__srv__PathPoints_Request__fini(interface__srv__PathPoints_Request * ms
   }
   // start_position
   geometry_msgs__msg__Point__fini(&msg->start_position);
-  // start_speed
-  geometry_msgs__msg__Vector3__fini(&msg->start_speed);
+  // start_velocity
+  geometry_msgs__msg__Vector3__fini(&msg->start_velocity);
 }
 
 bool
@@ -59,9 +59,9 @@ interface__srv__PathPoints_Request__are_equal(const interface__srv__PathPoints_R
   {
     return false;
   }
-  // start_speed
+  // start_velocity
   if (!geometry_msgs__msg__Vector3__are_equal(
-      &(lhs->start_speed), &(rhs->start_speed)))
+      &(lhs->start_velocity), &(rhs->start_velocity)))
   {
     return false;
   }
@@ -82,9 +82,9 @@ interface__srv__PathPoints_Request__copy(
   {
     return false;
   }
-  // start_speed
+  // start_velocity
   if (!geometry_msgs__msg__Vector3__copy(
-      &(input->start_speed), &(output->start_speed)))
+      &(input->start_velocity), &(output->start_velocity)))
   {
     return false;
   }

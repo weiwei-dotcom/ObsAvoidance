@@ -62,12 +62,12 @@ class PathPoints_Request(metaclass=Metaclass_PathPoints_Request):
 
     __slots__ = [
         '_start_position',
-        '_start_speed',
+        '_start_velocity',
     ]
 
     _fields_and_field_types = {
         'start_position': 'geometry_msgs/Point',
-        'start_speed': 'geometry_msgs/Vector3',
+        'start_velocity': 'geometry_msgs/Vector3',
     }
 
     SLOT_TYPES = (
@@ -82,7 +82,7 @@ class PathPoints_Request(metaclass=Metaclass_PathPoints_Request):
         from geometry_msgs.msg import Point
         self.start_position = kwargs.get('start_position', Point())
         from geometry_msgs.msg import Vector3
-        self.start_speed = kwargs.get('start_speed', Vector3())
+        self.start_velocity = kwargs.get('start_velocity', Vector3())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -115,7 +115,7 @@ class PathPoints_Request(metaclass=Metaclass_PathPoints_Request):
             return False
         if self.start_position != other.start_position:
             return False
-        if self.start_speed != other.start_speed:
+        if self.start_velocity != other.start_velocity:
             return False
         return True
 
@@ -139,18 +139,18 @@ class PathPoints_Request(metaclass=Metaclass_PathPoints_Request):
         self._start_position = value
 
     @property
-    def start_speed(self):
-        """Message field 'start_speed'."""
-        return self._start_speed
+    def start_velocity(self):
+        """Message field 'start_velocity'."""
+        return self._start_velocity
 
-    @start_speed.setter
-    def start_speed(self, value):
+    @start_velocity.setter
+    def start_velocity(self, value):
         if __debug__:
             from geometry_msgs.msg import Vector3
             assert \
                 isinstance(value, Vector3), \
-                "The 'start_speed' field must be a sub message of type 'Vector3'"
-        self._start_speed = value
+                "The 'start_velocity' field must be a sub message of type 'Vector3'"
+        self._start_velocity = value
 
 
 # Import statements for member types

@@ -20,15 +20,15 @@ namespace srv
 namespace builder
 {
 
-class Init_PathPoints_Request_start_speed
+class Init_PathPoints_Request_start_velocity
 {
 public:
-  explicit Init_PathPoints_Request_start_speed(::interface::srv::PathPoints_Request & msg)
+  explicit Init_PathPoints_Request_start_velocity(::interface::srv::PathPoints_Request & msg)
   : msg_(msg)
   {}
-  ::interface::srv::PathPoints_Request start_speed(::interface::srv::PathPoints_Request::_start_speed_type arg)
+  ::interface::srv::PathPoints_Request start_velocity(::interface::srv::PathPoints_Request::_start_velocity_type arg)
   {
-    msg_.start_speed = std::move(arg);
+    msg_.start_velocity = std::move(arg);
     return std::move(msg_);
   }
 
@@ -42,10 +42,10 @@ public:
   Init_PathPoints_Request_start_position()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  Init_PathPoints_Request_start_speed start_position(::interface::srv::PathPoints_Request::_start_position_type arg)
+  Init_PathPoints_Request_start_velocity start_position(::interface::srv::PathPoints_Request::_start_position_type arg)
   {
     msg_.start_position = std::move(arg);
-    return Init_PathPoints_Request_start_speed(msg_);
+    return Init_PathPoints_Request_start_velocity(msg_);
   }
 
 private:

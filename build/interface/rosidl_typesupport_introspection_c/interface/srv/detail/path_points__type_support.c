@@ -17,9 +17,9 @@
 #include "geometry_msgs/msg/point.h"
 // Member `start_position`
 #include "geometry_msgs/msg/detail/point__rosidl_typesupport_introspection_c.h"
-// Member `start_speed`
+// Member `start_velocity`
 #include "geometry_msgs/msg/vector3.h"
-// Member `start_speed`
+// Member `start_velocity`
 #include "geometry_msgs/msg/detail/vector3__rosidl_typesupport_introspection_c.h"
 
 #ifdef __cplusplus
@@ -58,14 +58,14 @@ static rosidl_typesupport_introspection_c__MessageMember PathPoints_Request__ros
     NULL  // resize(index) function pointer
   },
   {
-    "start_speed",  // name
+    "start_velocity",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message (initialized later)
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(interface__srv__PathPoints_Request, start_speed),  // bytes offset in struct
+    offsetof(interface__srv__PathPoints_Request, start_velocity),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer

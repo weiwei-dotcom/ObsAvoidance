@@ -10,7 +10,7 @@ module interface {
     struct PathPoints_Request {
       geometry_msgs::msg::Point start_position;
 
-      geometry_msgs::msg::Vector3 start_speed;
+      geometry_msgs::msg::Vector3 start_velocity;
     };
     struct PathPoints_Response {
       sequence<geometry_msgs::msg::Point> path_points;

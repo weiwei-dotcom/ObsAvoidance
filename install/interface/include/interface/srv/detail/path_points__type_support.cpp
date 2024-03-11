@@ -54,14 +54,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember PathPoints_Re
     nullptr  // resize(index) function pointer
   },
   {
-    "start_speed",  // name
+    "start_velocity",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<geometry_msgs::msg::Vector3>(),  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(interface::srv::PathPoints_Request, start_speed),  // bytes offset in struct
+    offsetof(interface::srv::PathPoints_Request, start_velocity),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer

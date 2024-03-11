@@ -35,7 +35,7 @@ extern "C"
 #endif
 
 #include "geometry_msgs/msg/detail/point__functions.h"  // start_position
-#include "geometry_msgs/msg/detail/vector3__functions.h"  // start_speed
+#include "geometry_msgs/msg/detail/vector3__functions.h"  // start_velocity
 
 // forward declare type support functions
 ROSIDL_TYPESUPPORT_FASTRTPS_C_IMPORT_interface
@@ -91,7 +91,7 @@ static bool _PathPoints_Request__cdr_serialize(
     }
   }
 
-  // Field name: start_speed
+  // Field name: start_velocity
   {
     const message_type_support_callbacks_t * callbacks =
       static_cast<const message_type_support_callbacks_t *>(
@@ -99,7 +99,7 @@ static bool _PathPoints_Request__cdr_serialize(
         rosidl_typesupport_fastrtps_c, geometry_msgs, msg, Vector3
       )()->data);
     if (!callbacks->cdr_serialize(
-        &ros_message->start_speed, cdr))
+        &ros_message->start_velocity, cdr))
     {
       return false;
     }
@@ -131,7 +131,7 @@ static bool _PathPoints_Request__cdr_deserialize(
     }
   }
 
-  // Field name: start_speed
+  // Field name: start_velocity
   {
     const message_type_support_callbacks_t * callbacks =
       static_cast<const message_type_support_callbacks_t *>(
@@ -139,7 +139,7 @@ static bool _PathPoints_Request__cdr_deserialize(
         rosidl_typesupport_fastrtps_c, geometry_msgs, msg, Vector3
       )()->data);
     if (!callbacks->cdr_deserialize(
-        cdr, &ros_message->start_speed))
+        cdr, &ros_message->start_velocity))
     {
       return false;
     }
@@ -166,10 +166,10 @@ size_t get_serialized_size_interface__srv__PathPoints_Request(
 
   current_alignment += get_serialized_size_geometry_msgs__msg__Point(
     &(ros_message->start_position), current_alignment);
-  // field.name start_speed
+  // field.name start_velocity
 
   current_alignment += get_serialized_size_geometry_msgs__msg__Vector3(
-    &(ros_message->start_speed), current_alignment);
+    &(ros_message->start_velocity), current_alignment);
 
   return current_alignment - initial_alignment;
 }
@@ -205,7 +205,7 @@ size_t max_serialized_size_interface__srv__PathPoints_Request(
         full_bounded, current_alignment);
     }
   }
-  // member: start_speed
+  // member: start_velocity
   {
     size_t array_size = 1;
 

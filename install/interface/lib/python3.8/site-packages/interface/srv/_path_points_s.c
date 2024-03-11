@@ -69,12 +69,12 @@ bool interface__srv__path_points__request__convert_from_py(PyObject * _pymsg, vo
     }
     Py_DECREF(field);
   }
-  {  // start_speed
-    PyObject * field = PyObject_GetAttrString(_pymsg, "start_speed");
+  {  // start_velocity
+    PyObject * field = PyObject_GetAttrString(_pymsg, "start_velocity");
     if (!field) {
       return false;
     }
-    if (!geometry_msgs__msg__vector3__convert_from_py(field, &ros_message->start_speed)) {
+    if (!geometry_msgs__msg__vector3__convert_from_py(field, &ros_message->start_velocity)) {
       Py_DECREF(field);
       return false;
     }
@@ -116,14 +116,14 @@ PyObject * interface__srv__path_points__request__convert_to_py(void * raw_ros_me
       }
     }
   }
-  {  // start_speed
+  {  // start_velocity
     PyObject * field = NULL;
-    field = geometry_msgs__msg__vector3__convert_to_py(&ros_message->start_speed);
+    field = geometry_msgs__msg__vector3__convert_to_py(&ros_message->start_velocity);
     if (!field) {
       return NULL;
     }
     {
-      int rc = PyObject_SetAttrString(_pymessage, "start_speed", field);
+      int rc = PyObject_SetAttrString(_pymessage, "start_velocity", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
